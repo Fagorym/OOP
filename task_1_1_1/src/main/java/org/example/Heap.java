@@ -1,8 +1,8 @@
+package org.example;
+
 public class Heap {
     private int[]heap;
     private int length;
-
-    private int origLen;
     private void swap(int firstIdx, int sndIdx) {
 
         int value = this.heap[firstIdx];
@@ -14,13 +14,13 @@ public class Heap {
     Heap(int[]arr) {
         this.length = arr.length;
         this.heap = arr;
-        for (int i = this.length - 1; i >= 0; i--){
+        for (int i = 0; i < this.length - 1; i++){
             siftUp(i);
         }
     }
 
     protected void sort(){
-        for(int i = 0; i<this.origLen;i++){
+        for(int i = 0; i < this.heap.length;i++){
             extractMax();
         }
     }
@@ -46,11 +46,11 @@ public class Heap {
 		else return;
         }
 
-        else if (this.heap[leftSon] >= heap[rightSon] && heap[leftSon] > heap[elemIdx]) {
+        else if (this.heap[leftSon] >= this.heap[rightSon] && this.heap[leftSon] > this.heap[elemIdx]) {
             swap(leftSon, elemIdx);
             siftDown(leftSon);
         }
-        else if (heap[rightSon] >= heap[leftSon] && heap[rightSon] > heap[elemIdx]) {
+        else if (this.heap[rightSon] >= this.heap[leftSon] && this.heap[rightSon] > this.heap[elemIdx]) {
             swap(rightSon, elemIdx);
             siftDown(rightSon);
         };
