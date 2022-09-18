@@ -1,8 +1,9 @@
 package org.example;
 
 public class Heap {
-    private int[]heap;
+    private int[] heap;
     private int length;
+
     private void swap(int firstIdx, int sndIdx) {
 
         int value = this.heap[firstIdx];
@@ -11,19 +12,20 @@ public class Heap {
 
     }
 
-    Heap(int[]arr) {
+    Heap(int[] arr) {
         this.length = arr.length;
         this.heap = arr;
-        for (int i = 0; i < this.length - 1; i++){
+        for (int i = 0; i < this.length - 1; i++) {
             siftUp(i);
         }
     }
 
-    public void sort(){
-        for(int i = 0; i < this.heap.length;i++){
+    public void sort() {
+        for (int i = 0; i < this.heap.length; i++) {
             extractMax();
         }
     }
+
     private void siftUp(int elemIdx) {
         int fatherNum = (elemIdx - 1) / 2;
         if (elemIdx == 0) return;
@@ -42,18 +44,14 @@ public class Heap {
             if (this.heap[leftSon] > this.heap[elemIdx]) {
                 swap(leftSon, elemIdx);
                 siftDown(leftSon);
-            }
-		else return;
-        }
-
-        else if (this.heap[leftSon] >= this.heap[rightSon] && this.heap[leftSon] > this.heap[elemIdx]) {
+            } else return;
+        } else if (this.heap[leftSon] >= this.heap[rightSon] && this.heap[leftSon] > this.heap[elemIdx]) {
             swap(leftSon, elemIdx);
             siftDown(leftSon);
-        }
-        else if (this.heap[rightSon] >= this.heap[leftSon] && this.heap[rightSon] > this.heap[elemIdx]) {
+        } else if (this.heap[rightSon] >= this.heap[leftSon] && this.heap[rightSon] > this.heap[elemIdx]) {
             swap(rightSon, elemIdx);
             siftDown(rightSon);
-        };
+        }
 
 
     }
@@ -67,7 +65,8 @@ public class Heap {
         siftDown(0);
         return max;
     }
-    public void print(){
+
+    public void print() {
         for (int i = 0; i < this.heap.length; i++) {
             System.out.println(this.heap[i]);
         }
