@@ -19,7 +19,8 @@ public class Heap {
             siftUp(i);
         }
     }
-
+    /** Function to sort your heap.
+     */
     public void sort() {
         for (int i = 0; i < this.heap.length; i++) {
             extractMax();
@@ -65,7 +66,8 @@ public class Heap {
         siftDown(0);
         return max;
     }
-
+    /** Function to print your heap.
+     */
     public void print() {
         for (int i = 0; i < this.heap.length; i++) {
             System.out.println(this.heap[i]);
