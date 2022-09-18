@@ -19,7 +19,7 @@ public class Heap {
         }
     }
 
-    protected void sort(){
+    public void sort(){
         for(int i = 0; i < this.heap.length;i++){
             extractMax();
         }
@@ -67,7 +67,7 @@ public class Heap {
         siftDown(0);
         return max;
     }
-    protected void print(){
+    public void print(){
         for (int i = 0; i < this.heap.length; i++) {
             System.out.println(this.heap[i]);
         }
