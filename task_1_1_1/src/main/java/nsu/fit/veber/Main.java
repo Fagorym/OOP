@@ -1,4 +1,4 @@
-package org.example;
+package nsu.fit.veber;
 
 public class Main {
     public static void main(String[] args) {

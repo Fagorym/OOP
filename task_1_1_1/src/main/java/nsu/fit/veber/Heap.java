@@ -1,4 +1,4 @@
-package org.example;
+package nsu.fit.veber;
 
 public class Heap {
     private int[] heap;
