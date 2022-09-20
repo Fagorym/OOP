@@ -15,7 +15,14 @@ public class Heap {
 
     }
 
-    Heap(int[] arr) {
+    /**
+     * Heap class constructor
+     *
+     * @param arr - incoming array, that will be transformed to heap
+     * @throws IllegalArgumentException with null arrays
+     */
+    public Heap(int[] arr) {
+        if (arr == null) throw new IllegalArgumentException();
         this.length = arr.length;
         this.heap = arr;
         for (int i = 0; i < this.length - 1; i++) {
