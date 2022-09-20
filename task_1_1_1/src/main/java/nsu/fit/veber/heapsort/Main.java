@@ -1,4 +1,4 @@
-package nsu.fit.veber;
+package nsu.fit.veber.heapsort;
 
 public class Main {
     public static void main(String[] args) {
