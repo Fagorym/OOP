@@ -1,5 +1,8 @@
 package nsu.fit.veber.heapsort;
 
+/**
+ * Class that contains method to sort arrays using heapsort algorithm
+ */
 public class Heap {
     private int[] heap;
     private int length;
