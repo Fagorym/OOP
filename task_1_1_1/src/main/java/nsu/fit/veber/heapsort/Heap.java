@@ -25,7 +25,7 @@ public class Heap {
         if (arr == null) throw new IllegalArgumentException();
         this.length = arr.length;
         this.heap = arr;
-        for (int i = 0; i < this.length - 1; i++) {
+        for (int i = 0; i < this.length; i++) {
             siftUp(i);
         }
     }

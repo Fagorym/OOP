@@ -41,6 +41,7 @@ class HeapSortTest {
         Assertions.assertArrayEquals(arr2,arr);
     }
 
+    @Test
     void sortingLargeArray(){
         Random rnd = new Random(333);
         var arr = new int[1000000];
