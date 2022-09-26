@@ -1,4 +1,4 @@
-package nsu.fit.veber.heapsortTest;
+package nsu.fit.veber.heapsort;
 
 import nsu.fit.veber.heapsort.Heap;
 import org.junit.jupiter.api.Assertions;
