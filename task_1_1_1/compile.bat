@@ -1,0 +1,1 @@
+javac -d buildBat -sourcepath ./src/main/java src/main/java/nsu/fit/veber/heapsort/Main.java
