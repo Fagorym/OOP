@@ -102,14 +102,4 @@ public class Stack {
         return topIdx + 1;
 
     }
-
-    /**
-     * Print elements of your stack
-     */
-    public void print() {
-        for (Object elem : arr) {
-            if (elem == null) return;
-            System.out.println(elem);
-        }
-    }
 }
