@@ -14,17 +14,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: chmod
-        run: chmod +x gradlew
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
+
+      - name: chmod gradlew
+        run: chmod +x gradlew
+
+
       - name: Execute Gradle build
-        run: ./gradlew build
+        run: ./gradlew ${{ github.event.pull_request.title }}:build
+
 
       - name: Generate Jacoco report
-        run: ./gradlew jacocoTestReport
+        run: ./gradlew ${{ github.event.pull_request.title }}:jacocoTestReport
+
+      - name: directory tree
+        run: tree
 
       - name: Check coverage and publish
         id: jacoco
@@ -35,8 +42,12 @@ jobs:
           min-coverage-overall: 80
           min-coverage-changed-files: 80
 
+
       - name: Generate javadoc
-        run: ./gradlew javadoc
+        run: ./gradlew ${{ github.event.pull_request.title }}:javadoc
+
+      - name: directory tree
+        run: tree
 
       - name: Publish javadoc
         uses: JamesIves/github-pages-deploy-action@v4
@@ -45,6 +56,7 @@ jobs:
           branch: gh-pages
           clean: true
           folder: ${{ github.event.pull_request.title }}/build/docs/javadoc
+          # Если джавадоки не там, то можете поменять директорию выше, опираясь на дерево выше
           target-folder: ${{ github.event.pull_request.title }}
 
   checkstyle:
