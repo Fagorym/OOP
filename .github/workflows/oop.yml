@@ -28,7 +28,7 @@ jobs:
 
 
       - name: Generate Jacoco report
-        run: ./gradlew ${{ github.event.pull_request.title }}:jacocoTestReport
+        run: ./gradlew jacocoTestReport
 
       - name: directory tree
         run: tree
