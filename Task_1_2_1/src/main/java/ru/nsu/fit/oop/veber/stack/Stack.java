@@ -2,37 +2,39 @@ package ru.nsu.fit.oop.veber.stack;
 
 import java.util.Arrays;
 import java.util.EmptyStackException;
+import java.lang.SuppressWarnings;
 
 /**
  * This class is used to store your elements of all types
  * Main idea of this class - first in - first out
  * It means that element that you pushed the last, will be pop the first
  */
-public class Stack {
-    private final static int MAX_SIZE = 1000;
+public class Stack<T> {
+    private final static int STANDART_SIZE = 1000;
     private final int capacity;
     private int topIdx;
-    private Object[] arr;
+    private T[] arr;
 
-    Stack() {
-        this.arr = new Object[MAX_SIZE];
-        this.capacity = MAX_SIZE;
+    @SuppressWarnings("unchecked") Stack() {
+        this.arr = (T[]) new Object[STANDART_SIZE];
+        this.capacity = STANDART_SIZE;
         this.topIdx = -1;
     }
 
-    Stack(int size) {
-        this.arr = new Object[size];
+    @SuppressWarnings("unchecked") Stack(int size) {
+        this.arr = (T[]) new Object[size];
         this.capacity = size;
         this.topIdx = -1;
     }
 
     /**
+     * Function that adds element to stack
      * @param elem - elem that you need to push in your stack
      *             it must match type of other Stack elements
      * @return boolean - false, when stack is full
      * true - when elem pushed successfully
      */
-    public boolean push(Object elem) {
+    public boolean push(T elem) {
         if (topIdx >= capacity - 1) {
             return false;
         } else {
@@ -42,16 +44,17 @@ public class Stack {
     }
 
     /**
+     * Function that adding Stack of elements to Stack
      * @param elems - elems that you need to push in your stack
      *              it must match type of other Stack elements
      * @return boolean - false, when stack is full
      * true - when elems pushed successfully
      */
-    public boolean pushStack(Stack elems) {
+    public boolean pushStack(Stack<T> elems) {
         if (topIdx >= capacity - (elems.topIdx + 1)) {
             return false;
         } else {
-            for (Object elem : elems.arr) {
+            for (T elem : elems.arr) {
                 if (elem != null) push(elem);
             }
             return true;
@@ -59,14 +62,15 @@ public class Stack {
     }
 
     /**
-     * @return Object - element that matches Stack type
+     * Function delete last element from stack and returns it
+     * @return Last element of the stack
      * @throws EmptyStackException - when you try to pop empty stack
      */
-    public Object pop() throws EmptyStackException {
+    public T pop() throws EmptyStackException {
         if (topIdx == -1) {
             throw new EmptyStackException();
         } else {
-            Object temp = arr[topIdx];
+            T temp = arr[topIdx];
             arr[topIdx--] = null;
             return temp;
         }
@@ -80,12 +84,12 @@ public class Stack {
      * @return Variable of Stack class
      * @throws EmptyStackException - when you try to pop more elements than you have in Stack
      */
-    public Stack popStack(int count) throws EmptyStackException {
+    public Stack<T> popStack(int count) throws EmptyStackException {
         if (topIdx - count < -1) {
             throw new EmptyStackException();
         } else {
-            Stack result = new Stack();
-            Object[] temp = Arrays.copyOfRange(this.arr, topIdx - count + 1, this.topIdx + 1);
+            Stack<T> result = new Stack<>();
+            T[] temp = Arrays.copyOfRange(this.arr, topIdx - count + 1, this.topIdx + 1);
             for (int i = 0; i < count; i++) {
                 this.pop();
             }
@@ -96,6 +100,7 @@ public class Stack {
     }
 
     /**
+     * Function returns count elements in stack
      * @return count of elements at the current stack
      */
     public int count() {
