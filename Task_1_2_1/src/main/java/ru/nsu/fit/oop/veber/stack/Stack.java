@@ -95,9 +95,8 @@ public class Stack<T> {
         } else {
             Stack<T> result = new Stack<>();
             T[] temp = Arrays.copyOfRange(this.arr, topIdx - count + 1, this.topIdx + 1);
-            for (int i = 0; i < count; i++) {
-                this.pop();
-            }
+            Arrays.fill(this.arr, topIdx - count + 1, this.topIdx + 1, null);
+            this.topIdx -= count;
             result.arr = temp;
             result.topIdx = temp.length - 1;
             return result;
