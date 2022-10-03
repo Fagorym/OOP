@@ -59,9 +59,8 @@ public class Stack<T> {
         if (topIdx >= capacity - (elems.topIdx + 1)) {
             resize();
         }
-        for (T elem : elems.arr) {
-            if (elem != null) push(elem);
-        }
+        System.arraycopy(elems.arr, 0, this.arr, this.topIdx + 1, elems.count());
+        this.topIdx += elems.count();
         return true;
 
     }
