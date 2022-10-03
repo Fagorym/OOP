@@ -11,40 +11,45 @@ import java.lang.SuppressWarnings;
  */
 public class Stack<T> {
     private final static int STANDART_SIZE = 1000;
-    private final int capacity;
+    private int capacity;
     private int topIdx;
     private T[] arr;
 
-    @SuppressWarnings("unchecked") Stack() {
+    @SuppressWarnings("unchecked")
+    Stack() {
         this.arr = (T[]) new Object[STANDART_SIZE];
         this.capacity = STANDART_SIZE;
         this.topIdx = -1;
     }
 
-    @SuppressWarnings("unchecked") Stack(int size) {
+    @SuppressWarnings("unchecked")
+    Stack(int size) {
         this.arr = (T[]) new Object[size];
         this.capacity = size;
         this.topIdx = -1;
     }
 
+    private void resize() {
+        this.capacity *= 2;
+    }
+
     /**
      * Function that adds element to stack
+     *
      * @param elem - elem that you need to push in your stack
      *             it must match type of other Stack elements
-     * @return boolean - false, when stack is full
-     * true - when elem pushed successfully
      */
-    public boolean push(T elem) {
+    public void push(T elem) {
         if (topIdx >= capacity - 1) {
-            return false;
-        } else {
-            arr[++topIdx] = elem;
-            return true;
+            resize();
         }
+        arr[++topIdx] = elem;
+
     }
 
     /**
      * Function that adding Stack of elements to Stack
+     *
      * @param elems - elems that you need to push in your stack
      *              it must match type of other Stack elements
      * @return boolean - false, when stack is full
@@ -52,17 +57,18 @@ public class Stack<T> {
      */
     public boolean pushStack(Stack<T> elems) {
         if (topIdx >= capacity - (elems.topIdx + 1)) {
-            return false;
-        } else {
-            for (T elem : elems.arr) {
-                if (elem != null) push(elem);
-            }
-            return true;
+            resize();
         }
+        for (T elem : elems.arr) {
+            if (elem != null) push(elem);
+        }
+        return true;
+
     }
 
     /**
      * Function delete last element from stack and returns it
+     *
      * @return Last element of the stack
      * @throws EmptyStackException - when you try to pop empty stack
      */
@@ -101,6 +107,7 @@ public class Stack<T> {
 
     /**
      * Function returns count elements in stack
+     *
      * @return count of elements at the current stack
      */
     public int count() {

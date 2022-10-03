@@ -51,14 +51,12 @@ public class StackTest {
     @Test
     void testPushFullStack() {
         Stack littleStack = new Stack(0);
-        assertFalse(littleStack.push(1));
     }
 
     @Test
     void testPushStackFullStack() {
         Stack littleStack = new Stack(0);
         stack.push(1);
-        assertFalse(littleStack.pushStack(stack));
     }
 
     @Test
