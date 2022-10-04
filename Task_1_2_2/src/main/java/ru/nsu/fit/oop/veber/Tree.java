@@ -1,17 +1,22 @@
 package ru.nsu.fit.oop.veber;
-
+    
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.stream.Stream;
 
-public class Tree implements Collection {
+public class Tree<T> implements Collection {
+    private Node<T> root;
+    private int size = 0;
+
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.size == 0;
     }
 
     @Override
@@ -30,7 +35,7 @@ public class Tree implements Collection {
     }
 
     @Override
-    public boolean add(Object o) {
+    public boolean add(Object o){
         return false;
     }
 
@@ -46,7 +51,7 @@ public class Tree implements Collection {
 
     @Override
     public void clear() {
-
+        this.root = null;
     }
 
     @Override
@@ -66,6 +71,11 @@ public class Tree implements Collection {
 
     @Override
     public Object[] toArray(Object[] a) {
-        return new Object[0];
+       return this.root.Nodes.toArray();
+    }
+
+    private class Node<T> {
+        T elem;
+        ArrayList<T> Nodes;
     }
 }
