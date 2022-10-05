@@ -3,7 +3,6 @@ package ru.nsu.fit.oop.veber;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.stream.Stream;
 
 public class Tree<T> implements Collection<T> {
     private Node<T> root;
@@ -20,7 +19,17 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean contains(Object o) {
+        return contains(this.root, o);
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean contains(Node<T> node, Object o) {
         checkNotNull(o);
+        var elemToFind = (T) o;
+        if (node.elem == elemToFind) return true;
+        for (Node<T> exploringNode : node.Nodes) {
+            if (contains(exploringNode, o)) return true;
+        }
         return false;
     }
 
@@ -35,16 +44,16 @@ public class Tree<T> implements Collection<T> {
     }
 
     @Override
-    public boolean add(Object o){
+    public boolean add(Object o) {
         add(root, o);
         return true;
     }
 
     @SuppressWarnings("unchecked")
-    public boolean add(Node<T> node, Object o){
+    public boolean add(Node<T> node, Object o) {
         checkNotNull(o);
         Node<T> newNode = new Node<>();
-        newNode.elem = (T)o;
+        newNode.elem = (T) o;
         node.Nodes.add(newNode);
         node.size++;
         return true;
@@ -58,11 +67,16 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean addAll(Collection c) {
-        c.forEach(this::add);
+        for (var val : c) {
+            add(c);
+        }
         return true;
     }
-    public boolean addAll(Node<T> node, Collection c) {
-        c.forEach(o -> add(node,o));
+
+    public boolean addAll(Node<T> node, Collection<T> c) {
+        for (var val : c) {
+            add(node, c);
+        }
         return true;
     }
 
@@ -83,23 +97,26 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean containsAll(Collection c) {
-        return false;
+        for (var val : c) {
+            if (!contains(val)) return false;
+        }
+        return true;
     }
 
     @Override
     public Object[] toArray(Object[] a) {
-       return this.root.Nodes.toArray();
+        return this.root.Nodes.toArray();
     }
 
-    private class Node<T> {
-        T elem;
-        private int size = 0;
-        ArrayList<Node <T>> Nodes;
-    }
-
-    private void checkNotNull(Object o){
-        if (o == null){
+    private void checkNotNull(Object o) {
+        if (o == null) {
             throw new NullPointerException();
         }
+    }
+
+    private static class Node<T> {
+        private T elem;
+        private int size = 0;
+        private ArrayList<Node<T>> Nodes;
     }
 }
