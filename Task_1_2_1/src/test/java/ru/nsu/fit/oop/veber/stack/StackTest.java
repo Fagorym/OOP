@@ -59,11 +59,12 @@ public class StackTest {
     }
 
     @Test
-    void testPushResize(){
+    void testPushResize() {
         Stack<Integer> littleStack = new Stack<>(1);
         littleStack.push(1);
         littleStack.push(2);
     }
+
     @Test
     void testCreateEmptyStack() {
         assertThrowsExactly(InvalidParameterException.class, () -> new Stack<Integer>(0));

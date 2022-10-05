@@ -25,7 +25,7 @@ public class Stack<T> {
 
     @SuppressWarnings("unchecked")
     Stack(int size) {
-        if (size <= 0 ){
+        if (size <= 0) {
             throw new InvalidParameterException();
         }
         this.arr = (T[]) new Object[size];
@@ -33,11 +33,12 @@ public class Stack<T> {
         this.topIdx = -1;
     }
 
+    @SuppressWarnings("unchecked")
     private void resize() {
         this.capacity *= 2;
-         T arr[] = (T[]) new Object[this.capacity];
-         System.arraycopy(this.arr,0, arr, 0, this.topIdx + 1 );
-         this.arr = arr;
+        T[] arr = (T[]) new Object[this.capacity];
+        System.arraycopy(this.arr, 0, arr, 0, this.topIdx + 1);
+        this.arr = arr;
 
     }
 
