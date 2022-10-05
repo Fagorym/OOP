@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.veber.stack;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.security.InvalidParameterException;
 import java.util.EmptyStackException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,14 +50,23 @@ public class StackTest {
     }
 
     @Test
-    void testPushFullStack() {
-        Stack littleStack = new Stack(0);
+    void testPushStackResize() {
+        Stack littleStack = new Stack(1);
+        Stack temp = new Stack();
+        temp.push(1);
+        temp.push(2);
+        littleStack.pushStack(temp);
     }
 
     @Test
-    void testPushStackFullStack() {
-        Stack littleStack = new Stack(0);
-        stack.push(1);
+    void testPushResize(){
+        Stack littleStack = new Stack(1);
+        littleStack.push(1);
+        littleStack.push(2);
+    }
+    @Test
+    void testCreateEmptyStack() {
+        assertThrowsExactly(InvalidParameterException.class, () -> new Stack(0));
     }
 
     @Test

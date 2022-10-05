@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.veber.stack;
 
+import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.lang.SuppressWarnings;
@@ -24,6 +25,9 @@ public class Stack<T> {
 
     @SuppressWarnings("unchecked")
     Stack(int size) {
+        if (size <= 0 ){
+            throw new InvalidParameterException();
+        }
         this.arr = (T[]) new Object[size];
         this.capacity = size;
         this.topIdx = -1;
@@ -31,6 +35,10 @@ public class Stack<T> {
 
     private void resize() {
         this.capacity *= 2;
+         T arr[] = (T[]) new Object[this.capacity];
+         System.arraycopy(this.arr,0, arr, 0, this.topIdx + 1 );
+         this.arr = arr;
+
     }
 
     /**
