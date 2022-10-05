@@ -10,15 +10,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StackTest {
     int count = 100;
-    private Stack stack;
+    private Stack<Integer> stack;
 
-    private void pushElements(Stack stack, int count) {
+    private void pushElements(Stack<Integer> stack, int count) {
         for (int i = 0; i < count; i++) {
             stack.push(i);
         }
     }
 
-    private void popEveryElement(Stack stack, int count) {
+    private void popEveryElement(Stack<Integer> stack, int count) {
         for (int i = count - 1; i >= 0; i--) {
             var curElem = stack.pop();
             assertEquals(curElem, i);
@@ -27,7 +27,7 @@ public class StackTest {
 
     @BeforeEach
     public void initStack() {
-        stack = new Stack();
+        stack = new Stack<>();
     }
 
     @Test
@@ -43,7 +43,7 @@ public class StackTest {
 
     @Test
     void testPushStack() {
-        Stack temp = new Stack();
+        Stack<Integer> temp = new Stack<>();
         pushElements(temp, count);
         stack.pushStack(temp);
         popEveryElement(stack, count);
@@ -51,8 +51,8 @@ public class StackTest {
 
     @Test
     void testPushStackResize() {
-        Stack littleStack = new Stack(1);
-        Stack temp = new Stack();
+        Stack<Integer> littleStack = new Stack<>(1);
+        Stack<Integer> temp = new Stack<>();
         temp.push(1);
         temp.push(2);
         littleStack.pushStack(temp);
@@ -60,13 +60,13 @@ public class StackTest {
 
     @Test
     void testPushResize(){
-        Stack littleStack = new Stack(1);
+        Stack<Integer> littleStack = new Stack<>(1);
         littleStack.push(1);
         littleStack.push(2);
     }
     @Test
     void testCreateEmptyStack() {
-        assertThrowsExactly(InvalidParameterException.class, () -> new Stack(0));
+        assertThrowsExactly(InvalidParameterException.class, () -> new Stack<Integer>(0));
     }
 
     @Test
@@ -76,10 +76,10 @@ public class StackTest {
 
     @Test
     void testCheckPopStack() {
-        Stack temp = new Stack();
+        Stack<Integer> temp = new Stack<>();
         pushElements(temp, count);
         stack.pushStack(temp);
-        Stack checkStack = stack.popStack(count);
+        Stack<Integer> checkStack = stack.popStack(count);
         for (int i = count - 1; i >= 0; i--) {
             assertEquals(i, checkStack.pop());
         }
