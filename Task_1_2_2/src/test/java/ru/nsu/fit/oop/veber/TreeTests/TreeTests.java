@@ -9,27 +9,32 @@ public class TreeTests {
     private Tree<Integer> tree;
     private int size;
 
-    private void pushElements(int count){
+    private void pushElements(int count) {
         for (int i = 0; i < count; i++) {
             tree.add(i);
         }
     }
 
     @BeforeEach
-    public void initTree(){
-           tree = new Tree<>(0);
+    public void initTree() {
+        tree = new Tree<>(0);
     }
 
     @Test
-    public void addNodes(){
+    public void testAddNodes() {
         pushElements(100);
         for (int i = 0; i < 100; i++) {
             Assertions.assertTrue(tree.contains(i));
         }
     }
+
     @Test
-    public void checkSize(){
+    public void testCheckSize() {
         pushElements(100);
         Assertions.assertEquals(tree.size(), 101);
+    }
+    @Test
+    public void addNull(){
+        Assertions.assertThrows(NullPointerException.class, () -> tree.add(null));
     }
 }
