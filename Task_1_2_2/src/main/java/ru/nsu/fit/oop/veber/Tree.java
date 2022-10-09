@@ -7,6 +7,18 @@ import java.util.Iterator;
 public class Tree<T> implements Collection<T> {
     private Node<T> root;
 
+    @SuppressWarnings("unchecked")
+    public Tree(Object o) {
+        if (o != null) {
+            T elem = (T) o;
+            this.root = new Node<>();
+            this.root.elem = elem;
+            this.root.size = 1;
+            this.root.Nodes = new ArrayList<>();
+        }
+
+    }
+
     @Override
     public int size() {
         return this.root.size;
@@ -40,7 +52,11 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] result = new Object[this.size()];
+        for (int i = 0; i < this.root.Nodes.size(); i++) {
+            result[i] = this.root.Nodes.get(i);
+        }
+        return result;
     }
 
     @Override
@@ -54,6 +70,7 @@ public class Tree<T> implements Collection<T> {
         checkNotNull(o);
         Node<T> newNode = new Node<>();
         newNode.elem = (T) o;
+        newNode.Nodes = new ArrayList<>();
         node.Nodes.add(newNode);
         node.size++;
         return true;
@@ -63,6 +80,17 @@ public class Tree<T> implements Collection<T> {
     public boolean remove(Object o) {
         checkNotNull(o);
         return false;
+    }
+
+    public boolean remove(Node<T> node, Object o) {
+        for (Node<T> exploringNode : node.Nodes) {
+            if (exploringNode.elem == o) {
+                for (Node<T> son : exploringNode.Nodes) {
+                    node.Nodes.add(son);
+                }
+            }
+        }
+        return true;
     }
 
     @Override
