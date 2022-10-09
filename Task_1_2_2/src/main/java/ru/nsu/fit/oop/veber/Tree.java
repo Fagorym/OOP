@@ -7,26 +7,24 @@ import java.util.Iterator;
 public class Tree<T> implements Collection<T> {
     private Node<T> root;
 
-    @SuppressWarnings("unchecked")
     public Tree(Object o) {
         if (o != null) {
-            T elem = (T) o;
-            this.root = new Node<>();
-            this.root.elem = elem;
-            this.root.size = 1;
-            this.root.Nodes = new ArrayList<>();
+            initRoot(o);
         }
 
     }
 
     @Override
     public int size() {
+        if (this.root == null) {
+            return 0;
+        }
         return this.root.size;
     }
 
     @Override
     public boolean isEmpty() {
-        return this.root.size == 0;
+        return this.root == null;
     }
 
     @Override
@@ -37,6 +35,9 @@ public class Tree<T> implements Collection<T> {
     @SuppressWarnings("unchecked")
     public boolean contains(Node<T> node, Object o) {
         checkNotNull(o);
+        if (this.root == null) {
+            return false;
+        }
         var elemToFind = (T) o;
         if (node.elem == elemToFind) return true;
         for (Node<T> exploringNode : node.Nodes) {
@@ -63,6 +64,14 @@ public class Tree<T> implements Collection<T> {
     public boolean add(Object o) {
         add(root, o);
         return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    public void initRoot(Object o) {
+        this.root = new Node<>();
+        this.root.elem = (T) o;
+        this.root.Nodes = new ArrayList<>();
+        this.root.size = 1;
     }
 
     @SuppressWarnings("unchecked")
@@ -132,6 +141,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Object[] toArray(Object[] a) {
         return this.root.Nodes.toArray();
     }
