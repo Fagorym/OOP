@@ -16,10 +16,17 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public int size() {
-        if (this.root == null) {
+        if (this.root == null){
             return 0;
         }
-        return this.root.size;
+        else {
+            return this.root.Nodes.size() + 1;
+        }
+    }
+
+    public int size(Node<T> node) {
+        checkNotNull(node);
+        return node.Nodes.size();
     }
 
     @Override
@@ -71,7 +78,6 @@ public class Tree<T> implements Collection<T> {
         this.root = new Node<>();
         this.root.elem = (T) o;
         this.root.Nodes = new ArrayList<>();
-        this.root.size = 1;
     }
 
     @SuppressWarnings("unchecked")
@@ -81,22 +87,20 @@ public class Tree<T> implements Collection<T> {
         newNode.elem = (T) o;
         newNode.Nodes = new ArrayList<>();
         node.Nodes.add(newNode);
-        node.size++;
         return true;
     }
 
     @Override
     public boolean remove(Object o) {
         checkNotNull(o);
-        return false;
+        return remove(root, o);
+
     }
 
     public boolean remove(Node<T> node, Object o) {
         for (Node<T> exploringNode : node.Nodes) {
             if (exploringNode.elem == o) {
-                for (Node<T> son : exploringNode.Nodes) {
-                    node.Nodes.add(son);
-                }
+                node.Nodes.remove(exploringNode.elem);
             }
         }
         return true;
@@ -129,7 +133,14 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean removeAll(Collection c) {
-        return false;
+        boolean deleteAllElements = true;
+        for (var o : c) {
+            if (!remove(o)) {
+                deleteAllElements = false;
+            }
+            ;
+        }
+        return deleteAllElements;
     }
 
     @Override
@@ -154,7 +165,6 @@ public class Tree<T> implements Collection<T> {
 
     private static class Node<T> {
         private T elem;
-        private int size = 0;
         private ArrayList<Node<T>> Nodes;
     }
 }
