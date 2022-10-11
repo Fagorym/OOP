@@ -28,8 +28,8 @@ public class TreeTests {
     }
 
     @Test
-    public void testRemoveNodes(){
-       pushElements(200);
+    public void testRemoveNodes() {
+        pushElements(200);
         for (int i = 0; i < 200; i++) {
             Assertions.assertTrue(tree.remove(i));
         }
@@ -40,24 +40,27 @@ public class TreeTests {
         pushElements(100);
         Assertions.assertEquals(tree.size(), 101);
     }
+
     @Test
-    public void testAddNull(){
+    public void testAddNull() {
         Assertions.assertThrows(NullPointerException.class, () -> tree.add(null));
     }
+
     @Test
-    public void testContainsNull(){
+    public void testContainsNull() {
         Assertions.assertThrows(NullPointerException.class, () -> tree.contains(null));
     }
+
     @Test
-    public void testRemoveNull(){
+    public void testRemoveNull() {
         Assertions.assertThrows(NullPointerException.class, () -> tree.remove(null));
     }
 
     @Test
-    public void testClearTree(){
+    public void testClearTree() {
         tree.clear();
-        Assertions.assertEquals(tree.size(),0);
+        Assertions.assertEquals(tree.size(), 0);
         Assertions.assertTrue(tree.isEmpty());
 
-    }   
+    }
 }

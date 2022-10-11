@@ -16,10 +16,9 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public int size() {
-        if (this.root == null){
+        if (this.root == null) {
             return 0;
-        }
-        else {
+        } else {
             return this.root.Nodes.size() + 1;
         }
     }
@@ -109,14 +108,14 @@ public class Tree<T> implements Collection<T> {
     @Override
     public boolean addAll(Collection c) {
         for (var val : c) {
-            add(c);
+            add(val);
         }
         return true;
     }
 
     public boolean addAll(Node<T> node, Collection<T> c) {
         for (var val : c) {
-            add(node, c);
+            add(node, val);
         }
         return true;
     }
@@ -128,7 +127,11 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean retainAll(Collection c) {
-        return false;
+        return retainAll(this.root, c);
+    }
+
+    public boolean retainAll(Node<T> node, Collection c) {
+        return true;
     }
 
     @Override
@@ -138,7 +141,6 @@ public class Tree<T> implements Collection<T> {
             if (!remove(o)) {
                 deleteAllElements = false;
             }
-            ;
         }
         return deleteAllElements;
     }
