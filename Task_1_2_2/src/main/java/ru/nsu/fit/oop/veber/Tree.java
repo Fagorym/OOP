@@ -13,7 +13,7 @@ public class Tree<T> implements Collection<T> {
     private Node<T> root;
 
     /**
-     * Constructor of Tree if was provided some element as param
+     * Constructor of Tree if was provided some element as param.
      *
      * @param o - will be element of the tree root
      */
@@ -155,7 +155,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * If there is no root in the tree, that function creates a new one
+     * If there is no root in the tree, that function creates a new one.
      *
      * @param o - will be element of the root
      */
@@ -176,10 +176,11 @@ public class Tree<T> implements Collection<T> {
         return addNode(this.root, o);
     }
 
-    /** Adds new node to the current node.
+    /**
+     * Adds new node to the current node.
      *
      * @param node - will parent of the new node
-     * @param o - will be element of the new node
+     * @param o    - will be element of the new node
      * @return created node
      */
     @SuppressWarnings("unchecked")
@@ -194,6 +195,7 @@ public class Tree<T> implements Collection<T> {
 
     /**
      * Remove node from root.
+     *
      * @param o element to be removed from this collection, if present
      * @return true - at least one node was deleted, false - no element was deleted
      */
@@ -206,8 +208,9 @@ public class Tree<T> implements Collection<T> {
 
     /**
      * Remove node from current node
+     *
      * @param node - from where we need to delete node
-     * @param o - element to be removed from this collection, if present
+     * @param o    - element to be removed from this collection, if present
      * @return - true - at least one node was deleted, false - no element was deleted
      */
     @SuppressWarnings("unchecked")
@@ -226,7 +229,8 @@ public class Tree<T> implements Collection<T> {
         return true;
     }
 
-    /** Adds all elements to root from current collection.
+    /**
+     * Adds all elements to root from current collection.
      *
      * @param c collection containing elements to be added to this collection
      * @return true - all elements were added, false - at least one element was not added
@@ -239,10 +243,11 @@ public class Tree<T> implements Collection<T> {
         return true;
     }
 
-    /** Adds all elements to current node from current collection.
+    /**
+     * Adds all elements to current node from current collection.
      *
      * @param node - to which node elements will be added
-     * @param c collection containing elements to be added to this collection
+     * @param c    collection containing elements to be added to this collection
      * @return true - all elements were added, false - at least one element was not added
      */
     public boolean addAll(Node<T> node, Collection c) {
@@ -260,7 +265,8 @@ public class Tree<T> implements Collection<T> {
         this.root = null;
     }
 
-    /** Retains element from root that not containing in collection.
+    /**
+     * Retains element from root that not containing in collection.
      *
      * @param c collection containing elements to be retained in this collection
      * @return always true
@@ -270,10 +276,11 @@ public class Tree<T> implements Collection<T> {
         return retainAll(this.root, c);
     }
 
-    /** Retains element from current node that not containing in collection.
+    /**
+     * Retains element from current node that not containing in collection.
      *
      * @param node - from which node retain elements
-     * @param c collection containing elements to be retained in this collection
+     * @param c    collection containing elements to be retained in this collection
      * @return always true
      */
 
@@ -281,7 +288,8 @@ public class Tree<T> implements Collection<T> {
         return node.Nodes.removeIf((son) -> !c.contains(son.elem));
     }
 
-    /** Removes all elements from root that collection contains.
+    /**
+     * Removes all elements from root that collection contains.
      *
      * @param c collection containing elements to be removed from this collection
      * @return true - all elements was deleted at least one time, false - at least one element was not deleted
@@ -297,7 +305,8 @@ public class Tree<T> implements Collection<T> {
         return deleteAllElements;
     }
 
-    /** Checks if all elements from current collection contains in the tree.
+    /**
+     * Checks if all elements from current collection contains in the tree.
      *
      * @param c collection to be checked for containment in this collection
      * @return true - all elements contains, false - at least one element doesnt contains in the tree
