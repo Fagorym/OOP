@@ -8,9 +8,8 @@ public class Tree<T> implements Collection<T> {
     private Node<T> root;
 
     public Tree(Object o) {
-        if (o != null) {
-            initRoot(o);
-        }
+        checkNotNull(o);
+        initRoot(o);
 
     }
 
@@ -59,6 +58,11 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public Object[] toArray() {
+        return toArray(root);
+
+    }
+
+    public Object[] toArray(Node<T> node) {
         Object[] result = new Object[this.size()];
         for (int i = 0; i < this.root.Nodes.size(); i++) {
             result[i] = this.root.Nodes.get(i);
@@ -68,7 +72,7 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean add(Object o) {
-        add(root, o);
+        addNode(root, o);
         return true;
     }
 
@@ -79,14 +83,18 @@ public class Tree<T> implements Collection<T> {
         this.root.Nodes = new ArrayList<>();
     }
 
+    public Node<T> addNode(Object o) {
+        return addNode(this.root, o);
+    }
+
     @SuppressWarnings("unchecked")
-    public boolean add(Node<T> node, Object o) {
+    public Node<T> addNode(Node<T> node, Object o) {
         checkNotNull(o);
         Node<T> newNode = new Node<>();
         newNode.elem = (T) o;
         newNode.Nodes = new ArrayList<>();
         node.Nodes.add(newNode);
-        return true;
+        return newNode;
     }
 
     @Override
@@ -96,12 +104,12 @@ public class Tree<T> implements Collection<T> {
 
     }
 
+    @SuppressWarnings("unchecked")
     public boolean remove(Node<T> node, Object o) {
-        for (Node<T> exploringNode : node.Nodes) {
-            if (exploringNode.elem == o) {
-                node.Nodes.remove(exploringNode.elem);
-            }
-        }
+        checkNotNull(o);
+        node.Nodes.removeIf((son) -> {
+            return son.elem == (T) o;
+        });
         return true;
     }
 
@@ -113,9 +121,9 @@ public class Tree<T> implements Collection<T> {
         return true;
     }
 
-    public boolean addAll(Node<T> node, Collection<T> c) {
+    public boolean addAll(Node<T> node, Collection c) {
         for (var val : c) {
-            add(node, val);
+            addNode(node, val);
         }
         return true;
     }
@@ -130,8 +138,10 @@ public class Tree<T> implements Collection<T> {
         return retainAll(this.root, c);
     }
 
-    public boolean retainAll(Node<T> node, Collection c) {
-        return true;
+    public boolean retainAll(Node<T> node, Collection<T> c) {
+        return node.Nodes.removeIf((son) -> {
+            return !c.contains(son.elem);
+        });
     }
 
     @Override
@@ -156,7 +166,14 @@ public class Tree<T> implements Collection<T> {
     @Override
     @SuppressWarnings("unchecked")
     public Object[] toArray(Object[] a) {
-        return this.root.Nodes.toArray();
+        var array = new Object[a.length + this.root.Nodes.size()];
+        for (int i = 0; i < a.length; i++) {
+            array[i] = a[i];
+        }
+        for (int i = a.length; i < a.length + this.root.Nodes.size(); i++) {
+            array[i] = this.root.Nodes.get(i - a.length);
+        }
+        return array;
     }
 
     private void checkNotNull(Object o) {

@@ -1,9 +1,12 @@
 package ru.nsu.fit.oop.veber.TreeTests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.veber.Tree;
-import org.junit.jupiter.api.Assertions;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class TreeTests {
     private Tree<Integer> tree;
@@ -12,6 +15,14 @@ public class TreeTests {
         for (int i = 0; i < count; i++) {
             tree.add(i);
         }
+    }
+
+    private ArrayList<Integer> makeList(int count) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            list.add(i);
+        }
+        return list;
     }
 
     @BeforeEach
@@ -29,10 +40,11 @@ public class TreeTests {
 
     @Test
     public void testRemoveNodes() {
-        pushElements(200);
-        for (int i = 0; i < 200; i++) {
+        pushElements(100);
+        for (int i = 0; i < 100; i++) {
             Assertions.assertTrue(tree.remove(i));
         }
+        Assertions.assertEquals(tree.size(), 1);
     }
 
     @Test
@@ -61,6 +73,65 @@ public class TreeTests {
         tree.clear();
         Assertions.assertEquals(tree.size(), 0);
         Assertions.assertTrue(tree.isEmpty());
+        Assertions.assertFalse(tree.contains(10));
 
     }
+
+    @Test
+    public void testAddSon() {
+        var firstSon = tree.addNode(1);
+        var secondSon = tree.addNode(firstSon, 2);
+        Assertions.assertEquals(tree.size(firstSon), 1);
+        Assertions.assertEquals(tree.size(secondSon), 0);
+    }
+
+    @Test
+    public void testToArray() {
+        pushElements(100);
+        var arr = tree.toArray();
+        Assertions.assertEquals(arr.length, 100 + 1);
+    }
+
+    @Test
+    public void additionalTestToArray() {
+        pushElements(100);
+        var customArr = new Object[]{1, 2, 3, 4, 5};
+        var arr = tree.toArray(customArr);
+        Assertions.assertEquals(arr.length, 105);
+    }
+
+    @Test
+    public void testAddAll() {
+        ArrayList<Integer> list = makeList(100);
+        tree.addAll(list);
+        Assertions.assertTrue(tree.containsAll(list));
+        list.add(191);
+        Assertions.assertFalse(tree.containsAll(list));
+    }
+
+    @Test
+    public void testDeleteAll() {
+        pushElements(100);
+        ArrayList<Integer> list = makeList(100);
+        tree.removeAll(list);
+        Assertions.assertFalse(tree.containsAll(list));
+    }
+
+    @Test
+    public void testRetainAll() {
+        pushElements(140);
+        ArrayList<Integer> list = makeList(100);
+        tree.retainAll(list);
+        Assertions.assertEquals(101, tree.size());
+    }
+
+    @Test
+    public void testSonAddAll() {
+        var son = tree.addNode(2);
+        ArrayList<Integer> list = makeList(100);
+        tree.addAll(son, list);
+        Assertions.assertEquals(100, tree.size(son));
+    }
+
+
 }
