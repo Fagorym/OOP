@@ -129,6 +129,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - could be any parameter</dd>
+</dl>
+<dl>
 <dt>All Implemented Interfaces:</dt>
 <dd><code>java.lang.Iterable&lt;T&gt;</code>, <code>java.util.Collection&lt;T&gt;</code></dd>
 </dl>
@@ -136,6 +140,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public class <span class="typeNameLabel">Tree&lt;T&gt;</span>
 extends java.lang.Object
 implements java.util.Collection&lt;T&gt;</pre>
+<div class="block">Tree contains some ArrayList of Nodes, in each Node we have element of custom type.</div>
 </li>
 </ul>
 </div>
@@ -157,7 +162,9 @@ implements java.util.Collection&lt;T&gt;</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.Object)">Tree</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Constructor of Tree if was provided some element as param</div>
+</td>
 </tr>
 </table>
 </li>
@@ -180,117 +187,159 @@ implements java.util.Collection&lt;T&gt;</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(java.lang.Object)">add</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds new node to the root.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAll(java.util.Collection)">addAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds all elements to root from current collection.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAll(ru.nsu.fit.oop.veber.Tree.Node,java.util.Collection)">addAll</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
       java.util.Collection&nbsp;c)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds all elements to current node from current collection.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addNode(java.lang.Object)">addNode</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds new node to the root.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addNode(ru.nsu.fit.oop.veber.Tree.Node,java.lang.Object)">addNode</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
        java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds new node to the current node.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear()">clear</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Clears the tree.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#contains(java.lang.Object)">contains</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Function to find element in the tree.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#contains(ru.nsu.fit.oop.veber.Tree.Node,java.lang.Object)">contains</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
         java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Function to find element in the subtree.</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsAll(java.util.Collection)">containsAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Checks if all elements from current collection contains in the tree.</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#initRoot(java.lang.Object)">initRoot</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">If there is no root in the tree, that function creates a new one</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Boolean function to know, is that empty tree or not.</div>
+</td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code>java.util.Iterator</code></td>
+<td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(java.lang.Object)">remove</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Remove node from root.</div>
+</td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(ru.nsu.fit.oop.veber.Tree.Node,java.lang.Object)">remove</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
       java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Remove node from current node</div>
+</td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAll(java.util.Collection)">removeAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Removes all elements from root that collection contains.</div>
+</td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(java.util.Collection)">retainAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Retains element from root that not containing in collection.</div>
+</td>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(ru.nsu.fit.oop.veber.Tree.Node,java.util.Collection)">retainAll</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
          java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Retains element from current node that not containing in collection.</div>
+</td>
 </tr>
 <tr id="i17" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size()">size</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Method to know how many sons in the root.</div>
+</td>
 </tr>
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size(ru.nsu.fit.oop.veber.Tree.Node)">size</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Method to know how many sons in the current node.</div>
+</td>
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray()">toArray</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Function that need to get root sons as array.</div>
+</td>
 </tr>
 <tr id="i20" class="altColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray(java.lang.Object%5B%5D)">toArray</a></span>&#8203;(java.lang.Object[]&nbsp;a)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Function that need to get root sons as array.</div>
+</td>
 </tr>
 <tr id="i21" class="rowColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray(ru.nsu.fit.oop.veber.Tree.Node)">toArray</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Function that need to get current node sons as array.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -337,6 +386,11 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>Tree</h4>
 <pre>public&nbsp;Tree&#8203;(java.lang.Object&nbsp;o)</pre>
+<div class="block">Constructor of Tree if was provided some element as param</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>o</code> - - will be element of the tree root</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -356,9 +410,12 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>size</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;size()</pre>
+<div class="block">Method to know how many sons in the root.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>size</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Size of ArrayList of root</dd>
 </dl>
 </li>
 </ul>
@@ -369,6 +426,13 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>size</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;size&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node)</pre>
+<div class="block">Method to know how many sons in the current node.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - - current node to count sons</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Size of ArrayList of node</dd>
+</dl>
 </li>
 </ul>
 <a id="isEmpty()">
@@ -378,9 +442,12 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>isEmpty</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isEmpty()</pre>
+<div class="block">Boolean function to know, is that empty tree or not.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>isEmpty</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>if empty - true, not empty - false</dd>
 </dl>
 </li>
 </ul>
@@ -391,9 +458,14 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>contains</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;contains&#8203;(java.lang.Object&nbsp;o)</pre>
+<div class="block">Function to find element in the tree.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>contains</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>o</code> - element whose presence in this collection is to be tested</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - collection contains element, false - doesnt contain</dd>
 </dl>
 </li>
 </ul>
@@ -405,6 +477,14 @@ implements java.util.Collection&lt;T&gt;</pre>
 <h4>contains</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;contains&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
                         java.lang.Object&nbsp;o)</pre>
+<div class="block">Function to find element in the subtree.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - - root of the subtree</dd>
+<dd><code>o</code> - - element whose presence in this collection is to be tested</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - subtree contains element, false - doesnt contain</dd>
+</dl>
 </li>
 </ul>
 <a id="iterator()">
@@ -413,7 +493,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>iterator</h4>
-<pre class="methodSignature">public&nbsp;java.util.Iterator&nbsp;iterator()</pre>
+<pre class="methodSignature">public&nbsp;java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;iterator()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>iterator</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
@@ -429,9 +509,12 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>toArray</h4>
 <pre class="methodSignature">public&nbsp;java.lang.Object[]&nbsp;toArray()</pre>
+<div class="block">Function that need to get root sons as array.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>toArray</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>array of root sons</dd>
 </dl>
 </li>
 </ul>
@@ -442,6 +525,33 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>toArray</h4>
 <pre class="methodSignature">public&nbsp;java.lang.Object[]&nbsp;toArray&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node)</pre>
+<div class="block">Function that need to get current node sons as array.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - - root of subtree</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>array of current node sons</dd>
+</dl>
+</li>
+</ul>
+<a id="toArray(java.lang.Object[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toArray</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Object[]&nbsp;toArray&#8203;(java.lang.Object[]&nbsp;a)</pre>
+<div class="block">Function that need to get root sons as array.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>toArray</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>a</code> - the array into which the elements of this collection are to be
+          stored, if it is big enough; otherwise, a new array of the same
+          runtime type is allocated for this purpose.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Array of root sons</dd>
+</dl>
 </li>
 </ul>
 <a id="add(java.lang.Object)">
@@ -451,9 +561,14 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>add</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;add&#8203;(java.lang.Object&nbsp;o)</pre>
+<div class="block">Adds new node to the root.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>add</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>o</code> - element whose presence in this collection is to be ensured</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - element was added, true - element wasn`t added</dd>
 </dl>
 </li>
 </ul>
@@ -464,6 +579,11 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>initRoot</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;initRoot&#8203;(java.lang.Object&nbsp;o)</pre>
+<div class="block">If there is no root in the tree, that function creates a new one</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>o</code> - - will be element of the root</dd>
+</dl>
 </li>
 </ul>
 <a id="addNode(java.lang.Object)">
@@ -473,6 +593,13 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>addNode</h4>
 <pre class="methodSignature">public&nbsp;ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;addNode&#8203;(java.lang.Object&nbsp;o)</pre>
+<div class="block">Adds new node to the root.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>o</code> - - will be element of the new node</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>created node</dd>
+</dl>
 </li>
 </ul>
 <a id="addNode(ru.nsu.fit.oop.veber.Tree.Node,java.lang.Object)">
@@ -483,6 +610,14 @@ implements java.util.Collection&lt;T&gt;</pre>
 <h4>addNode</h4>
 <pre class="methodSignature">public&nbsp;ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;addNode&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
                                                  java.lang.Object&nbsp;o)</pre>
+<div class="block">Adds new node to the current node.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - - will parent of the new node</dd>
+<dd><code>o</code> - - will be element of the new node</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>created node</dd>
+</dl>
 </li>
 </ul>
 <a id="remove(java.lang.Object)">
@@ -492,9 +627,14 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;remove&#8203;(java.lang.Object&nbsp;o)</pre>
+<div class="block">Remove node from root.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>remove</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>o</code> - element to be removed from this collection, if present</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - at least one node was deleted, false - no element was deleted</dd>
 </dl>
 </li>
 </ul>
@@ -506,6 +646,14 @@ implements java.util.Collection&lt;T&gt;</pre>
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;remove&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
                       java.lang.Object&nbsp;o)</pre>
+<div class="block">Remove node from current node</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - - from where we need to delete node</dd>
+<dd><code>o</code> - - element to be removed from this collection, if present</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>- true - at least one node was deleted, false - no element was deleted</dd>
+</dl>
 </li>
 </ul>
 <a id="addAll(java.util.Collection)">
@@ -515,9 +663,14 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>addAll</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;addAll&#8203;(java.util.Collection&nbsp;c)</pre>
+<div class="block">Adds all elements to root from current collection.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>addAll</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>c</code> - collection containing elements to be added to this collection</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - all elements were added, false - at least one element was not added</dd>
 </dl>
 </li>
 </ul>
@@ -529,6 +682,14 @@ implements java.util.Collection&lt;T&gt;</pre>
 <h4>addAll</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;addAll&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
                       java.util.Collection&nbsp;c)</pre>
+<div class="block">Adds all elements to current node from current collection.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - - to which node elements will be added</dd>
+<dd><code>c</code> - collection containing elements to be added to this collection</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - all elements were added, false - at least one element was not added</dd>
+</dl>
 </li>
 </ul>
 <a id="clear()">
@@ -538,6 +699,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>clear</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;clear()</pre>
+<div class="block">Clears the tree.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>clear</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
@@ -551,9 +713,14 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>retainAll</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;retainAll&#8203;(java.util.Collection&nbsp;c)</pre>
+<div class="block">Retains element from root that not containing in collection.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>retainAll</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>c</code> - collection containing elements to be retained in this collection</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>always true</dd>
 </dl>
 </li>
 </ul>
@@ -565,6 +732,14 @@ implements java.util.Collection&lt;T&gt;</pre>
 <h4>retainAll</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;retainAll&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
                          java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</pre>
+<div class="block">Retains element from current node that not containing in collection.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - - from which node retain elements</dd>
+<dd><code>c</code> - collection containing elements to be retained in this collection</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>always true</dd>
+</dl>
 </li>
 </ul>
 <a id="removeAll(java.util.Collection)">
@@ -574,35 +749,32 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>removeAll</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;removeAll&#8203;(java.util.Collection&nbsp;c)</pre>
+<div class="block">Removes all elements from root that collection contains.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>removeAll</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>c</code> - collection containing elements to be removed from this collection</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - all elements was deleted at least one time, false - at least one element was not deleted</dd>
 </dl>
 </li>
 </ul>
 <a id="containsAll(java.util.Collection)">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>containsAll</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;containsAll&#8203;(java.util.Collection&nbsp;c)</pre>
+<div class="block">Checks if all elements from current collection contains in the tree.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>containsAll</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
-</dl>
-</li>
-</ul>
-<a id="toArray(java.lang.Object[])">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>toArray</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Object[]&nbsp;toArray&#8203;(java.lang.Object[]&nbsp;a)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>toArray</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>c</code> - collection to be checked for containment in this collection</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - all elements contains, false - at least one element doesnt contains in the tree</dd>
 </dl>
 </li>
 </ul>
