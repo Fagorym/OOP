@@ -1,8 +1,8 @@
 package ru.nsu.fit.oop.veber;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
+import java.util.Collection;
+import java.util.ArrayList;
 
 /**
  * Tree contains some ArrayList of Nodes, in each Node we have element of custom type.
@@ -92,7 +92,7 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new TreeIterator<>(this.root);
     }
 
     /**
@@ -114,8 +114,8 @@ public class Tree<T> implements Collection<T> {
      */
     public Object[] toArray(Node<T> node) {
         Object[] result = new Object[this.size()];
-        for (int i = 0; i < this.root.Nodes.size(); i++) {
-            result[i] = this.root.Nodes.get(i);
+        for (int i = 0; i < node.Nodes.size(); i++) {
+            result[i] = node.Nodes.get(i);
         }
         return result;
     }
@@ -132,9 +132,7 @@ public class Tree<T> implements Collection<T> {
     @SuppressWarnings("unchecked")
     public Object[] toArray(Object[] a) {
         var array = new Object[a.length + this.root.Nodes.size()];
-        for (int i = 0; i < a.length; i++) {
-            array[i] = a[i];
-        }
+        System.arraycopy(a, 0, array, 0, a.length);
         for (int i = a.length; i < a.length + this.root.Nodes.size(); i++) {
             array[i] = this.root.Nodes.get(i - a.length);
         }
@@ -145,7 +143,7 @@ public class Tree<T> implements Collection<T> {
      * Adds new node to the root.
      *
      * @param o element whose presence in this collection is to be ensured
-     * @return true - element was added, true - element wasn`t added
+     * @return true - element was added, true - element was not added
      */
 
     @Override
@@ -213,11 +211,11 @@ public class Tree<T> implements Collection<T> {
      * @param o    - element to be removed from this collection, if present
      * @return - true - at least one node was deleted, false - no element was deleted
      */
-    @SuppressWarnings("unchecked")
+
     public boolean remove(Node<T> node, Object o) {
         checkNotNull(o);
         node.Nodes.removeIf((son) -> {
-            if (son.elem == (T) o) {
+            if (son.elem == o) {
                 for (Node<T> secondSon : son.Nodes) {
                     addNode(node, secondSon.elem);
                 }
@@ -250,7 +248,7 @@ public class Tree<T> implements Collection<T> {
      * @param c    collection containing elements to be added to this collection
      * @return true - all elements were added, false - at least one element was not added
      */
-    public boolean addAll(Node<T> node, Collection c) {
+    public boolean addAll(Node<T> node, Collection<T> c) {
         for (var val : c) {
             addNode(node, val);
         }
@@ -326,6 +324,45 @@ public class Tree<T> implements Collection<T> {
         }
     }
 
+
+    private static class TreeIterator<T> implements Iterator<T> {
+        ArrayList<Node<T>> nodesToVisit;
+
+        TreeIterator(Node<T> root) {
+            this.nodesToVisit = new ArrayList<>();
+            addToQueue(root);
+        }
+
+
+        private void addToQueue(Node<T> node) {
+            if (node != null) {
+                this.nodesToVisit.add(node);
+                for (Node<T> son : node.Nodes) {
+                    addToQueue(son);
+                }
+            }
+        }
+
+
+        @Override
+        public boolean hasNext() {
+            return !this.nodesToVisit.isEmpty();
+        }
+
+        @Override
+        public T next() {
+            return this.nextNode().elem;
+        }
+
+        public Node<T> nextNode() {
+            if (!hasNext()) {
+                throw new IllegalStateException();
+            }
+
+            return this.nodesToVisit.remove(0);
+
+        }
+    }
 
     private static class Node<T> {
         private T elem;

@@ -136,5 +136,22 @@ public class TreeTests {
         Assertions.assertEquals(100, tree.size(son));
     }
 
+    @Test
+    public void testIterator() {
+        pushElements(100);
+        var iter = tree.iterator();
+        Assertions.assertEquals(0, iter.next());
+        for (int i = 0; i < 100; i++) {
+            Assertions.assertEquals(i, iter.next());
+        }
+    }
+
+    @Test
+    public void testNullIterator() {
+        var iter = tree.iterator();
+        iter.next();
+        Assertions.assertThrows(IllegalStateException.class, iter::next);
+    }
+
 
 }
