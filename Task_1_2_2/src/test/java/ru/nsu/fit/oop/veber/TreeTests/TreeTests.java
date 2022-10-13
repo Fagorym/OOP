@@ -3,11 +3,14 @@ package ru.nsu.fit.oop.veber.TreeTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.nsu.fit.oop.veber.Tree;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import ru.nsu.fit.oop.veber.Tree;
+
+/**
+ * Class that need to test methods from Tree.
+ */
 public class TreeTests {
     private Tree<Integer> tree;
 
