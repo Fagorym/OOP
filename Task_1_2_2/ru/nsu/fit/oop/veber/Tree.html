@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -140,7 +140,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public class <span class="typeNameLabel">Tree&lt;T&gt;</span>
 extends java.lang.Object
 implements java.util.Collection&lt;T&gt;</pre>
-<div class="block">Tree contains some ArrayList of Nodes, in each Node we have element of custom type.</div>
+<div class="block">Tree contains some ArrayList of nodes, in each Node we have element of custom type.</div>
 </li>
 </ul>
 </div>
@@ -161,6 +161,12 @@ implements java.util.Collection&lt;T&gt;</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Tree</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Constructor of Tree if element was not provided.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.Object)">Tree</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">
 <div class="block">Constructor of Tree if was provided some element as param.</div>
@@ -251,32 +257,25 @@ implements java.util.Collection&lt;T&gt;</pre>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#initRoot(java.lang.Object)">initRoot</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">
-<div class="block">If there is no root in the tree, that function creates a new one.</div>
-</td>
-</tr>
-<tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Boolean function to know, is that empty tree or not.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(java.lang.Object)">remove</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">
 <div class="block">Remove node from root.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(ru.nsu.fit.oop.veber.Tree.Node,java.lang.Object)">remove</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
       java.lang.Object&nbsp;o)</code></th>
@@ -284,21 +283,21 @@ implements java.util.Collection&lt;T&gt;</pre>
 <div class="block">Remove node from current node</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAll(java.util.Collection)">removeAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
 <td class="colLast">
 <div class="block">Removes all elements from root that collection contains.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(java.util.Collection)">retainAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
 <td class="colLast">
 <div class="block">Retains element from root that not containing in collection.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(ru.nsu.fit.oop.veber.Tree.Node,java.util.Collection)">retainAll</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
          java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</code></th>
@@ -306,35 +305,35 @@ implements java.util.Collection&lt;T&gt;</pre>
 <div class="block">Retains element from current node that not containing in collection.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size()">size</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Method to know how many sons in the root.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size(ru.nsu.fit.oop.veber.Tree.Node)">size</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node)</code></th>
 <td class="colLast">
 <div class="block">Method to know how many sons in the current node.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray()">toArray</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Function that need to get root sons as array.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray(java.lang.Object%5B%5D)">toArray</a></span>&#8203;(java.lang.Object[]&nbsp;a)</code></th>
 <td class="colLast">
 <div class="block">Function that need to get root sons as array.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray(ru.nsu.fit.oop.veber.Tree.Node)">toArray</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node)</code></th>
 <td class="colLast">
@@ -379,6 +378,16 @@ implements java.util.Collection&lt;T&gt;</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
+<a id="&lt;init&gt;()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>Tree</h4>
+<pre>public&nbsp;Tree()</pre>
+<div class="block">Constructor of Tree if element was not provided.</div>
+</li>
+</ul>
 <a id="&lt;init&gt;(java.lang.Object)">
 <!--   -->
 </a>
@@ -569,20 +578,6 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dd><code>o</code> - element whose presence in this collection is to be ensured</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true - element was added, true - element was not added</dd>
-</dl>
-</li>
-</ul>
-<a id="initRoot(java.lang.Object)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>initRoot</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;initRoot&#8203;(java.lang.Object&nbsp;o)</pre>
-<div class="block">If there is no root in the tree, that function creates a new one.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>o</code> - - will be element of the root</dd>
 </dl>
 </li>
 </ul>
