@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -257,25 +257,32 @@ implements java.util.Collection&lt;T&gt;</pre>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
+<td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#DFSIterator()">DFSIterator</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Boolean function to know, is that empty tree or not.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates instance of default (BFS) iterator and return it.</div>
+</td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(java.lang.Object)">remove</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">
 <div class="block">Remove node from root.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(ru.nsu.fit.oop.veber.Tree.Node,java.lang.Object)">remove</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
       java.lang.Object&nbsp;o)</code></th>
@@ -283,57 +290,57 @@ implements java.util.Collection&lt;T&gt;</pre>
 <div class="block">Remove node from current node</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAll(java.util.Collection)">removeAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
 <td class="colLast">
 <div class="block">Removes all elements from root that collection contains.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(java.util.Collection)">retainAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(java.util.Collection)">retainAll</a></span>&#8203;(java.util.Collection&lt;?&gt;&nbsp;c)</code></th>
 <td class="colLast">
 <div class="block">Retains element from root that not containing in collection.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(ru.nsu.fit.oop.veber.Tree.Node,java.util.Collection)">retainAll</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
-         java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</code></th>
+         java.util.Collection&lt;java.lang.Object&gt;&nbsp;c)</code></th>
 <td class="colLast">
 <div class="block">Retains element from current node that not containing in collection.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size()">size</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Method to know how many sons in the root.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size(ru.nsu.fit.oop.veber.Tree.Node)">size</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node)</code></th>
 <td class="colLast">
 <div class="block">Method to know how many sons in the current node.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray()">toArray</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Function that need to get root sons as array.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray(java.lang.Object%5B%5D)">toArray</a></span>&#8203;(java.lang.Object[]&nbsp;a)</code></th>
 <td class="colLast">
 <div class="block">Function that need to get root sons as array.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray(ru.nsu.fit.oop.veber.Tree.Node)">toArray</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node)</code></th>
 <td class="colLast">
@@ -503,12 +510,24 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>iterator</h4>
 <pre class="methodSignature">public&nbsp;java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;iterator()</pre>
+<div class="block">Creates instance of default (BFS) iterator and return it.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>iterator</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>iterator</code>&nbsp;in interface&nbsp;<code>java.lang.Iterable&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>BFS Iterator</dd>
 </dl>
+</li>
+</ul>
+<a id="DFSIterator()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DFSIterator</h4>
+<pre class="methodSignature">public&nbsp;java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;DFSIterator()</pre>
 </li>
 </ul>
 <a id="toArray()">
@@ -707,7 +726,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>retainAll</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;retainAll&#8203;(java.util.Collection&nbsp;c)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;retainAll&#8203;(java.util.Collection&lt;?&gt;&nbsp;c)</pre>
 <div class="block">Retains element from root that not containing in collection.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -726,7 +745,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>retainAll</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;retainAll&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
-                         java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</pre>
+                         java.util.Collection&lt;java.lang.Object&gt;&nbsp;c)</pre>
 <div class="block">Retains element from current node that not containing in collection.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
