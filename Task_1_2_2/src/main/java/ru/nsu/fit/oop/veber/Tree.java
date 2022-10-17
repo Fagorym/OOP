@@ -90,15 +90,19 @@ public class Tree<T> implements Collection<T> {
             return false;
         }
         var elemToFind = (T) o;
-        if (node.elem == elemToFind) return true;
+        if (node.elem == elemToFind) {
+            return true;
+        }
         for (Node<T> exploringNode : node.nodes) {
-            if (contains(exploringNode, o)) return true;
+            if (contains(exploringNode, o)) {
+                return true;
+            }
         }
         return false;
     }
 
     /**
-     * Creates instance of default (BFS) iterator and return it.
+     * Creates instance of default (BFS) iterator and returns it.
      *
      * @return BFS Iterator
      */
@@ -107,6 +111,11 @@ public class Tree<T> implements Collection<T> {
         return new BFSIterator<>(this.root);
     }
 
+    /**
+     * Creates instance of DFS iterator and returns it.
+     *
+     * @return DFS Iterator
+     */
     public Iterator<T> DFSIterator() {
         return new DFSIterator<>(this.root);
     }
@@ -208,7 +217,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * Remove node from current node
+     * Remove node from current node.
      *
      * @param node - from where we need to delete node
      * @param o    - element to be removed from this collection, if present
@@ -296,7 +305,8 @@ public class Tree<T> implements Collection<T> {
      * Removes all elements from root that collection contains.
      *
      * @param c collection containing elements to be removed from this collection
-     * @return true - all elements was deleted at least one time, false - at least one element was not deleted
+     * @return true - all elements was deleted at least one time,
+     * false - at least one element was not deleted
      */
     @Override
     public boolean removeAll(Collection c) {
@@ -313,12 +323,15 @@ public class Tree<T> implements Collection<T> {
      * Checks if all elements from current collection contains in the tree.
      *
      * @param c collection to be checked for containment in this collection
-     * @return true - all elements contains, false - at least one element doesnt contains in the tree
+     * @return true - all elements contains,
+     * false - at least one element doesnt contains in the tree
      */
     @Override
     public boolean containsAll(Collection c) {
         for (var val : c) {
-            if (!contains(val)) return false;
+            if (!contains(val)) {
+                return false;
+            }
         }
         return true;
     }
