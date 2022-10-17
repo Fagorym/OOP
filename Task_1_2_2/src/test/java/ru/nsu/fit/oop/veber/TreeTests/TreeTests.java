@@ -155,11 +155,12 @@ public class TreeTests {
     @Test
     public void testDfsIterator() {
         pushElements(100);
-        var iter = tree.iterator();
+        var iter = tree.DFSIterator();
         Assertions.assertNull(iter.next());
         for (int i = 0; i < 100; i++) {
             Assertions.assertEquals(i, iter.next());
         }
+        Assertions.assertThrows(IllegalStateException.class, iter::next);
 
     }
 

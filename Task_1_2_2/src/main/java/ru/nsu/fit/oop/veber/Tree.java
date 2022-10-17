@@ -1,9 +1,6 @@
 package ru.nsu.fit.oop.veber;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Tree contains some ArrayList of nodes, in each Node we have element of custom type.
@@ -100,9 +97,18 @@ public class Tree<T> implements Collection<T> {
         return false;
     }
 
+    /**
+     * Creates instance of default (BFS) iterator and return it.
+     *
+     * @return BFS Iterator
+     */
     @Override
     public Iterator<T> iterator() {
         return new BFSIterator<>(this.root);
+    }
+
+    public Iterator<T> DFSIterator() {
+        return new DFSIterator<>(this.root);
     }
 
     /**
@@ -266,8 +272,9 @@ public class Tree<T> implements Collection<T> {
      * @return always true
      */
     @Override
-    public boolean retainAll(Collection c) {
-        return retainAll(this.root, c);
+    @SuppressWarnings("unchecked")
+    public boolean retainAll(Collection<?> c) {
+        return retainAll(this.root, (Collection<Object>) c);
     }
 
     /**
@@ -278,7 +285,7 @@ public class Tree<T> implements Collection<T> {
      * @return always true
      */
 
-    public boolean retainAll(Node<T> node, Collection<T> c) {
+    public boolean retainAll(Node<T> node, Collection<Object> c) {
         return node.nodes.removeIf((son) -> {
             retainAll(son, c);
             return !c.contains(son.elem);
@@ -318,18 +325,18 @@ public class Tree<T> implements Collection<T> {
 
 
     private static class DFSIterator<T> implements Iterator<T> {
-        List<Node<T>> nodesToVisit;
+        Deque<Node<T>> nodesToVisit;
 
         DFSIterator(Node<T> root) {
-            this.nodesToVisit = new ArrayList<>();
+            this.nodesToVisit = new ArrayDeque<>();
             this.nodesToVisit.add(root);
         }
 
 
         private void addToQueue(Node<T> node) {
             if (node != null) {
-                for (int i = 0; i < node.nodes.size(); i++) {
-                    this.nodesToVisit.add(i, node.nodes.get(i));
+                for (int i = node.nodes.size() - 1; i >= 0; i--) {
+                    this.nodesToVisit.addFirst(node.nodes.get(i));
                 }
             }
         }
@@ -349,7 +356,7 @@ public class Tree<T> implements Collection<T> {
             if (!hasNext()) {
                 throw new IllegalStateException();
             }
-            var firstNode = nodesToVisit.remove(0);
+            var firstNode = nodesToVisit.removeFirst();
             addToQueue(firstNode);
             return firstNode;
 
