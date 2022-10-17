@@ -259,7 +259,9 @@ implements java.util.Collection&lt;T&gt;</pre>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#DFSIterator()">DFSIterator</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates instance of DFS iterator and returns it.</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -272,7 +274,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Creates instance of default (BFS) iterator and return it.</div>
+<div class="block">Creates instance of default (BFS) iterator and returns it.</div>
 </td>
 </tr>
 <tr id="i12" class="altColor">
@@ -287,7 +289,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(ru.nsu.fit.oop.veber.Tree.Node,java.lang.Object)">remove</a></span>&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
       java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">
-<div class="block">Remove node from current node</div>
+<div class="block">Remove node from current node.</div>
 </td>
 </tr>
 <tr id="i14" class="altColor">
@@ -510,7 +512,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>iterator</h4>
 <pre class="methodSignature">public&nbsp;java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;iterator()</pre>
-<div class="block">Creates instance of default (BFS) iterator and return it.</div>
+<div class="block">Creates instance of default (BFS) iterator and returns it.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>iterator</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
@@ -528,6 +530,11 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>DFSIterator</h4>
 <pre class="methodSignature">public&nbsp;java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;DFSIterator()</pre>
+<div class="block">Creates instance of DFS iterator and returns it.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>DFS Iterator</dd>
+</dl>
 </li>
 </ul>
 <a id="toArray()">
@@ -660,7 +667,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;remove&#8203;(ru.nsu.fit.oop.veber.Tree.Node&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
                       java.lang.Object&nbsp;o)</pre>
-<div class="block">Remove node from current node</div>
+<div class="block">Remove node from current node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>node</code> - - from where we need to delete node</dd>
@@ -770,7 +777,8 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>c</code> - collection containing elements to be removed from this collection</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true - all elements was deleted at least one time, false - at least one element was not deleted</dd>
+<dd>true - all elements was deleted at least one time,
+ false - at least one element was not deleted</dd>
 </dl>
 </li>
 </ul>
@@ -788,7 +796,8 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>c</code> - collection to be checked for containment in this collection</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true - all elements contains, false - at least one element doesnt contains in the tree</dd>
+<dd>true - all elements contains,
+ false - at least one element doesnt contains in the tree</dd>
 </dl>
 </li>
 </ul>
