@@ -3,10 +3,9 @@ package ru.nsu.fit.oop.veber.TreeTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.veber.Tree;
 
 import java.util.ArrayList;
-
-import ru.nsu.fit.oop.veber.Tree;
 
 /**
  * Class that need to test methods from Tree.
@@ -30,7 +29,7 @@ public class TreeTests {
 
     @BeforeEach
     public void initTree() {
-        tree = new Tree<>(0);
+        tree = new Tree<>();
     }
 
     @Test
@@ -57,18 +56,10 @@ public class TreeTests {
     }
 
     @Test
-    public void testAddNull() {
-        Assertions.assertThrows(NullPointerException.class, () -> tree.add(null));
-    }
-
-    @Test
-    public void testContainsNull() {
-        Assertions.assertThrows(NullPointerException.class, () -> tree.contains(null));
-    }
-
-    @Test
-    public void testRemoveNull() {
-        Assertions.assertThrows(NullPointerException.class, () -> tree.remove(null));
+    public void testNullOperations() {
+        tree.add(null);
+        Assertions.assertTrue(tree.contains(null));
+        Assertions.assertTrue(tree.remove(null));
     }
 
     @Test
@@ -140,10 +131,18 @@ public class TreeTests {
     public void testIterator() {
         pushElements(100);
         var iter = tree.iterator();
-        Assertions.assertEquals(0, iter.next());
+        Assertions.assertNull(iter.next());
         for (int i = 0; i < 100; i++) {
             Assertions.assertEquals(i, iter.next());
         }
+    }
+
+    @Test
+    public void testCreateElemTree() {
+        var tree = new Tree<>(1);
+        Assertions.assertTrue(tree.contains(1));
+        Assertions.assertTrue(tree.remove(1));
+
     }
 
     @Test
@@ -151,6 +150,17 @@ public class TreeTests {
         var iter = tree.iterator();
         iter.next();
         Assertions.assertThrows(IllegalStateException.class, iter::next);
+    }
+
+    @Test
+    public void testDfsIterator() {
+        pushElements(100);
+        var iter = tree.iterator();
+        Assertions.assertNull(iter.next());
+        for (int i = 0; i < 100; i++) {
+            Assertions.assertEquals(i, iter.next());
+        }
+
     }
 
 
