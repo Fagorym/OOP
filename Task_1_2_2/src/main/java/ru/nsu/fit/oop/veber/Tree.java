@@ -1,11 +1,12 @@
 package ru.nsu.fit.oop.veber;
 
-import java.util.Iterator;
-import java.util.Collection;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 /**
- * Tree contains some ArrayList of Nodes, in each Node we have element of custom type.
+ * Tree contains some ArrayList of nodes, in each Node we have element of custom type.
  *
  * @param <T> could be any parameter
  */
@@ -13,13 +14,24 @@ public class Tree<T> implements Collection<T> {
     private Node<T> root;
 
     /**
+     * Constructor of Tree if element was not provided.
+     */
+    public Tree() {
+        this.root = new Node<>();
+        this.root.nodes = new ArrayList<>();
+    }
+
+    /**
      * Constructor of Tree if was provided some element as param.
      *
      * @param o - will be element of the tree root
      */
+
+    @SuppressWarnings("unchecked")
     public Tree(Object o) {
-        checkNotNull(o);
-        initRoot(o);
+        this.root = new Node<>();
+        this.root.elem = (T) o;
+        this.root.nodes = new ArrayList<>();
 
     }
 
@@ -33,7 +45,7 @@ public class Tree<T> implements Collection<T> {
         if (this.root == null) {
             return 0;
         } else {
-            return this.root.Nodes.size() + 1;
+            return this.root.nodes.size() + 1;
         }
     }
 
@@ -44,8 +56,7 @@ public class Tree<T> implements Collection<T> {
      * @return Size of ArrayList of node
      */
     public int size(Node<T> node) {
-        checkNotNull(node);
-        return node.Nodes.size();
+        return node.nodes.size();
     }
 
     /**
@@ -78,13 +89,12 @@ public class Tree<T> implements Collection<T> {
      */
     @SuppressWarnings("unchecked")
     public boolean contains(Node<T> node, Object o) {
-        checkNotNull(o);
         if (this.root == null) {
             return false;
         }
         var elemToFind = (T) o;
         if (node.elem == elemToFind) return true;
-        for (Node<T> exploringNode : node.Nodes) {
+        for (Node<T> exploringNode : node.nodes) {
             if (contains(exploringNode, o)) return true;
         }
         return false;
@@ -92,7 +102,7 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new TreeIterator<>(this.root);
+        return new BFSIterator<>(this.root);
     }
 
     /**
@@ -114,8 +124,8 @@ public class Tree<T> implements Collection<T> {
      */
     public Object[] toArray(Node<T> node) {
         Object[] result = new Object[this.size()];
-        for (int i = 0; i < node.Nodes.size(); i++) {
-            result[i] = node.Nodes.get(i);
+        for (int i = 0; i < node.nodes.size(); i++) {
+            result[i] = node.nodes.get(i);
         }
         return result;
     }
@@ -131,10 +141,10 @@ public class Tree<T> implements Collection<T> {
     @Override
     @SuppressWarnings("unchecked")
     public Object[] toArray(Object[] a) {
-        var array = new Object[a.length + this.root.Nodes.size()];
+        var array = new Object[a.length + this.root.nodes.size()];
         System.arraycopy(a, 0, array, 0, a.length);
-        for (int i = a.length; i < a.length + this.root.Nodes.size(); i++) {
-            array[i] = this.root.Nodes.get(i - a.length);
+        for (int i = a.length; i < a.length + this.root.nodes.size(); i++) {
+            array[i] = this.root.nodes.get(i - a.length);
         }
         return array;
     }
@@ -152,17 +162,6 @@ public class Tree<T> implements Collection<T> {
         return true;
     }
 
-    /**
-     * If there is no root in the tree, that function creates a new one.
-     *
-     * @param o - will be element of the root
-     */
-    @SuppressWarnings("unchecked")
-    public void initRoot(Object o) {
-        this.root = new Node<>();
-        this.root.elem = (T) o;
-        this.root.Nodes = new ArrayList<>();
-    }
 
     /**
      * Adds new node to the root.
@@ -183,11 +182,10 @@ public class Tree<T> implements Collection<T> {
      */
     @SuppressWarnings("unchecked")
     public Node<T> addNode(Node<T> node, Object o) {
-        checkNotNull(o);
         Node<T> newNode = new Node<>();
         newNode.elem = (T) o;
-        newNode.Nodes = new ArrayList<>();
-        node.Nodes.add(newNode);
+        newNode.nodes = new ArrayList<>();
+        node.nodes.add(newNode);
         return newNode;
     }
 
@@ -199,7 +197,6 @@ public class Tree<T> implements Collection<T> {
      */
     @Override
     public boolean remove(Object o) {
-        checkNotNull(o);
         return remove(root, o);
 
     }
@@ -213,10 +210,9 @@ public class Tree<T> implements Collection<T> {
      */
 
     public boolean remove(Node<T> node, Object o) {
-        checkNotNull(o);
-        node.Nodes.removeIf((son) -> {
+        node.nodes.removeIf((son) -> {
             if (son.elem == o) {
-                for (Node<T> secondSon : son.Nodes) {
+                for (Node<T> secondSon : son.nodes) {
                     addNode(node, secondSon.elem);
                 }
                 return true;
@@ -283,7 +279,10 @@ public class Tree<T> implements Collection<T> {
      */
 
     public boolean retainAll(Node<T> node, Collection<T> c) {
-        return node.Nodes.removeIf((son) -> !c.contains(son.elem));
+        return node.nodes.removeIf((son) -> {
+            retainAll(son, c);
+            return !c.contains(son.elem);
+        });
     }
 
     /**
@@ -318,27 +317,19 @@ public class Tree<T> implements Collection<T> {
     }
 
 
-    private void checkNotNull(Object o) {
-        if (o == null) {
-            throw new NullPointerException();
-        }
-    }
+    private static class DFSIterator<T> implements Iterator<T> {
+        List<Node<T>> nodesToVisit;
 
-
-    private static class TreeIterator<T> implements Iterator<T> {
-        ArrayList<Node<T>> nodesToVisit;
-
-        TreeIterator(Node<T> root) {
+        DFSIterator(Node<T> root) {
             this.nodesToVisit = new ArrayList<>();
-            addToQueue(root);
+            this.nodesToVisit.add(root);
         }
 
 
         private void addToQueue(Node<T> node) {
             if (node != null) {
-                this.nodesToVisit.add(node);
-                for (Node<T> son : node.Nodes) {
-                    addToQueue(son);
+                for (int i = 0; i < node.nodes.size(); i++) {
+                    this.nodesToVisit.add(i, node.nodes.get(i));
                 }
             }
         }
@@ -358,14 +349,52 @@ public class Tree<T> implements Collection<T> {
             if (!hasNext()) {
                 throw new IllegalStateException();
             }
+            var firstNode = nodesToVisit.remove(0);
+            addToQueue(firstNode);
+            return firstNode;
 
-            return this.nodesToVisit.remove(0);
+        }
+    }
+
+    private static class BFSIterator<T> implements Iterator<T> {
+        List<Node<T>> nodesToVisit;
+
+        BFSIterator(Node<T> root) {
+            this.nodesToVisit = new ArrayList<>();
+            this.nodesToVisit.add(root);
+        }
+
+
+        private void addToQueue(Node<T> node) {
+            if (node != null) {
+                this.nodesToVisit.addAll(node.nodes);
+            }
+        }
+
+
+        @Override
+        public boolean hasNext() {
+            return !this.nodesToVisit.isEmpty();
+        }
+
+        @Override
+        public T next() {
+            return this.nextNode().elem;
+        }
+
+        public Node<T> nextNode() {
+            if (!hasNext()) {
+                throw new IllegalStateException();
+            }
+            var firstNode = nodesToVisit.remove(0);
+            addToQueue(firstNode);
+            return firstNode;
 
         }
     }
 
     private static class Node<T> {
         private T elem;
-        private ArrayList<Node<T>> Nodes;
+        private List<Node<T>> nodes;
     }
 }
