@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 public class AdjListTest<T> {
     AdjList<Integer> testedList;
 
@@ -25,9 +27,19 @@ public class AdjListTest<T> {
         Assertions.assertEquals(newVertex2, this.testedList.getAdjVertexes(newVertex).get(0));
         this.testedList.setVertexElement(newVertex, 4);
         Assertions.assertEquals(this.testedList.getVertexElement(newVertex), 4);
-
+        this.testedList.deleteEdge(newEdge);
+        Assertions.assertEquals(this.testedList.getAdjVertexes(newVertex), new ArrayList<T>());
+        Assertions.assertEquals(this.testedList.getAdjVertexes(newVertex2), new ArrayList<T>());
     }
 
+    @Test
+    public void testConstructorWithVertexes(){
+        ArrayList<Vertex<Integer>> vertexes = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            vertexes.add(new Vertex<>(i));
+        }
+        this.testedList = new AdjList<>(vertexes);
+    }
     @Test
     public void testNonExistingVertexMethods() {
         Vertex<Integer> newVertex = new Vertex<>(2);
