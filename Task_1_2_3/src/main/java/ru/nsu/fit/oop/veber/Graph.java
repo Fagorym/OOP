@@ -11,4 +11,7 @@ public interface Graph<T> {
     public T getVertexElement(Vertex<T> vertex);
     public void setVertexElement(Vertex<T> vertex, T newElem);
 
+    public int getVertexDegree(Vertex<T> vertex);
+    public int getVertexNumber(Vertex<T> vertex);
+    public int getEdgesNumber(Vertex<T> vertex);
 }
