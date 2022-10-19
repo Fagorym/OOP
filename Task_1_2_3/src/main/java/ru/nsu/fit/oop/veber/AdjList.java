@@ -7,6 +7,7 @@ import java.util.List;
 public class AdjList<T> implements Graph<T> {
 
     List<column<T>> columns;
+    int edgesNumber;
 
     public AdjList() {
         this.columns = new ArrayList<>();
@@ -19,18 +20,22 @@ public class AdjList<T> implements Graph<T> {
         }
     }
 
+    @Override
     public void addVertex(Vertex<T> vertex) {
         var newColumn = new column<T>();
         newColumn.vertex = vertex;
         for (var edge : vertex.endEdges) {
             newColumn.adjVertexes.add(edge.start);
+            this.edgesNumber++;
         }
-        for (var edge : vertex.endEdges) {
+        for (var edge : vertex.startEdges) {
             newColumn.adjVertexes.add(edge.end);
+            this.edgesNumber++;
         }
         this.columns.add(newColumn);
     }
 
+    @Override
     public void deleteVertex(Vertex<T> vertex) {
         for (var column : this.columns) {
             if (column.vertex == vertex) {
@@ -41,6 +46,7 @@ public class AdjList<T> implements Graph<T> {
         }
     }
 
+    @Override
     public void addEdge(Edge<T> edge) {
         for (var column : this.columns) {
             if (column.vertex == edge.start) {
@@ -54,6 +60,7 @@ public class AdjList<T> implements Graph<T> {
         }
     }
 
+    @Override
     public void deleteEdge(Edge<T> edge) {
         for (var column : this.columns) {
             if (column.vertex == edge.start) {
@@ -66,6 +73,7 @@ public class AdjList<T> implements Graph<T> {
         }
     }
 
+    @Override
     public List<Vertex<T>> getAdjVertexes(Vertex<T> vertex) {
         for (var column : this.columns) {
             if (column.vertex == vertex) {
@@ -75,6 +83,7 @@ public class AdjList<T> implements Graph<T> {
         throw new IllegalArgumentException("No such vertex in graph");
     }
 
+    @Override
     public T getVertexElement(Vertex<T> vertex) {
         for (var column : this.columns) {
             if (column.vertex == vertex) {
@@ -84,6 +93,7 @@ public class AdjList<T> implements Graph<T> {
         throw new IllegalArgumentException("No such vertex in graph");
     }
 
+    @Override
     public void setVertexElement(Vertex<T> vertex, T newElem) {
         for (var column : this.columns) {
             if (column.vertex == vertex) {
@@ -92,6 +102,21 @@ public class AdjList<T> implements Graph<T> {
             }
         }
         throw new IllegalArgumentException("No such vertex in graph");
+    }
+
+    @Override
+    public int getVertexDegree(Vertex<T> vertex) {
+        return vertex.startEdges.size() + vertex.endEdges.size();
+    }
+
+    @Override
+    public int getVertexNumber(Vertex<T> vertex) {
+        return this.columns.size();
+    }
+
+    @Override
+    public int getEdgesNumber(Vertex<T> vertex) {
+        return this.edgesNumber;
     }
 
 
