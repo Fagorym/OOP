@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.veber.Tree;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 /**
  * Class that need to test methods from Tree.
@@ -162,6 +163,21 @@ public class TreeTests {
         }
         Assertions.assertThrows(IllegalStateException.class, iter::next);
 
+    }
+
+    @Test
+    public void TestExceptionDFSIterator(){
+        var iter = tree.DFSIterator();
+        pushElements(5);
+        Assertions.assertThrows(ConcurrentModificationException.class, iter::next);
+
+    }
+
+    @Test
+    public void TestExceptionBFSIterator(){
+        var iter = tree.iterator();
+        pushElements(5);
+        Assertions.assertThrows(ConcurrentModificationException.class, iter::next);
     }
 
 
