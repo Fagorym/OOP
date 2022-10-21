@@ -8,12 +8,14 @@ import java.util.*;
  * @param <T> could be any parameter
  */
 public class Tree<T> implements Collection<T> {
+    private int modCount;
     private Node<T> root;
 
     /**
      * Constructor of Tree if element was not provided.
      */
     public Tree() {
+        this.modCount = 0;
         this.root = new Node<>();
         this.root.nodes = new ArrayList<>();
     }
@@ -26,6 +28,7 @@ public class Tree<T> implements Collection<T> {
 
     @SuppressWarnings("unchecked")
     public Tree(Object o) {
+        this.modCount = 0;
         this.root = new Node<>();
         this.root.elem = (T) o;
         this.root.nodes = new ArrayList<>();
@@ -108,7 +111,7 @@ public class Tree<T> implements Collection<T> {
      */
     @Override
     public Iterator<T> iterator() {
-        return new BFSIterator<>(this.root);
+        return new BFSIterator<>(this);
     }
 
     /**
@@ -117,7 +120,7 @@ public class Tree<T> implements Collection<T> {
      * @return DFS Iterator
      */
     public Iterator<T> DFSIterator() {
-        return new DFSIterator<>(this.root);
+        return new DFSIterator<>(this);
     }
 
     /**
@@ -197,6 +200,7 @@ public class Tree<T> implements Collection<T> {
      */
     @SuppressWarnings("unchecked")
     public Node<T> addNode(Node<T> node, Object o) {
+        this.modCount++;
         Node<T> newNode = new Node<>();
         newNode.elem = (T) o;
         newNode.nodes = new ArrayList<>();
@@ -225,6 +229,7 @@ public class Tree<T> implements Collection<T> {
      */
 
     public boolean remove(Node<T> node, Object o) {
+        this.modCount++;
         node.nodes.removeIf((son) -> {
             if (son.elem == o) {
                 for (Node<T> secondSon : son.nodes) {
@@ -272,6 +277,7 @@ public class Tree<T> implements Collection<T> {
     @Override
     public void clear() {
         this.root = null;
+        this.modCount++;
     }
 
     /**
@@ -295,6 +301,7 @@ public class Tree<T> implements Collection<T> {
      */
 
     public boolean retainAll(Node<T> node, Collection<Object> c) {
+        this.modCount++;
         return node.nodes.removeIf((son) -> {
             retainAll(son, c);
             return !c.contains(son.elem);
@@ -339,10 +346,14 @@ public class Tree<T> implements Collection<T> {
 
     private static class DFSIterator<T> implements Iterator<T> {
         Deque<Node<T>> nodesToVisit;
+        private final int currentMod;
+        private final Tree<T> tree;
 
-        DFSIterator(Node<T> root) {
+        DFSIterator(Tree<T> tree) {
+            this.tree = tree;
+            this.currentMod = tree.modCount;
             this.nodesToVisit = new ArrayDeque<>();
-            this.nodesToVisit.add(root);
+            this.nodesToVisit.add(tree.root);
         }
 
 
@@ -369,6 +380,9 @@ public class Tree<T> implements Collection<T> {
             if (!hasNext()) {
                 throw new IllegalStateException();
             }
+            if (this.currentMod != this.tree.modCount){
+                throw new ConcurrentModificationException("You cannot iterate after changing your tree");
+            }
             var firstNode = nodesToVisit.removeFirst();
             addToQueue(firstNode);
             return firstNode;
@@ -378,10 +392,14 @@ public class Tree<T> implements Collection<T> {
 
     private static class BFSIterator<T> implements Iterator<T> {
         List<Node<T>> nodesToVisit;
+        private final int currentMod;
+        private final Tree<T> tree;
 
-        BFSIterator(Node<T> root) {
+        BFSIterator(Tree<T> tree) {
+            this.currentMod = tree.modCount;
+            this.tree = tree;
             this.nodesToVisit = new ArrayList<>();
-            this.nodesToVisit.add(root);
+            this.nodesToVisit.add(tree.root);
         }
 
 
@@ -405,6 +423,9 @@ public class Tree<T> implements Collection<T> {
         public Node<T> nextNode() {
             if (!hasNext()) {
                 throw new IllegalStateException();
+            }
+            if (this.currentMod != this.tree.modCount){
+                throw new ConcurrentModificationException("You cannot iterate tree after changing it.");
             }
             var firstNode = nodesToVisit.remove(0);
             addToQueue(firstNode);
