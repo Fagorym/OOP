@@ -1,24 +1,29 @@
 package ru.nsu.fit.oop.veber;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class AdjMatrix<T> implements Graph<T> {
-    HashMap<Vertex<T>, HashMap<Edge<T>, Integer>> matrix;
-
+    ArrayList<Vertex<T>> vertexes;
+    HashMap<Vertex<T>, HashMap<Vertex<T>, ArrayList<Edge<T>>>> matrix;
     @Override
-    public void addVertex(Vertex<T> vertex) {
-        
+    public boolean addVertex(Vertex<T> vertex) {
+        this.matrix.put(vertex, new HashMap<>());
+        vertexes.add(vertex);
+        return true;
     }
 
     @Override
     public void deleteVertex(Vertex<T> vertex) {
+       var smth =  matrix.get(vertex);
 
     }
 
     @Override
     public void addEdge(Edge<T> edge) {
-
+        var column = this.matrix.get(edge.start);
+        var cell = column.get(edge.end);
     }
 
     @Override
@@ -33,12 +38,12 @@ public class AdjMatrix<T> implements Graph<T> {
 
     @Override
     public T getVertexElement(Vertex<T> vertex) {
-        return null;
+        return vertex.elem;
     }
 
     @Override
     public void setVertexElement(Vertex<T> vertex, T newElem) {
-
+        vertex.elem = newElem;
     }
 
     @Override

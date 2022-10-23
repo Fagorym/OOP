@@ -32,27 +32,5 @@ public class AdjListTest<T> {
         Assertions.assertEquals(this.testedList.getAdjVertexes(newVertex2), new ArrayList<T>());
     }
 
-    @Test
-    public void testConstructorWithVertexes(){
-        ArrayList<Vertex<Integer>> vertexes = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            vertexes.add(new Vertex<>(i));
-        }
-        this.testedList = new AdjList<>(vertexes);
-    }
-    @Test
-    public void testNonExistingVertexMethods() {
-        Vertex<Integer> newVertex = new Vertex<>(2);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            testedList.setVertexElement(newVertex, 4);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            testedList.getAdjVertexes(newVertex);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            testedList.getVertexElement(newVertex);
-        });
-    }
-
 
 }
