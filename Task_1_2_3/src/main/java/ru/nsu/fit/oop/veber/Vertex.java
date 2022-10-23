@@ -1,16 +1,18 @@
 package ru.nsu.fit.oop.veber;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Vertex<T> {
     T elem;
-    List<Edge<T>> startEdges;
-    List<Edge<T>> endEdges;
+    Set<Edge<T>> startEdges;
+    Set<Edge<T>> endEdges;
     public Vertex (T elem){
         this.elem = elem;
-        this.startEdges = new ArrayList<>();
-        this.endEdges = new ArrayList<>();
+        this.startEdges = new HashSet<>();
+        this.endEdges = new HashSet<>();
     }
 
     public void addStartEdge(Edge<T> edge){
