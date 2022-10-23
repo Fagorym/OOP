@@ -24,7 +24,7 @@ public class AdjListTest<T> {
         Assertions.assertEquals(3, this.testedList.getVertexElement(newVertex2));
         Edge<Integer> newEdge = new Edge<>(2, newVertex, newVertex2);
         this.testedList.addEdge(newEdge);
-        Assertions.assertEquals(newVertex2, this.testedList.getAdjVertexes(newVertex).get(0));
+        Assertions.assertEquals(newVertex2, this.testedList.getAdjVertexes(newVertex));
         this.testedList.setVertexElement(newVertex, 4);
         Assertions.assertEquals(this.testedList.getVertexElement(newVertex), 4);
         this.testedList.deleteEdge(newEdge);
