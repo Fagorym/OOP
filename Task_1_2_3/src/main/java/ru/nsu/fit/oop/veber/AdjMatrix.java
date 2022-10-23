@@ -35,15 +35,15 @@ public class AdjMatrix<T> implements Graph<T> {
 
     @Override
     public void deleteVertex(Vertex<T> vertex) {
-        if (vertexes.contains(vertex)){
+        if (vertexes.contains(vertex)) {
             this.vertexes.remove(vertex);
-            for (Edge<T> edge: vertex.startEdges){
+            for (Edge<T> edge : vertex.startEdges) {
                 this.edges.remove(edge);
                 this.matrix.remove(vertex);
                 this.matrix.get(edge.end).remove(edge.start);
 
             }
-            for(Edge<T> edge: vertex.endEdges){
+            for (Edge<T> edge : vertex.endEdges) {
                 this.edges.remove(edge);
                 this.matrix.remove(vertex);
                 this.matrix.get(edge.start).remove(vertex);
