@@ -87,8 +87,8 @@ public class AdjList<T> implements Graph<T> {
     }
 
     @Override
-    public List<Vertex<T>> getAdjVertexes(Vertex<T> vertex) {
-        return this.rows.get(vertex).stream().toList();
+    public Set<Vertex<T>> getAdjVertexes(Vertex<T> vertex) {
+        return this.rows.get(vertex);
     }
 
     @Override

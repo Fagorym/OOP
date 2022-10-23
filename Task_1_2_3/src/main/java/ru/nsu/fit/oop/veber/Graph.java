@@ -1,13 +1,14 @@
 package ru.nsu.fit.oop.veber;
 
 import java.util.List;
+import java.util.Set;
 
 public interface Graph<T> {
     public boolean addVertex(Vertex<T> vertex);
     public void deleteVertex(Vertex<T> vertex);
     public void addEdge(Edge<T> edge);
     public void deleteEdge(Edge<T> edge);
-    public List<Vertex<T>> getAdjVertexes(Vertex<T> vertex);
+    public Set<Vertex<T>> getAdjVertexes(Vertex<T> vertex);
     public T getVertexElement(Vertex<T> vertex);
     public void setVertexElement(Vertex<T> vertex, T newElem);
 

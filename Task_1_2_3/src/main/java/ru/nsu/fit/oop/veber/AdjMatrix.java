@@ -71,8 +71,8 @@ public class AdjMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public List<Vertex<T>> getAdjVertexes(Vertex<T> vertex) {
-        List<Vertex<T>> adjVertexes = new ArrayList<>();
+    public Set<Vertex<T>> getAdjVertexes(Vertex<T> vertex) {
+        Set<Vertex<T>> adjVertexes = new HashSet<>();
         var matrix = this.matrix.get(vertex);
         for (Vertex<T> customVert : this.vertexes) {
             if (matrix.get(customVert) > 0) {
