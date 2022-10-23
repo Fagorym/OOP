@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class IncMatrix<T> implements Graph<T>{
-    HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> matrix;
-
+    HashMap<Vertex<T>, HashMap<Edge<T>, Integer>> matrix;
     @Override
-    public void addVertex(Vertex<T> vertex) {
+    public boolean addVertex(Vertex<T> vertex) {
+        return true;
 
     }
 
