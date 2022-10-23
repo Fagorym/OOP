@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -207,11 +207,26 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesNumber(ru.nsu.fit.oop.veber.Vertex)">getEdgesNumber</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexDegree(ru.nsu.fit.oop.veber.Vertex)">getVertexDegree</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="AdjList.html" title="type parameter in AdjList">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexElement(ru.nsu.fit.oop.veber.Vertex)">getVertexElement</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexNumber(ru.nsu.fit.oop.veber.Vertex)">getVertexNumber</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVertexElement(ru.nsu.fit.oop.veber.Vertex,T)">setVertexElement</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex,
                 <a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;newElem)</code></th>
@@ -352,7 +367,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 </a><a id="setVertexElement(ru.nsu.fit.oop.veber.Vertex,T)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setVertexElement</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setVertexElement&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex,
@@ -360,6 +375,45 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#setVertexElement(ru.nsu.fit.oop.veber.Vertex,T)">setVertexElement</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getVertexDegree(ru.nsu.fit.oop.veber.Vertex)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getVertexDegree</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getVertexDegree&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#getVertexDegree(ru.nsu.fit.oop.veber.Vertex)">getVertexDegree</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getVertexNumber(ru.nsu.fit.oop.veber.Vertex)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getVertexNumber</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getVertexNumber&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#getVertexNumber(ru.nsu.fit.oop.veber.Vertex)">getVertexNumber</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getEdgesNumber(ru.nsu.fit.oop.veber.Vertex)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getEdgesNumber</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getEdgesNumber&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#getEdgesNumber(ru.nsu.fit.oop.veber.Vertex)">getEdgesNumber</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
