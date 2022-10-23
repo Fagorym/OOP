@@ -70,7 +70,7 @@ public class IncMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public List<Vertex<T>> getAdjVertexes(Vertex<T> vertex) {
+    public Set<Vertex<T>> getAdjVertexes(Vertex<T> vertex) {
         Set<Vertex<T>> vertexSet = new HashSet<>();
         for (Edge<T> edge: vertex.endEdges){
             vertexSet.add(edge.start);
@@ -78,7 +78,7 @@ public class IncMatrix<T> implements Graph<T> {
         for (Edge<T> edge: vertex.startEdges){
             vertexSet.add(edge.end);
         }
-        return vertexSet.stream().toList();
+        return vertexSet;
     }
 
     @Override
