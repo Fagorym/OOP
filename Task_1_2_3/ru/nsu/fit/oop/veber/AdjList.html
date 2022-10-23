@@ -129,6 +129,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - elem that can be in vertex (vertexes can be associated with any type)</dd>
+</dl>
+<dl>
 <dt>All Implemented Interfaces:</dt>
 <dd><code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;T&gt;</code></dd>
 </dl>
@@ -136,6 +140,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public class <span class="typeNameLabel">AdjList&lt;T&gt;</span>
 extends java.lang.Object
 implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;T&gt;</pre>
+<div class="block">That class implements graph interface and all of its methods.
+ Main idea - that for every element we store set of adjacency vertexes in hashmap.
+ This class must not be used for multi graphs (you must not put multiple edges and loops).</div>
 </li>
 </ul>
 </div>
@@ -157,11 +164,9 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">AdjList</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.util.Collection)">AdjList</a></span>&#8203;(java.util.Collection&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;&nbsp;vertexes)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Default constructor, that creates empty sets and empty hashmap.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -187,9 +192,11 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(ru.nsu.fit.oop.veber.Vertex)">addVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Method creates new set and adds all incident vertexes to this set.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -202,19 +209,23 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;</code></td>
+<td class="colFirst"><code>java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAdjVertexes(ru.nsu.fit.oop.veber.Vertex)">getAdjVertexes</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesNumber(ru.nsu.fit.oop.veber.Vertex)">getEdgesNumber</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesNumber()">getEdgesNumber</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Method returns number of edges in graph.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexDegree(ru.nsu.fit.oop.veber.Vertex)">getVertexDegree</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Method returns degree of current vertex.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="AdjList.html" title="type parameter in AdjList">T</a></code></td>
@@ -223,8 +234,10 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexNumber(ru.nsu.fit.oop.veber.Vertex)">getVertexNumber</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexNumber()">getVertexNumber</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Method returns number of vertexes in graph.</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -259,19 +272,11 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <a id="&lt;init&gt;()">
 <!--   -->
 </a>
-<ul class="blockList">
-<li class="blockList">
-<h4>AdjList</h4>
-<pre>public&nbsp;AdjList()</pre>
-</li>
-</ul>
-<a id="&lt;init&gt;(java.util.Collection)">
-<!--   -->
-</a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>AdjList</h4>
-<pre>public&nbsp;AdjList&#8203;(java.util.Collection&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;&nbsp;vertexes)</pre>
+<pre>public&nbsp;AdjList()</pre>
+<div class="block">Default constructor, that creates empty sets and empty hashmap.</div>
 </li>
 </ul>
 </li>
@@ -290,10 +295,18 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <ul class="blockList">
 <li class="blockList">
 <h4>addVertex</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Method creates new set and adds all incident vertexes to this set.
+ After it, method creates new row to associate vertex with this set.
+ This method does not add vertex, that is already in graph.
+ If vertexes connected to vertex, that are not in graph, we also add those vertexes.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#addVertex(ru.nsu.fit.oop.veber.Vertex)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - vertex that we add to graph</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - vertex was added, false - vertex was not added</dd>
 </dl>
 </li>
 </ul>
@@ -342,7 +355,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <ul class="blockList">
 <li class="blockList">
 <h4>getAdjVertexes</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;&nbsp;getAdjVertexes&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<pre class="methodSignature">public&nbsp;java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;&nbsp;getAdjVertexes&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#getAdjVertexes(ru.nsu.fit.oop.veber.Vertex)">getAdjVertexes</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
@@ -385,35 +398,46 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <li class="blockList">
 <h4>getVertexDegree</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getVertexDegree&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Method returns degree of current vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#getVertexDegree(ru.nsu.fit.oop.veber.Vertex)">getVertexDegree</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - from what vertex we count degree</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>degree of the vertex (count of edges those are connected to it)</dd>
 </dl>
 </li>
 </ul>
-<a id="getVertexNumber(ru.nsu.fit.oop.veber.Vertex)">
+<a id="getVertexNumber()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getVertexNumber</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getVertexNumber&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<pre class="methodSignature">public&nbsp;int&nbsp;getVertexNumber()</pre>
+<div class="block">Method returns number of vertexes in graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#getVertexNumber(ru.nsu.fit.oop.veber.Vertex)">getVertexNumber</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dd><code><a href="Graph.html#getVertexNumber()">getVertexNumber</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>number of vertexes.</dd>
 </dl>
 </li>
 </ul>
-<a id="getEdgesNumber(ru.nsu.fit.oop.veber.Vertex)">
+<a id="getEdgesNumber()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getEdgesNumber</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getEdgesNumber&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<pre class="methodSignature">public&nbsp;int&nbsp;getEdgesNumber()</pre>
+<div class="block">Method returns number of edges in graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#getEdgesNumber(ru.nsu.fit.oop.veber.Vertex)">getEdgesNumber</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dd><code><a href="Graph.html#getEdgesNumber()">getEdgesNumber</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>count of edges</dd>
 </dl>
 </li>
 </ul>
