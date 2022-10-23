@@ -3,7 +3,6 @@ package ru.nsu.fit.oop.veber;
 import java.util.*;
 
 /**
- * 
  * @param <T>
  */
 public class AdjMatrix<T> implements Graph<T> {

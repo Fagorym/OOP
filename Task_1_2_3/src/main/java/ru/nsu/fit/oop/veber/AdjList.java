@@ -6,6 +6,7 @@ import java.util.*;
  * That class implements graph interface and all of its methods.
  * Main idea - that for every element we store set of adjacency vertexes in hashmap.
  * This class must not be used for multi graphs (you must not put multiple edges and loops).
+ *
  * @param <T> elem that can be in vertex (vertexes can be associated with any type)
  */
 public class AdjList<T> implements Graph<T> {
