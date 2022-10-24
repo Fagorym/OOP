@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.veber;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * That class implements graph interface and all of its methods.
@@ -40,23 +42,24 @@ public class AdjList<T> implements Graph<T> {
             Set<Vertex<T>> adjVertexes = new HashSet<>();
             vertexes.add(vertex);
             for (Edge<T> edge : vertex.startEdges) {
-                adjVertexes.add(edge.end);
                 edges.add(edge);
-                if (!vertexes.contains(edge.end)) {
-                    addVertex(edge.end);
-                }
+                AddAdjVertex(adjVertexes, edge.end);
+
             }
             for (Edge<T> edge : vertex.endEdges) {
-                adjVertexes.add(edge.start);
                 edges.add(edge);
-                if (!vertexes.contains(edge.start)) {
-                    addVertex(edge.start);
-                }
+                AddAdjVertex(adjVertexes, edge.start);
+
             }
             rows.put(vertex, adjVertexes);
             return true;
         }
         return false;
+    }
+
+    private void AddAdjVertex(Set<Vertex<T>> adjVertexes, Vertex<T> vertex) {
+        adjVertexes.add(vertex);
+        addVertex(vertex);
     }
 
     /**
@@ -177,5 +180,17 @@ public class AdjList<T> implements Graph<T> {
     @Override
     public int getEdgesNumber() {
         return edges.size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (Vertex<T> vertex : vertexes) {
+            builder.append(vertex.elem);
+            builder.append(" - ");
+            builder.append(rows.get(vertex).toString());
+            builder.append('\n');
+        }
+        return builder.toString();
     }
 }

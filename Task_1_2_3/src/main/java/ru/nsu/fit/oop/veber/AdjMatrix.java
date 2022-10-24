@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.veber;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * That class implements graph interface and all of its methods.
@@ -38,31 +40,36 @@ public class AdjMatrix<T> implements Graph<T> {
     @Override
     public boolean addVertex(Vertex<T> vertex) {
         if (!vertexes.contains(vertex)) {
-            matrix.put(vertex, new HashMap<>());
-            for (Vertex<T> customVertex : vertexes) {
-                matrix.get(customVertex).put(vertex, 0);
-                matrix.get(vertex).put(customVertex, 0);
-            }
-            this.vertexes.add(vertex);
+            initVertex(vertex);
             for (Edge<T> edge : vertex.startEdges) {
-                this.matrix.get(vertex).put(edge.end, 1);
-                this.matrix.get(edge.end).put(vertex, 1);
-                this.edges.add(edge);
                 if (!vertexes.contains(edge.end)) {
                     addVertex(edge.end);
                 }
+                this.matrix.get(vertex).put(edge.end, 1);
+                this.matrix.get(edge.end).put(vertex, 1);
+                this.edges.add(edge);
             }
             for (Edge<T> edge : vertex.endEdges) {
-                this.matrix.get(vertex).put(edge.start, 1);
-                this.matrix.get(edge.start).put(vertex, 1);
-                this.edges.add(edge);
                 if (!vertexes.contains(edge.start)) {
                     addVertex(edge.start);
                 }
+                this.matrix.get(vertex).put(edge.start, 1);
+                this.matrix.get(edge.start).put(vertex, 1);
+                this.edges.add(edge);
             }
             return true;
         }
         return false;
+    }
+
+    private void initVertex(Vertex<T> vertex) {
+        this.vertexes.add(vertex);
+        matrix.put(vertex, new HashMap<>());
+        for (Vertex<T> customVertex : vertexes) {
+            matrix.get(customVertex).put(vertex, 0);
+            matrix.get(vertex).put(customVertex, 0);
+        }
+
     }
 
     /**
@@ -192,5 +199,27 @@ public class AdjMatrix<T> implements Graph<T> {
     @Override
     public int getEdgesNumber() {
         return vertexes.size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder resultString = new StringBuilder();
+        resultString.append(" |");
+        for (Vertex<T> vertex : vertexes) {
+            resultString.append(vertex.elem);
+            resultString.append("|");
+        }
+        resultString.append("\n");
+        for (Vertex<T> iVertex : vertexes) {
+            resultString.append(iVertex.elem);
+            resultString.append("|");
+            for (Vertex<T> jVertex : vertexes) {
+                resultString.append(matrix.get(jVertex).get(iVertex));
+                resultString.append("|");
+            }
+            resultString.append("\n");
+        }
+
+        return resultString.toString();
     }
 }
