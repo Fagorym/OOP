@@ -189,7 +189,9 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(ru.nsu.fit.oop.veber.Edge)">addEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;edge)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This method adds new edge to graph.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -201,17 +203,23 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteEdge(ru.nsu.fit.oop.veber.Edge)">deleteEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;edge)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This method deleted the edge from graph.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteVertex(ru.nsu.fit.oop.veber.Vertex)">deleteVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This method deletes current vertex from graph and all edges, that was connected to this vertex.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAdjVertexes(ru.nsu.fit.oop.veber.Vertex)">getAdjVertexes</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Method get the row of the current vertex and returns the set of adjacency vertexes associated with it.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
@@ -230,7 +238,9 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="AdjList.html" title="type parameter in AdjList">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexElement(ru.nsu.fit.oop.veber.Vertex)">getVertexElement</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Get element of the current vertex (name of the vertex).</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
@@ -243,7 +253,9 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVertexElement(ru.nsu.fit.oop.veber.Vertex,T)">setVertexElement</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex,
                 <a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;newElem)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Set the element of the current vertex.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -317,9 +329,12 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <li class="blockList">
 <h4>deleteVertex</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;deleteVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">This method deletes current vertex from graph and all edges, that was connected to this vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#deleteVertex(ru.nsu.fit.oop.veber.Vertex)">deleteVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - vertex that we delete from graph</dd>
 </dl>
 </li>
 </ul>
@@ -330,9 +345,13 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <li class="blockList">
 <h4>addEdge</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">This method adds new edge to graph.
+ Change adjacency list, added start vertex to list of end vertex and the opposite.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#addEdge(ru.nsu.fit.oop.veber.Edge)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - - edge that we add to graph</dd>
 </dl>
 </li>
 </ul>
@@ -343,9 +362,13 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <li class="blockList">
 <h4>deleteEdge</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;deleteEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">This method deleted the edge from graph.
+ We change adjacency list and current state of the vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#deleteEdge(ru.nsu.fit.oop.veber.Edge)">deleteEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - - edge that we deleted from graph</dd>
 </dl>
 </li>
 </ul>
@@ -356,9 +379,14 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <li class="blockList">
 <h4>getAdjVertexes</h4>
 <pre class="methodSignature">public&nbsp;java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;&nbsp;getAdjVertexes&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Method get the row of the current vertex and returns the set of adjacency vertexes associated with it.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#getAdjVertexes(ru.nsu.fit.oop.veber.Vertex)">getAdjVertexes</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - from what vertex we need to get adjacency list.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>set of adjacency vertexes</dd>
 </dl>
 </li>
 </ul>
@@ -369,9 +397,14 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <li class="blockList">
 <h4>getVertexElement</h4>
 <pre class="methodSignature">public&nbsp;<a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;getVertexElement&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Get element of the current vertex (name of the vertex).</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#getVertexElement(ru.nsu.fit.oop.veber.Vertex)">getVertexElement</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - from what vertex we get element</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>element of the current vertex</dd>
 </dl>
 </li>
 </ul>
@@ -385,9 +418,13 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <h4>setVertexElement</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setVertexElement&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;vertex,
                              <a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;newElem)</pre>
+<div class="block">Set the element of the current vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#setVertexElement(ru.nsu.fit.oop.veber.Vertex,T)">setVertexElement</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - to what vertex we set element</dd>
+<dd><code>newElem</code> - - what element will be actual element</dd>
 </dl>
 </li>
 </ul>

@@ -121,11 +121,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - elem that can be in vertex (vertexes can be associated with any type)</dd>
+</dl>
+<dl>
 <dt>All Known Implementing Classes:</dt>
 <dd><code><a href="AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></code>, <code><a href="AdjMatrix.html" title="class in ru.nsu.fit.oop.veber">AdjMatrix</a></code>, <code><a href="IncMatrix.html" title="class in ru.nsu.fit.oop.veber">IncMatrix</a></code></dd>
 </dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">Graph&lt;T&gt;</span></pre>
+<div class="block">This interface contains all basic methods to work with directed simple graphs.</div>
 </li>
 </ul>
 </div>
@@ -149,27 +154,37 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(ru.nsu.fit.oop.veber.Edge)">addEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds edge to graph.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(ru.nsu.fit.oop.veber.Vertex)">addVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds vertex to graph.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteEdge(ru.nsu.fit.oop.veber.Edge)">deleteEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Deletes edge from graph.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteVertex(ru.nsu.fit.oop.veber.Vertex)">deleteVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Deletes vertex from graph.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAdjVertexes(ru.nsu.fit.oop.veber.Vertex)">getAdjVertexes</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Get the set of adjacency vertexes.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
@@ -188,7 +203,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexElement(ru.nsu.fit.oop.veber.Vertex)">getVertexElement</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Get the element of the current vertex.</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
@@ -201,7 +218,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVertexElement(ru.nsu.fit.oop.veber.Vertex,T)">setVertexElement</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex,
                 <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;newElem)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Set the element of the current vertex.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -227,6 +246,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>addVertex</h4>
 <pre class="methodSignature">boolean&nbsp;addVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Adds vertex to graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - vertex that we add</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - if vertex was added, false - if vertex was not added.</dd>
+</dl>
 </li>
 </ul>
 <a id="deleteVertex(ru.nsu.fit.oop.veber.Vertex)">
@@ -236,6 +262,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>deleteVertex</h4>
 <pre class="methodSignature">void&nbsp;deleteVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Deletes vertex from graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - vertex that we delete</dd>
+</dl>
 </li>
 </ul>
 <a id="addEdge(ru.nsu.fit.oop.veber.Edge)">
@@ -245,6 +276,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>addEdge</h4>
 <pre class="methodSignature">void&nbsp;addEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">Adds edge to graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - - edge that we add</dd>
+</dl>
 </li>
 </ul>
 <a id="deleteEdge(ru.nsu.fit.oop.veber.Edge)">
@@ -254,6 +290,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>deleteEdge</h4>
 <pre class="methodSignature">void&nbsp;deleteEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">Deletes edge from graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - - edge that we delete</dd>
+</dl>
 </li>
 </ul>
 <a id="getAdjVertexes(ru.nsu.fit.oop.veber.Vertex)">
@@ -263,6 +304,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getAdjVertexes</h4>
 <pre class="methodSignature">java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;getAdjVertexes&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Get the set of adjacency vertexes.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - from what vertex we get adjacency vertexes</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>set of the vertexes</dd>
+</dl>
 </li>
 </ul>
 <a id="getVertexElement(ru.nsu.fit.oop.veber.Vertex)">
@@ -272,6 +320,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getVertexElement</h4>
 <pre class="methodSignature"><a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;getVertexElement&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Get the element of the current vertex.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - from what vertex we get element</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>element of the vertex</dd>
+</dl>
 </li>
 </ul>
 <a id="setVertexElement(ru.nsu.fit.oop.veber.Vertex,java.lang.Object)">
@@ -284,6 +339,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h4>setVertexElement</h4>
 <pre class="methodSignature">void&nbsp;setVertexElement&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex,
                       <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;newElem)</pre>
+<div class="block">Set the element of the current vertex.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - - to what vertex we set element</dd>
+<dd><code>newElem</code> - - what element will be actual element</dd>
+</dl>
 </li>
 </ul>
 <a id="getVertexDegree(ru.nsu.fit.oop.veber.Vertex)">

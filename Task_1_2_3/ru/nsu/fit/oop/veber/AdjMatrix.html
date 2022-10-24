@@ -130,7 +130,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - </dd>
+<dd><code>T</code> - elem that can be in vertex (vertexes can be associated with any type)</dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
@@ -140,6 +140,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public class <span class="typeNameLabel">AdjMatrix&lt;T&gt;</span>
 extends java.lang.Object
 implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;T&gt;</pre>
+<div class="block">That class implements graph interface and all of its methods.
+ Main idea - that for every vertex we store hashmap with key = *current vertex*.
+ Value of the second hashmap - weight of the between two vertexes (if exist) and 0, if there is no edge.
+ This class must not be used for multi graphs (you must not put multiple edges and loops).</div>
 </li>
 </ul>
 </div>
@@ -161,7 +165,9 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">AdjMatrix</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Default constructor, init all the fields with empty structures.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -283,6 +289,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <li class="blockList">
 <h4>AdjMatrix</h4>
 <pre>public&nbsp;AdjMatrix()</pre>
+<div class="block">Default constructor, init all the fields with empty structures.</div>
 </li>
 </ul>
 </li>
