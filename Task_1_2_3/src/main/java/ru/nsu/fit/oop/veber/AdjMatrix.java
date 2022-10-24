@@ -41,25 +41,46 @@ public class AdjMatrix<T> implements Graph<T> {
     public boolean addVertex(Vertex<T> vertex) {
         if (!vertexes.contains(vertex)) {
             initVertex(vertex);
-            for (Edge<T> edge : vertex.startEdges) {
-                if (!vertexes.contains(edge.end)) {
-                    addVertex(edge.end);
+            for (Edge<T> edge : vertex.getStartEdges()) {
+                if (!vertexes.contains(edge.getEnd())) {
+                    addVertex(edge.getEnd());
                 }
-                this.matrix.get(vertex).put(edge.end, 1);
-                this.matrix.get(edge.end).put(vertex, 1);
+                this.matrix.get(vertex).put(edge.getEnd(), 1);
+                this.matrix.get(edge.getEnd()).put(vertex, 1);
                 this.edges.add(edge);
             }
-            for (Edge<T> edge : vertex.endEdges) {
-                if (!vertexes.contains(edge.start)) {
-                    addVertex(edge.start);
+            for (Edge<T> edge : vertex.getEndEdges()) {
+                if (!vertexes.contains(edge.getStart())) {
+                    addVertex(edge.getStart());
                 }
-                this.matrix.get(vertex).put(edge.start, 1);
-                this.matrix.get(edge.start).put(vertex, 1);
+                this.matrix.get(vertex).put(edge.getStart(), 1);
+                this.matrix.get(edge.getStart()).put(vertex, 1);
                 this.edges.add(edge);
             }
             return true;
         }
         return false;
+    }
+
+    /**
+     * Getter for the vertexes of the graph.
+     *
+     * @return set of the vertexes of the graph
+     */
+
+    @Override
+    public Set<Vertex<T>> getVertexes() {
+        return vertexes;
+    }
+
+    /**
+     * Getter for the edges of the graph.
+     *
+     * @return set of the edges of the graph
+     */
+    @Override
+    public Set<Edge<T>> getEdges() {
+        return edges;
     }
 
     private void initVertex(Vertex<T> vertex) {
@@ -83,7 +104,7 @@ public class AdjMatrix<T> implements Graph<T> {
         if (vertexes.contains(vertex)) {
             vertexes.remove(vertex);
             matrix.remove(vertex);
-            edges.removeIf(edge -> edge.start == vertex || edge.end == vertex);
+            edges.removeIf(edge -> edge.getStart() == vertex || edge.getEnd() == vertex);
             for (Vertex<T> customVertex : vertexes) {
                 matrix.get(customVertex).remove(vertex);
             }
@@ -99,13 +120,13 @@ public class AdjMatrix<T> implements Graph<T> {
      */
     @Override
     public void addEdge(Edge<T> edge) {
-        if (!vertexes.contains(edge.start) || !vertexes.contains(edge.end)) {
+        if (!vertexes.contains(edge.getStart()) || !vertexes.contains(edge.getEnd())) {
             throw new IllegalArgumentException("You are trying to add edge with vertexes, that is not in the graph");
         }
         if (!edges.contains(edge)) {
             edges.add(edge);
-            matrix.get(edge.start).put(edge.end, 1);
-            matrix.get(edge.end).put(edge.start, 1);
+            matrix.get(edge.getStart()).put(edge.getEnd(), 1);
+            matrix.get(edge.getEnd()).put(edge.getStart(), 1);
         }
 
     }
@@ -118,12 +139,12 @@ public class AdjMatrix<T> implements Graph<T> {
      */
     @Override
     public void deleteEdge(Edge<T> edge) {
-        if (!vertexes.contains(edge.start) || !vertexes.contains(edge.end)) {
+        if (!vertexes.contains(edge.getStart()) || !vertexes.contains(edge.getEnd())) {
             throw new IllegalArgumentException("You are trying to delete edge with vertexes, that is not in the graph");
         }
         edges.remove(edge);
-        matrix.get(edge.start).put(edge.end, 0);
-        matrix.get(edge.end).put(edge.start, 0);
+        matrix.get(edge.getStart()).put(edge.getEnd(), 0);
+        matrix.get(edge.getEnd()).put(edge.getStart(), 0);
 
     }
 
@@ -154,7 +175,7 @@ public class AdjMatrix<T> implements Graph<T> {
      */
     @Override
     public T getVertexElement(Vertex<T> vertex) {
-        return vertex.elem;
+        return vertex.getElem();
     }
 
     /**
@@ -165,7 +186,7 @@ public class AdjMatrix<T> implements Graph<T> {
      */
     @Override
     public void setVertexElement(Vertex<T> vertex, T newElem) {
-        vertex.elem = newElem;
+        vertex.setElem(newElem);
 
     }
 
@@ -201,17 +222,22 @@ public class AdjMatrix<T> implements Graph<T> {
         return vertexes.size();
     }
 
+    /**
+     * Creates human-reading string of the adjacency matrix.
+     *
+     * @return string representation of the matrix
+     */
     @Override
     public String toString() {
         StringBuilder resultString = new StringBuilder();
         resultString.append(" |");
         for (Vertex<T> vertex : vertexes) {
-            resultString.append(vertex.elem);
+            resultString.append(vertex.getElem());
             resultString.append("|");
         }
         resultString.append("\n");
         for (Vertex<T> iVertex : vertexes) {
-            resultString.append(iVertex.elem);
+            resultString.append(iVertex.getElem());
             resultString.append("|");
             for (Vertex<T> jVertex : vertexes) {
                 resultString.append(matrix.get(jVertex).get(iVertex));

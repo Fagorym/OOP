@@ -46,11 +46,26 @@ public interface Graph<T> {
     Set<Vertex<T>> getAdjVertexes(Vertex<T> vertex);
 
     /**
+     * Get the set of vertexes of the graph.
+     *
+     * @return set of vertexes
+     */
+    Set<Vertex<T>> getVertexes();
+
+    /**
+     * Get the set of edges of graph.
+     *
+     * @return set edges of the graph
+     */
+    Set<Edge<T>> getEdges();
+
+    /**
      * Get the element of the current vertex.
      *
      * @param vertex from what vertex we get element
      * @return element of the vertex
      */
+
     T getVertexElement(Vertex<T> vertex);
 
     /**
