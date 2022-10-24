@@ -70,11 +70,13 @@ public class AdjList<T> implements Graph<T> {
         vertexes.remove(vertex);
         for (Edge<T> edge : vertex.startEdges) {
             edges.remove(edge);
-            rows.get(edge.end).remove(edge.start);
+            vertex.startEdges.remove(edge);
+            edge.end.endEdges.remove(edge);
         }
         for (Edge<T> edge : vertex.endEdges) {
             edges.remove(edge);
-            rows.get(edge.start).remove(edge.end);
+            vertex.endEdges.remove(edge);
+            edge.start.startEdges.remove(edge);
         }
 
     }
