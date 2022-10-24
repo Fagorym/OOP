@@ -4,11 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 
-public class AdjListTest<T> {
+public class AdjListTest {
     AdjList<Integer> testedList;
 
     @BeforeEach
@@ -49,7 +48,7 @@ public class AdjListTest<T> {
         Vertex<Integer> secondVertex = new Vertex<>(3);
         Edge<Integer> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
         this.testedList.addVertex(firstVertex);
-        Assertions.assertEquals(2,testedList.getVertexNumber());
+        Assertions.assertEquals(2, testedList.getVertexNumber());
         Assertions.assertEquals(1, testedList.getEdgesNumber());
         testedList.deleteVertex(firstVertex);
         Assertions.assertEquals(0, testedList.getEdgesNumber());
@@ -57,6 +56,19 @@ public class AdjListTest<T> {
         Assertions.assertFalse(testedList.addVertex(secondVertex));
         testedList.deleteVertex(secondVertex);
         Assertions.assertEquals(0, testedList.getVertexNumber());
+    }
+
+    @Test
+    public void TestToStringMethod() {
+        Vertex<Integer> firstVertex = new Vertex<>(2);
+        Vertex<Integer> secondVertex = new Vertex<>(3);
+        Edge<Integer> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
+        Edge<Integer> secondEdge = new Edge<>("2", 13, firstVertex, secondVertex);
+        Vertex<Integer> thirdVertex = new Vertex<>(10);
+        this.testedList.addVertex(firstVertex);
+        testedList.addVertex(thirdVertex);
+        System.out.println(testedList.toString());
+
     }
 
 

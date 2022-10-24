@@ -15,4 +15,9 @@ public class Vertex<T> {
         this.endEdges = new HashSet<>();
     }
 
+    @Override
+    public String toString() {
+        return elem.toString();
+    }
+
 }

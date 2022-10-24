@@ -35,32 +35,38 @@ public class IncMatrix<T> implements Graph<T> {
     @Override
     public boolean addVertex(Vertex<T> vertex) {
         if (!vertexes.contains(vertex)) {
-            matrix.put(vertex, new HashMap<>());
-            vertexes.add(vertex);
+            initVertex(vertex);
             for (Edge<T> edge : vertex.startEdges) {
-                matrix.get(vertex).put(edge, edge.weight);
-                if (vertexes.contains(edge.end)) {
-                    matrix.get(edge.end).put(edge, edge.weight);
-                }
-                else {
-                    addVertex(edge.end);
-                }
-                edges.add(edge);
+                initEdge(edge);
+                addVertex(edge.end);
             }
             for (Edge<T> edge : vertex.endEdges) {
-                matrix.get(vertex).put(edge, edge.weight);
-                if (vertexes.contains(edge.start)){
-                    matrix.get(edge.start).put(edge, edge.weight);
-                }
-                else {
-                    addVertex(edge.start);
-                }
-
-                edges.add(edge);
+                initEdge(edge);
+                addVertex(edge.start);
             }
             return true;
         }
         return false;
+    }
+
+    private void initEdge(Edge<T> edge) {
+        edges.add(edge);
+        for (Vertex<T> vertex : vertexes) {
+            if (edge.start == vertex || edge.end == vertex) {
+                matrix.get(vertex).put(edge, 1);
+            } else {
+                matrix.get(vertex).put(edge, 0);
+            }
+        }
+    }
+
+    private void initVertex(Vertex<T> vertex) {
+        this.vertexes.add(vertex);
+        matrix.put(vertex, new HashMap<>());
+        for (Edge<T> edge : edges) {
+            matrix.get(vertex).put(edge, 0);
+        }
+
     }
 
     /**
@@ -90,6 +96,7 @@ public class IncMatrix<T> implements Graph<T> {
     }
 
     /**
+     * If edge connected to vertex, that is not already in graph, we also add this vertex.
      * If edge already in graph - we do not add it.
      * If edge not in graph, we add to weight to current vertexes.
      * For other vertexes we add weight = 0 (because they are not incident to it).
@@ -99,15 +106,8 @@ public class IncMatrix<T> implements Graph<T> {
     @Override
     public void addEdge(Edge<T> edge) {
         edges.add(edge);
-        for (Vertex<T> vertex: vertexes){
-            if (vertex == edge.start || vertex == edge.end){
-                matrix.get(vertex).put(edge, edge.weight);
-            }
-            else {
-                matrix.get(vertex).put(edge, 0);
-            }
-        }
-
+        addVertex(edge.start);
+        addVertex(edge.end);
     }
 
     @Override
