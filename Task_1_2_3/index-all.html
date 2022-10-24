@@ -111,6 +111,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">If edge connected to vertex, that is not already in graph, we also add this vertex.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Vertex.html#addEndEdge(ru.nsu.fit.oop.veber.Edge)">addEndEdge(Edge&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a></dt>
+<dd>
+<div class="block">Method that added provided edge to ended edges set.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Vertex.html#addStartEdge(ru.nsu.fit.oop.veber.Edge)">addStartEdge(Edge&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a></dt>
+<dd>
+<div class="block">Method that added provided edge to ended edges.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#addVertex(ru.nsu.fit.oop.veber.Vertex)">addVertex(Vertex&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
 <dd>
 <div class="block">Method creates new set and adds all incident vertexes to this set.</div>
@@ -134,6 +142,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#%3Cinit%3E()">AdjList()</a></span> - Constructor for class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
 <dd>
 <div class="block">Default constructor, that creates empty sets and empty hashmap.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#%3Cinit%3E(ru.nsu.fit.oop.veber.AdjMatrix)">AdjList(AdjMatrix&lt;T&gt;)</a></span> - Constructor for class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
+<dd>
+<div class="block">Constructor that uses adjacency matrix to create graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#%3Cinit%3E(ru.nsu.fit.oop.veber.IncMatrix)">AdjList(IncMatrix&lt;T&gt;)</a></span> - Constructor for class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
+<dd>
+<div class="block">Constructor that uses incident matrix to create graph.</div>
 </dd>
 <dt><a href="ru/nsu/fit/oop/veber/AdjMatrix.html" title="class in ru.nsu.fit.oop.veber"><span class="typeNameLink">AdjMatrix</span></a>&lt;<a href="ru/nsu/fit/oop/veber/AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt; - Class in <a href="ru/nsu/fit/oop/veber/package-summary.html">ru.nsu.fit.oop.veber</a></dt>
 <dd>
@@ -162,7 +178,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Deletes edge from graph.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/IncMatrix.html#deleteEdge(ru.nsu.fit.oop.veber.Edge)">deleteEdge(Edge&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/IncMatrix.html" title="class in ru.nsu.fit.oop.veber">IncMatrix</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Deleted current edge from the incident matrix.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#deleteVertex(ru.nsu.fit.oop.veber.Vertex)">deleteVertex(Vertex&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
 <dd>
 <div class="block">This method deletes current vertex from graph and all edges, that was connected to this vertex.</div>
@@ -180,6 +198,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Method deletes vertex from all vertexes of the graph, remove row from matrix,
  removes all edges connected to this graph.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#djikstra(ru.nsu.fit.oop.veber.Vertex)">djikstra(Vertex&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <a id="I:E">
 <!--   -->
@@ -187,9 +207,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h2 class="title">E</h2>
 <dl>
 <dt><a href="ru/nsu/fit/oop/veber/Edge.html" title="class in ru.nsu.fit.oop.veber"><span class="typeNameLink">Edge</span></a>&lt;<a href="ru/nsu/fit/oop/veber/Edge.html" title="type parameter in Edge">T</a>&gt; - Class in <a href="ru/nsu/fit/oop/veber/package-summary.html">ru.nsu.fit.oop.veber</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Class that represent edge of the graph.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Edge.html#%3Cinit%3E(java.lang.String,int,ru.nsu.fit.oop.veber.Vertex,ru.nsu.fit.oop.veber.Vertex)">Edge(String, int, Vertex&lt;T&gt;, Vertex&lt;T&gt;)</a></span> - Constructor for class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Default constructor of the edge.</div>
+</dd>
 </dl>
 <a id="I:G">
 <!--   -->
@@ -212,6 +236,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">We iterate all edges of the current vertex and add unique adjacency vertex to the set.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#getEdges()">getEdges()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
+<dd>
+<div class="block">Method that gets set of edges of the graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjMatrix.html#getEdges()">getEdges()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjMatrix.html" title="class in ru.nsu.fit.oop.veber">AdjMatrix</a></dt>
+<dd>
+<div class="block">Getter for the edges of the graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Graph.html#getEdges()">getEdges()</a></span> - Method in interface ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a></dt>
+<dd>
+<div class="block">Get the set of edges of graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/IncMatrix.html#getEdges()">getEdges()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/IncMatrix.html" title="class in ru.nsu.fit.oop.veber">IncMatrix</a></dt>
+<dd>
+<div class="block">Getter for the edges of the graph.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#getEdgesNumber()">getEdgesNumber()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
 <dd>
 <div class="block">Method returns number of edges in graph.</div>
@@ -227,6 +267,30 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/IncMatrix.html#getEdgesNumber()">getEdgesNumber()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/IncMatrix.html" title="class in ru.nsu.fit.oop.veber">IncMatrix</a></dt>
 <dd>
 <div class="block">Method returns number of edges in graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Vertex.html#getElem()">getElem()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a></dt>
+<dd>
+<div class="block">Getter for the element of the vertex.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Edge.html#getEnd()">getEnd()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a></dt>
+<dd>
+<div class="block">Getter for the end vertex of the edge.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Vertex.html#getEndEdges()">getEndEdges()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a></dt>
+<dd>
+<div class="block">Getter for the set of end edges.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Edge.html#getName()">getName()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a></dt>
+<dd>
+<div class="block">Getter for the name of the edge.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Edge.html#getStart()">getStart()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a></dt>
+<dd>
+<div class="block">Getter for the start vertex of the edge.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Vertex.html#getStartEdges()">getStartEdges()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a></dt>
+<dd>
+<div class="block">Getter for the set of start edges.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#getVertexDegree(ru.nsu.fit.oop.veber.Vertex)">getVertexDegree(Vertex&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
 <dd>
@@ -260,6 +324,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Get element of the current vertex (name of the vertex).</div>
 </dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#getVertexes()">getVertexes()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
+<dd>
+<div class="block">Method that gets set of vertexes of the graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjMatrix.html#getVertexes()">getVertexes()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjMatrix.html" title="class in ru.nsu.fit.oop.veber">AdjMatrix</a></dt>
+<dd>
+<div class="block">Getter for the vertexes of the graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Graph.html#getVertexes()">getVertexes()</a></span> - Method in interface ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a></dt>
+<dd>
+<div class="block">Get the set of vertexes of the graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/IncMatrix.html#getVertexes()">getVertexes()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/IncMatrix.html" title="class in ru.nsu.fit.oop.veber">IncMatrix</a></dt>
+<dd>
+<div class="block">Getter for the vertexes of the graph.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#getVertexNumber()">getVertexNumber()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
 <dd>
 <div class="block">Method returns number of vertexes in graph.</div>
@@ -276,6 +356,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Method returns number of vertexes in graph.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Edge.html#getWeight()">getWeight()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a></dt>
+<dd>
+<div class="block">Getter for the weight of the edge.</div>
+</dd>
 <dt><a href="ru/nsu/fit/oop/veber/Graph.html" title="interface in ru.nsu.fit.oop.veber"><span class="typeNameLink">Graph</span></a>&lt;<a href="ru/nsu/fit/oop/veber/Graph.html" title="type parameter in Graph">T</a>&gt; - Interface in <a href="ru/nsu/fit/oop/veber/package-summary.html">ru.nsu.fit.oop.veber</a></dt>
 <dd>
 <div class="block">This interface contains all basic methods to work with directed simple graphs.</div>
@@ -291,13 +375,19 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">That class implements graph interface and all of its methods.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/IncMatrix.html#%3Cinit%3E()">IncMatrix()</a></span> - Constructor for class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/IncMatrix.html" title="class in ru.nsu.fit.oop.veber">IncMatrix</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Default constructor of the incident matrix.</div>
+</dd>
 </dl>
 <a id="I:R">
 <!--   -->
 </a>
 <h2 class="title">R</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Vertex.html#removeEdge(ru.nsu.fit.oop.veber.Edge)">removeEdge(Edge&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a></dt>
+<dd>
+<div class="block">Removes edge from both sets, started and ended edges.</div>
+</dd>
 <dt><a href="ru/nsu/fit/oop/veber/package-summary.html">ru.nsu.fit.oop.veber</a> - package ru.nsu.fit.oop.veber</dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -306,6 +396,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">S</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Vertex.html#setElem(T)">setElem(T)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a></dt>
+<dd>
+<div class="block">Setter for the element of the vertex.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Edge.html#setName(java.lang.String)">setName(String)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a></dt>
+<dd>
+<div class="block">Setter for the name of the edge.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#setVertexElement(ru.nsu.fit.oop.veber.Vertex,T)">setVertexElement(Vertex&lt;T&gt;, T)</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
 <dd>
 <div class="block">Set the element of the current vertex.</div>
@@ -329,13 +427,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h2 class="title">T</h2>
 <dl>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjList.html#toString()">toString()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjList.html" title="class in ru.nsu.fit.oop.veber">AdjList</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a human-reading string of current adjacency list and returnes it.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/AdjMatrix.html#toString()">toString()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/AdjMatrix.html" title="class in ru.nsu.fit.oop.veber">AdjMatrix</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates human-reading string of the adjacency matrix.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/IncMatrix.html#toString()">toString()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/IncMatrix.html" title="class in ru.nsu.fit.oop.veber">IncMatrix</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates human-reading string of the incident matrix.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Vertex.html#toString()">toString()</a></span> - Method in class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Return string representation of the elem of the vertex.</div>
+</dd>
 </dl>
 <a id="I:V">
 <!--   -->
@@ -343,9 +449,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h2 class="title">V</h2>
 <dl>
 <dt><a href="ru/nsu/fit/oop/veber/Vertex.html" title="class in ru.nsu.fit.oop.veber"><span class="typeNameLink">Vertex</span></a>&lt;<a href="ru/nsu/fit/oop/veber/Vertex.html" title="type parameter in Vertex">T</a>&gt; - Class in <a href="ru/nsu/fit/oop/veber/package-summary.html">ru.nsu.fit.oop.veber</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Class that represent vertex of the graph, that can store one element and a set start and end edges.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/veber/Vertex.html#%3Cinit%3E(T)">Vertex(T)</a></span> - Constructor for class ru.nsu.fit.oop.veber.<a href="ru/nsu/fit/oop/veber/Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Default constructor of the vertex, that creates empty hashSets for edges and fill "elem" field by provided param.</div>
+</dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
 </main>

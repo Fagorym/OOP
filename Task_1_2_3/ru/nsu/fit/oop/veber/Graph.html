@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -187,34 +187,48 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code>java.util.Set&lt;<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdges()">getEdges</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the set of edges of graph.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesNumber()">getEdgesNumber</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Method returns number of edges from current vertex.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexDegree(ru.nsu.fit.oop.veber.Vertex)">getVertexDegree</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Method returns degree of current vertex.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexElement(ru.nsu.fit.oop.veber.Vertex)">getVertexElement</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Get the element of the current vertex.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexes()">getVertexes</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the set of vertexes of the graph.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexNumber()">getVertexNumber</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Method returns number of vertexes in graph.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVertexElement(ru.nsu.fit.oop.veber.Vertex,T)">setVertexElement</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex,
                 <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;newElem)</code></th>
@@ -310,6 +324,34 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><code>vertex</code> - - from what vertex we get adjacency vertexes</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>set of the vertexes</dd>
+</dl>
+</li>
+</ul>
+<a id="getVertexes()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getVertexes</h4>
+<pre class="methodSignature">java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;getVertexes()</pre>
+<div class="block">Get the set of vertexes of the graph.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>set of vertexes</dd>
+</dl>
+</li>
+</ul>
+<a id="getEdges()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getEdges</h4>
+<pre class="methodSignature">java.util.Set&lt;<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;getEdges()</pre>
+<div class="block">Get the set of edges of graph.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>set edges of the graph</dd>
 </dl>
 </li>
 </ul>

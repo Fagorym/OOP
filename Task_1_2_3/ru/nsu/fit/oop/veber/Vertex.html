@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -128,9 +128,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - - elem of the vertex</dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Vertex&lt;T&gt;</span>
 extends java.lang.Object</pre>
+<div class="block">Class that represent vertex of the graph, that can store one element and a set start and end edges.</div>
 </li>
 </ul>
 </div>
@@ -152,7 +157,9 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(T)">Vertex</a></span>&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;elem)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Default constructor of the vertex, that creates empty hashSets for edges and fill "elem" field by provided param.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -173,9 +180,60 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEndEdge(ru.nsu.fit.oop.veber.Edge)">addEndEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&nbsp;edge)</code></th>
+<td class="colLast">
+<div class="block">Method that added provided edge to ended edges set.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addStartEdge(ru.nsu.fit.oop.veber.Edge)">addStartEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&nbsp;edge)</code></th>
+<td class="colLast">
+<div class="block">Method that added provided edge to ended edges.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="Vertex.html" title="type parameter in Vertex">T</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getElem()">getElem</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for the element of the vertex.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>java.util.Set&lt;<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEndEdges()">getEndEdges</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for the set of end edges.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>java.util.Set&lt;<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStartEdges()">getStartEdges</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for the set of start edges.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(ru.nsu.fit.oop.veber.Edge)">removeEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&nbsp;edge)</code></th>
+<td class="colLast">
+<div class="block">Removes edge from both sets, started and ended edges.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setElem(T)">setElem</a></span>&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;elem)</code></th>
+<td class="colLast">
+<div class="block">Setter for the element of the vertex.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Return string representation of the elem of the vertex.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -210,6 +268,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Vertex</h4>
 <pre>public&nbsp;Vertex&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;elem)</pre>
+<div class="block">Default constructor of the vertex, that creates empty hashSets for edges and fill "elem" field by provided param.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>elem</code> - - will be element of the vertex</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -222,6 +285,106 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="addStartEdge(ru.nsu.fit.oop.veber.Edge)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addStartEdge</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;addStartEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">Method that added provided edge to ended edges.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - - will be added to the list of started edges</dd>
+</dl>
+</li>
+</ul>
+<a id="addEndEdge(ru.nsu.fit.oop.veber.Edge)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addEndEdge</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;addEndEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">Method that added provided edge to ended edges set.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - - will be added to the list of ended edges</dd>
+</dl>
+</li>
+</ul>
+<a id="removeEdge(ru.nsu.fit.oop.veber.Edge)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>removeEdge</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;removeEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">Removes edge from both sets, started and ended edges.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - - that edge will be deleted from both sets</dd>
+</dl>
+</li>
+</ul>
+<a id="getStartEdges()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getStartEdges</h4>
+<pre class="methodSignature">public&nbsp;java.util.Set&lt;<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&gt;&nbsp;getStartEdges()</pre>
+<div class="block">Getter for the set of start edges.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>set of the start edges</dd>
+</dl>
+</li>
+</ul>
+<a id="getEndEdges()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getEndEdges</h4>
+<pre class="methodSignature">public&nbsp;java.util.Set&lt;<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="Vertex.html" title="type parameter in Vertex">T</a>&gt;&gt;&nbsp;getEndEdges()</pre>
+<div class="block">Getter for the set of end edges.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>set of the end edges</dd>
+</dl>
+</li>
+</ul>
+<a id="getElem()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getElem</h4>
+<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;getElem()</pre>
+<div class="block">Getter for the element of the vertex.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>element of the vertex</dd>
+</dl>
+</li>
+</ul>
+<a id="setElem(java.lang.Object)">
+<!--   -->
+</a><a id="setElem(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setElem</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setElem&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;elem)</pre>
+<div class="block">Setter for the element of the vertex.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>elem</code> - - will be new element of the vertex</dd>
+</dl>
+</li>
+</ul>
 <a id="toString()">
 <!--   -->
 </a>
@@ -229,9 +392,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
+<div class="block">Return string representation of the elem of the vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>elem of the vertex as string</dd>
 </dl>
 </li>
 </ul>

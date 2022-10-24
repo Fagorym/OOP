@@ -26,6 +26,12 @@
     catch(err) {
     }
 //-->
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 var pathtoroot = "../../../../../";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -89,7 +95,7 @@ loadScripts(document, 'script');</script>
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.top">
@@ -122,9 +128,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - - elem of the vertex.</dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Edge&lt;T&gt;</span>
 extends java.lang.Object</pre>
+<div class="block">Class that represent edge of the graph.</div>
 </li>
 </ul>
 </div>
@@ -149,7 +160,9 @@ extends java.lang.Object</pre>
     int&nbsp;weight,
     <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;start,
     <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;end)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Default constructor of the edge.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -162,6 +175,49 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Summary</h3>
+<table class="memberSummary">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEnd()">getEnd</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for the end vertex of the edge.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getName()">getName</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for the name of the edge.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStart()">getStart</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for the start vertex of the edge.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWeight()">getWeight</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for the weight of the edge.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setName(java.lang.String)">setName</a></span>&#8203;(java.lang.String&nbsp;name)</code></th>
+<td class="colLast">
+<div class="block">Setter for the name of the edge.</div>
+</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -195,6 +251,94 @@ extends java.lang.Object</pre>
             int&nbsp;weight,
             <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;start,
             <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;end)</pre>
+<div class="block">Default constructor of the edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - - will be name of the edge</dd>
+<dd><code>weight</code> - - will be weight of the edge</dd>
+<dd><code>start</code> - - will be start vertex of the edge</dd>
+<dd><code>end</code> - - will be end vertex of the edge</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- ============ METHOD DETAIL ========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="method.detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a id="getWeight()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getWeight</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getWeight()</pre>
+<div class="block">Getter for the weight of the edge.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>weight of the edge</dd>
+</dl>
+</li>
+</ul>
+<a id="getName()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getName</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getName()</pre>
+<div class="block">Getter for the name of the edge.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the name of the edge</dd>
+</dl>
+</li>
+</ul>
+<a id="setName(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setName</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setName&#8203;(java.lang.String&nbsp;name)</pre>
+<div class="block">Setter for the name of the edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - - will be new name of the edge</dd>
+</dl>
+</li>
+</ul>
+<a id="getStart()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getStart</h4>
+<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;getStart()</pre>
+<div class="block">Getter for the start vertex of the edge.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>start vertex of the edge</dd>
+</dl>
+</li>
+</ul>
+<a id="getEnd()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getEnd</h4>
+<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;getEnd()</pre>
+<div class="block">Getter for the end vertex of the edge.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>end vertex of the edge</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -256,7 +400,7 @@ extends java.lang.Object</pre>
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.bottom">
