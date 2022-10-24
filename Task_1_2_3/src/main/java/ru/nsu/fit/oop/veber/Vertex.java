@@ -15,12 +15,4 @@ public class Vertex<T> {
         this.endEdges = new HashSet<>();
     }
 
-    public void addStartEdge(Edge<T> edge) {
-        this.startEdges.add(edge);
-    }
-
-    public void addEndEdge(Edge<T> edge) {
-        this.endEdges.add(edge);
-    }
-
 }

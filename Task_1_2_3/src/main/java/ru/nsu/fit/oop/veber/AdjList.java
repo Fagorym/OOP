@@ -11,9 +11,9 @@ import java.util.*;
  */
 public class AdjList<T> implements Graph<T> {
 
-    private HashMap<Vertex<T>, Set<Vertex<T>>> rows;
-    private Set<Edge<T>> edges;
-    private Set<Vertex<T>> vertexes;
+    private final HashMap<Vertex<T>, Set<Vertex<T>>> rows;
+    private final Set<Edge<T>> edges;
+    private final Set<Vertex<T>> vertexes;
 
     /**
      * Default constructor, that creates empty sets and empty hashmap.
@@ -41,80 +41,106 @@ public class AdjList<T> implements Graph<T> {
             vertexes.add(vertex);
             for (Edge<T> edge : vertex.startEdges) {
                 adjVertexes.add(edge.end);
-                this.edges.add(edge);
+                edges.add(edge);
                 if (!vertexes.contains(edge.end)) {
                     addVertex(edge.end);
                 }
             }
             for (Edge<T> edge : vertex.endEdges) {
                 adjVertexes.add(edge.start);
-                this.edges.add(edge);
+                edges.add(edge);
                 if (!vertexes.contains(edge.start)) {
                     addVertex(edge.start);
                 }
             }
-            this.rows.put(vertex, adjVertexes);
+            rows.put(vertex, adjVertexes);
             return true;
         }
         return false;
     }
 
+    /**
+     * This method deletes current vertex from graph and all edges, that was connected to this vertex.
+     *
+     * @param vertex - vertex that we delete from graph
+     */
     @Override
     public void deleteVertex(Vertex<T> vertex) {
-        this.rows.remove(vertex);
-        this.vertexes.remove(vertex);
+        rows.remove(vertex);
+        vertexes.remove(vertex);
         for (Edge<T> edge : vertex.startEdges) {
-            this.edges.remove(edge);
-            var row = this.rows.get(edge.end);
-            row.remove(edge.start);
-            this.rows.put(edge.end, row);
+            edges.remove(edge);
+            rows.get(edge.end).remove(edge.start);
         }
         for (Edge<T> edge : vertex.endEdges) {
-            this.edges.remove(edge);
-            var row = this.rows.get(edge.start);
-            row.remove(edge.end);
-            this.rows.put(edge.start, row);
+            edges.remove(edge);
+            rows.get(edge.start).remove(edge.end);
         }
 
     }
 
+
+    /**
+     * This method adds new edge to graph.
+     * Change adjacency list, added start vertex to list of end vertex and the opposite.
+     *
+     * @param edge - edge that we add to graph
+     */
     @Override
     public void addEdge(Edge<T> edge) {
         this.edges.add(edge);
-        edge.start.startEdges.add(edge);
-        edge.end.endEdges.add(edge);
-        var startRow = this.rows.get(edge.start);
-        startRow.add(edge.end);
-        this.rows.put(edge.start, startRow);
-        var endRow = this.rows.get(edge.end);
-        endRow.add(edge.start);
-        this.rows.put(edge.end, endRow);
+        rows.get(edge.start).add(edge.end);
+        this.rows.get(edge.end).add(edge.start);
 
     }
+
+    /**
+     * This method deleted the edge from graph.
+     * We change adjacency list and current state of the vertex.
+     *
+     * @param edge - edge that we deleted from graph
+     */
 
     @Override
     public void deleteEdge(Edge<T> edge) {
         this.edges.remove(edge);
-        var startRow = this.rows.get(edge.start);
-        startRow.remove(edge.end);
-        this.rows.put(edge.start, startRow);
-        var endRow = this.rows.get(edge.end);
-        endRow.remove(edge.start);
-        this.rows.put(edge.end, endRow);
+        this.rows.get(edge.start).remove(edge.end);
+        this.rows.get(edge.end).remove(edge.start);
+        edge.start.startEdges.remove(edge);
+        edge.end.endEdges.remove(edge);
 
 
     }
+
+    /**
+     * Method get the row of the current vertex and returns the set of adjacency vertexes associated with it.
+     *
+     * @param vertex - from what vertex we need to get adjacency list.
+     * @return set of adjacency vertexes
+     */
 
     @Override
     public Set<Vertex<T>> getAdjVertexes(Vertex<T> vertex) {
         return this.rows.get(vertex);
     }
 
+    /**
+     * Get element of the current vertex (name of the vertex).
+     *
+     * @param vertex - from what vertex we get element
+     * @return element of the current vertex
+     */
     @Override
     public T getVertexElement(Vertex<T> vertex) {
         return vertex.elem;
     }
 
+    /**
+     * Set the element of the current vertex.
+     *
+     * @param vertex  - to what vertex we set element
+     * @param newElem - what element will be actual element
+     */
     @Override
     public void setVertexElement(Vertex<T> vertex, T newElem) {
         vertex.elem = newElem;
