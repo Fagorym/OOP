@@ -3,15 +3,23 @@ package ru.nsu.fit.oop.veber;
 import java.util.*;
 
 /**
- * @param <T>
+ * That class implements graph interface and all of its methods.
+ * Main idea - that for every vertex we store hashmap with key = *current vertex*.
+ * Value of the second hashmap - weight of the between two vertexes (if exist) and 0, if there is no edge.
+ * This class must not be used for multi graphs (you must not put multiple edges and loops).
+ *
+ * @param <T> elem that can be in vertex (vertexes can be associated with any type)
  */
 public class AdjMatrix<T> implements Graph<T> {
 
-    Set<Vertex<T>> vertexes;
-    Set<Edge<T>> edges;
-    HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> matrix;
+    private final Set<Vertex<T>> vertexes;
+    private final Set<Edge<T>> edges;
+    private final HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> matrix;
 
 
+    /**
+     * Default constructor, init all the fields with empty structures.
+     */
     public AdjMatrix() {
         this.vertexes = new HashSet<>();
         this.edges = new HashSet<>();
