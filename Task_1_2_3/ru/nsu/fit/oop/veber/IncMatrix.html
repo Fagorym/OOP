@@ -189,7 +189,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(ru.nsu.fit.oop.veber.Edge)">addEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;&nbsp;edge)</code></th>
 <td class="colLast">
-<div class="block">If edge already in graph - we do not add it.</div>
+<div class="block">If edge connected to vertex, that is not already in graph, we also add this vertex.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -351,7 +351,8 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <li class="blockList">
 <h4>addEdge</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;&nbsp;edge)</pre>
-<div class="block">If edge already in graph - we do not add it.
+<div class="block">If edge connected to vertex, that is not already in graph, we also add this vertex.
+ If edge already in graph - we do not add it.
  If edge not in graph, we add to weight to current vertexes.
  For other vertexes we add weight = 0 (because they are not incident to it).</div>
 <dl>
