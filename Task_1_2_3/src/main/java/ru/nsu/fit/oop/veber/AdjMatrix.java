@@ -116,13 +116,11 @@ public class AdjMatrix<T> implements Graph<T> {
      * Method that adds some edge to graph.
      *
      * @param edge - edge that we add in graph
-     * @throws IllegalArgumentException - if you are trying to add edge with vertexes, that is not already in graph
      */
     @Override
     public void addEdge(Edge<T> edge) {
-        if (!vertexes.contains(edge.getStart()) || !vertexes.contains(edge.getEnd())) {
-            throw new IllegalArgumentException("You are trying to add edge with vertexes, that is not in the graph");
-        }
+        addVertex(edge.getStart());
+        addVertex(edge.getEnd());
         if (!edges.contains(edge)) {
             edges.add(edge);
             matrix.get(edge.getStart()).put(edge.getEnd(), 1);
@@ -135,13 +133,9 @@ public class AdjMatrix<T> implements Graph<T> {
      * Method deletes edge from graph.
      *
      * @param edge - edge that we delete
-     * @throws IllegalArgumentException - if you are trying to delete edge with vertexes, that is not already in graph
      */
     @Override
     public void deleteEdge(Edge<T> edge) {
-        if (!vertexes.contains(edge.getStart()) || !vertexes.contains(edge.getEnd())) {
-            throw new IllegalArgumentException("You are trying to delete edge with vertexes, that is not in the graph");
-        }
         edges.remove(edge);
         matrix.get(edge.getStart()).put(edge.getEnd(), 0);
         matrix.get(edge.getEnd()).put(edge.getStart(), 0);
@@ -209,7 +203,7 @@ public class AdjMatrix<T> implements Graph<T> {
      */
     @Override
     public int getVertexNumber() {
-        return edges.size();
+        return vertexes.size();
     }
 
     /**
@@ -219,7 +213,7 @@ public class AdjMatrix<T> implements Graph<T> {
      */
     @Override
     public int getEdgesNumber() {
-        return vertexes.size();
+        return edges.size();
     }
 
     /**
