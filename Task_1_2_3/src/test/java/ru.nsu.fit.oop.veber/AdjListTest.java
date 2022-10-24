@@ -71,5 +71,19 @@ public class AdjListTest {
 
     }
 
+    @Test
+    public void testDjikstraMethod(){
+        Vertex<Integer> firstVertex = new Vertex<>(2);
+        Vertex<Integer> secondVertex = new Vertex<>(3);
+        Vertex<Integer> thirdVertex = new Vertex<>(4);
+        Edge<Integer> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
+        Edge<Integer> secondEdge = new Edge<>("2", 40, firstVertex, thirdVertex);
+        Edge<Integer> thirdEdge = new Edge<>("3", 4, secondVertex, thirdVertex);
+        this.testedList.addVertex(firstVertex);
+        var res = this.testedList.djikstra(firstVertex);
+        System.out.println(res.entrySet());
+
+    }
+
 
 }

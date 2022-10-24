@@ -17,6 +17,9 @@ public class IncMatrix<T> implements Graph<T> {
     private final Set<Edge<T>> edges;
     private final HashMap<Vertex<T>, HashMap<Edge<T>, Integer>> matrix;
 
+    /**
+     * Default constructor of the incident matrix.
+     */
     public IncMatrix() {
         vertexes = new HashSet<>();
         edges = new HashSet<>();
@@ -36,13 +39,13 @@ public class IncMatrix<T> implements Graph<T> {
     public boolean addVertex(Vertex<T> vertex) {
         if (!vertexes.contains(vertex)) {
             initVertex(vertex);
-            for (Edge<T> edge : vertex.startEdges) {
+            for (Edge<T> edge : vertex.getStartEdges()) {
                 initEdge(edge);
-                addVertex(edge.end);
+                addVertex(edge.getEnd());
             }
-            for (Edge<T> edge : vertex.endEdges) {
+            for (Edge<T> edge : vertex.getEndEdges()) {
                 initEdge(edge);
-                addVertex(edge.start);
+                addVertex(edge.getStart());
             }
             return true;
         }
@@ -52,7 +55,7 @@ public class IncMatrix<T> implements Graph<T> {
     private void initEdge(Edge<T> edge) {
         edges.add(edge);
         for (Vertex<T> vertex : vertexes) {
-            if (edge.start == vertex || edge.end == vertex) {
+            if (edge.getStart() == vertex || edge.getEnd() == vertex) {
                 matrix.get(vertex).put(edge, 1);
             } else {
                 matrix.get(vertex).put(edge, 0);
@@ -80,13 +83,13 @@ public class IncMatrix<T> implements Graph<T> {
     public void deleteVertex(Vertex<T> vertex) {
         vertexes.remove(vertex);
         matrix.remove(vertex);
-        for (Edge<T> edge : vertex.startEdges) {
+        for (Edge<T> edge : vertex.getStartEdges()) {
             edges.remove(edge);
             for (Vertex<T> customVertex : vertexes) {
                 matrix.get(customVertex).remove(edge);
             }
         }
-        for (Edge<T> edge : vertex.endEdges) {
+        for (Edge<T> edge : vertex.getEndEdges()) {
             edges.remove(edge);
             for (Vertex<T> customVertex : vertexes) {
                 matrix.get(customVertex).remove(edge);
@@ -106,20 +109,44 @@ public class IncMatrix<T> implements Graph<T> {
     @Override
     public void addEdge(Edge<T> edge) {
         edges.add(edge);
-        addVertex(edge.start);
-        addVertex(edge.end);
+        addVertex(edge.getStart());
+        addVertex(edge.getEnd());
     }
 
+    /**
+     * Deleted current edge from the incident matrix.
+     *
+     * @param edge - edge that we delete
+     */
     @Override
     public void deleteEdge(Edge<T> edge) {
         edges.remove(edge);
         for (Vertex<T> vertex : vertexes) {
             matrix.get(vertex).remove(edge);
-            vertex.startEdges.remove(edge);
-            vertex.endEdges.remove(edge);
+            vertex.removeEdge(edge);
         }
 
 
+    }
+
+    /**
+     * Getter for the edges of the graph.
+     *
+     * @return set of the edges of the graph
+     */
+    @Override
+    public Set<Edge<T>> getEdges() {
+        return edges;
+    }
+
+    /**
+     * Getter for the vertexes of the graph.
+     *
+     * @return set of the vertexes of the graph
+     */
+    @Override
+    public Set<Vertex<T>> getVertexes() {
+        return vertexes;
     }
 
     /**
@@ -131,11 +158,11 @@ public class IncMatrix<T> implements Graph<T> {
     @Override
     public Set<Vertex<T>> getAdjVertexes(Vertex<T> vertex) {
         Set<Vertex<T>> vertexSet = new HashSet<>();
-        for (Edge<T> edge : vertex.endEdges) {
-            vertexSet.add(edge.start);
+        for (Edge<T> edge : vertex.getEndEdges()) {
+            vertexSet.add(edge.getStart());
         }
-        for (Edge<T> edge : vertex.startEdges) {
-            vertexSet.add(edge.end);
+        for (Edge<T> edge : vertex.getStartEdges()) {
+            vertexSet.add(edge.getEnd());
         }
         return vertexSet;
     }
@@ -149,7 +176,7 @@ public class IncMatrix<T> implements Graph<T> {
      */
     @Override
     public T getVertexElement(Vertex<T> vertex) {
-        return vertex.elem;
+        return vertex.getElem();
     }
 
     /**
@@ -160,7 +187,7 @@ public class IncMatrix<T> implements Graph<T> {
      */
     @Override
     public void setVertexElement(Vertex<T> vertex, T newElem) {
-        vertex.elem = newElem;
+        vertex.setElem(newElem);
     }
 
     /**
@@ -194,17 +221,22 @@ public class IncMatrix<T> implements Graph<T> {
         return edges.size();
     }
 
+    /**
+     * Creates human-reading string of the incident matrix.
+     *
+     * @return string representation of the matrix
+     */
     @Override
     public String toString() {
         StringBuilder resultString = new StringBuilder();
         resultString.append(" |");
         for (Vertex<T> vertex : vertexes) {
-            resultString.append(vertex.elem);
+            resultString.append(vertex.getElem());
             resultString.append("|");
         }
         resultString.append("\n");
         for (Edge<T> edge : edges) {
-            resultString.append(edge.name);
+            resultString.append(edge.getName());
             resultString.append("|");
             for (Vertex<T> vertex : vertexes) {
                 resultString.append(matrix.get(vertex).get(edge));
