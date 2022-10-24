@@ -1,31 +1,37 @@
 package ru.nsu.fit.oop.veber;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AdjMatrixTest<T> {
-    AdjMatrix<String> testMatrix;
+public class AdjMatrixTest {
+    AdjMatrix<String> testedMatrix;
 
     @BeforeEach
     public void initMatrix() {
-        this.testMatrix = new AdjMatrix<>();
+        testedMatrix = new AdjMatrix<>();
     }
 
     @Test
-    public void addVertexes() {
+    public void testToStringMethod() {
         Vertex<String> firstVertex = new Vertex<>("A");
         Vertex<String> secondVertex = new Vertex<>("B");
         Vertex<String> thirdVertex = new Vertex<>("C");
         Edge<String> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
         Edge<String> secondEdge = new Edge<>("2", 43, firstVertex, thirdVertex);
-        testMatrix.addVertex(firstVertex);
-        System.out.println(testMatrix.toString());
-        testMatrix.deleteEdge(firstEdge);
-        System.out.println(testMatrix.toString());
-        testMatrix.deleteEdge(secondEdge);
-        System.out.println(testMatrix.toString());
-
+        testedMatrix.addVertex(firstVertex);
+        Assertions.assertEquals(2, testedMatrix.getEdgesNumber());
+        Assertions.assertEquals("A", testedMatrix.getVertexElement(firstVertex));
+        Assertions.assertEquals(3, testedMatrix.getVertexNumber());
+        Assertions.assertEquals(2, testedMatrix.getVertexDegree(firstVertex));
+        testedMatrix.deleteVertex(firstVertex);
+        Assertions.assertEquals(2, testedMatrix.getVertexNumber());
+        Assertions.assertEquals(0, testedMatrix.getEdgesNumber());
+        testedMatrix.addEdge(firstEdge);
+        Assertions.assertEquals(2, testedMatrix.getVertexDegree(firstVertex));
+        System.out.println(testedMatrix.toString());
+        testedMatrix.deleteEdge(firstEdge);
+        Assertions.assertEquals(1, testedMatrix.getEdgesNumber());
+        Assertions.assertEquals(3, testedMatrix.getVertexNumber());
     }
-
-
 }
