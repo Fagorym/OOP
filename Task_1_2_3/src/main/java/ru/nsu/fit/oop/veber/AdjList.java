@@ -247,20 +247,20 @@ public class AdjList<T> implements Graph<T> {
         return builder.toString();
     }
 
-    public HashMap<Vertex<T>, Integer> djikstra(Vertex<T> sourceVertex){
+    public HashMap<Vertex<T>, Integer> djikstra(Vertex<T> sourceVertex) {
         HashMap<Vertex<T>, Integer> resultMap = new HashMap<>();
         HashMap<Vertex<T>, Boolean> isWhite = new HashMap<>();
         List<Vertex<T>> queue = new ArrayList<>();
-        for (Vertex<T> graphVertex: vertexes){
+        for (Vertex<T> graphVertex : vertexes) {
             resultMap.put(graphVertex, Integer.MAX_VALUE);
             isWhite.put(graphVertex, true);
         }
         resultMap.put(sourceVertex, 0);
         Vertex<T> minVertex = null;
         queue.add(sourceVertex);
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             Integer minValue = Integer.MAX_VALUE;
-            for (Vertex<T> nextVertex: queue){
+            for (Vertex<T> nextVertex : queue) {
                 if (resultMap.get(nextVertex) < minValue) {
                     minVertex = nextVertex;
                     minValue = resultMap.get(nextVertex);
@@ -268,8 +268,8 @@ public class AdjList<T> implements Graph<T> {
             }
             queue.remove(minVertex);
 
-            for (Edge<T> edgeFromMin: minVertex.getStartEdges()){
-                if (edgeFromMin.getWeight() + minValue < resultMap.get(edgeFromMin.getEnd())){
+            for (Edge<T> edgeFromMin : minVertex.getStartEdges()) {
+                if (edgeFromMin.getWeight() + minValue < resultMap.get(edgeFromMin.getEnd())) {
                     resultMap.put(edgeFromMin.getEnd(), edgeFromMin.getWeight() + minValue);
                     queue.add(edgeFromMin.getEnd());
                 }

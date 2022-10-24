@@ -23,13 +23,13 @@ public class AdjListTest {
         Vertex<Integer> newVertex2 = new Vertex<>(3);
         this.testedList.addVertex(newVertex2);
         Assertions.assertEquals(3, this.testedList.getVertexElement(newVertex2));
-        Edge<Integer> newEdge = new Edge<>("1",2, newVertex, newVertex2);
+        Edge<Integer> newEdge = new Edge<>("1", 2, newVertex, newVertex2);
         this.testedList.addEdge(newEdge);
         var set = new HashSet<Vertex<Integer>>();
         set.add(newVertex2);
         Assertions.assertEquals(set, this.testedList.getAdjVertexes(newVertex));
         this.testedList.setVertexElement(newVertex, 4);
-        Assertions.assertEquals(1,this.testedList.getVertexDegree(newVertex));
+        Assertions.assertEquals(1, this.testedList.getVertexDegree(newVertex));
         Assertions.assertEquals(2, this.testedList.getVertexNumber());
         Assertions.assertEquals(1, this.testedList.getEdgesNumber());
         Assertions.assertEquals(this.testedList.getVertexElement(newVertex), 4);
@@ -43,7 +43,7 @@ public class AdjListTest {
     }
 
     @Test
-    public void testAddVertexWithEdges(){
+    public void testAddVertexWithEdges() {
         Vertex<Integer> firstVertex = new Vertex<>(2);
         Vertex<Integer> secondVertex = new Vertex<>(3);
         Edge<Integer> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
@@ -72,7 +72,7 @@ public class AdjListTest {
     }
 
     @Test
-    public void testDjikstraMethod(){
+    public void testDjikstraMethod() {
         Vertex<Integer> firstVertex = new Vertex<>(2);
         Vertex<Integer> secondVertex = new Vertex<>(3);
         Vertex<Integer> thirdVertex = new Vertex<>(4);

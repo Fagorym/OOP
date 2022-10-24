@@ -8,12 +8,12 @@ public class IncMatrixTest {
     IncMatrix<String> testedMatrix;
 
     @BeforeEach
-    public void initMatrix(){
+    public void initMatrix() {
         testedMatrix = new IncMatrix<>();
     }
 
     @Test
-    public void testToStringMethod(){
+    public void testToStringMethod() {
         Vertex<String> firstVertex = new Vertex<>("A");
         Vertex<String> secondVertex = new Vertex<>("B");
         Vertex<String> thirdVertex = new Vertex<>("C");
