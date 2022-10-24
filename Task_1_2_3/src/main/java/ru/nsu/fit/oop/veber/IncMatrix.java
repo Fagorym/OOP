@@ -35,14 +35,27 @@ public class IncMatrix<T> implements Graph<T> {
     @Override
     public boolean addVertex(Vertex<T> vertex) {
         if (!vertexes.contains(vertex)) {
+            matrix.put(vertex, new HashMap<>());
+            vertexes.add(vertex);
             for (Edge<T> edge : vertex.startEdges) {
-                matrix.get(vertex).put(edge, 1);
-                matrix.get(edge.end).put(edge, 1);
+                matrix.get(vertex).put(edge, edge.weight);
+                if (vertexes.contains(edge.end)) {
+                    matrix.get(edge.end).put(edge, edge.weight);
+                }
+                else {
+                    addVertex(edge.end);
+                }
                 edges.add(edge);
             }
             for (Edge<T> edge : vertex.endEdges) {
-                matrix.get(vertex).put(edge, 1);
-                matrix.get(edge.start).put(edge, 1);
+                matrix.get(vertex).put(edge, edge.weight);
+                if (vertexes.contains(edge.start)){
+                    matrix.get(edge.start).put(edge, edge.weight);
+                }
+                else {
+                    addVertex(edge.start);
+                }
+
                 edges.add(edge);
             }
             return true;
@@ -85,10 +98,14 @@ public class IncMatrix<T> implements Graph<T> {
      */
     @Override
     public void addEdge(Edge<T> edge) {
-        if (!edges.contains(edge)) {
-            edges.add(edge);
-            matrix.get(edge.start).put(edge, edge.weight);
-            matrix.get(edge.end).put(edge, edge.weight);
+        edges.add(edge);
+        for (Vertex<T> vertex: vertexes){
+            if (vertex == edge.start || vertex == edge.end){
+                matrix.get(vertex).put(edge, edge.weight);
+            }
+            else {
+                matrix.get(vertex).put(edge, 0);
+            }
         }
 
     }
@@ -175,5 +192,27 @@ public class IncMatrix<T> implements Graph<T> {
     @Override
     public int getEdgesNumber() {
         return edges.size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder resultString = new StringBuilder();
+        resultString.append(" |");
+        for (Vertex<T> vertex : vertexes) {
+            resultString.append(vertex.elem);
+            resultString.append("|");
+        }
+        resultString.append("\n");
+        for (Edge<T> edge : edges) {
+            resultString.append(edge.name);
+            resultString.append("|");
+            for (Vertex<T> vertex : vertexes) {
+                resultString.append(matrix.get(vertex).get(edge));
+                resultString.append("|");
+            }
+            resultString.append("\n");
+        }
+
+        return resultString.toString();
     }
 }

@@ -23,7 +23,7 @@ public class AdjListTest<T> {
         Vertex<Integer> newVertex2 = new Vertex<>(3);
         this.testedList.addVertex(newVertex2);
         Assertions.assertEquals(3, this.testedList.getVertexElement(newVertex2));
-        Edge<Integer> newEdge = new Edge<>(2, newVertex, newVertex2);
+        Edge<Integer> newEdge = new Edge<>("1",2, newVertex, newVertex2);
         this.testedList.addEdge(newEdge);
         var set = new HashSet<Vertex<Integer>>();
         set.add(newVertex2);
