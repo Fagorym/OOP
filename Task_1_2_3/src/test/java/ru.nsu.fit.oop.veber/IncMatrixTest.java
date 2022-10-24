@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.veber;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,10 +20,10 @@ public class IncMatrixTest {
         Edge<String> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
         Edge<String> secondEdge = new Edge<>("2", 43, firstVertex, thirdVertex);
         testedMatrix.addVertex(firstVertex);
-        testedMatrix.addVertex(secondVertex);
-        testedMatrix.addVertex(thirdVertex);
-        testedMatrix.addEdge(firstEdge);
-        testedMatrix.addEdge(secondEdge);
+        Assertions.assertEquals(2, testedMatrix.getEdgesNumber());
+        Assertions.assertEquals("A", testedMatrix.getVertexElement(firstVertex));
+        Assertions.assertEquals(3, testedMatrix.getVertexNumber());
+        Assertions.assertEquals(2, testedMatrix.getVertexDegree(firstVertex));
         System.out.println(testedMatrix.toString());
     }
 }
