@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Class with tests for adjMatrix.
+ */
 public class AdjMatrixTest {
     AdjMatrix<String> testedMatrix;
 
