@@ -253,7 +253,7 @@ public class AdjList<T> implements Graph<T> {
      * If there is no path - it will be maxInteger value.
      *
      * @param sourceVertex - from which vertex we count the shortest paths
-     * @return hashMap with Vertex -> the shortest path to this vertex
+     * @return hashMap from Vertex to the shortest path to this vertex
      */
     public HashMap<Vertex<T>, Integer> dijkstra(Vertex<T> sourceVertex) {
         HashMap<Vertex<T>, Integer> resultMap = new HashMap<>();
