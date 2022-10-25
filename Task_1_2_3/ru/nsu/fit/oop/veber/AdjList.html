@@ -228,8 +228,10 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.HashMap&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;,&#8203;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#djikstra(ru.nsu.fit.oop.veber.Vertex)">djikstra</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;sourceVertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#dijkstra(ru.nsu.fit.oop.veber.Vertex)">dijkstra</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;sourceVertex)</code></th>
+<td class="colLast">
+<div class="block">Method that takes one source vertex and counts the shortest paths to all other vertexes.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;</code></td>
@@ -292,7 +294,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Creates a human-reading string of current adjacency list and returnes it.</div>
+<div class="block">Creates a human-reading string of current adjacency list and returns it.</div>
 </td>
 </tr>
 </table>
@@ -583,7 +585,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
-<div class="block">Creates a human-reading string of current adjacency list and returnes it.</div>
+<div class="block">Creates a human-reading string of current adjacency list and returns it.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
@@ -592,13 +594,21 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 </dl>
 </li>
 </ul>
-<a id="djikstra(ru.nsu.fit.oop.veber.Vertex)">
+<a id="dijkstra(ru.nsu.fit.oop.veber.Vertex)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>djikstra</h4>
-<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;,&#8203;java.lang.Integer&gt;&nbsp;djikstra&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;sourceVertex)</pre>
+<h4>dijkstra</h4>
+<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;,&#8203;java.lang.Integer&gt;&nbsp;dijkstra&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&nbsp;sourceVertex)</pre>
+<div class="block">Method that takes one source vertex and counts the shortest paths to all other vertexes.
+ If there is no path - it will be maxInteger value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>sourceVertex</code> - - from which vertex we count the shortest paths</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>hashMap from Vertex to the shortest path to this vertex</dd>
+</dl>
 </li>
 </ul>
 </li>
