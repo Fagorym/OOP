@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 
 
+/**
+ * Class to test adjList functions.
+ */
 public class AdjListTest {
     AdjList<Integer> testedList;
 
@@ -46,7 +49,7 @@ public class AdjListTest {
     public void testAddVertexWithEdges() {
         Vertex<Integer> firstVertex = new Vertex<>(2);
         Vertex<Integer> secondVertex = new Vertex<>(3);
-        Edge<Integer> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
+        new Edge<>("1", 12, firstVertex, secondVertex);
         this.testedList.addVertex(firstVertex);
         Assertions.assertEquals(2, testedList.getVertexNumber());
         Assertions.assertEquals(1, testedList.getEdgesNumber());
@@ -59,11 +62,11 @@ public class AdjListTest {
     }
 
     @Test
-    public void TestToStringMethod() {
+    public void testToStringMethod() {
         Vertex<Integer> firstVertex = new Vertex<>(2);
         Vertex<Integer> secondVertex = new Vertex<>(3);
-        Edge<Integer> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
-        Edge<Integer> secondEdge = new Edge<>("2", 13, firstVertex, secondVertex);
+        new Edge<>("1", 12, firstVertex, secondVertex);
+        new Edge<>("2", 13, firstVertex, secondVertex);
         Vertex<Integer> thirdVertex = new Vertex<>(10);
         this.testedList.addVertex(firstVertex);
         testedList.addVertex(thirdVertex);
@@ -72,15 +75,15 @@ public class AdjListTest {
     }
 
     @Test
-    public void testDjikstraMethod() {
+    public void testDijkstraMethod() {
         Vertex<Integer> firstVertex = new Vertex<>(2);
         Vertex<Integer> secondVertex = new Vertex<>(3);
         Vertex<Integer> thirdVertex = new Vertex<>(4);
-        Edge<Integer> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
-        Edge<Integer> secondEdge = new Edge<>("2", 40, firstVertex, thirdVertex);
-        Edge<Integer> thirdEdge = new Edge<>("3", 4, secondVertex, thirdVertex);
+        new Edge<>("1", 12, firstVertex, secondVertex);
+        new Edge<>("2", 40, firstVertex, thirdVertex);
+        new Edge<>("3", 4, secondVertex, thirdVertex);
         this.testedList.addVertex(firstVertex);
-        var res = this.testedList.djikstra(firstVertex);
+        var res = this.testedList.dijkstra(firstVertex);
         System.out.println(res.entrySet());
 
     }

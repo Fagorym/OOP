@@ -5,7 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Class that represent vertex of the graph, that can store one element and a set start and end edges.
+ * Class that represent vertex of the graph,
+ * that can store one element and a set start and end edges.
  *
  * @param <T> - elem of the vertex
  */
@@ -15,7 +16,8 @@ public class Vertex<T> {
     private Set<Edge<T>> endEdges;
 
     /**
-     * Default constructor of the vertex, that creates empty hashSets for edges and fill "elem" field by provided param.
+     * Default constructor of the vertex,
+     * that creates empty hashSets for edges and fill "elem" field by provided param.
      *
      * @param elem - will be element of the vertex
      */

@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.veber;
 
+
 import java.util.*;
 
 /**
@@ -71,12 +72,12 @@ public class AdjList<T> implements Graph<T> {
             vertexes.add(vertex);
             for (Edge<T> edge : vertex.getStartEdges()) {
                 edges.add(edge);
-                AddAdjVertex(adjVertexes, edge.getEnd());
+                addAdjVertex(adjVertexes, edge.getEnd());
 
             }
             for (Edge<T> edge : vertex.getEndEdges()) {
                 edges.add(edge);
-                AddAdjVertex(adjVertexes, edge.getStart());
+                addAdjVertex(adjVertexes, edge.getStart());
 
             }
             rows.put(vertex, adjVertexes);
@@ -85,7 +86,7 @@ public class AdjList<T> implements Graph<T> {
         return false;
     }
 
-    private void AddAdjVertex(Set<Vertex<T>> adjVertexes, Vertex<T> vertex) {
+    private void addAdjVertex(Set<Vertex<T>> adjVertexes, Vertex<T> vertex) {
         adjVertexes.add(vertex);
         addVertex(vertex);
     }
@@ -231,7 +232,7 @@ public class AdjList<T> implements Graph<T> {
     }
 
     /**
-     * Creates a human-reading string of current adjacency list and returnes it.
+     * Creates a human-reading string of current adjacency list and returns it.
      *
      * @return adjacency list as a string
      */
@@ -247,13 +248,18 @@ public class AdjList<T> implements Graph<T> {
         return builder.toString();
     }
 
-    public HashMap<Vertex<T>, Integer> djikstra(Vertex<T> sourceVertex) {
+    /**
+     * Method that takes one source vertex and counts the shortest paths to all other vertexes.
+     * If there is no path - it will be maxInteger value.
+     *
+     * @param sourceVertex - from which vertex we count the shortest paths
+     * @return hashMap with Vertex -> the shortest path to this vertex
+     */
+    public HashMap<Vertex<T>, Integer> dijkstra(Vertex<T> sourceVertex) {
         HashMap<Vertex<T>, Integer> resultMap = new HashMap<>();
-        HashMap<Vertex<T>, Boolean> isWhite = new HashMap<>();
         List<Vertex<T>> queue = new ArrayList<>();
         for (Vertex<T> graphVertex : vertexes) {
             resultMap.put(graphVertex, Integer.MAX_VALUE);
-            isWhite.put(graphVertex, true);
         }
         resultMap.put(sourceVertex, 0);
         Vertex<T> minVertex = null;
