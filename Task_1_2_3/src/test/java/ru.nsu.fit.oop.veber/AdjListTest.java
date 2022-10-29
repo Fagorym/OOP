@@ -11,7 +11,7 @@ import java.util.HashSet;
  * Class to test adjList functions.
  */
 public class AdjListTest {
-    AdjList<Integer> testedList;
+    AdjList<Integer, String> testedList;
 
     @BeforeEach
     public void initList() {
@@ -26,7 +26,7 @@ public class AdjListTest {
         Vertex<Integer> newVertex2 = new Vertex<>(3);
         this.testedList.addVertex(newVertex2);
         Assertions.assertEquals(3, this.testedList.getVertexElement(newVertex2));
-        Edge<Integer> newEdge = new Edge<>("1", 2, newVertex, newVertex2);
+        Edge<Integer, String> newEdge = new Edge<>("1", 2, newVertex, newVertex2);
         this.testedList.addEdge(newEdge);
         var set = new HashSet<Vertex<Integer>>();
         set.add(newVertex2);
@@ -49,8 +49,10 @@ public class AdjListTest {
     public void testAddVertexWithEdges() {
         Vertex<Integer> firstVertex = new Vertex<>(2);
         Vertex<Integer> secondVertex = new Vertex<>(3);
-        new Edge<>("1", 12, firstVertex, secondVertex);
+        Edge<Integer, String> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
         this.testedList.addVertex(firstVertex);
+        this.testedList.addVertex(secondVertex);
+        this.testedList.addEdge(firstEdge);
         Assertions.assertEquals(2, testedList.getVertexNumber());
         Assertions.assertEquals(1, testedList.getEdgesNumber());
         testedList.deleteVertex(firstVertex);

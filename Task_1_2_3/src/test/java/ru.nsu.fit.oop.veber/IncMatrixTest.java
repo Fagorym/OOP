@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
  * Class with tests for incMatrix.
  */
 public class IncMatrixTest {
-    IncMatrix<String> testedMatrix;
+    IncMatrix<String, String> testedMatrix;
 
     @BeforeEach
     public void initMatrix() {
@@ -20,9 +20,13 @@ public class IncMatrixTest {
         Vertex<String> firstVertex = new Vertex<>("A");
         Vertex<String> secondVertex = new Vertex<>("B");
         Vertex<String> thirdVertex = new Vertex<>("C");
-        Edge<String> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
-        new Edge<>("2", 43, firstVertex, thirdVertex);
+        Edge<String, String> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
+        Edge<String, String> secondEdge = new Edge<>("2", 43, firstVertex, thirdVertex);
         testedMatrix.addVertex(firstVertex);
+        testedMatrix.addVertex(secondVertex);
+        testedMatrix.addVertex(thirdVertex);
+        testedMatrix.addEdge(firstEdge);
+        testedMatrix.addEdge(secondEdge);
         Assertions.assertEquals(2, testedMatrix.getEdgesNumber());
         Assertions.assertEquals("A", testedMatrix.getVertexElement(firstVertex));
         Assertions.assertEquals(3, testedMatrix.getVertexNumber());
@@ -30,11 +34,9 @@ public class IncMatrixTest {
         testedMatrix.deleteVertex(firstVertex);
         Assertions.assertEquals(2, testedMatrix.getVertexNumber());
         Assertions.assertEquals(0, testedMatrix.getEdgesNumber());
-        testedMatrix.addEdge(firstEdge);
-        Assertions.assertEquals(2, testedMatrix.getVertexDegree(firstVertex));
+        Assertions.assertEquals(0, testedMatrix.getVertexDegree(firstVertex));
         System.out.println(testedMatrix.toString());
-        testedMatrix.deleteEdge(firstEdge);
-        Assertions.assertEquals(1, testedMatrix.getEdgesNumber());
-        Assertions.assertEquals(3, testedMatrix.getVertexNumber());
+        Assertions.assertEquals(0, testedMatrix.getEdgesNumber());
+        Assertions.assertEquals(2, testedMatrix.getVertexNumber());
     }
 }

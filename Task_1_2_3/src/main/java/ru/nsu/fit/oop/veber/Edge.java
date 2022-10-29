@@ -5,27 +5,24 @@ package ru.nsu.fit.oop.veber;
  *
  * @param <T> - elem of the vertex.
  */
-public class Edge<T> {
+public class Edge<T, T1> {
+    private final Vertex<T> start;
+    private final Vertex<T> end;
     private int weight;
-
-    private String name;
-    private Vertex<T> start;
-    private Vertex<T> end;
+    private T1 name;
 
     /**
      * Default constructor of the edge.
      *
-     * @param name   - will be name of the edge
-     * @param weight - will be weight of the edge
-     * @param start  - will be start vertex of the edge
-     * @param end    - will be end vertex of the edge
+     * @param name   - will be current name of the edge
+     * @param weight - will be current weight of the edge
+     * @param start  - will be current start vertex of the edge
+     * @param end    - will be current end vertex of the edge
      */
-    public Edge(String name, int weight, Vertex<T> start, Vertex<T> end) {
+    public Edge(T1 name, int weight, Vertex<T> start, Vertex<T> end) {
         this.weight = weight;
         this.start = start;
-        start.addStartEdge(this);
         this.end = end;
-        end.addEndEdge(this);
         this.name = name;
     }
 
@@ -44,7 +41,7 @@ public class Edge<T> {
      *
      * @return the name of the edge
      */
-    public String getName() {
+    public T1 getName() {
         return name;
     }
 
@@ -53,7 +50,7 @@ public class Edge<T> {
      *
      * @param name - will be new name of the edge
      */
-    public void setName(String name) {
+    public void setName(T1 name) {
         this.name = name;
     }
 
