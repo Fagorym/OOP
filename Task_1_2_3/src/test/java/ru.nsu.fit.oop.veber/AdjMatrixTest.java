@@ -35,7 +35,6 @@ public class AdjMatrixTest {
         Assertions.assertEquals(2, testedMatrix.getVertexNumber());
         Assertions.assertEquals(0, testedMatrix.getEdgesNumber());
         System.out.println(testedMatrix.toString());
-        testedMatrix.deleteEdge(firstEdge);
         Assertions.assertEquals(0, testedMatrix.getEdgesNumber());
         Assertions.assertEquals(2, testedMatrix.getVertexNumber());
     }
