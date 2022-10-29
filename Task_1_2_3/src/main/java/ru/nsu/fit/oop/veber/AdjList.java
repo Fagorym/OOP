@@ -8,13 +8,13 @@ import java.util.*;
  * Main idea - that for every element we store set of adjacency vertexes in hashmap.
  * This class must not be used for multi graphs (you must not put multiple edges and loops).
  *
- * @param <T> elem that can be in vertex (vertexes can be associated with any type)
+ * @param <V> elem that can be in vertex (vertexes can be associated with any type)
  */
-public class AdjList<T> implements Graph<T> {
+public class AdjList<V, E> implements Graph<V, E> {
 
-    private final HashMap<Vertex<T>, Set<Vertex<T>>> rows;
-    private final Set<Edge<T>> edges;
-    private final Set<Vertex<T>> vertexes;
+    private final HashMap<Vertex<V>, Set<Vertex<V>>> rows;
+    private final Set<Edge<V, E>> edges;
+    private final Set<Vertex<V>> vertexes;
 
     /**
      * Default constructor, that creates empty sets and empty hashmap.
@@ -31,11 +31,11 @@ public class AdjList<T> implements Graph<T> {
      *
      * @param matrix - from what matrix we get vertexes.
      */
-    public AdjList(AdjMatrix<T> matrix) {
+    public AdjList(AdjMatrix<V, E> matrix) {
         this.rows = new HashMap<>();
         this.edges = new HashSet<>();
         this.vertexes = new HashSet<>();
-        for (Vertex<T> vertex : matrix.getVertexes()) {
+        for (Vertex<V> vertex : matrix.getVertexes()) {
             addVertex(vertex);
         }
 
@@ -46,11 +46,11 @@ public class AdjList<T> implements Graph<T> {
      *
      * @param matrix - from what matrix we get vertexes
      */
-    public AdjList(IncMatrix<T> matrix) {
+    public AdjList(IncMatrix<V, E> matrix) {
         this.rows = new HashMap<>();
         this.edges = new HashSet<>();
         this.vertexes = new HashSet<>();
-        for (Vertex<T> vertex : matrix.getVertexes()) {
+        for (Vertex<V> vertex : matrix.getVertexes()) {
             addVertex(vertex);
         }
     }
@@ -66,27 +66,17 @@ public class AdjList<T> implements Graph<T> {
      * @return true - vertex was added, false - vertex was not added
      */
     @Override
-    public boolean addVertex(Vertex<T> vertex) {
+    public boolean addVertex(Vertex<V> vertex) {
         if (!vertexes.contains(vertex)) {
-            Set<Vertex<T>> adjVertexes = new HashSet<>();
+            Set<Vertex<V>> adjVertexes = new HashSet<>();
             vertexes.add(vertex);
-            for (Edge<T> edge : vertex.getStartEdges()) {
-                edges.add(edge);
-                addAdjVertex(adjVertexes, edge.getEnd());
-
-            }
-            for (Edge<T> edge : vertex.getEndEdges()) {
-                edges.add(edge);
-                addAdjVertex(adjVertexes, edge.getStart());
-
-            }
             rows.put(vertex, adjVertexes);
             return true;
         }
         return false;
     }
 
-    private void addAdjVertex(Set<Vertex<T>> adjVertexes, Vertex<T> vertex) {
+    private void addAdjVertex(Set<Vertex<V>> adjVertexes, Vertex<V> vertex) {
         adjVertexes.add(vertex);
         addVertex(vertex);
     }
@@ -97,19 +87,12 @@ public class AdjList<T> implements Graph<T> {
      * @param vertex - vertex that we delete from graph
      */
     @Override
-    public void deleteVertex(Vertex<T> vertex) {
+    public void deleteVertex(Vertex<V> vertex) {
         rows.remove(vertex);
         vertexes.remove(vertex);
-        for (Edge<T> edge : vertex.getStartEdges()) {
-            edges.remove(edge);
-            vertex.removeEdge(edge);
-            edge.getEnd().removeEdge(edge);
-        }
-        for (Edge<T> edge : vertex.getStartEdges()) {
-            edges.remove(edge);
-            vertex.removeEdge(edge);
-            edge.getEnd().removeEdge(edge);
-        }
+        edges.removeIf((edge) -> {
+            return edge.getStart() == vertex || edge.getEnd() == vertex;
+        });
 
     }
 
@@ -121,7 +104,10 @@ public class AdjList<T> implements Graph<T> {
      * @param edge - edge that we add to graph
      */
     @Override
-    public void addEdge(Edge<T> edge) {
+    public void addEdge(Edge<V, E> edge) {
+        if (!vertexes.contains(edge.getEnd()) || !vertexes.contains(edge.getStart())) {
+            throw new IllegalArgumentException("You try to add edge with vertexes, that does not in the graph. Firstly, you need to add those edges.");
+        }
         this.edges.add(edge);
         rows.get(edge.getStart()).add(edge.getEnd());
         this.rows.get(edge.getEnd()).add(edge.getStart());
@@ -136,14 +122,10 @@ public class AdjList<T> implements Graph<T> {
      */
 
     @Override
-    public void deleteEdge(Edge<T> edge) {
+    public void deleteEdge(Edge<V, E> edge) {
         this.edges.remove(edge);
         this.rows.get(edge.getStart()).remove(edge.getEnd());
         this.rows.get(edge.getEnd()).remove(edge.getStart());
-        edge.getStart().removeEdge(edge);
-        edge.getEnd().removeEdge(edge);
-
-
     }
 
     /**
@@ -152,7 +134,7 @@ public class AdjList<T> implements Graph<T> {
      * @return set of graph edges
      */
     @Override
-    public Set<Edge<T>> getEdges() {
+    public Set<Edge<V, E>> getEdges() {
         return edges;
     }
 
@@ -162,7 +144,7 @@ public class AdjList<T> implements Graph<T> {
      * @return set of graph vertexes
      */
     @Override
-    public Set<Vertex<T>> getVertexes() {
+    public Set<Vertex<V>> getVertexes() {
         return vertexes;
     }
 
@@ -174,7 +156,7 @@ public class AdjList<T> implements Graph<T> {
      */
 
     @Override
-    public Set<Vertex<T>> getAdjVertexes(Vertex<T> vertex) {
+    public Set<Vertex<V>> getAdjVertexes(Vertex<V> vertex) {
         return this.rows.get(vertex);
     }
 
@@ -185,7 +167,7 @@ public class AdjList<T> implements Graph<T> {
      * @return element of the current vertex
      */
     @Override
-    public T getVertexElement(Vertex<T> vertex) {
+    public V getVertexElement(Vertex<V> vertex) {
         return vertex.getElem();
     }
 
@@ -196,7 +178,7 @@ public class AdjList<T> implements Graph<T> {
      * @param newElem - what element will be actual element
      */
     @Override
-    public void setVertexElement(Vertex<T> vertex, T newElem) {
+    public void setVertexElement(Vertex<V> vertex, V newElem) {
         vertex.setElem(newElem);
     }
 
@@ -207,7 +189,7 @@ public class AdjList<T> implements Graph<T> {
      * @return degree of the vertex (count of edges those are connected to it)
      */
     @Override
-    public int getVertexDegree(Vertex<T> vertex) {
+    public int getVertexDegree(Vertex<V> vertex) {
         return this.rows.get(vertex).size();
     }
 
@@ -239,7 +221,7 @@ public class AdjList<T> implements Graph<T> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for (Vertex<T> vertex : vertexes) {
+        for (Vertex<V> vertex : vertexes) {
             builder.append(vertex.getElem());
             builder.append(" - ");
             builder.append(rows.get(vertex).toString());
@@ -255,18 +237,18 @@ public class AdjList<T> implements Graph<T> {
      * @param sourceVertex - from which vertex we count the shortest paths
      * @return hashMap from Vertex to the shortest path to this vertex
      */
-    public HashMap<Vertex<T>, Integer> dijkstra(Vertex<T> sourceVertex) {
-        HashMap<Vertex<T>, Integer> resultMap = new HashMap<>();
-        List<Vertex<T>> queue = new ArrayList<>();
-        for (Vertex<T> graphVertex : vertexes) {
+    public HashMap<Vertex<V>, Integer> dijkstra(Vertex<V> sourceVertex) {
+        HashMap<Vertex<V>, Integer> resultMap = new HashMap<>();
+        List<Vertex<V>> queue = new ArrayList<>();
+        for (Vertex<V> graphVertex : vertexes) {
             resultMap.put(graphVertex, Integer.MAX_VALUE);
         }
         resultMap.put(sourceVertex, 0);
-        Vertex<T> minVertex = null;
+        Vertex<V> minVertex = null;
         queue.add(sourceVertex);
         while (!queue.isEmpty()) {
             Integer minValue = Integer.MAX_VALUE;
-            for (Vertex<T> nextVertex : queue) {
+            for (Vertex<V> nextVertex : queue) {
                 if (resultMap.get(nextVertex) < minValue) {
                     minVertex = nextVertex;
                     minValue = resultMap.get(nextVertex);
@@ -274,8 +256,8 @@ public class AdjList<T> implements Graph<T> {
             }
             queue.remove(minVertex);
 
-            for (Edge<T> edgeFromMin : minVertex.getStartEdges()) {
-                if (edgeFromMin.getWeight() + minValue < resultMap.get(edgeFromMin.getEnd())) {
+            for (Edge<V, E> edgeFromMin : edges) {
+                if (edgeFromMin.getStart() == minVertex && edgeFromMin.getWeight() + minValue < resultMap.get(edgeFromMin.getEnd())) {
                     resultMap.put(edgeFromMin.getEnd(), edgeFromMin.getWeight() + minValue);
                     queue.add(edgeFromMin.getEnd());
                 }
