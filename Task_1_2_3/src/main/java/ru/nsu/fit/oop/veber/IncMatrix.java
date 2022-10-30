@@ -32,7 +32,6 @@ public class IncMatrix<V, E> implements Graph<V, E> {
      * Method creates new set and adds all incident vertexes to this set.
      * After it, method creates new row to associate vertex with this set.
      * This method does not add vertex, that is already in graph.
-     * If vertexes connected to vertex, that are not in graph, we also add those vertexes.
      *
      * @param vertex - vertex that we add to graph
      * @return true - vertex was added, false - vertex was not added
@@ -67,7 +66,7 @@ public class IncMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Method deletes vertex from all vertexes of the graph, remove row from matrix,
+     * Method deletes vertex from list of all vertexes of the graph, remove row from matrix,
      * removes all edges connected to this graph.
      * After that, we iterate all vertexes and remove their cells of this edge.
      *
@@ -222,7 +221,6 @@ public class IncMatrix<V, E> implements Graph<V, E> {
     @Override
     public String toString() {
         StringBuilder resultString = new StringBuilder();
-        resultString.append(" |");
         for (Vertex<V> vertex : vertexes) {
             resultString.append(vertex.getElem());
             resultString.append("|");

@@ -9,6 +9,7 @@ import java.util.*;
  * This class must not be used for multi graphs (you must not put multiple edges and loops).
  *
  * @param <V> elem that can be in vertex (vertexes can be associated with any type)
+ * @param <E> elem that can be in edge (edges can be associated with any type)
  */
 public class AdjList<V, E> implements Graph<V, E> {
 
@@ -76,10 +77,6 @@ public class AdjList<V, E> implements Graph<V, E> {
         return false;
     }
 
-    private void addAdjVertex(Set<Vertex<V>> adjVertexes, Vertex<V> vertex) {
-        adjVertexes.add(vertex);
-        addVertex(vertex);
-    }
 
     /**
      * This method deletes current vertex from graph and all edges, that was connected to this vertex.
@@ -90,9 +87,7 @@ public class AdjList<V, E> implements Graph<V, E> {
     public void deleteVertex(Vertex<V> vertex) {
         rows.remove(vertex);
         vertexes.remove(vertex);
-        edges.removeIf((edge) -> {
-            return edge.getStart() == vertex || edge.getEnd() == vertex;
-        });
+        edges.removeIf((edge) -> edge.getStart() == vertex || edge.getEnd() == vertex);
 
     }
 
