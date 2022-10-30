@@ -31,12 +31,8 @@ public class IncMatrixTest {
         Assertions.assertEquals("A", testedMatrix.getVertexElement(firstVertex));
         Assertions.assertEquals(3, testedMatrix.getVertexNumber());
         Assertions.assertEquals(2, testedMatrix.getVertexDegree(firstVertex));
-        testedMatrix.deleteVertex(firstVertex);
-        Assertions.assertEquals(2, testedMatrix.getVertexNumber());
-        Assertions.assertEquals(0, testedMatrix.getEdgesNumber());
-        Assertions.assertEquals(0, testedMatrix.getVertexDegree(firstVertex));
         System.out.println(testedMatrix.toString());
-        Assertions.assertEquals(0, testedMatrix.getEdgesNumber());
-        Assertions.assertEquals(2, testedMatrix.getVertexNumber());
+        testedMatrix.deleteVertex(firstVertex);
+        Assertions.assertEquals(testedMatrix.getEdges().size(), 0);
     }
 }

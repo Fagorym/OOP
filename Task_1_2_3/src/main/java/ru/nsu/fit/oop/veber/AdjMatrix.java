@@ -11,6 +11,7 @@ import java.util.Set;
  * This class must not be used for multi graphs (you must not put multiple edges and loops).
  *
  * @param <V> elem that can be in vertex (vertexes can be associated with any type)
+ * @param <E> elem that can be in edge (edges can be associated with any type)
  */
 public class AdjMatrix<V, E> implements Graph<V, E> {
 

@@ -5,7 +5,8 @@ import java.util.Set;
 /**
  * This interface contains all basic methods to work with directed simple graphs.
  *
- * @param <T> elem that can be in vertex (vertexes can be associated with any type)
+ * @param <V> elem that can be in vertex (vertexes can be associated with any type)
+ * @param <E> elem that can be in edge (edges can be associated with any type)
  */
 public interface Graph<V, E> {
     /**

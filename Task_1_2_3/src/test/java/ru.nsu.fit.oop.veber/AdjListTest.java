@@ -61,6 +61,10 @@ public class AdjListTest {
         Assertions.assertFalse(testedList.addVertex(secondVertex));
         testedList.deleteVertex(secondVertex);
         Assertions.assertEquals(0, testedList.getVertexNumber());
+        var edges = testedList.getEdges();
+        Assertions.assertEquals(0, edges.size());
+        var vertexes = testedList.getVertexes();
+        Assertions.assertEquals(0, vertexes.size());
     }
 
     @Test
@@ -81,13 +85,27 @@ public class AdjListTest {
         Vertex<Integer> firstVertex = new Vertex<>(2);
         Vertex<Integer> secondVertex = new Vertex<>(3);
         Vertex<Integer> thirdVertex = new Vertex<>(4);
-        new Edge<>("1", 12, firstVertex, secondVertex);
-        new Edge<>("2", 40, firstVertex, thirdVertex);
-        new Edge<>("3", 4, secondVertex, thirdVertex);
+        Edge<Integer, String> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
+        Edge<Integer, String> secondEdge = new Edge<>("2", 40, firstVertex, thirdVertex);
+        Edge<Integer, String> thirdEdge = new Edge<>("3", 4, secondVertex, thirdVertex);
         this.testedList.addVertex(firstVertex);
+        this.testedList.addVertex(secondVertex);
+        this.testedList.addVertex(thirdVertex);
+        this.testedList.addEdge(firstEdge);
+        this.testedList.addEdge(secondEdge);
+        this.testedList.addEdge(thirdEdge);
         var res = this.testedList.dijkstra(firstVertex);
-        System.out.println(res.entrySet());
+        Assertions.assertEquals(0, res.get(firstVertex));
+        Assertions.assertEquals(12, res.get(secondVertex));
+        Assertions.assertEquals(16, res.get(thirdVertex));
+    }
 
+    @Test
+    public void addEdgeWithVertex() {
+        Vertex<Integer> firstVertex = new Vertex<>(2);
+        Vertex<Integer> secondVertex = new Vertex<>(3);
+        Edge<Integer, String> firstEdge = new Edge<>("2", 400, firstVertex, secondVertex);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> testedList.addEdge(firstEdge));
     }
 
 

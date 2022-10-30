@@ -3,13 +3,14 @@ package ru.nsu.fit.oop.veber;
 /**
  * Class that represent edge of the graph.
  *
- * @param <T> - elem of the vertex.
+ * @param <V> elem that can be in vertex (vertexes can be associated with any type)
+ * @param <E> elem that can be in edge (edges can be associated with any type)
  */
-public class Edge<T, T1> {
-    private final Vertex<T> start;
-    private final Vertex<T> end;
+public class Edge<V, E> {
+    private final Vertex<V> start;
+    private final Vertex<V> end;
     private int weight;
-    private T1 name;
+    private E name;
 
     /**
      * Default constructor of the edge.
@@ -19,7 +20,7 @@ public class Edge<T, T1> {
      * @param start  - will be current start vertex of the edge
      * @param end    - will be current end vertex of the edge
      */
-    public Edge(T1 name, int weight, Vertex<T> start, Vertex<T> end) {
+    public Edge(E name, int weight, Vertex<V> start, Vertex<V> end) {
         this.weight = weight;
         this.start = start;
         this.end = end;
@@ -41,7 +42,7 @@ public class Edge<T, T1> {
      *
      * @return the name of the edge
      */
-    public T1 getName() {
+    public E getName() {
         return name;
     }
 
@@ -50,7 +51,7 @@ public class Edge<T, T1> {
      *
      * @param name - will be new name of the edge
      */
-    public void setName(T1 name) {
+    public void setName(E name) {
         this.name = name;
     }
 
@@ -59,7 +60,7 @@ public class Edge<T, T1> {
      *
      * @return start vertex of the edge
      */
-    public Vertex<T> getStart() {
+    public Vertex<V> getStart() {
         return start;
     }
 
@@ -69,7 +70,7 @@ public class Edge<T, T1> {
      * @return end vertex of the edge
      */
 
-    public Vertex<T> getEnd() {
+    public Vertex<V> getEnd() {
         return end;
     }
 
