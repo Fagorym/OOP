@@ -114,14 +114,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.fit.oop.veber</a></div>
-<h2 title="Class Edge" class="title">Class Edge&lt;T&gt;</h2>
+<h2 title="Class Edge" class="title">Class Edge&lt;V,&#8203;E&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>ru.nsu.fit.oop.veber.Edge&lt;T&gt;</li>
+<li>ru.nsu.fit.oop.veber.Edge&lt;V,&#8203;E&gt;</li>
 </ul>
 </li>
 </ul>
@@ -130,10 +130,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - - elem of the vertex.</dd>
+<dd><code>V</code> - elem that can be in vertex (vertexes can be associated with any type)</dd>
+<dd><code>E</code> - elem that can be in edge (edges can be associated with any type)</dd>
 </dl>
 <hr>
-<pre>public class <span class="typeNameLabel">Edge&lt;T&gt;</span>
+<pre>public class <span class="typeNameLabel">Edge&lt;V,&#8203;E&gt;</span>
 extends java.lang.Object</pre>
 <div class="block">Class that represent edge of the graph.</div>
 </li>
@@ -156,10 +157,10 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,int,ru.nsu.fit.oop.veber.Vertex,ru.nsu.fit.oop.veber.Vertex)">Edge</a></span>&#8203;(java.lang.String&nbsp;name,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(E,int,ru.nsu.fit.oop.veber.Vertex,ru.nsu.fit.oop.veber.Vertex)">Edge</a></span>&#8203;(<a href="Edge.html" title="type parameter in Edge">E</a>&nbsp;name,
     int&nbsp;weight,
-    <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;start,
-    <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;end)</code></th>
+    <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">V</a>&gt;&nbsp;start,
+    <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">V</a>&gt;&nbsp;end)</code></th>
 <td class="colLast">
 <div class="block">Default constructor of the edge.</div>
 </td>
@@ -183,21 +184,21 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;</code></td>
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">V</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEnd()">getEnd</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for the end vertex of the edge.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code><a href="Edge.html" title="type parameter in Edge">E</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getName()">getName</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for the name of the edge.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;</code></td>
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">V</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStart()">getStart</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for the start vertex of the edge.</div>
@@ -212,7 +213,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setName(java.lang.String)">setName</a></span>&#8203;(java.lang.String&nbsp;name)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setName(E)">setName</a></span>&#8203;(<a href="Edge.html" title="type parameter in Edge">E</a>&nbsp;name)</code></th>
 <td class="colLast">
 <div class="block">Setter for the name of the edge.</div>
 </td>
@@ -241,23 +242,25 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(java.lang.String,int,ru.nsu.fit.oop.veber.Vertex,ru.nsu.fit.oop.veber.Vertex)">
+<a id="&lt;init&gt;(java.lang.Object,int,ru.nsu.fit.oop.veber.Vertex,ru.nsu.fit.oop.veber.Vertex)">
+<!--   -->
+</a><a id="&lt;init&gt;(E,int,ru.nsu.fit.oop.veber.Vertex,ru.nsu.fit.oop.veber.Vertex)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Edge</h4>
-<pre>public&nbsp;Edge&#8203;(java.lang.String&nbsp;name,
+<pre>public&nbsp;Edge&#8203;(<a href="Edge.html" title="type parameter in Edge">E</a>&nbsp;name,
             int&nbsp;weight,
-            <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;start,
-            <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;end)</pre>
+            <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">V</a>&gt;&nbsp;start,
+            <a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">V</a>&gt;&nbsp;end)</pre>
 <div class="block">Default constructor of the edge.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>name</code> - - will be name of the edge</dd>
-<dd><code>weight</code> - - will be weight of the edge</dd>
-<dd><code>start</code> - - will be start vertex of the edge</dd>
-<dd><code>end</code> - - will be end vertex of the edge</dd>
+<dd><code>name</code> - - will be current name of the edge</dd>
+<dd><code>weight</code> - - will be current weight of the edge</dd>
+<dd><code>start</code> - - will be current start vertex of the edge</dd>
+<dd><code>end</code> - - will be current end vertex of the edge</dd>
 </dl>
 </li>
 </ul>
@@ -291,7 +294,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getName</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getName()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Edge.html" title="type parameter in Edge">E</a>&nbsp;getName()</pre>
 <div class="block">Getter for the name of the edge.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -299,13 +302,15 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="setName(java.lang.String)">
+<a id="setName(java.lang.Object)">
+<!--   -->
+</a><a id="setName(E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setName</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setName&#8203;(java.lang.String&nbsp;name)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setName&#8203;(<a href="Edge.html" title="type parameter in Edge">E</a>&nbsp;name)</pre>
 <div class="block">Setter for the name of the edge.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -319,7 +324,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getStart</h4>
-<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;getStart()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">V</a>&gt;&nbsp;getStart()</pre>
 <div class="block">Getter for the start vertex of the edge.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -333,7 +338,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getEnd</h4>
-<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;getEnd()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">V</a>&gt;&nbsp;getEnd()</pre>
 <div class="block">Getter for the end vertex of the edge.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
