@@ -11,19 +11,16 @@ import java.util.*;
  * @param <V> elem that can be in vertex (vertexes can be associated with any type)
  * @param <E> elem that can be in edge (edges can be associated with any type)
  */
-public class AdjList<V, E> implements Graph<V, E> {
+public class AdjList<V, E> extends AbstractGraph<V, E> implements Graph<V, E> {
 
     private final HashMap<Vertex<V>, Set<Vertex<V>>> rows;
-    private final Set<Edge<V, E>> edges;
-    private final Set<Vertex<V>> vertexes;
 
     /**
      * Default constructor, that creates empty sets and empty hashmap.
      */
     public AdjList() {
+        super(new HashSet<>(), new HashSet<>());
         this.rows = new HashMap<>();
-        this.edges = new HashSet<>();
-        this.vertexes = new HashSet<>();
     }
 
 
@@ -33,9 +30,8 @@ public class AdjList<V, E> implements Graph<V, E> {
      * @param matrix - from what matrix we get vertexes.
      */
     public AdjList(AdjMatrix<V, E> matrix) {
+        super(new HashSet<>(), new HashSet<>());
         this.rows = new HashMap<>();
-        this.edges = new HashSet<>();
-        this.vertexes = new HashSet<>();
         for (Vertex<V> vertex : matrix.getVertexes()) {
             addVertex(vertex);
         }
@@ -48,9 +44,8 @@ public class AdjList<V, E> implements Graph<V, E> {
      * @param matrix - from what matrix we get vertexes
      */
     public AdjList(IncMatrix<V, E> matrix) {
+        super(new HashSet<>(), new HashSet<>());
         this.rows = new HashMap<>();
-        this.edges = new HashSet<>();
-        this.vertexes = new HashSet<>();
         for (Vertex<V> vertex : matrix.getVertexes()) {
             addVertex(vertex);
         }
@@ -233,33 +228,8 @@ public class AdjList<V, E> implements Graph<V, E> {
      * @return hashMap from Vertex to the shortest path to this vertex
      */
     public HashMap<Vertex<V>, Integer> dijkstra(Vertex<V> sourceVertex) {
-        HashMap<Vertex<V>, Integer> resultMap = new HashMap<>();
-        List<Vertex<V>> queue = new ArrayList<>();
-        for (Vertex<V> graphVertex : vertexes) {
-            resultMap.put(graphVertex, Integer.MAX_VALUE);
-        }
-        resultMap.put(sourceVertex, 0);
-        Vertex<V> minVertex = null;
-        queue.add(sourceVertex);
-        while (!queue.isEmpty()) {
-            Integer minValue = Integer.MAX_VALUE;
-            for (Vertex<V> nextVertex : queue) {
-                if (resultMap.get(nextVertex) < minValue) {
-                    minVertex = nextVertex;
-                    minValue = resultMap.get(nextVertex);
-                }
-            }
-            queue.remove(minVertex);
-
-            for (Edge<V, E> edgeFromMin : edges) {
-                if (edgeFromMin.getStart() == minVertex && edgeFromMin.getWeight() + minValue < resultMap.get(edgeFromMin.getEnd())) {
-                    resultMap.put(edgeFromMin.getEnd(), edgeFromMin.getWeight() + minValue);
-                    queue.add(edgeFromMin.getEnd());
-                }
-            }
-        }
-
-        return resultMap;
+        return super.dijkstra(sourceVertex);
 
     }
+
 }
