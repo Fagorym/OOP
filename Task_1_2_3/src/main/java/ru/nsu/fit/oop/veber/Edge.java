@@ -10,21 +10,21 @@ public class Edge<V, E> {
     private final Vertex<V> start;
     private final Vertex<V> end;
     private int weight;
-    private E name;
+    private E elem;
 
     /**
      * Default constructor of the edge.
      *
-     * @param name   - will be current name of the edge
+     * @param elem   - will be current elem of the edge
      * @param weight - will be current weight of the edge
      * @param start  - will be current start vertex of the edge
      * @param end    - will be current end vertex of the edge
      */
-    public Edge(E name, int weight, Vertex<V> start, Vertex<V> end) {
+    public Edge(E elem, int weight, Vertex<V> start, Vertex<V> end) {
         this.weight = weight;
         this.start = start;
         this.end = end;
-        this.name = name;
+        this.elem = elem;
     }
 
     /**
@@ -40,19 +40,19 @@ public class Edge<V, E> {
     /**
      * Getter for the name of the edge.
      *
-     * @return the name of the edge
+     * @return the elem of the edge
      */
-    public E getName() {
-        return name;
+    public E getElem() {
+        return elem;
     }
 
     /**
      * Setter for the name of the edge.
      *
-     * @param name - will be new name of the edge
+     * @param elem - will be new elem of the edge
      */
-    public void setName(E name) {
-        this.name = name;
+    public void setElem(E elem) {
+        this.elem = elem;
     }
 
     /**

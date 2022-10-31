@@ -108,4 +108,27 @@ public interface Graph<V, E> {
      * @return hashMap from Vertex to the shortest path to this vertex
      */
     public HashMap<Vertex<V>, Integer> dijkstra(Vertex<V> sourceVertex);
+
+    /**
+     * Method that checks existence of the vertex in the graph.
+     *
+     * @param elem - elem of the vertex
+     * @return true - exist, false - no
+     */
+    boolean containsVertex(V elem);
+
+    /**
+     * Method that checks existence of the edge in the graph.
+     *
+     * @param elem - elem of the edge
+     * @return true - exist, false - no
+     */
+    boolean containsEdge(E elem);
+
+    /**
+     * Method that returns vertex with provided element.
+     * @param elem - with this element we're exploring vertex
+     * @return vertex with exploring elem
+     */
+    public Vertex<V> getVertex(V elem);
 }
