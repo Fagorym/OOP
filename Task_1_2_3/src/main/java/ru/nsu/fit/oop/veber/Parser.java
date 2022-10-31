@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -15,10 +16,35 @@ public class Parser {
         this.file = file;
     }
 
-    public <V, E> AdjMatrix<V, E> parseAdjacencyMatrix() throws FileNotFoundException {
+    public AdjMatrix<String, Integer> parseAdjacencyMatrix() throws FileNotFoundException {
+        AdjMatrix<String, Integer> resultMatrix = new AdjMatrix<>();
+        ArrayList<Vertex<String>> indexToVertex = new ArrayList<>();
         InputStreamReader reader = new FileReader(file);
         Scanner scanner = new Scanner(reader);
-        return null;
+        String vertLine = scanner.nextLine();
+        Scanner vertScanner = new Scanner(vertLine);
+        while (vertScanner.hasNext()) {
+            String elem = vertScanner.next();
+            Vertex<String> curVertex = new Vertex<>(elem);
+            resultMatrix.addVertex(curVertex);
+            indexToVertex.add(curVertex);
+        }
+
+        for (int i = 0; i < indexToVertex.size(); i++) {
+            for (int j = 0; j < indexToVertex.size(); j++) {
+                String token = scanner.next();
+                if (token.equals("-")) {
+                    continue;
+                } else {
+                    int weight = Integer.parseInt(token);
+                    var start = indexToVertex.get(i);
+                    var end = indexToVertex.get(j);
+                    Edge<String, Integer> edge = new Edge<>(i, weight, start, end);
+                    resultMatrix.addEdge(edge);
+                }
+            }
+        }
+        return resultMatrix;
 
     }
 

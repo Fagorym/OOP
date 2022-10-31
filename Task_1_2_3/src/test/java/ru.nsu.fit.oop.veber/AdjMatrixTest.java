@@ -4,38 +4,46 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 /**
  * Class with tests for adjMatrix.
  */
 public class AdjMatrixTest {
-    AdjMatrix<String, String> testedMatrix;
+    AdjMatrix<String, Integer> testedMatrix;
 
     @BeforeEach
-    public void initMatrix() {
-        testedMatrix = new AdjMatrix<>();
+    public void initMatrix() throws FileNotFoundException {
+        File file = new File("./src/test/resources/matrix.txt");
+        Parser parser = new Parser(file);
+        testedMatrix = parser.parseAdjacencyMatrix();
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testToStringMethod() {
-        Vertex<String> firstVertex = new Vertex<>("A");
-        Vertex<String> secondVertex = new Vertex<>("B");
-        Vertex<String> thirdVertex = new Vertex<>("C");
-        Edge<String, String> firstEdge = new Edge<>("1", 12, firstVertex, secondVertex);
-        Edge<String, String> secondEdge = new Edge<>("2", 43, firstVertex, thirdVertex);
-        testedMatrix.addVertex(firstVertex);
-        testedMatrix.addVertex(secondVertex);
-        testedMatrix.addVertex(thirdVertex);
-        testedMatrix.addEdge(firstEdge);
-        testedMatrix.addEdge(secondEdge);
-        Assertions.assertEquals(2, testedMatrix.getEdgesNumber());
-        Assertions.assertEquals("A", testedMatrix.getVertexElement(firstVertex));
-        Assertions.assertEquals(3, testedMatrix.getVertexNumber());
-        Assertions.assertEquals(2, testedMatrix.getVertexDegree(firstVertex));
+        var vertexes = testedMatrix.getVertexes().toArray();
+        Vertex<String> firstVertex = (Vertex<String>) vertexes[0];
+        Assertions.assertEquals(20, testedMatrix.getEdgesNumber());
+        Assertions.assertEquals(7, testedMatrix.getVertexNumber());
+        Assertions.assertTrue(testedMatrix.containsVertex(testedMatrix.getVertexElement(firstVertex)));
+        testedMatrix.setVertexElement(firstVertex, "aboba");
+        Assertions.assertEquals("aboba", testedMatrix.getVertexElement(firstVertex));
+        System.out.println(testedMatrix.getVertexNumber());
+        Assertions.assertFalse(testedMatrix.addVertex(firstVertex));
+        var edges = testedMatrix.getEdges().toArray();
+        Edge<String, Integer> edge = (Edge<String, Integer>) edges[1];
+        Assertions.assertTrue(testedMatrix.containsEdge(edge.getElem()));
+        Assertions.assertEquals(7, testedMatrix.dijkstra(firstVertex).entrySet().size());
+        testedMatrix.deleteEdge(edge);
+        Assertions.assertEquals(19, testedMatrix.getEdgesNumber());
+        var adjVert = testedMatrix.getAdjVertexes(firstVertex);
+        Assertions.assertEquals(3, adjVert.size());
         testedMatrix.deleteVertex(firstVertex);
-        Assertions.assertEquals(2, testedMatrix.getVertexNumber());
-        Assertions.assertEquals(0, testedMatrix.getEdgesNumber());
+        Assertions.assertEquals(6, testedMatrix.getVertexNumber());
+        Assertions.assertThrows(IllegalArgumentException.class, () -> testedMatrix.addEdge(edge));
+        Assertions.assertFalse(testedMatrix.containsEdge(edge.getElem()));
         System.out.println(testedMatrix.toString());
-        Assertions.assertEquals(0, testedMatrix.getEdgesNumber());
-        Assertions.assertEquals(2, testedMatrix.getVertexNumber());
     }
 }
