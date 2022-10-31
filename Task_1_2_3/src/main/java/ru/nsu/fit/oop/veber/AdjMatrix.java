@@ -13,10 +13,9 @@ import java.util.Set;
  * @param <V> elem that can be in vertex (vertexes can be associated with any type)
  * @param <E> elem that can be in edge (edges can be associated with any type)
  */
-public class AdjMatrix<V, E> implements Graph<V, E> {
+public class AdjMatrix<V, E> extends AbstractGraph<V, E> implements Graph<V, E> {
 
-    private final Set<Vertex<V>> vertexes;
-    private final Set<Edge<V, E>> edges;
+
     private final HashMap<Vertex<V>, HashMap<Vertex<V>, Integer>> matrix;
 
 
@@ -24,8 +23,7 @@ public class AdjMatrix<V, E> implements Graph<V, E> {
      * Default constructor, init all the fields with empty structures.
      */
     public AdjMatrix() {
-        this.vertexes = new HashSet<>();
-        this.edges = new HashSet<>();
+        super(new HashSet<>(), new HashSet<>());
         this.matrix = new HashMap<>();
     }
 
@@ -233,5 +231,17 @@ public class AdjMatrix<V, E> implements Graph<V, E> {
         }
 
         return resultString.toString();
+    }
+
+    /**
+     * Method that takes one source vertex and counts the shortest paths to all other vertexes.
+     * If there is no path - it will be maxInteger value.
+     *
+     * @param sourceVertex - from which vertex we count the shortest paths
+     * @return hashMap from Vertex to the shortest path to this vertex
+     */
+    public HashMap<Vertex<V>, Integer> dijkstra(Vertex<V> sourceVertex) {
+        return super.dijkstra(sourceVertex);
+
     }
 }
