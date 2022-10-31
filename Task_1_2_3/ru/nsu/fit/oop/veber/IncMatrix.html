@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -87,7 +87,7 @@ loadScripts(document, 'script');</script>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
@@ -121,7 +121,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
+<li><a href="AbstractGraph.html" title="class in ru.nsu.fit.oop.veber">ru.nsu.fit.oop.veber.AbstractGraph</a>&lt;V,&#8203;E&gt;</li>
+<li>
+<ul class="inheritance">
 <li>ru.nsu.fit.oop.veber.IncMatrix&lt;V,&#8203;E&gt;</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -139,7 +144,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">IncMatrix&lt;V,&#8203;E&gt;</span>
-extends java.lang.Object
+extends <a href="AbstractGraph.html" title="class in ru.nsu.fit.oop.veber">AbstractGraph</a>&lt;V,&#8203;E&gt;
 implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;V,&#8203;E&gt;</pre>
 <div class="block">That class implements graph interface and all of its methods.
  Main idea - that for every vertex we store hashmap with key = *current edge*.
@@ -151,6 +156,23 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a id="fields.inherited.from.class.ru.nsu.fit.oop.veber.AbstractGraph">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;ru.nsu.fit.oop.veber.<a href="AbstractGraph.html" title="class in ru.nsu.fit.oop.veber">AbstractGraph</a></h3>
+<code><a href="AbstractGraph.html#edges">edges</a>, <a href="AbstractGraph.html#vertexes">vertexes</a></code></li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -203,13 +225,27 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsEdge(E)">containsEdge</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">E</a>&nbsp;elem)</code></th>
+<td class="colLast">
+<div class="block">Method that checks existence of the edge in the graph.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsVertex(V)">containsVertex</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&nbsp;elem)</code></th>
+<td class="colLast">
+<div class="block">Method that checks existence of the vertex in the graph.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteEdge(ru.nsu.fit.oop.veber.Edge)">deleteEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>,&#8203;<a href="IncMatrix.html" title="type parameter in IncMatrix">E</a>&gt;&nbsp;edge)</code></th>
 <td class="colLast">
 <div class="block">Deleted current edge from the incident matrix.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteVertex(ru.nsu.fit.oop.veber.Vertex)">deleteVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;&nbsp;vertex)</code></th>
 <td class="colLast">
@@ -217,56 +253,70 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
  removes all edges connected to this graph.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>java.util.HashMap&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;,&#8203;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#dijkstra(ru.nsu.fit.oop.veber.Vertex)">dijkstra</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;&nbsp;sourceVertex)</code></th>
+<td class="colLast">
+<div class="block">Method that takes one source vertex and counts the shortest paths to all other vertexes.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAdjVertexes(ru.nsu.fit.oop.veber.Vertex)">getAdjVertexes</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">We iterate all edges of the current vertex and add unique adjacency vertex to the set.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="Edge.html" title="class in ru.nsu.fit.oop.veber">Edge</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>,&#8203;<a href="IncMatrix.html" title="type parameter in IncMatrix">E</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdges()">getEdges</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for the edges of the graph.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesNumber()">getEdgesNumber</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Method returns number of edges in graph.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertex(V)">getVertex</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&nbsp;elem)</code></th>
+<td class="colLast">
+<div class="block">Method that returns vertex with provided element.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexDegree(ru.nsu.fit.oop.veber.Vertex)">getVertexDegree</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Method returns degree of current vertex.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="IncMatrix.html" title="type parameter in IncMatrix">V</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexElement(ru.nsu.fit.oop.veber.Vertex)">getVertexElement</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Get element of the current vertex (name of the vertex).</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexes()">getVertexes</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for the vertexes of the graph.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexNumber()">getVertexNumber</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Method returns number of vertexes in graph.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVertexElement(ru.nsu.fit.oop.veber.Vertex,V)">setVertexElement</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;&nbsp;vertex,
                 <a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&nbsp;newElem)</code></th>
@@ -274,7 +324,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <div class="block">Methods that change vertex element.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -539,7 +589,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <a id="toString()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
@@ -549,6 +599,87 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>string representation of the matrix</dd>
+</dl>
+</li>
+</ul>
+<a id="dijkstra(ru.nsu.fit.oop.veber.Vertex)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>dijkstra</h4>
+<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;,&#8203;java.lang.Integer&gt;&nbsp;dijkstra&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;&nbsp;sourceVertex)</pre>
+<div class="block">Method that takes one source vertex and counts the shortest paths to all other vertexes.
+ If there is no path - it will be maxInteger value.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#dijkstra(ru.nsu.fit.oop.veber.Vertex)">dijkstra</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>,&#8203;<a href="IncMatrix.html" title="type parameter in IncMatrix">E</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="AbstractGraph.html#dijkstra(ru.nsu.fit.oop.veber.Vertex)">dijkstra</a></code>&nbsp;in class&nbsp;<code><a href="AbstractGraph.html" title="class in ru.nsu.fit.oop.veber">AbstractGraph</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>,&#8203;<a href="IncMatrix.html" title="type parameter in IncMatrix">E</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>sourceVertex</code> - - from which vertex we count the shortest paths</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>hashMap from Vertex to the shortest path to this vertex</dd>
+</dl>
+</li>
+</ul>
+<a id="containsEdge(java.lang.Object)">
+<!--   -->
+</a><a id="containsEdge(E)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>containsEdge</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;containsEdge&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">E</a>&nbsp;elem)</pre>
+<div class="block">Method that checks existence of the edge in the graph.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#containsEdge(E)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>,&#8203;<a href="IncMatrix.html" title="type parameter in IncMatrix">E</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>elem</code> - - elem of the edge</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - exist, false - no</dd>
+</dl>
+</li>
+</ul>
+<a id="containsVertex(java.lang.Object)">
+<!--   -->
+</a><a id="containsVertex(V)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>containsVertex</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;containsVertex&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&nbsp;elem)</pre>
+<div class="block">Method that checks existence of the vertex in the graph.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#containsVertex(V)">containsVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>,&#8203;<a href="IncMatrix.html" title="type parameter in IncMatrix">E</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>elem</code> - - elem of the vertex</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - exist, false - no</dd>
+</dl>
+</li>
+</ul>
+<a id="getVertex(java.lang.Object)">
+<!--   -->
+</a><a id="getVertex(V)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getVertex</h4>
+<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.fit.oop.veber">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&gt;&nbsp;getVertex&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>&nbsp;elem)</pre>
+<div class="block">Method that returns vertex with provided element.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#getVertex(V)">getVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">V</a>,&#8203;<a href="IncMatrix.html" title="type parameter in IncMatrix">E</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>elem</code> - - with this element we're exploring vertex</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>vertex with exploring elem</dd>
 </dl>
 </li>
 </ul>
@@ -603,7 +734,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.fit.oop.veber">Graph<
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
