@@ -224,7 +224,7 @@ public class IncMatrix<V, E> extends AbstractGraph<V, E> implements Graph<V, E> 
         }
         resultString.append("\n");
         for (Edge<V, E> edge : edges) {
-            resultString.append(edge.getName());
+            resultString.append(edge.getElem());
             resultString.append("|");
             for (Vertex<V> vertex : vertexes) {
                 resultString.append(matrix.get(vertex).get(edge));
@@ -246,5 +246,53 @@ public class IncMatrix<V, E> extends AbstractGraph<V, E> implements Graph<V, E> 
     public HashMap<Vertex<V>, Integer> dijkstra(Vertex<V> sourceVertex) {
         return super.dijkstra(sourceVertex);
 
+    }
+
+    /**
+     * Method that checks existence of the edge in the graph.
+     *
+     * @param elem - elem of the edge
+     * @return true - exist, false - no
+     */
+    @Override
+    public boolean containsEdge(E elem) {
+        for (Edge<V, E> edge : edges) {
+            if (elem.equals(edge.getElem())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Method that checks existence of the vertex in the graph.
+     *
+     * @param elem - elem of the vertex
+     * @return true - exist, false - no
+     */
+    @Override
+    public boolean containsVertex(V elem) {
+        for (Vertex<V> vertex : vertexes) {
+            if (elem.equals(vertex.getElem())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Method that returns vertex with provided element.
+     *
+     * @param elem - with this element we're exploring vertex
+     * @return vertex with exploring elem
+     */
+    @Override
+    public Vertex<V> getVertex(V elem) {
+        for (Vertex<V> vertex : vertexes) {
+            if (elem.equals(vertex.getElem())) {
+                return vertex;
+            }
+        }
+        return null;
     }
 }
