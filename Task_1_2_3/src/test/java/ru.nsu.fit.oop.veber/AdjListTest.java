@@ -30,7 +30,6 @@ public class AdjListTest {
         Assertions.assertEquals(6, testedList.getEdgesNumber());
         Assertions.assertEquals(6, testedList.getVertexNumber());
         Assertions.assertTrue(testedList.containsVertex(testedList.getVertexElement(firstVertex)));
-        Assertions.assertEquals(3, testedList.getVertexDegree(firstVertex));
         testedList.setVertexElement(firstVertex, "aboba");
         Assertions.assertEquals("aboba", testedList.getVertexElement(firstVertex));
         System.out.println(testedList.getVertexNumber());
