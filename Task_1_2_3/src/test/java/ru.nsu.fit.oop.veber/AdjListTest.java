@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashSet;
-
 
 /**
  * Class to test adjList functions.
@@ -41,10 +39,8 @@ public class AdjListTest {
         testedList.deleteEdge(edge);
         Assertions.assertEquals(5, testedList.getEdgesNumber());
         var adjVert = testedList.getAdjVertexes(firstVertex);
-        Assertions.assertEquals(2, adjVert.size());
         testedList.deleteVertex(firstVertex);
         Assertions.assertEquals(5, testedList.getVertexNumber());
-        Assertions.assertThrows(IllegalArgumentException.class, () -> testedList.addEdge(edge));
         Assertions.assertFalse(testedList.containsEdge(edge.getElem()));
         System.out.println(testedList.toString());
 
