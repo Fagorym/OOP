@@ -2,15 +2,31 @@ package ru.nsu.fit.oop.Reader;
 
 import java.io.*;
 
+/**
+ * Class, that realizes substring exploring in the file.
+ */
 public class StringFinder {
     private String inputSubString;
     private String inputFile;
 
 
+    /**
+     * Default constructor of the string finder.
+     *
+     * @param inputFile - in this file we want to find provided substring
+     */
     public StringFinder(String inputFile) {
         this.inputFile = inputFile;
     }
 
+    /**
+     * Method that realizes basic search of substring in file.
+     *
+     * @param inputSubString - substring to find in the file.
+     * @return index of the first appearance of the substring.
+     * If there is no substring - returns 0.
+     * @throws IOException
+     */
     public long findSubstring(String inputSubString) throws IOException {
         File file = new File(inputFile);
         FileReader fileReader = new FileReader(file);
@@ -37,4 +53,12 @@ public class StringFinder {
         return -1;
     }
 
+    /**
+     * Method that changes input file.
+     *
+     * @param inputFile - will be new input file
+     */
+    public void setInputFile(String inputFile) {
+        this.inputFile = inputFile;
+    }
 }
