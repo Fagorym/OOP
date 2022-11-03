@@ -3,7 +3,8 @@ plugins {
     id 'jacoco'
 }
 
-group 'ru.nsu.fit.oop'
+group 'ru.nsu.fit.oop.veber'
+version 'unspecified'
 
 repositories {
     mavenCentral()
@@ -16,9 +17,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    finalizeBy jacocoTestReport
+    finalizedBy jacocoTestReport
 }
-
 jacocoTestReport {
     dependsOn test
     reports {
