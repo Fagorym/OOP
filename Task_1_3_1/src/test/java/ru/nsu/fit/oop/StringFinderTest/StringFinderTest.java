@@ -7,12 +7,15 @@ import ru.nsu.fit.oop.Reader.StringFinder;
 
 import java.io.IOException;
 
+/**
+ * Class for test our StringFinder class.
+ */
 public class StringFinderTest {
 
     private StringFinder stringFinder;
 
     @BeforeEach
-    public void initStringFinder(){
+    public void initStringFinder() {
         stringFinder = new StringFinder("./input.txt");
     }
 
