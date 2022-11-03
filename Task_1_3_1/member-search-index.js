@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"ru.nsu.fit.oop.Reader","c":"StringFinder","l":"findSubstring(String)","url":"findSubstring(java.lang.String)"},{"p":"ru.nsu.fit.oop.Reader","c":"StringFinder","l":"setInputFile(String)","url":"setInputFile(java.lang.String)"},{"p":"ru.nsu.fit.oop.Reader","c":"StringFinder","l":"StringFinder(String)","url":"%3Cinit%3E(java.lang.String)"}]
