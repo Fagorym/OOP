@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Parser {
@@ -76,9 +74,5 @@ public class Parser {
             name++;
         }
         return resultList;
-    }
-
-    public <V, E> IncMatrix<V, E> parseIncMatrix() {
-        return null;
     }
 }

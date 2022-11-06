@@ -1,7 +1,9 @@
 package ru.nsu.fit.oop.veber;
 
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * That class implements graph interface and all of its methods.
@@ -220,17 +222,6 @@ public class AdjList<V, E> extends AbstractGraph<V, E> implements Graph<V, E> {
         return builder.toString();
     }
 
-    /**
-     * Method that takes one source vertex and counts the shortest paths to all other vertexes.
-     * If there is no path - it will be maxInteger value.
-     *
-     * @param sourceVertex - from which vertex we count the shortest paths
-     * @return hashMap from Vertex to the shortest path to this vertex
-     */
-    public HashMap<Vertex<V>, Integer> dijkstra(Vertex<V> sourceVertex) {
-        return super.dijkstra(sourceVertex);
-
-    }
 
     /**
      * Method that checks existence of the edge in the graph.
