@@ -5,7 +5,7 @@ package ru.nsu.fit.oop.veber.GradeBook;
 import ru.nsu.fit.oop.veber.Semester.Semester;
 
 public class GradeBook {
-    int currentSemester;
+    int completedSemestres;
     String name;
     String surname;
     String faculty;
@@ -17,9 +17,9 @@ public class GradeBook {
         this.name = name;
         this.surname = surname;
         this.faculty = faculty;
-        this.currentSemester = currentSemester;
-        this.semesters = new Semester[currentSemester];
-        for (int i = 0; i < currentSemester; i++) {
+        this.completedSemestres = currentSemester;
+        this.semesters = new Semester[completedSemestres];
+        for (int i = 0; i < completedSemestres; i++) {
             semesters[i] = new Semester(i + 1);
         }
     }
@@ -29,12 +29,13 @@ public class GradeBook {
         for (Semester semester : semesters) {
             avg += semester.getAverageGrade();
         }
-        avg /= currentSemester - 1;
-        return avg;
+        avg /= completedSemestres;
+        int scale = 10;
+        return (float) (Math.ceil(avg * scale) / scale);
     }
 
     public boolean willBeScolarship() {
-        Semester prevSem = semesters[currentSemester - 1];
+        Semester prevSem = semesters[completedSemestres - 1];
         for (Object grade : prevSem.getGradesArray()) {
             if ((int) grade < 3) {
                 return false;
@@ -62,8 +63,7 @@ public class GradeBook {
         }
 
         float excellentPercent = (float) excellentGradesCount / totalGradesCount * 100;
-        if (excellentPercent < 75) return false;
-        return true;
+        return !(excellentPercent < 75);
 
     }
 

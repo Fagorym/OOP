@@ -22,7 +22,7 @@ public class Semester {
         if (grade < 1 || grade > 5) {
             throw new IllegalArgumentException("Grade cannot be less than 1 and greater than 5");
         }
-        if (grades.containsKey(subject)) {
+        if (!grades.containsKey(subject)) {
             subjectCount++;
         }
         grades.put(subject, grade);
@@ -54,11 +54,11 @@ public class Semester {
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Semester number ").append(semesterNumber).append('\n');
+        stringBuilder.append("================================").append('\n');
         for (String subject: grades.keySet()){
-            stringBuilder.append("================================");
             stringBuilder.append(subject).append(" - ").append(grades.get(subject)).append('\n');
         }
-        stringBuilder.append("================================");
+        stringBuilder.append("================================").append('\n');
         return stringBuilder.toString();
     }
 }
