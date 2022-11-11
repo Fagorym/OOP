@@ -21,39 +21,29 @@ public class KmpFinder implements FinderInterface {
 
     @Override
     public long findSubstring(String inputSubString) throws IOException {
+        char[] substring = inputSubString.toCharArray();
         while (stringBufferSize < inputSubString.length()) {
             stringBufferSize *= 2;
         }
         buffer = new char[stringBufferSize];
         int charsCount = 0;
-        boolean equals = true;
-        int wrongSymbol = 0;
+        int findedIndex = -1;
         int readCount = -1;
-        do {
-            readCount++;
-            charsCount = readBuffer(stringBufferSize);
-            findPrefixFunc();
-            for (int i = 0; i < stringBufferSize; i++) {
-                int symbolIterator = i;
-                for (int j = 0; j < inputSubString.length(); j++) {
-                    if (inputSubString.charAt(j) != buffer[symbolIterator]) {
-                        equals = false;
-                        wrongSymbol = j;
-                        break;
-                    }
-                    symbolIterator++;
-
-                }
-                if (equals) return 1024 * readCount + i;
-                else {
-                    i += prefix[wrongSymbol];
-                }
+        int symbolIterator = 0;
+        for (int i = 0; i < stringBufferSize; i++) {
+            while(symbolIterator>0 && buffer[i] != substring[symbolIterator]){
+                symbolIterator = prefix[symbolIterator-1];
             }
+            if (buffer[i] == substring[symbolIterator]){
+                symbolIterator+=1;
+            }
+            if (symbolIterator == stringBufferSize){
+                findedIndex = i - inputSubString.length() +1;
+                break;
+            }
+        }
 
-
-        } while (charsCount == 1024);
-
-        return 1;
+        return findedIndex;
     }
 
     private int readBuffer(int len) throws IOException {
@@ -62,15 +52,17 @@ public class KmpFinder implements FinderInterface {
     }
 
     // OLEG WORK! WORKING HARD!!
-    public void findPrefixFunc() {
-        prefix = new int[stringBufferSize];
+    public void findPrefixFunc(String inputString) {
+        char[] substring = inputString.toCharArray();
+        int len = inputString.length();
+        prefix = new int[len];
         prefix[0] = 0;
-        for (int i = 1; i < stringBufferSize; i++) {
+        for (int i = 1; i < len; i++) {
             int j = prefix[i - 1];
-            while (j > 0 && buffer[j] != buffer[i]) {
+            while (j > 0 && substring[j] != substring[i]) {
                 j = prefix[j - 1];
             }
-            if (buffer[i] == buffer[j]) {
+            if (substring[i] == substring[j]) {
                 ++j;
             }
             prefix[i] = j;
