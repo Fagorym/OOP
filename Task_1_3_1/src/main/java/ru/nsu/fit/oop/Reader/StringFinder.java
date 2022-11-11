@@ -5,8 +5,7 @@ import java.io.*;
 /**
  * Class, that realizes substring exploring in the file.
  */
-public class StringFinder {
-    private String inputSubString;
+public class StringFinder implements FinderInterface {
     private String inputFile;
 
 
@@ -27,6 +26,7 @@ public class StringFinder {
      * If there is no substring - returns 0.
      * @throws IOException
      */
+    @Override
     public long findSubstring(String inputSubString) throws IOException {
         File file = new File(inputFile);
         FileReader fileReader = new FileReader(file);
@@ -58,6 +58,7 @@ public class StringFinder {
      *
      * @param inputFile - will be new input file
      */
+    @Override
     public void setInputFile(String inputFile) {
         this.inputFile = inputFile;
     }
