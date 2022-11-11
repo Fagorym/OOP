@@ -9,6 +9,11 @@ public class KmpFinder implements FinderInterface {
     private String inputFile;
     private int[] prefix;
 
+
+    public KmpFinder(String inputFile) {
+        this.inputFile = inputFile;
+    }
+
     @Override
     public void setInputFile(String inputFile) {
         this.inputFile = inputFile;
@@ -16,14 +21,34 @@ public class KmpFinder implements FinderInterface {
 
     @Override
     public long findSubstring(String inputSubString) throws IOException {
-
+        while (stringBufferSize < inputSubString.length()) {
+            stringBufferSize *= 2;
+        }
+        buffer = new char[stringBufferSize];
         int charsCount = 0;
+        boolean equals = true;
+        int wrongSymbol = 0;
+        int readCount = -1;
         do {
-            charsCount = readBuffer(stringBufferSize - inputSubString.length() - 1);
-            buffer[stringBufferSize] = '\0';
-            System.arraycopy(inputSubString.toCharArray(), 0, buffer, stringBufferSize, inputSubString.length());
+            readCount++;
+            charsCount = readBuffer(stringBufferSize);
             findPrefixFunc();
+            for (int i = 0; i < stringBufferSize; i++) {
+                int symbolIterator = i;
+                for (int j = 0; j < inputSubString.length(); j++) {
+                    if (inputSubString.charAt(j) != buffer[symbolIterator]) {
+                        equals = false;
+                        wrongSymbol = j;
+                        break;
+                    }
+                    symbolIterator++;
 
+                }
+                if (equals) return 1024 * readCount + i;
+                else {
+                    i += prefix[wrongSymbol];
+                }
+            }
 
 
         } while (charsCount == 1024);
