@@ -42,6 +42,7 @@ public class KmpFinder implements FinderInterface {
     @Override
     public ArrayList<Integer> findSubstring(String inputSubString) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile), stringBufferSize);
+        findPrefixFunc(inputSubString);
         char[] substring = inputSubString.toCharArray();
         int substringLen = inputSubString.length();
         int readCount = -1;
