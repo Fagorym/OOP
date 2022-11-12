@@ -90,14 +90,40 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </nav>
 </header>
 <main role="main">
-<div class="contentContainer"><a href="#I:F">F</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:F">
+<div class="contentContainer"><a href="#I:F">F</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:F">
 <!--   -->
 </a>
 <h2 class="title">F</h2>
 <dl>
+<dt><a href="ru/nsu/fit/oop/Reader/FinderInterface.html" title="interface in ru.nsu.fit.oop.Reader"><span class="typeNameLink">FinderInterface</span></a> - Interface in <a href="ru/nsu/fit/oop/Reader/package-summary.html">ru.nsu.fit.oop.Reader</a></dt>
+<dd>
+<div class="block">Interface for finder.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/FinderInterface.html#findSubstring(java.lang.String)">findSubstring(String)</a></span> - Method in interface ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/FinderInterface.html" title="interface in ru.nsu.fit.oop.Reader">FinderInterface</a></dt>
+<dd>
+<div class="block">Main method, that realizes different algorithms of string exploring in some texts.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/KmpFinder.html#findSubstring(java.lang.String)">findSubstring(String)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/KmpFinder.html" title="class in ru.nsu.fit.oop.Reader">KmpFinder</a></dt>
+<dd>
+<div class="block">Method, that realizes algorithm of Knut-Morris-Prutt, that needs to find indexes of substring.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/StringFinder.html#findSubstring(java.lang.String)">findSubstring(String)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/StringFinder.html" title="class in ru.nsu.fit.oop.Reader">StringFinder</a></dt>
 <dd>
 <div class="block">Method that realizes basic search of substring in file.</div>
+</dd>
+</dl>
+<a id="I:K">
+<!--   -->
+</a>
+<h2 class="title">K</h2>
+<dl>
+<dt><a href="ru/nsu/fit/oop/Reader/KmpFinder.html" title="class in ru.nsu.fit.oop.Reader"><span class="typeNameLink">KmpFinder</span></a> - Class in <a href="ru/nsu/fit/oop/Reader/package-summary.html">ru.nsu.fit.oop.Reader</a></dt>
+<dd>
+<div class="block">This class realizes Finder interface with Knut-Morris-Prutt algorithm.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/KmpFinder.html#%3Cinit%3E(java.lang.String)">KmpFinder(String)</a></span> - Constructor for class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/KmpFinder.html" title="class in ru.nsu.fit.oop.Reader">KmpFinder</a></dt>
+<dd>
+<div class="block">Basic constructor of Kmp Finder.</div>
 </dd>
 </dl>
 <a id="I:R">
@@ -113,6 +139,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">S</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/FinderInterface.html#setInputFile(java.lang.String)">setInputFile(String)</a></span> - Method in interface ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/FinderInterface.html" title="interface in ru.nsu.fit.oop.Reader">FinderInterface</a></dt>
+<dd>
+<div class="block">Method that must set input file.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/KmpFinder.html#setInputFile(java.lang.String)">setInputFile(String)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/KmpFinder.html" title="class in ru.nsu.fit.oop.Reader">KmpFinder</a></dt>
+<dd>
+<div class="block">This method need to set input file.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/StringFinder.html#setInputFile(java.lang.String)">setInputFile(String)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/StringFinder.html" title="class in ru.nsu.fit.oop.Reader">StringFinder</a></dt>
 <dd>
 <div class="block">Method that changes input file.</div>
@@ -126,7 +160,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Default constructor of the string finder.</div>
 </dd>
 </dl>
-<a href="#I:F">F</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
+<a href="#I:F">F</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
 </main>
 <footer role="contentinfo">
 <nav role="navigation">
