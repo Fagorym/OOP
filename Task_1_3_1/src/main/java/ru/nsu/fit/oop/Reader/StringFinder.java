@@ -49,9 +49,10 @@ public class StringFinder implements FinderInterface {
             }
             if (equals) {
                 res.add(index - inputSubString.length() + 1);
-            } else {
-                buffer = buffer.substring(1);
+
             }
+            buffer = buffer.substring(1);
+
         }
         return res;
     }
