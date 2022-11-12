@@ -7,6 +7,7 @@ import ru.nsu.fit.oop.Reader.KmpFinder;
 import ru.nsu.fit.oop.Reader.StringFinder;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Class for test our StringFinder class.
@@ -22,7 +23,7 @@ public class KmpFinderTest {
 
     @Test
     public void findWord() throws IOException {
-        long index = kmpFinder.findSubstring("DOG");
-        System.out.println(index);
+        ArrayList<Integer> res = kmpFinder.findSubstring("DOG");
+        System.out.println(res);
     }
 }

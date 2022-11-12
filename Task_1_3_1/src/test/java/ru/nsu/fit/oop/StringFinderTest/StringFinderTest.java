@@ -21,7 +21,7 @@ public class StringFinderTest {
 
     @Test
     public void findWord() throws IOException {
-        long index = stringFinder.findSubstring("DOG");
+        var index = stringFinder.findSubstring("DOG");
         System.out.println(index);
     }
 }
