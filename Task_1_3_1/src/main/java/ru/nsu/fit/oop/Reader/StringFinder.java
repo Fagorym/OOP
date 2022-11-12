@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.Reader;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Class, that realizes substring exploring in the file.
@@ -27,11 +29,12 @@ public class StringFinder implements FinderInterface {
      * @throws IOException
      */
     @Override
-    public long findSubstring(String inputSubString) throws IOException {
+    public ArrayList<Integer> findSubstring(String inputSubString) throws IOException {
         File file = new File(inputFile);
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-        long index = -1;
+        ArrayList<Integer> res = new ArrayList<>();
+        Integer index = -1;
         boolean equals = true;
         String buffer = "";
         while (bufferedReader.ready()) {
@@ -45,12 +48,12 @@ public class StringFinder implements FinderInterface {
                 }
             }
             if (equals) {
-                return index - inputSubString.length() + 1;
+                res.add(index - inputSubString.length() + 1);
             } else {
                 buffer = buffer.substring(1);
             }
         }
-        return -1;
+        return res;
     }
 
     /**

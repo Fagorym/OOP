@@ -1,58 +1,80 @@
 package ru.nsu.fit.oop.Reader;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * This class realizes Finder interface with Knut-Morris-Prutt algorithm.
+ */
 public class KmpFinder implements FinderInterface {
-    int stringBufferSize = 1024;
-    char[] buffer;
+    private int stringBufferSize = 1024;
     private String inputFile;
     private int[] prefix;
 
 
+    /**
+     * Basic constructor of Kmp Finder.
+     *
+     * @param inputFile - in which file we need to find substring
+     */
     public KmpFinder(String inputFile) {
         this.inputFile = inputFile;
     }
 
+    /**
+     * This method need to set input file.
+     *
+     * @param inputFile - will be next input file
+     */
     @Override
     public void setInputFile(String inputFile) {
         this.inputFile = inputFile;
     }
 
+    /**
+     * Method, that realizes algorithm of Knut-Morris-Prutt, that needs to find indexes of substring.
+     *
+     * @param inputSubString - what substring we need to find
+     * @return indexes of all substring positions
+     * @throws IOException - when I/O error occurs
+     */
     @Override
-    public long findSubstring(String inputSubString) throws IOException {
+    public ArrayList<Integer> findSubstring(String inputSubString) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile), stringBufferSize);
         char[] substring = inputSubString.toCharArray();
-        while (stringBufferSize < inputSubString.length()) {
+        int substringLen = inputSubString.length();
+        int readCount = -1;
+        while (stringBufferSize < substringLen) {
             stringBufferSize *= 2;
         }
-        buffer = new char[stringBufferSize];
+        ArrayList<Integer> founded = new ArrayList<>();
         int charsCount = 0;
-        int findedIndex = -1;
-        int readCount = -1;
         int symbolIterator = 0;
-        for (int i = 0; i < stringBufferSize; i++) {
-            while(symbolIterator>0 && buffer[i] != substring[symbolIterator]){
-                symbolIterator = prefix[symbolIterator-1];
+        do {
+            readCount++;
+            char[] buffer = new char[stringBufferSize];
+            charsCount = bufferedReader.read(buffer, 0, stringBufferSize);
+            for (int i = 0; i < charsCount; i++) {
+                while (symbolIterator > 0 && buffer[i] != substring[symbolIterator]) {
+                    symbolIterator = prefix[symbolIterator - 1];
+                }
+                if (buffer[i] == substring[symbolIterator]) {
+                    symbolIterator += 1;
+                }
+                if (symbolIterator == substringLen) {
+                    founded.add(readCount * stringBufferSize + i - substringLen + 1);
+                    symbolIterator = 0;
+                }
             }
-            if (buffer[i] == substring[symbolIterator]){
-                symbolIterator+=1;
-            }
-            if (symbolIterator == stringBufferSize){
-                findedIndex = i - inputSubString.length() +1;
-                break;
-            }
-        }
+        } while (charsCount == stringBufferSize);
 
-        return findedIndex;
+        return founded;
     }
 
-    private int readBuffer(int len) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile), stringBufferSize);
-        return bufferedReader.read(buffer, 0, len);
-    }
 
     // OLEG WORK! WORKING HARD!!
-    public void findPrefixFunc(String inputString) {
+    private void findPrefixFunc(String inputString) {
         char[] substring = inputString.toCharArray();
         int len = inputString.length();
         prefix = new int[len];
