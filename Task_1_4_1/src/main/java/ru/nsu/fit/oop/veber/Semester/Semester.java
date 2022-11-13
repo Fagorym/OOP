@@ -50,6 +50,7 @@ public class Semester {
         return this.grades.values().toArray();
     }
 
+
     @Override
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();

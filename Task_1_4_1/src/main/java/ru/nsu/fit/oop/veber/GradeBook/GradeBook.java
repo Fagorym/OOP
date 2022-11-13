@@ -37,11 +37,19 @@ public class GradeBook {
     public boolean willBeScolarship() {
         Semester prevSem = semesters[completedSemestres - 1];
         for (Object grade : prevSem.getGradesArray()) {
-            if ((int) grade < 3) {
+            if ((int) grade <= 3) {
                 return false;
             }
         }
         return true;
+    }
+
+    public void setQualifyWorkGrade(int grade) {
+        if (completedSemestres < 8) throw
+                new IllegalStateException("You cannot pass qualified work before 8 semester");
+        if (grade < 2 || grade > 5) throw
+                new IllegalArgumentException("Grade cannot be less than 1 and great than  5");
+        this.qualifyWorkGrade = grade;
     }
 
     public boolean willBeRedDiploma() {
@@ -72,13 +80,16 @@ public class GradeBook {
         semesters[semesterNumber - 1].addGrade(subject, grade);
     }
 
+    public int getSubjectsCount(int semesterNumber) {
+        return semesters[semesterNumber - 1].getSubjectCount();
+    }
+
     @Override
     public String toString() {
         StringBuilder resultString = new StringBuilder();
         resultString.append("Name: ").append(name).append('\n');
         resultString.append("Surname: ").append(surname).append('\n');
         resultString.append("Faculty: ").append(faculty).append('\n');
-        resultString.append("Marks for each semester").append('\n');
         for (Semester semester : semesters) {
             resultString.append(semester.toString());
         }
