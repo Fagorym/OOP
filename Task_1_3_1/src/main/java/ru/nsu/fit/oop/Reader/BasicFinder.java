@@ -1,23 +1,21 @@
 package ru.nsu.fit.oop.Reader;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Class, that implements substring exploring in the file.
+ * Class, that implements Finder interface with basic-search algorithm.
  */
-public class StringFinder implements Finder {
-    private String inputFile;
-
+public class BasicFinder implements Finder {
+    private InputStream inputStream;
 
     /**
      * Default constructor of the string finder.
      *
-     * @param inputFile - in this file we want to find provided substring
+     * @param inputStream - in this stream we want to find provided substring
      */
-    public StringFinder(String inputFile) {
-        this.inputFile = inputFile;
+    public BasicFinder(InputStream inputStream) {
+        this.inputStream = inputStream;
     }
 
     /**
@@ -30,9 +28,7 @@ public class StringFinder implements Finder {
      */
     @Override
     public ArrayList<Integer> findSubstring(String inputSubString) throws IOException {
-        File file = new File(inputFile);
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         ArrayList<Integer> res = new ArrayList<>();
         Integer index = -1;
         boolean equals = true;
@@ -60,10 +56,10 @@ public class StringFinder implements Finder {
     /**
      * Method that changes input file.
      *
-     * @param inputFile - will be new input file
+     * @param inputStream - will be new input stream
      */
     @Override
-    public void setInputFile(String inputFile) {
-        this.inputFile = inputFile;
+    public void setInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
     }
 }

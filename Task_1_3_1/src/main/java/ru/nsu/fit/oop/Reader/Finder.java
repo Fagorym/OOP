@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.Reader;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -9,11 +10,11 @@ import java.util.ArrayList;
 public interface Finder {
 
     /**
-     * Method that must set input file.
+     * Method that sets input stream.
      *
-     * @param inputFile - will be next input file
+     * @param inputStream - will be next input reader
      */
-    void setInputFile(String inputFile);
+    void setInputStream(InputStream inputStream);
 
     /**
      * Main method, that implements different algorithms of string exploring in some texts.

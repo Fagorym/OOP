@@ -9,27 +9,27 @@ import java.util.Arrays;
  */
 public class KmpFinder implements Finder {
     private int stringBufferSize = 1024;
-    private String inputFile;
+    private InputStream inputStream;
     private int[] prefix;
 
 
     /**
      * Basic constructor of Kmp Finder.
      *
-     * @param inputFile - in which file we need to find substring
+     * @param inputStream - in which stream we need to find substring
      */
-    public KmpFinder(String inputFile) {
-        this.inputFile = inputFile;
+    public KmpFinder(InputStream inputStream) {
+        this.inputStream = inputStream;
     }
 
     /**
-     * This method need to set input file.
+     * This method need to set input stream.
      *
-     * @param inputFile - will be next input file
+     * @param inputStream - will be next input file
      */
     @Override
-    public void setInputFile(String inputFile) {
-        this.inputFile = inputFile;
+    public void setInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
     }
 
     /**
@@ -41,34 +41,31 @@ public class KmpFinder implements Finder {
      */
     @Override
     public ArrayList<Integer> findSubstring(String inputSubString) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile), stringBufferSize);
-        findPrefixFunction(inputSubString);
-        char[] substring = inputSubString.toCharArray();
         int substringLen = inputSubString.length();
-        int readCount = -1;
         while (stringBufferSize < substringLen) {
             stringBufferSize *= 2;
         }
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream), stringBufferSize);
+        findPrefixFunction(inputSubString);
+        char[] substring = inputSubString.toCharArray();
+        int readCount = -1;
         ArrayList<Integer> found = new ArrayList<>();
-        int charsCount = 0;
-        int symbolIterator = 0;
+        int substringIterator = 0;
         do {
             readCount++;
-            char[] buffer = new char[stringBufferSize];
-            charsCount = bufferedReader.read(buffer, 0, stringBufferSize);
-            for (int i = 0; i < charsCount; i++) {
-                while (symbolIterator > 0 && buffer[i] != substring[symbolIterator]) {
-                    symbolIterator = prefix[symbolIterator - 1];
+            char symbol = (char) bufferedReader.read();
+                while (substringIterator > 0 && symbol != substring[substringIterator]) {
+                    substringIterator = prefix[substringIterator - 1];
                 }
-                if (buffer[i] == substring[symbolIterator]) {
-                    symbolIterator += 1;
+                if (symbol == substring[substringIterator]) {
+                    substringIterator += 1;
                 }
-                if (symbolIterator == substringLen) {
-                    found.add(readCount * stringBufferSize + i - substringLen + 1);
-                    symbolIterator = 0;
+                if (substringIterator == substringLen) {
+                    found.add(readCount - substringLen + 1);
+                    substringIterator = 0;
                 }
-            }
-        } while (charsCount == stringBufferSize);
+
+        } while (bufferedReader.ready());
 
         return found;
     }
