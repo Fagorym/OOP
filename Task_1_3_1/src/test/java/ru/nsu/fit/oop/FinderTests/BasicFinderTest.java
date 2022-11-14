@@ -8,7 +8,7 @@ import ru.nsu.fit.oop.Reader.BasicFinder;
 import java.io.*;
 
 /**
- * Class for test our StringFinder class.
+ * Class for test our BasicFinder class.
  */
 public class BasicFinderTest {
 

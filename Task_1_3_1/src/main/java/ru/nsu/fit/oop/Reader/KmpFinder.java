@@ -2,7 +2,6 @@ package ru.nsu.fit.oop.Reader;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * This class implements Finder interface with Knut-Morris-Prutt algorithm.
@@ -54,16 +53,16 @@ public class KmpFinder implements Finder {
         do {
             readCount++;
             char symbol = (char) bufferedReader.read();
-                while (substringIterator > 0 && symbol != substring[substringIterator]) {
-                    substringIterator = prefix[substringIterator - 1];
-                }
-                if (symbol == substring[substringIterator]) {
-                    substringIterator += 1;
-                }
-                if (substringIterator == substringLen) {
-                    found.add(readCount - substringLen + 1);
-                    substringIterator = 0;
-                }
+            while (substringIterator > 0 && symbol != substring[substringIterator]) {
+                substringIterator = prefix[substringIterator - 1];
+            }
+            if (symbol == substring[substringIterator]) {
+                substringIterator += 1;
+            }
+            if (substringIterator == substringLen) {
+                found.add(readCount - substringLen + 1);
+                substringIterator = 0;
+            }
 
         } while (bufferedReader.ready());
 
