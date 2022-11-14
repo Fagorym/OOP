@@ -3,20 +3,21 @@ package ru.nsu.fit.oop.StringFinderTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.nsu.fit.oop.Reader.StringFinder;
+import ru.nsu.fit.oop.Reader.BasicFinder;
 
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Class for test our StringFinder class.
  */
 public class StringFinderTest {
 
-    private StringFinder stringFinder;
+    private BasicFinder stringFinder;
 
     @BeforeEach
-    public void initStringFinder() {
-        stringFinder = new StringFinder("./input.txt");
+    public void initStringFinder() throws FileNotFoundException {
+        InputStream inputStream = new FileInputStream("./input.txt");
+        stringFinder = new BasicFinder(inputStream);
     }
 
     @Test

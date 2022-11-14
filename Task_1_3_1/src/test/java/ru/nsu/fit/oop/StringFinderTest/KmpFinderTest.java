@@ -4,9 +4,8 @@ package ru.nsu.fit.oop.StringFinderTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.Reader.KmpFinder;
-import ru.nsu.fit.oop.Reader.StringFinder;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -17,8 +16,9 @@ public class KmpFinderTest {
     private KmpFinder kmpFinder;
 
     @BeforeEach
-    public void initStringFinder() {
-        kmpFinder = new KmpFinder("./input.txt");
+    public void initStringFinder() throws FileNotFoundException {
+        InputStream inputStream = new FileInputStream("./input.txt");
+        kmpFinder = new KmpFinder(inputStream);
     }
 
     @Test
