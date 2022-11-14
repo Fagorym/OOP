@@ -95,10 +95,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">A</h2>
 <dl>
-<dt><a href="ru/nsu/fit/oop/Reader/AhoKarasikFinder.html" title="class in ru.nsu.fit.oop.Reader"><span class="typeNameLink">AhoKarasikFinder</span></a> - Class in <a href="ru/nsu/fit/oop/Reader/package-summary.html">ru.nsu.fit.oop.Reader</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/AhoKarasikFinder.html#%3Cinit%3E(java.io.InputStream)">AhoKarasikFinder(InputStream)</a></span> - Constructor for class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/AhoKarasikFinder.html" title="class in ru.nsu.fit.oop.Reader">AhoKarasikFinder</a></dt>
-<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/fit/oop/Reader/AhoCorasickFinder.html" title="class in ru.nsu.fit.oop.Reader"><span class="typeNameLink">AhoCorasickFinder</span></a> - Class in <a href="ru/nsu/fit/oop/Reader/package-summary.html">ru.nsu.fit.oop.Reader</a></dt>
+<dd>
+<div class="block">Class, that implements Finder interface with Aho-Corasick algorithm.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/AhoCorasickFinder.html#%3Cinit%3E(java.io.InputStream)">AhoCorasickFinder(InputStream)</a></span> - Constructor for class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/AhoCorasickFinder.html" title="class in ru.nsu.fit.oop.Reader">AhoCorasickFinder</a></dt>
+<dd>
+<div class="block">Default constructor for finder.</div>
+</dd>
 </dl>
 <a id="I:B">
 <!--   -->
@@ -123,7 +127,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Interface for finder.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/AhoKarasikFinder.html#findSubstring(java.lang.String)">findSubstring(String)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/AhoKarasikFinder.html" title="class in ru.nsu.fit.oop.Reader">AhoKarasikFinder</a></dt>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/AhoCorasickFinder.html#findSubstring(java.lang.String)">findSubstring(String)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/AhoCorasickFinder.html" title="class in ru.nsu.fit.oop.Reader">AhoCorasickFinder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/BasicFinder.html#findSubstring(java.lang.String)">findSubstring(String)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/BasicFinder.html" title="class in ru.nsu.fit.oop.Reader">BasicFinder</a></dt>
 <dd>
@@ -135,7 +139,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/KmpFinder.html#findSubstring(java.lang.String)">findSubstring(String)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/KmpFinder.html" title="class in ru.nsu.fit.oop.Reader">KmpFinder</a></dt>
 <dd>
-<div class="block">Method, that realizes algorithm of Knut-Morris-Prutt, that needs to find indexes of substring.</div>
+<div class="block">Method, that realizes algorithm of Knuth-Morris-Pratt, that needs to find indexes of substring.</div>
 </dd>
 </dl>
 <a id="I:K">
@@ -145,7 +149,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="ru/nsu/fit/oop/Reader/KmpFinder.html" title="class in ru.nsu.fit.oop.Reader"><span class="typeNameLink">KmpFinder</span></a> - Class in <a href="ru/nsu/fit/oop/Reader/package-summary.html">ru.nsu.fit.oop.Reader</a></dt>
 <dd>
-<div class="block">This class implements Finder interface with Knut-Morris-Prutt algorithm.</div>
+<div class="block">This class implements Finder interface with Knuth-Morris-Pratt algorithm.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/KmpFinder.html#%3Cinit%3E(java.io.InputStream)">KmpFinder(InputStream)</a></span> - Constructor for class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/KmpFinder.html" title="class in ru.nsu.fit.oop.Reader">KmpFinder</a></dt>
 <dd>
@@ -165,11 +169,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">S</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/AhoKarasikFinder.html#setInputStream(java.io.InputStream)">setInputStream(InputStream)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/AhoKarasikFinder.html" title="class in ru.nsu.fit.oop.Reader">AhoKarasikFinder</a></dt>
-<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/AhoCorasickFinder.html#setInputStream(java.io.InputStream)">setInputStream(InputStream)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/AhoCorasickFinder.html" title="class in ru.nsu.fit.oop.Reader">AhoCorasickFinder</a></dt>
+<dd>
+<div class="block">Method that sets default input stream.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/BasicFinder.html#setInputStream(java.io.InputStream)">setInputStream(InputStream)</a></span> - Method in class ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/BasicFinder.html" title="class in ru.nsu.fit.oop.Reader">BasicFinder</a></dt>
 <dd>
-<div class="block">Method that changes input file.</div>
+<div class="block">Method that changes input stream.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/oop/Reader/Finder.html#setInputStream(java.io.InputStream)">setInputStream(InputStream)</a></span> - Method in interface ru.nsu.fit.oop.Reader.<a href="ru/nsu/fit/oop/Reader/Finder.html" title="interface in ru.nsu.fit.oop.Reader">Finder</a></dt>
 <dd>
