@@ -1,7 +1,6 @@
-package ru.nsu.fit.oop.StringFinderTest;
+package ru.nsu.fit.oop.FinderTests;
 
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.Reader.BasicFinder;
@@ -11,7 +10,7 @@ import java.io.*;
 /**
  * Class for test our StringFinder class.
  */
-public class StringFinderTest {
+public class BasicFinderTest {
 
     private BasicFinder stringFinder;
 
