@@ -5,18 +5,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 
-public class AhoKarasikFinder implements Finder {
 
-    HashMap<Integer, HashMap<Character, Integer>> states;
-    InputStream inputStream;
+/**
+ * Class, that implements Finder interface with Aho-Corasick algorithm.
+ */
+public class AhoCorasickFinder implements Finder {
 
-    int stringBufferSize = 1024;
+    private HashMap<Integer, HashMap<Character, Integer>> states;
+    private InputStream inputStream;
 
-    public AhoKarasikFinder(InputStream inputStream) {
+    private int stringBufferSize = 1024;
+
+    public AhoCorasickFinder(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
@@ -32,7 +34,7 @@ public class AhoKarasikFinder implements Finder {
             stringBufferSize *= 2;
         }
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream), stringBufferSize);
-        generateAutomata(inputSubString);
+        generateStates(inputSubString);
         int readCount = -1;
         ArrayList<Integer> currentStates = new ArrayList<>();
         ArrayList<Integer> res = new ArrayList<>();
@@ -66,10 +68,8 @@ public class AhoKarasikFinder implements Finder {
 
     }
 
-    private void generateAutomata(String inputString) {
-        char[] substring = inputString.toCharArray();
+    private void generateStates(String inputString) {
         Character[] characters = inputString.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
-        // HashSet<Character> characterHashSet = new HashSet<>(Arrays.asList(characters));
         HashMap<Integer, HashMap<Character, Integer>> states = new HashMap<>();
         for (int i = 0; i < inputString.length(); i++) {
             HashMap<Character, Integer> currentStateMap = new HashMap<>();

@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * Class for test our StringFinder class.
+ * Class for test our Knutt-Morris-PruttFinder class.
  */
 public class KmpFinderTest {
 
@@ -27,7 +27,7 @@ public class KmpFinderTest {
     }
 
     @Test
-    public void bigTestKmpFinder() throws IOException{
+    public void bigTestKmpFinder() throws IOException {
         InputStream inputStream = new FileInputStream("./biginput.txt");
         kmpFinder.setInputStream(inputStream);
         var index = kmpFinder.findSubstring("AB");
