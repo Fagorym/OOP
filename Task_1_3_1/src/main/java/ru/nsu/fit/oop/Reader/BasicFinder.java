@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.Reader;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Class, that implements Finder interface with basic-search algorithm.
@@ -29,16 +30,17 @@ public class BasicFinder implements Finder {
     @Override
     public ArrayList<Integer> findSubstring(String inputSubString) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        char[] substring = inputSubString.toCharArray();
         ArrayList<Integer> res = new ArrayList<>();
         Integer index = -1;
         boolean equals = true;
-        String buffer = "";
+        char[] buffer = new char[inputSubString.length() + 1];
         while (bufferedReader.ready()) {
             for (int i = 0; i < inputSubString.length(); i++) {
                 equals = true;
                 index++;
-                buffer += (char) bufferedReader.read();
-                if (buffer.charAt(i) != inputSubString.charAt(i)) {
+                buffer[i] = (char) bufferedReader.read();
+                if (buffer[i] != substring[i]) {
                     equals = false;
                     index -= i;
                     break;
@@ -46,9 +48,9 @@ public class BasicFinder implements Finder {
             }
             if (equals) {
                 res.add(index - inputSubString.length() + 1);
-                buffer = "";
+                buffer = new char[inputSubString.length()];
             } else {
-                buffer = buffer.substring(1);
+                System.arraycopy(buffer, 1, buffer, 0, inputSubString.length() - 1);
             }
         }
         return res;
