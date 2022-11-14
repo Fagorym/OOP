@@ -12,7 +12,7 @@ public interface Finder {
     /**
      * Method that sets input stream.
      *
-     * @param inputStream - will be next input reader
+     * @param inputStream - will be next input stream
      */
     void setInputStream(InputStream inputStream);
 
