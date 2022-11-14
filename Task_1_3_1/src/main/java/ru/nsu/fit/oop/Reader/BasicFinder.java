@@ -55,7 +55,7 @@ public class BasicFinder implements Finder {
     }
 
     /**
-     * Method that changes input file.
+     * Method that changes input stream.
      *
      * @param inputStream - will be new input stream
      */
