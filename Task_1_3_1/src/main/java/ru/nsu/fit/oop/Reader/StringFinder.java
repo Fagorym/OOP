@@ -5,9 +5,9 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Class, that realizes substring exploring in the file.
+ * Class, that implements substring exploring in the file.
  */
-public class StringFinder implements FinderInterface {
+public class StringFinder implements Finder {
     private String inputFile;
 
 
@@ -21,12 +21,12 @@ public class StringFinder implements FinderInterface {
     }
 
     /**
-     * Method that realizes basic search of substring in file.
+     * Method that implements basic search of substring in file.
      *
      * @param inputSubString - substring to find in the file.
      * @return index of the first appearance of the substring.
      * If there is no substring - returns 0.
-     * @throws IOException
+     * @throws IOException when I/O exception occurred
      */
     @Override
     public ArrayList<Integer> findSubstring(String inputSubString) throws IOException {
