@@ -18,15 +18,30 @@ public class AhoCorasickFinder implements Finder {
 
     private int stringBufferSize = 1024;
 
+    /**
+     * Default constructor for finder.
+     *
+     * @param inputStream - will be default stream to search in
+     */
     public AhoCorasickFinder(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
+    /**
+     * Method that sets default input stream.
+     *
+     * @param inputStream - will be next input stream
+     */
     @Override
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
+    /**
+     * @param inputSubString - what substring we need to find
+     * @return ArrayList with all the indexes of substring in text
+     * @throws IOException - When I/O error occurred
+     */
     @Override
     public ArrayList<Integer> findSubstring(String inputSubString) throws IOException {
         int substringLen = inputSubString.length();
@@ -68,6 +83,11 @@ public class AhoCorasickFinder implements Finder {
 
     }
 
+    /**
+     * Function that generates our automata with states.
+     *
+     * @param inputString - for what string we need to generate automata/tree
+     */
     private void generateStates(String inputString) {
         Character[] characters = inputString.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
         HashMap<Integer, HashMap<Character, Integer>> states = new HashMap<>();

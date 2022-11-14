@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * This class implements Finder interface with Knut-Morris-Prutt algorithm.
+ * This class implements Finder interface with Knuth-Morris-Pratt algorithm.
  */
 public class KmpFinder implements Finder {
     private int stringBufferSize = 1024;
@@ -24,7 +24,7 @@ public class KmpFinder implements Finder {
     /**
      * This method need to set input stream.
      *
-     * @param inputStream - will be next input file
+     * @param inputStream - will be next input stream
      */
     @Override
     public void setInputStream(InputStream inputStream) {
@@ -32,7 +32,7 @@ public class KmpFinder implements Finder {
     }
 
     /**
-     * Method, that realizes algorithm of Knut-Morris-Prutt, that needs to find indexes of substring.
+     * Method, that realizes algorithm of Knuth-Morris-Pratt, that needs to find indexes of substring.
      *
      * @param inputSubString - what substring we need to find
      * @return indexes of all substring positions
@@ -71,6 +71,12 @@ public class KmpFinder implements Finder {
 
 
     // OLEG WORK! WORKING HARD!!
+
+    /**
+     * Function that finds prefix function for provided substring.
+     *
+     * @param inputString - for what string we need to find prefix function
+     */
     private void findPrefixFunction(String inputString) {
         char[] substring = inputString.toCharArray();
         int len = inputString.length();
