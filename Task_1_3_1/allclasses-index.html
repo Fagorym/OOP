@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":1,"i1":2,"i2":2};
+var data = {"i0":2,"i1":2,"i2":1,"i3":2};
 var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -109,21 +109,25 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><a href="ru/nsu/fit/oop/Reader/FinderInterface.html" title="interface in ru.nsu.fit.oop.Reader">FinderInterface</a></td>
+<td class="colFirst"><a href="ru/nsu/fit/oop/Reader/AhoKarasikFinder.html" title="class in ru.nsu.fit.oop.Reader">AhoKarasikFinder</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><a href="ru/nsu/fit/oop/Reader/BasicFinder.html" title="class in ru.nsu.fit.oop.Reader">BasicFinder</a></td>
+<th class="colLast" scope="row">
+<div class="block">Class, that implements Finder interface with basic-search algorithm.</div>
+</th>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><a href="ru/nsu/fit/oop/Reader/Finder.html" title="interface in ru.nsu.fit.oop.Reader">Finder</a></td>
 <th class="colLast" scope="row">
 <div class="block">Interface for finder.</div>
 </th>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/fit/oop/Reader/KmpFinder.html" title="class in ru.nsu.fit.oop.Reader">KmpFinder</a></td>
 <th class="colLast" scope="row">
-<div class="block">This class realizes Finder interface with Knut-Morris-Prutt algorithm.</div>
-</th>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><a href="ru/nsu/fit/oop/Reader/StringFinder.html" title="class in ru.nsu.fit.oop.Reader">StringFinder</a></td>
-<th class="colLast" scope="row">
-<div class="block">Class, that realizes substring exploring in the file.</div>
+<div class="block">This class implements Finder interface with Knut-Morris-Prutt algorithm.</div>
 </th>
 </tr>
 </table>
