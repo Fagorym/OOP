@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Interface for finder.
  */
-public interface FinderInterface {
+public interface Finder {
 
     /**
      * Method that must set input file.
@@ -16,7 +16,7 @@ public interface FinderInterface {
     void setInputFile(String inputFile);
 
     /**
-     * Main method, that realizes different algorithms of string exploring in some texts.
+     * Main method, that implements different algorithms of string exploring in some texts.
      *
      * @param inputSubString - what substring we need to find
      * @return - indexes of all substring positions

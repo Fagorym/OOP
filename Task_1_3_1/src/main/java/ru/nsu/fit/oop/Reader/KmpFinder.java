@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * This class realizes Finder interface with Knut-Morris-Prutt algorithm.
+ * This class implements Finder interface with Knut-Morris-Prutt algorithm.
  */
-public class KmpFinder implements FinderInterface {
+public class KmpFinder implements Finder {
     private int stringBufferSize = 1024;
     private String inputFile;
     private int[] prefix;
@@ -42,14 +42,14 @@ public class KmpFinder implements FinderInterface {
     @Override
     public ArrayList<Integer> findSubstring(String inputSubString) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile), stringBufferSize);
-        findPrefixFunc(inputSubString);
+        findPrefixFunction(inputSubString);
         char[] substring = inputSubString.toCharArray();
         int substringLen = inputSubString.length();
         int readCount = -1;
         while (stringBufferSize < substringLen) {
             stringBufferSize *= 2;
         }
-        ArrayList<Integer> founded = new ArrayList<>();
+        ArrayList<Integer> found = new ArrayList<>();
         int charsCount = 0;
         int symbolIterator = 0;
         do {
@@ -64,18 +64,18 @@ public class KmpFinder implements FinderInterface {
                     symbolIterator += 1;
                 }
                 if (symbolIterator == substringLen) {
-                    founded.add(readCount * stringBufferSize + i - substringLen + 1);
+                    found.add(readCount * stringBufferSize + i - substringLen + 1);
                     symbolIterator = 0;
                 }
             }
         } while (charsCount == stringBufferSize);
 
-        return founded;
+        return found;
     }
 
 
     // OLEG WORK! WORKING HARD!!
-    private void findPrefixFunc(String inputString) {
+    private void findPrefixFunction(String inputString) {
         char[] substring = inputString.toCharArray();
         int len = inputString.length();
         prefix = new int[len];
