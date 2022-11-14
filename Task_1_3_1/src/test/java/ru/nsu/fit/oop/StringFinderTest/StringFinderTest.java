@@ -27,4 +27,12 @@ public class StringFinderTest {
         System.out.println(index);
         Assertions.assertArrayEquals(new Object[]{30, 56, 730, 1043, 1049, 1054, 1059, 1064, 1069, 1074, 1079, 1084}, index.toArray());
     }
+    @Test
+    public void bigTestStringFinder() throws IOException{
+        InputStream inputStream = new FileInputStream("./biginput.txt");
+        stringFinder.setInputStream(inputStream);
+        var index = stringFinder.findSubstring("AB");
+        System.out.println(index);
+
+    }
 }

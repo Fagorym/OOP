@@ -25,7 +25,14 @@ public class KmpFinderTest {
     @Test
     public void findWord() throws IOException {
         ArrayList<Integer> res = kmpFinder.findSubstring("DOG");
-        System.out.println(res);
         Assertions.assertArrayEquals(new Object[]{30, 56, 730, 1043, 1049, 1054, 1059, 1064, 1069, 1074, 1079, 1084}, res.toArray());
+    }
+
+    @Test
+    public void bigTestKmpFinder() throws IOException{
+        InputStream inputStream = new FileInputStream("./biginput.txt");
+        kmpFinder.setInputStream(inputStream);
+        var index = kmpFinder.findSubstring("AB");
+
     }
 }
