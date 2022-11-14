@@ -40,15 +40,16 @@ public class BasicFinder implements Finder {
                 buffer += (char) bufferedReader.read();
                 if (buffer.charAt(i) != inputSubString.charAt(i)) {
                     equals = false;
+                    index -= i;
                     break;
                 }
             }
             if (equals) {
                 res.add(index - inputSubString.length() + 1);
-
+                buffer = "";
+            } else {
+                buffer = buffer.substring(1);
             }
-            buffer = buffer.substring(1);
-
         }
         return res;
     }

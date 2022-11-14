@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.StringFinderTest;
 
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.Reader.KmpFinder;
@@ -25,5 +26,6 @@ public class KmpFinderTest {
     public void findWord() throws IOException {
         ArrayList<Integer> res = kmpFinder.findSubstring("DOG");
         System.out.println(res);
+        Assertions.assertArrayEquals(new Object[]{30, 56, 730, 1043, 1049, 1054, 1059, 1064, 1069, 1074, 1079, 1084}, res.toArray());
     }
 }
