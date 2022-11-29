@@ -70,12 +70,31 @@ public class TestMyGradeBook {
         Assertions.assertTrue(testGradeBook.willBeRedDiploma());
         testGradeBook.addGrade("SomeSubject", 3, 1);
         Assertions.assertFalse(testGradeBook.willBeRedDiploma());
-        for (int i = 1; i <= 8 ; i++) {
+        for (int i = 1; i <= 8; i++) {
             testGradeBook.addGrade("SomeSubject", 4, i);
         }
         Assertions.assertFalse(testGradeBook.willBeRedDiploma());
         testGradeBook.setQualifyWorkGrade(2);
         Assertions.assertFalse(testGradeBook.willBeRedDiploma());
+
+    }
+
+    @Test
+    public void testIncrementSemester() {
+        testGradeBook = new GradeBook("Oleg",
+                "Veber",
+                "Faculty of Information Technologies",
+                1);
+        for (int i = 0; i < 7; i++) {
+            Assertions.assertThrows(IllegalStateException.class, () -> {
+                testGradeBook.setQualifyWorkGrade(5);
+            });
+            testGradeBook.addGrade("Math", 5, i + 1);
+            testGradeBook.increaseSemester();
+        }
+        testGradeBook.setQualifyWorkGrade(5);
+        Assertions.assertTrue(testGradeBook.willBeRedDiploma());
+
 
     }
 

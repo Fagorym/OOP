@@ -89,8 +89,9 @@ public class GradeBook {
     public boolean increaseSemester() {
             completedSemesters++;
             Semester[] newArray = new Semester[completedSemesters];
+            newArray[completedSemesters - 1] = new Semester(completedSemesters);
             System.arraycopy(semesters, 0, newArray, 0, completedSemesters - 1);
-            semesters = newArray;
+            this.semesters = newArray;
             return true;
     }
     @Override
