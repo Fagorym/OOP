@@ -4,6 +4,8 @@ package ru.nsu.fit.oop.veber.GradeBook;
 
 import ru.nsu.fit.oop.veber.Semester.Semester;
 
+import java.util.Arrays;
+
 public class GradeBook {
     int completedSemesters;
     String name;
@@ -84,19 +86,27 @@ public class GradeBook {
         return semesters[semesterNumber - 1].getSubjectCount();
     }
 
+    public boolean increaseSemester() {
+            completedSemesters++;
+            Semester[] newArray = new Semester[completedSemesters];
+            System.arraycopy(semesters, 0, newArray, 0, completedSemesters - 1);
+            semesters = newArray;
+            return true;
+    }
     @Override
     public String toString() {
         StringBuilder resultString = new StringBuilder();
         resultString.append("Name: ").append(name).append('\n');
         resultString.append("Surname: ").append(surname).append('\n');
         resultString.append("Faculty: ").append(faculty).append('\n');
-        resultString.append("Total average grade: ").append(getAvgGrade());
-        resultString.append("Red diploma");
+        resultString.append("Total average grade: ").append(getAvgGrade()).append("\n");
+        resultString.append("Red diploma: ");
         if (willBeRedDiploma()) {
             resultString.append("Yes");
         } else {
             resultString.append("No");
         }
+        resultString.append("\n");
         for (Semester semester : semesters) {
             resultString.append(semester.toString());
         }

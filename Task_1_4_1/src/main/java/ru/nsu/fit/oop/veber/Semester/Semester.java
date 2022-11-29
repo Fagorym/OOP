@@ -59,7 +59,7 @@ public class Semester {
         for (String subject: grades.keySet()){
             stringBuilder.append(subject).append(" - ").append(grades.get(subject)).append('\n');
         }
-        stringBuilder.append("Average grade:").append(getAverageGrade());
+        stringBuilder.append("Average grade: ").append(getAverageGrade()).append("\n");
         stringBuilder.append("================================").append('\n');
         return stringBuilder.toString();
     }
