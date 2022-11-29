@@ -10,7 +10,7 @@ public class GradeBook {
     String surname;
     String faculty;
 
-    int qualifyWorkGrade;
+    int graduateWorkGrade;
     Semester[] semesters;
 
     public GradeBook(String name, String surname, String faculty, int currentSemester) {
@@ -49,11 +49,11 @@ public class GradeBook {
                 new IllegalStateException("You cannot pass qualified work before 8 semester");
         if (grade < 2 || grade > 5) throw
                 new IllegalArgumentException("Grade cannot be less than 1 and great than  5");
-        this.qualifyWorkGrade = grade;
+        this.graduateWorkGrade = grade;
     }
 
     public boolean willBeRedDiploma() {
-        if (qualifyWorkGrade < 5) return false;
+        if (graduateWorkGrade < 5) return false;
         int totalGradesCount = 0;
         int excellentGradesCount = 0;
         for (Semester semester : semesters) {
