@@ -90,6 +90,13 @@ public class GradeBook {
         resultString.append("Name: ").append(name).append('\n');
         resultString.append("Surname: ").append(surname).append('\n');
         resultString.append("Faculty: ").append(faculty).append('\n');
+        resultString.append("Total average grade: ").append(getAvgGrade());
+        resultString.append("Red diploma");
+        if (willBeRedDiploma()) {
+            resultString.append("Yes");
+        } else {
+            resultString.append("No");
+        }
         for (Semester semester : semesters) {
             resultString.append(semester.toString());
         }
