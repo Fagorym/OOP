@@ -5,7 +5,7 @@ package ru.nsu.fit.oop.veber.GradeBook;
 import ru.nsu.fit.oop.veber.Semester.Semester;
 
 public class GradeBook {
-    int completedSemestres;
+    int completedSemesters;
     String name;
     String surname;
     String faculty;
@@ -17,9 +17,9 @@ public class GradeBook {
         this.name = name;
         this.surname = surname;
         this.faculty = faculty;
-        this.completedSemestres = currentSemester;
-        this.semesters = new Semester[completedSemestres];
-        for (int i = 0; i < completedSemestres; i++) {
+        this.completedSemesters = currentSemester;
+        this.semesters = new Semester[completedSemesters];
+        for (int i = 0; i < completedSemesters; i++) {
             semesters[i] = new Semester(i + 1);
         }
     }
@@ -29,13 +29,13 @@ public class GradeBook {
         for (Semester semester : semesters) {
             avg += semester.getAverageGrade();
         }
-        avg /= completedSemestres;
+        avg /= completedSemesters;
         int scale = 10;
         return (float) (Math.ceil(avg * scale) / scale);
     }
 
     public boolean willBeScolarship() {
-        Semester prevSem = semesters[completedSemestres - 1];
+        Semester prevSem = semesters[completedSemesters - 1];
         for (Object grade : prevSem.getGradesArray()) {
             if ((int) grade <= 3) {
                 return false;
@@ -45,7 +45,7 @@ public class GradeBook {
     }
 
     public void setQualifyWorkGrade(int grade) {
-        if (completedSemestres < 8) throw
+        if (completedSemesters < 8) throw
                 new IllegalStateException("You cannot pass qualified work before 8 semester");
         if (grade < 2 || grade > 5) throw
                 new IllegalArgumentException("Grade cannot be less than 1 and great than  5");
