@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.fit.oop.veber.GradeBook","l":"GradeBook"},{"p":"ru.nsu.fit.oop.veber.Semester","l":"Semester"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.fit.oop.veber.GradeBook","l":"GradeBook"},{"p":"ru.nsu.fit.oop.veber.Grade","l":"GradeEnum"},{"p":"ru.nsu.fit.oop.veber.Semester","l":"Semester"},{"p":"ru.nsu.fit.oop.veber.Subject","l":"Subject"},{"p":"ru.nsu.fit.oop.veber.Subject","l":"SubjectType"}]

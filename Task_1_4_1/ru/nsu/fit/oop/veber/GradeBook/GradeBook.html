@@ -133,6 +133,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">GradeBook</span>
 extends java.lang.Object</pre>
+<div class="block">Class that implements student`s grade book.</div>
 </li>
 </ul>
 </div>
@@ -156,8 +157,10 @@ extends java.lang.Object</pre>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,int)">GradeBook</a></span>&#8203;(java.lang.String&nbsp;name,
          java.lang.String&nbsp;surname,
          java.lang.String&nbsp;faculty,
-         int&nbsp;currentSemester)</code></th>
-<td class="colLast">&nbsp;</td>
+         int&nbsp;completedSemesters)</code></th>
+<td class="colLast">
+<div class="block">Default constructor of grade book.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -179,45 +182,62 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addGrade(java.lang.String,int,int)">addGrade</a></span>&#8203;(java.lang.String&nbsp;subject,
-        int&nbsp;grade,
-        int&nbsp;semesterNumber)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addGrade(java.lang.String,ru.nsu.fit.oop.veber.Grade.GradeEnum,int,ru.nsu.fit.oop.veber.Subject.SubjectType)">addGrade</a></span>&#8203;(java.lang.String&nbsp;subject,
+        <a href="../Grade/GradeEnum.html" title="enum in ru.nsu.fit.oop.veber.Grade">GradeEnum</a>&nbsp;grade,
+        int&nbsp;semesterNumber,
+        <a href="../Subject/SubjectType.html" title="enum in ru.nsu.fit.oop.veber.Subject">SubjectType</a>&nbsp;type)</code></th>
+<td class="colLast">
+<div class="block">Method that adds grade in current semester.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAvgGrade()">getAvgGrade</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Method that counts average grade for all semesters.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubjectsCount(int)">getSubjectsCount</a></span>&#8203;(int&nbsp;semesterNumber)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Getter for subject count in current semester.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#increaseSemester()">increaseSemester</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Method, that increase completed semesters for this student.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setQualifyWorkGrade(int)">setQualifyWorkGrade</a></span>&#8203;(int&nbsp;grade)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setGraduateWorkGrade(int)">setGraduateWorkGrade</a></span>&#8203;(int&nbsp;grade)</code></th>
+<td class="colLast">
+<div class="block">Method that sets mark for graduate work.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Represent grade book as a string.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#willBeRedDiploma()">willBeRedDiploma</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Method that analyze grades and decide, will be red diploma or not.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#willBeScolarship()">willBeScolarship</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#willBeScholarship()">willBeScholarship</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Method that analyze grades and decide, will be scholarship in next semester or not.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -252,7 +272,15 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;GradeBook&#8203;(java.lang.String&nbsp;name,
                  java.lang.String&nbsp;surname,
                  java.lang.String&nbsp;faculty,
-                 int&nbsp;currentSemester)</pre>
+                 int&nbsp;completedSemesters)</pre>
+<div class="block">Default constructor of grade book.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - - name of the student</dd>
+<dd><code>surname</code> - - surname of the student</dd>
+<dd><code>faculty</code> - - faculty of the student</dd>
+<dd><code>completedSemesters</code> - - count of semesters, that student had already complete</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -272,24 +300,39 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getAvgGrade</h4>
 <pre class="methodSignature">public&nbsp;float&nbsp;getAvgGrade()</pre>
+<div class="block">Method that counts average grade for all semesters.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>- average grade for all semesters</dd>
+</dl>
 </li>
 </ul>
-<a id="willBeScolarship()">
+<a id="willBeScholarship()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>willBeScolarship</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;willBeScolarship()</pre>
+<h4>willBeScholarship</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;willBeScholarship()</pre>
+<div class="block">Method that analyze grades and decide, will be scholarship in next semester or not.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - will be scholarship, false - won`t be.</dd>
+</dl>
 </li>
 </ul>
-<a id="setQualifyWorkGrade(int)">
+<a id="setGraduateWorkGrade(int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setQualifyWorkGrade</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setQualifyWorkGrade&#8203;(int&nbsp;grade)</pre>
+<h4>setGraduateWorkGrade</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setGraduateWorkGrade&#8203;(int&nbsp;grade)</pre>
+<div class="block">Method that sets mark for graduate work.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>grade</code> - - will be grade for graduate work</dd>
+</dl>
 </li>
 </ul>
 <a id="willBeRedDiploma()">
@@ -299,17 +342,36 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>willBeRedDiploma</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;willBeRedDiploma()</pre>
+<div class="block">Method that analyze grades and decide, will be red diploma or not.
+ You cannot have red diploma, before you pass graduated work.
+ You cannot pass graduated work, before you end 8 semesters.
+ So you cannot have red diploma, before you end 8 semesters.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true - will be red diploma, false - won`t be</dd>
+</dl>
 </li>
 </ul>
-<a id="addGrade(java.lang.String,int,int)">
+<a id="addGrade(java.lang.String,ru.nsu.fit.oop.veber.Grade.GradeEnum,int,ru.nsu.fit.oop.veber.Subject.SubjectType)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addGrade</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addGrade&#8203;(java.lang.String&nbsp;subject,
-                     int&nbsp;grade,
-                     int&nbsp;semesterNumber)</pre>
+                     <a href="../Grade/GradeEnum.html" title="enum in ru.nsu.fit.oop.veber.Grade">GradeEnum</a>&nbsp;grade,
+                     int&nbsp;semesterNumber,
+                     <a href="../Subject/SubjectType.html" title="enum in ru.nsu.fit.oop.veber.Subject">SubjectType</a>&nbsp;type)</pre>
+<div class="block">Method that adds grade in current semester.
+ You cannot add grades in semesters, that you had not complete.
+ If you want to add grade in (N+1) semester, but you completed only (N) semesters,
+ you first need to increase your semester by method increaseSemester().</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>subject</code> - - will be subject for this grade</dd>
+<dd><code>grade</code> - - will be grade for this subject</dd>
+<dd><code>semesterNumber</code> - - in which semester we need to add pair (subject,grade)</dd>
+</dl>
 </li>
 </ul>
 <a id="getSubjectsCount(int)">
@@ -319,6 +381,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getSubjectsCount</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getSubjectsCount&#8203;(int&nbsp;semesterNumber)</pre>
+<div class="block">Getter for subject count in current semester.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>semesterNumber</code> - - in what semester we need to know count of subjects</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>count of subjects in current semester</dd>
+</dl>
 </li>
 </ul>
 <a id="increaseSemester()">
@@ -327,7 +396,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>increaseSemester</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;increaseSemester()</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;increaseSemester()</pre>
+<div class="block">Method, that increase completed semesters for this student.
+ That allows him to add grades for (i+1) semester, where i - current semester.</div>
 </li>
 </ul>
 <a id="toString()">
@@ -337,9 +408,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
+<div class="block">Represent grade book as a string.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>string representation of grade book</dd>
 </dl>
 </li>
 </ul>
