@@ -1,6 +1,9 @@
 package ru.nsu.fit.oop.veber.GradeBook;
 
+import ru.nsu.fit.oop.veber.Grade.GradeEnum;
 import ru.nsu.fit.oop.veber.Semester.Semester;
+import ru.nsu.fit.oop.veber.Subject.Subject;
+import ru.nsu.fit.oop.veber.Subject.SubjectType;
 
 /**
  * Class that implements student`s grade book.
@@ -55,8 +58,9 @@ public class GradeBook {
      */
     public boolean willBeScholarship() {
         Semester prevSem = semesters[completedSemesters - 1];
-        for (Object grade : prevSem.getGradesArray()) {
-            if ((int) grade <= 3) {
+        for (Object object : prevSem.getSubjectArray()) {
+            Subject subject = (Subject) object;
+            if (subject.getGrade() <= 3) {
                 return false;
             }
         }
@@ -89,12 +93,12 @@ public class GradeBook {
         int totalGradesCount = 0;
         int excellentGradesCount = 0;
         for (Semester semester : semesters) {
-            for (Object obj : semester.getGradesArray()) {
-                int grade = (int) obj;
-                if (grade <= 3) {
+            for (Object obj : semester.getSubjectArray()) {
+                Subject subject = (Subject) obj;
+                if (subject.getGrade() <= 3) {
                     return false;
                 }
-                if (grade == 5) {
+                if (subject.getGrade() == 5) {
                     excellentGradesCount++;
                 }
                 totalGradesCount++;
@@ -118,11 +122,11 @@ public class GradeBook {
      * @param grade          - will be grade for this subject
      * @param semesterNumber - in which semester we need to add pair (subject,grade)
      */
-    public void addGrade(String subject, int grade, int semesterNumber) {
+    public void addGrade(String subject, GradeEnum grade, int semesterNumber, SubjectType type) {
         if (semesterNumber - 1 > completedSemesters) {
             throw new IllegalArgumentException("You cannot add grades in semester, that you had not complete");
         }
-        semesters[semesterNumber - 1].addGrade(subject, grade);
+        semesters[semesterNumber - 1].addGrade(subject, grade, type);
     }
 
     /**
