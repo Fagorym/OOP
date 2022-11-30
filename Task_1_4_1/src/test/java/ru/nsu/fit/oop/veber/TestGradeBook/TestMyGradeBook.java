@@ -17,7 +17,6 @@ public class TestMyGradeBook {
                 2);
     }
 
-    // TODO: Tests/Javadocs
     @Test
     public void testMyGradeBook() {
         testGradeBook.addGrade("Math Analysis", 5, 1);
@@ -34,9 +33,9 @@ public class TestMyGradeBook {
         testGradeBook.addGrade("Digital platforms", 5, 2);
         Assertions.assertEquals(5.0, testGradeBook.getAvgGrade());
         Assertions.assertEquals(6, testGradeBook.getSubjectsCount(1));
-        Assertions.assertTrue(testGradeBook.willBeScolarship());
+        Assertions.assertTrue(testGradeBook.willBeScholarship());
         testGradeBook.addGrade("Digital Platforms", 3, 2);
-        Assertions.assertFalse(testGradeBook.willBeScolarship());
+        Assertions.assertFalse(testGradeBook.willBeScholarship());
         System.out.println(testGradeBook.toString());
     }
 
@@ -49,7 +48,7 @@ public class TestMyGradeBook {
                 -> testGradeBook.addGrade("Useless subject",
                 0, 2));
         Assertions.assertThrows(IllegalStateException.class, ()
-                -> testGradeBook.setQualifyWorkGrade(5));
+                -> testGradeBook.setGraduateWorkGrade(5));
 
     }
 
@@ -63,10 +62,10 @@ public class TestMyGradeBook {
             testGradeBook.addGrade("SomeSubject", 5, i);
         }
         Assertions.assertThrows(IllegalArgumentException.class, ()
-                -> testGradeBook.setQualifyWorkGrade(1));
+                -> testGradeBook.setGraduateWorkGrade(1));
         Assertions.assertThrows(IllegalArgumentException.class, ()
-                -> testGradeBook.setQualifyWorkGrade(10));
-        testGradeBook.setQualifyWorkGrade(5);
+                -> testGradeBook.setGraduateWorkGrade(10));
+        testGradeBook.setGraduateWorkGrade(5);
         Assertions.assertTrue(testGradeBook.willBeRedDiploma());
         testGradeBook.addGrade("SomeSubject", 3, 1);
         Assertions.assertFalse(testGradeBook.willBeRedDiploma());
@@ -74,7 +73,7 @@ public class TestMyGradeBook {
             testGradeBook.addGrade("SomeSubject", 4, i);
         }
         Assertions.assertFalse(testGradeBook.willBeRedDiploma());
-        testGradeBook.setQualifyWorkGrade(2);
+        testGradeBook.setGraduateWorkGrade(2);
         Assertions.assertFalse(testGradeBook.willBeRedDiploma());
 
     }
@@ -87,12 +86,12 @@ public class TestMyGradeBook {
                 1);
         for (int i = 0; i < 7; i++) {
             Assertions.assertThrows(IllegalStateException.class, () -> {
-                testGradeBook.setQualifyWorkGrade(5);
+                testGradeBook.setGraduateWorkGrade(5);
             });
             testGradeBook.addGrade("Math", 5, i + 1);
             testGradeBook.increaseSemester();
         }
-        testGradeBook.setQualifyWorkGrade(5);
+        testGradeBook.setGraduateWorkGrade(5);
         Assertions.assertTrue(testGradeBook.willBeRedDiploma());
 
 
