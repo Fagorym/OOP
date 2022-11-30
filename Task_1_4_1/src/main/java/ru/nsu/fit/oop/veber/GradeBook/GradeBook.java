@@ -1,11 +1,10 @@
 package ru.nsu.fit.oop.veber.GradeBook;
 
-//TODO: javadocs
-
 import ru.nsu.fit.oop.veber.Semester.Semester;
 
-import java.util.Arrays;
-
+/**
+ * Class that implements student`s grade book.
+ */
 public class GradeBook {
     int completedSemesters;
     String name;
@@ -15,17 +14,30 @@ public class GradeBook {
     int graduateWorkGrade;
     Semester[] semesters;
 
-    public GradeBook(String name, String surname, String faculty, int currentSemester) {
+    /**
+     * Default constructor of grade book.
+     *
+     * @param name               - name of the student
+     * @param surname            - surname of the student
+     * @param faculty            - faculty of the student
+     * @param completedSemesters - count of semesters, that student had already complete
+     */
+    public GradeBook(String name, String surname, String faculty, int completedSemesters) {
         this.name = name;
         this.surname = surname;
         this.faculty = faculty;
-        this.completedSemesters = currentSemester;
+        this.completedSemesters = completedSemesters;
         this.semesters = new Semester[completedSemesters];
         for (int i = 0; i < completedSemesters; i++) {
             semesters[i] = new Semester(i + 1);
         }
     }
 
+    /**
+     * Method that counts average grade for all semesters.
+     *
+     * @return - average grade for all semesters
+     */
     public float getAvgGrade() {
         float avg = 0;
         for (Semester semester : semesters) {
@@ -36,7 +48,12 @@ public class GradeBook {
         return (float) (Math.ceil(avg * scale) / scale);
     }
 
-    public boolean willBeScolarship() {
+    /**
+     * Method that analyze grades and decide, will be scholarship in next semester or not.
+     *
+     * @return true - will be scholarship, false - won`t be.
+     */
+    public boolean willBeScholarship() {
         Semester prevSem = semesters[completedSemesters - 1];
         for (Object grade : prevSem.getGradesArray()) {
             if ((int) grade <= 3) {
@@ -46,7 +63,12 @@ public class GradeBook {
         return true;
     }
 
-    public void setQualifyWorkGrade(int grade) {
+    /**
+     * Method that sets mark for graduate work.
+     *
+     * @param grade - will be grade for graduate work
+     */
+    public void setGraduateWorkGrade(int grade) {
         if (completedSemesters < 8) throw
                 new IllegalStateException("You cannot pass qualified work before 8 semester");
         if (grade < 2 || grade > 5) throw
@@ -54,6 +76,14 @@ public class GradeBook {
         this.graduateWorkGrade = grade;
     }
 
+    /**
+     * Method that analyze grades and decide, will be red diploma or not.
+     * You cannot have red diploma, before you pass graduated work.
+     * You cannot pass graduated work, before you end 8 semesters.
+     * So you cannot have red diploma, before you end 8 semesters.
+     *
+     * @return true - will be red diploma, false - won`t be
+     */
     public boolean willBeRedDiploma() {
         if (graduateWorkGrade < 5) return false;
         int totalGradesCount = 0;
@@ -78,22 +108,50 @@ public class GradeBook {
     }
 
 
+    /**
+     * Method that adds grade in current semester.
+     * You cannot add grades in semesters, that you had not complete.
+     * If you want to add grade in (N+1) semester, but you completed only (N) semesters,
+     * you first need to increase your semester by method increaseSemester().
+     *
+     * @param subject        - will be subject for this grade
+     * @param grade          - will be grade for this subject
+     * @param semesterNumber - in which semester we need to add pair (subject,grade)
+     */
     public void addGrade(String subject, int grade, int semesterNumber) {
+        if (semesterNumber - 1 > completedSemesters) {
+            throw new IllegalArgumentException("You cannot add grades in semester, that you had not complete");
+        }
         semesters[semesterNumber - 1].addGrade(subject, grade);
     }
 
+    /**
+     * Getter for subject count in current semester.
+     *
+     * @param semesterNumber - in what semester we need to know count of subjects
+     * @return count of subjects in current semester
+     */
     public int getSubjectsCount(int semesterNumber) {
         return semesters[semesterNumber - 1].getSubjectCount();
     }
 
-    public boolean increaseSemester() {
-            completedSemesters++;
-            Semester[] newArray = new Semester[completedSemesters];
-            newArray[completedSemesters - 1] = new Semester(completedSemesters);
-            System.arraycopy(semesters, 0, newArray, 0, completedSemesters - 1);
-            this.semesters = newArray;
-            return true;
+    /**
+     * Method, that increase completed semesters for this student.
+     * That allows him to add grades for (i+1) semester, where i - current semester.
+     */
+    public void increaseSemester() {
+        completedSemesters++;
+        Semester[] newArray = new Semester[completedSemesters];
+        newArray[completedSemesters - 1] = new Semester(completedSemesters);
+        System.arraycopy(semesters, 0, newArray, 0, completedSemesters - 1);
+        this.semesters = newArray;
     }
+
+    /**
+     * Represent grade book as a string.
+     *
+     * @return string representation of grade book
+     */
     @Override
     public String toString() {
         StringBuilder resultString = new StringBuilder();
