@@ -80,10 +80,13 @@ public class Semester {
         return subjects.size();
     }
 
-    public Object[] getSubjectArray(){
+    public Object[] getSubjectArray() {
         return subjects.toArray();
     }
 
+    public long getCountBySubjectType(SubjectType type) {
+        return subjects.stream().filter((subject -> subject.getType() == type)).count();
+    }
 
     /**
      * Method that convert this semester to string.
@@ -99,6 +102,9 @@ public class Semester {
             stringBuilder.append(subject.toString());
         }
         stringBuilder.append("Average grade: ").append(getAverageGrade()).append("\n");
+        for (SubjectType type : SubjectType.values()) {
+            stringBuilder.append("Count of ").append(type).append(" - ").append(getCountBySubjectType(type)).append('\n');
+        }
         stringBuilder.append("================================").append('\n');
         return stringBuilder.toString();
     }
