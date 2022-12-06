@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -179,8 +179,8 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addGrade(java.lang.String,ru.nsu.fit.oop.veber.Grade.GradeEnum,ru.nsu.fit.oop.veber.Subject.SubjectType)">addGrade</a></span>&#8203;(java.lang.String&nbsp;subject,
-        <a href="../Grade/GradeEnum.html" title="enum in ru.nsu.fit.oop.veber.Grade">GradeEnum</a>&nbsp;grade,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addGrade(java.lang.String,ru.nsu.fit.oop.veber.Grade.Grade,ru.nsu.fit.oop.veber.Subject.SubjectType)">addGrade</a></span>&#8203;(java.lang.String&nbsp;subject,
+        <a href="../Grade/Grade.html" title="interface in ru.nsu.fit.oop.veber.Grade">Grade</a>&nbsp;grade,
         <a href="../Subject/SubjectType.html" title="enum in ru.nsu.fit.oop.veber.Subject">SubjectType</a>&nbsp;type)</code></th>
 <td class="colLast">
 <div class="block">Method that add new pair in hashmap, where subject is key, grade is value.</div>
@@ -194,18 +194,23 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCountBySubjectType(ru.nsu.fit.oop.veber.Subject.SubjectType)">getCountBySubjectType</a></span>&#8203;(<a href="../Subject/SubjectType.html" title="enum in ru.nsu.fit.oop.veber.Subject">SubjectType</a>&nbsp;type)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubjectArray()">getSubjectArray</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubjectCount()">getSubjectCount</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for count of subject.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -260,14 +265,14 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="addGrade(java.lang.String,ru.nsu.fit.oop.veber.Grade.GradeEnum,ru.nsu.fit.oop.veber.Subject.SubjectType)">
+<a id="addGrade(java.lang.String,ru.nsu.fit.oop.veber.Grade.Grade,ru.nsu.fit.oop.veber.Subject.SubjectType)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addGrade</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addGrade&#8203;(java.lang.String&nbsp;subject,
-                     <a href="../Grade/GradeEnum.html" title="enum in ru.nsu.fit.oop.veber.Grade">GradeEnum</a>&nbsp;grade,
+                     <a href="../Grade/Grade.html" title="interface in ru.nsu.fit.oop.veber.Grade">Grade</a>&nbsp;grade,
                      <a href="../Subject/SubjectType.html" title="enum in ru.nsu.fit.oop.veber.Subject">SubjectType</a>&nbsp;type)</pre>
 <div class="block">Method that add new pair in hashmap, where subject is key, grade is value.</div>
 <dl>
@@ -312,6 +317,15 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getSubjectArray</h4>
 <pre class="methodSignature">public&nbsp;java.lang.Object[]&nbsp;getSubjectArray()</pre>
+</li>
+</ul>
+<a id="getCountBySubjectType(ru.nsu.fit.oop.veber.Subject.SubjectType)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getCountBySubjectType</h4>
+<pre class="methodSignature">public&nbsp;long&nbsp;getCountBySubjectType&#8203;(<a href="../Subject/SubjectType.html" title="enum in ru.nsu.fit.oop.veber.Subject">SubjectType</a>&nbsp;type)</pre>
 </li>
 </ul>
 <a id="toString()">
