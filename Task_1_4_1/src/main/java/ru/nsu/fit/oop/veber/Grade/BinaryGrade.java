@@ -1,5 +1,8 @@
 package ru.nsu.fit.oop.veber.Grade;
 
+/**
+ * Enum for binary grade.
+ */
 public enum BinaryGrade implements Grade {
     NOT_PASSED(0),
     PASSED(5);

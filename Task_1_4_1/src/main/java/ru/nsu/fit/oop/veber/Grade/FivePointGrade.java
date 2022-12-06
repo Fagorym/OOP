@@ -1,5 +1,8 @@
 package ru.nsu.fit.oop.veber.Grade;
 
+/**
+ * Enum for grades, that can be quoted in five point system.
+ */
 public enum FivePointGrade implements Grade {
     FAILED(2),
     SATISFYING(3),
