@@ -89,7 +89,9 @@ public class GradeBook {
      * @return true - will be red diploma, false - won`t be
      */
     public boolean willBeRedDiploma() {
-        if (graduateWorkGrade < 5) return false;
+        if (completedSemesters < 8 || graduateWorkGrade < 5) {
+            return false;
+        }
         int totalGradesCount = 0;
         int excellentGradesCount = 0;
         for (Semester semester : semesters) {
