@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.veber.GradeBook;
 
-import ru.nsu.fit.oop.veber.Grade.GradeEnum;
+import ru.nsu.fit.oop.veber.Grade.Grade;
 import ru.nsu.fit.oop.veber.Semester.Semester;
 import ru.nsu.fit.oop.veber.Subject.Subject;
 import ru.nsu.fit.oop.veber.Subject.SubjectType;
@@ -126,7 +126,7 @@ public class GradeBook {
      * @param grade          - will be grade for this subject
      * @param semesterNumber - in which semester we need to add pair (subject,grade)
      */
-    public void addGrade(String subject, GradeEnum grade, int semesterNumber, SubjectType type) {
+    public void addGrade(String subject, Grade grade, int semesterNumber, SubjectType type) {
         if (semesterNumber - 1 > completedSemesters) {
             throw new IllegalArgumentException("You cannot add grades in semester, that you had not complete");
         }
