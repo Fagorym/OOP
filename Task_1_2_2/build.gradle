@@ -27,3 +27,9 @@ jacocoTestReport {
             html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
         }
 }
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
