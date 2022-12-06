@@ -54,15 +54,12 @@ public class Semester {
      */
     private void recountAverage() {
         averageGrade = 0;
-        int subjectCount = getSubjectCount();
         for (Subject subject : subjects) {
-            if (subject.getType() == SubjectType.CREDIT) {
-                subjectCount--;
-            } else {
+            if (subject.getType() != SubjectType.CREDIT) {
                 averageGrade += subject.getGrade();
             }
         }
-        averageGrade /= subjectCount;
+        averageGrade /= getCountBySubjectType(SubjectType.EXAM) + getCountBySubjectType(SubjectType.DIF_CREDIT);
     }
 
 
