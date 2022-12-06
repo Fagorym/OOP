@@ -1,15 +1,13 @@
 package ru.nsu.fit.oop.veber.Grade;
 
-public enum GradeEnum {
-    FAILED(0),
-    PASSED(5),
+public enum FivePointGrade implements Grade {
+    FAILED(2),
     SATISFYING(3),
     GOOD(4),
     EXCELLENT(5);
+    private final int grade;
 
-    final int grade;
-
-    GradeEnum(int grade) {
+    FivePointGrade(int grade) {
         this.grade = grade;
     }
 

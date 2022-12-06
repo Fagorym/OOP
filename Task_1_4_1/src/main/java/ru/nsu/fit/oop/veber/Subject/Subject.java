@@ -1,16 +1,16 @@
 package ru.nsu.fit.oop.veber.Subject;
 
-import ru.nsu.fit.oop.veber.Grade.GradeEnum;
+import ru.nsu.fit.oop.veber.Grade.Grade;
 
-import java.lang.reflect.Type;
+
 import java.util.Objects;
 
 public class Subject {
     private final String name;
-    private final GradeEnum grade;
+    private final Grade grade;
     private final SubjectType type;
 
-    public Subject(String name, GradeEnum grade, SubjectType type) {
+    public Subject(String name, Grade grade, SubjectType type) {
         this.name = name;
         this.grade = grade;
         this.type = type;
@@ -25,7 +25,7 @@ public class Subject {
         return grade.getGrade();
     }
 
-    public SubjectType getType(){
+    public SubjectType getType() {
         return type;
     }
 

@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.veber.Semester;
 
-import ru.nsu.fit.oop.veber.Grade.GradeEnum;
+import ru.nsu.fit.oop.veber.Grade.BinaryGrade;
+import ru.nsu.fit.oop.veber.Grade.FivePointGrade;
+import ru.nsu.fit.oop.veber.Grade.Grade;
 import ru.nsu.fit.oop.veber.Subject.Subject;
 import ru.nsu.fit.oop.veber.Subject.SubjectType;
 
@@ -36,9 +38,11 @@ public class Semester {
      * @param subject - will be key
      * @param grade   - will be value
      */
-    public void addGrade(String subject, GradeEnum grade, SubjectType type) {
-        if (type == SubjectType.CREDIT && (grade != GradeEnum.PASSED && grade != GradeEnum.FAILED)) {
+    public void addGrade(String subject, Grade grade, SubjectType type) {
+        if (type == SubjectType.CREDIT && grade instanceof FivePointGrade) {
             throw new IllegalArgumentException("Credit cannot be passed for anything other than passed or failed");
+        } else if ((type == SubjectType.EXAM || type == SubjectType.DIF_CREDIT) && grade instanceof BinaryGrade) {
+            throw new IllegalArgumentException("Exam or differential credit must be quoted by five points grade");
         }
         Subject newSubject = new Subject(subject, grade, type);
         subjects.add(newSubject);
