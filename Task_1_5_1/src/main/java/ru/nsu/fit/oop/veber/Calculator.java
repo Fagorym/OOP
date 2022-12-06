@@ -2,12 +2,11 @@ package ru.nsu.fit.oop.veber;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
 
 public class Calculator {
     private final String operators;
+    private final Deque<Float> floatDeque;
     private String expression;
-    private Deque<Float> floatDeque;
     private Integer index;
 
     public Calculator() {
@@ -23,31 +22,37 @@ public class Calculator {
 
     }
 
+    public void setExpression(String expression) {
+        this.index = expression.length() - 1;
+        this.expression = expression;
+    }
+
     public Float calculate() {
-        for (int i = index; i >= 0; i--) {
-            String token = String.valueOf(expression.charAt(i));
+        String[] tokens = expression.split(" ");
+        for (int i = tokens.length - 1; i >= 0; i--) {
+            String token = tokens[i];
             if (operators.contains(token)) {
-                Float firstOperand = floatDeque.getFirst();
-                Float secondOperand = floatDeque.getFirst();
-                Float result = parseExpr(expression.charAt(i), firstOperand, secondOperand);
+                Float firstOperand = floatDeque.pollFirst();
+                Float secondOperand = floatDeque.pollFirst();
+                Float result = parseExpr(token, firstOperand, secondOperand);
                 floatDeque.addFirst(result);
-            } else {
+            } else if (Character.isDigit(token.charAt(0))) {
                 floatDeque.addFirst(Float.valueOf(token));
             }
         }
-        return floatDeque.getFirst();
+        return floatDeque.pollFirst();
 
     }
 
-    private Float parseExpr(char operator, Float firstOperand, Float secondOperand) {
+    private Float parseExpr(String operator, Float firstOperand, Float secondOperand) {
         return switch (operator) {
-            case '+' -> firstOperand + secondOperand;
+            case "+" -> firstOperand + secondOperand;
 
-            case '-' -> firstOperand - secondOperand;
+            case "-" -> firstOperand - secondOperand;
 
-            case '*' -> firstOperand * secondOperand;
+            case "*" -> firstOperand * secondOperand;
 
-            case '/' -> firstOperand / secondOperand;
+            case "/" -> firstOperand / secondOperand;
             default -> throw new IllegalStateException("Unexpected value: " + operator);
         };
 
