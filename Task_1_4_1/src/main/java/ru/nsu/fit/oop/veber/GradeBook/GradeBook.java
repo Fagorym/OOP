@@ -5,6 +5,8 @@ import ru.nsu.fit.oop.veber.Semester.Semester;
 import ru.nsu.fit.oop.veber.Subject.Subject;
 import ru.nsu.fit.oop.veber.Subject.SubjectType;
 
+import java.util.ArrayList;
+
 /**
  * Class that implements student`s grade book.
  */
@@ -15,7 +17,7 @@ public class GradeBook {
     String faculty;
 
     int graduateWorkGrade;
-    Semester[] semesters;
+    ArrayList<Semester> semesters;
 
     /**
      * Default constructor of grade book.
@@ -30,9 +32,9 @@ public class GradeBook {
         this.surname = surname;
         this.faculty = faculty;
         this.completedSemesters = completedSemesters;
-        this.semesters = new Semester[completedSemesters];
+        this.semesters = new ArrayList<>();
         for (int i = 0; i < completedSemesters; i++) {
-            semesters[i] = new Semester(i + 1);
+            semesters.add(new Semester(i + 1));
         }
     }
 
@@ -57,7 +59,7 @@ public class GradeBook {
      * @return true - will be scholarship, false - won`t be.
      */
     public boolean willBeScholarship() {
-        Semester prevSem = semesters[completedSemesters - 1];
+        Semester prevSem = semesters.get(completedSemesters - 1);
         for (Object object : prevSem.getSubjectArray()) {
             Subject subject = (Subject) object;
             if (subject.getGrade() <= 3) {
@@ -128,7 +130,7 @@ public class GradeBook {
         if (semesterNumber - 1 > completedSemesters) {
             throw new IllegalArgumentException("You cannot add grades in semester, that you had not complete");
         }
-        semesters[semesterNumber - 1].addGrade(subject, grade, type);
+        semesters.get(semesterNumber - 1).addGrade(subject, grade, type);
     }
 
     /**
@@ -138,7 +140,7 @@ public class GradeBook {
      * @return count of subjects in current semester
      */
     public int getSubjectsCount(int semesterNumber) {
-        return semesters[semesterNumber - 1].getSubjectCount();
+        return semesters.get(semesterNumber - 1).getSubjectCount();
     }
 
     /**
@@ -147,10 +149,7 @@ public class GradeBook {
      */
     public void increaseSemester() {
         completedSemesters++;
-        Semester[] newArray = new Semester[completedSemesters];
-        newArray[completedSemesters - 1] = new Semester(completedSemesters);
-        System.arraycopy(semesters, 0, newArray, 0, completedSemesters - 1);
-        this.semesters = newArray;
+        semesters.add(new Semester(completedSemesters));
     }
 
     /**
