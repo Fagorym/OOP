@@ -31,13 +31,9 @@ public class Calculator {
                 Operator operator = parseExpr(token);
                 float result;
                 if (operator instanceof BinaryOperator operator1) {
-                    float first = floatDeque.pollFirst();
-                    float second = floatDeque.pollFirst();
-                    result = operator1.calculate(first, second);
+                    result = operator1.calculate(floatDeque.pollFirst(), floatDeque.pollFirst());
                 } else if (operator instanceof UnaryOperator operator1) {
-                    float first = floatDeque.pollFirst();
-                    result = operator1.calculate(first);
-
+                    result = operator1.calculate(floatDeque.pollFirst());
                 } else {
                     throw new IllegalArgumentException("Something went wrong, check your expression line");
                 }

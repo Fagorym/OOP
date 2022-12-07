@@ -34,7 +34,5 @@ public class Factory {
         factory.put("log", new BinaryOperator.Log());
         factory.put("pow", new BinaryOperator.Pow());
         factory.put("sqrt", new UnaryOperator.Sqrt());
-
-
     }
 }
