@@ -3,7 +3,9 @@ package ru.nsu.fit.oop.veber.CalculatorTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.CsvSource;
 import ru.nsu.fit.oop.veber.Calculator;
+import org.junit.jupiter.params.ParameterizedTest;
 
 public class CalculatorTests {
     private Calculator calculator;
@@ -13,14 +15,25 @@ public class CalculatorTests {
         calculator = new Calculator();
     }
 
-    private void checkExpression(String expression, float expected) {
+    @ParameterizedTest
+    @CsvSource(value = {
+            "+ 1 2, 3",
+            "- 5 2, 3",
+            "* 100 2, 200",
+            "/ 200 100, 2",
+            "pow 2 4, 16",
+            "sin 0, 0",
+            "cos 0, 1",
+            "sqrt 100, 10"
+    })
+    public void checkExpression(String expression, float expected) {
         calculator.setExpression(expression);
         Float result = calculator.calculate();
         Assertions.assertEquals(expected, result);
 
     }
 
-    @Test
+    /* @Test
     public void plusExpressionTest() {
         checkExpression("+ 1 2", 3);
     }
@@ -59,4 +72,6 @@ public class CalculatorTests {
     public void sqrtExpressionTest() {
         checkExpression("sqrt 100", 10);
     }
+
+*/
 }
