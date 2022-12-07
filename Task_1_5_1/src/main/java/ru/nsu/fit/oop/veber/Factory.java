@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.veber;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Factory {
 
@@ -17,6 +18,10 @@ public class Factory {
 
     public Operator getOperator(String key) {
         return factory.get(key);
+    }
+
+    public Set<String> getOperators() {
+        return factory.keySet();
     }
 
     private void initOperatorMap() {

@@ -4,14 +4,11 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class Calculator {
-    private final String operators;
     private final Deque<Float> floatDeque;
+    private final Factory factory;
     private String expression;
 
-    private final Factory factory;
-
     public Calculator() {
-        this.operators = "+-/*";
         this.floatDeque = new ArrayDeque<>();
         this.factory = new Factory();
     }
@@ -30,7 +27,7 @@ public class Calculator {
         String[] tokens = expression.split(" ");
         for (int i = tokens.length - 1; i >= 0; i--) {
             String token = tokens[i];
-            if (operators.contains(token)) {
+            if (factory.getOperators().contains(token)) {
                 Operator operator = parseExpr(token);
                 float result;
                 if (operator instanceof BinaryOperator operator1) {
