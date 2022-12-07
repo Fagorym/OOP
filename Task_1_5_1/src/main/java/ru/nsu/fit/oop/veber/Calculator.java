@@ -7,23 +7,19 @@ public class Calculator {
     private final String operators;
     private final Deque<Float> floatDeque;
     private String expression;
-    private Integer index;
 
     public Calculator() {
         this.operators = "+-/*";
         this.floatDeque = new ArrayDeque<>();
-        this.index = 0;
     }
 
     public Calculator(String expression) {
         this();
         this.expression = expression;
-        this.index = expression.length();
 
     }
 
     public void setExpression(String expression) {
-        this.index = expression.length() - 1;
         this.expression = expression;
     }
 
@@ -38,6 +34,8 @@ public class Calculator {
                 floatDeque.addFirst(result);
             } else if (Character.isDigit(token.charAt(0))) {
                 floatDeque.addFirst(Float.valueOf(token));
+            } else {
+                throw new IllegalArgumentException("Something went wrong, check your expression line");
             }
         }
         return floatDeque.pollFirst();
