@@ -5,36 +5,50 @@ public interface BinaryOperator extends Operator {
     int argCount = 2;
 
 
-    Float calculate(Float fst, Float snd);
+    float calculate(float fst, float snd);
 
-    public class Plus implements BinaryOperator {
+    class Plus implements BinaryOperator {
 
         @Override
-        public Float calculate(Float fst, Float snd) {
+        public float calculate(float fst, float snd) {
             return fst + snd;
         }
     }
 
-    public class Minus implements BinaryOperator {
+    class Minus implements BinaryOperator {
 
         @Override
-        public Float calculate(Float fst, Float snd) {
+        public float calculate(float fst, float snd) {
             return fst - snd;
         }
     }
 
-    public class Multiple implements BinaryOperator {
+    class Multiple implements BinaryOperator {
 
         @Override
-        public Float calculate(Float fst, Float snd) {
+        public float calculate(float fst, float snd) {
             return fst * snd;
         }
     }
 
-    public class Divide implements BinaryOperator {
+    class Divide implements BinaryOperator {
         @Override
-        public Float calculate(Float fst, Float snd) {
+        public float calculate(float fst, float snd) {
             return fst / snd;
+        }
+    }
+
+    class Pow implements BinaryOperator {
+        @Override
+        public float calculate(float fst, float snd) {
+            return (float) Math.pow(fst, snd);
+        }
+    }
+
+    class Log implements BinaryOperator {
+        @Override
+        public float calculate(float fst, float snd) {
+            return (float) (Math.log(fst) / Math.log(snd));
         }
     }
 }
