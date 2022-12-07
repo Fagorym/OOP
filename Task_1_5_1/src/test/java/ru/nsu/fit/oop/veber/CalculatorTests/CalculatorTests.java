@@ -13,31 +13,50 @@ public class CalculatorTests {
         calculator = new Calculator();
     }
 
-    @Test
-    public void firstExpressionTest() {
-        calculator.setExpression("+ 1 2");
+    private void checkExpression(String expression, float expected) {
+        calculator.setExpression(expression);
         Float result = calculator.calculate();
-        Assertions.assertEquals(3, result);
+        Assertions.assertEquals(expected, result);
+
     }
 
     @Test
-    public void secondExpressionTest() {
-        calculator = new Calculator("+ + + 1 2 3 4");
-        Float result = calculator.calculate();
-        Assertions.assertEquals(10, result);
+    public void plusExpressionTest() {
+        checkExpression("+ 1 2", 3);
     }
 
     @Test
     public void minusExpressionTest() {
-        calculator.setExpression("- 5 2");
-        Float result = calculator.calculate();
-        Assertions.assertEquals(3, result);
+        checkExpression("- 5 2", 3);
     }
 
     @Test
-    public void strongExpressionTest() {
-        calculator.setExpression("+ - + - + 100 1 1 10 15 105");
-        Float result = calculator.calculate();
-        Assertions.assertEquals(200, result);
+    public void multipleExpressionTest() {
+        checkExpression("* 100 2", 200);
+    }
+
+    @Test
+    public void divideExpressionTest() {
+        checkExpression("/ 200 100", 2);
+    }
+
+    @Test
+    public void powExpressionTest() {
+        checkExpression("pow 2 4", 16);
+    }
+
+    @Test
+    public void sinExpressionTest() {
+        checkExpression("sin 0", 0);
+    }
+
+    @Test
+    public void cosExpressionTest() {
+        checkExpression("cos 0", 1);
+    }
+
+    @Test
+    public void sqrtExpressionTest() {
+        checkExpression("sqrt 100", 10);
     }
 }
