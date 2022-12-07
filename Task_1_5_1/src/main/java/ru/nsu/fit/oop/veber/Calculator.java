@@ -8,9 +8,12 @@ public class Calculator {
     private final Deque<Float> floatDeque;
     private String expression;
 
+    private final Factory factory;
+
     public Calculator() {
         this.operators = "+-/*";
         this.floatDeque = new ArrayDeque<>();
+        this.factory = new Factory();
     }
 
     public Calculator(String expression) {
@@ -28,9 +31,19 @@ public class Calculator {
         for (int i = tokens.length - 1; i >= 0; i--) {
             String token = tokens[i];
             if (operators.contains(token)) {
-                Float firstOperand = floatDeque.pollFirst();
-                Float secondOperand = floatDeque.pollFirst();
-                Float result = parseExpr(token, firstOperand, secondOperand);
+                Operator operator = parseExpr(token);
+                float result;
+                if (operator instanceof BinaryOperator operator1) {
+                    float first = floatDeque.pollFirst();
+                    float second = floatDeque.pollFirst();
+                    result = operator1.calculate(first, second);
+                } else if (operator instanceof UnaryOperator operator1) {
+                    float first = floatDeque.pollFirst();
+                    result = operator1.calculate(first);
+
+                } else {
+                    throw new IllegalArgumentException("Something went wrong, check your expression line");
+                }
                 floatDeque.addFirst(result);
             } else if (Character.isDigit(token.charAt(0))) {
                 floatDeque.addFirst(Float.valueOf(token));
@@ -42,18 +55,8 @@ public class Calculator {
 
     }
 
-    private Float parseExpr(String operator, Float firstOperand, Float secondOperand) {
-        return switch (operator) {
-            case "+" -> firstOperand + secondOperand;
-
-            case "-" -> firstOperand - secondOperand;
-
-            case "*" -> firstOperand * secondOperand;
-
-            case "/" -> firstOperand / secondOperand;
-            default -> throw new IllegalStateException("Unexpected value: " + operator);
-        };
-
+    private Operator parseExpr(String operator) {
+        return factory.getOperator(operator);
     }
 
 }
