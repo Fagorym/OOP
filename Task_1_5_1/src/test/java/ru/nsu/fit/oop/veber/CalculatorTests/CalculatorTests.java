@@ -16,7 +16,7 @@ public class CalculatorTests {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
+    @CsvSource({
             "+ 1 2, 3",
             "- 5 2, 3",
             "* 100 2, 200",
@@ -32,46 +32,4 @@ public class CalculatorTests {
         Assertions.assertEquals(expected, result);
 
     }
-
-    /* @Test
-    public void plusExpressionTest() {
-        checkExpression("+ 1 2", 3);
-    }
-
-    @Test
-    public void minusExpressionTest() {
-        checkExpression("- 5 2", 3);
-    }
-
-    @Test
-    public void multipleExpressionTest() {
-        checkExpression("* 100 2", 200);
-    }
-
-    @Test
-    public void divideExpressionTest() {
-        checkExpression("/ 200 100", 2);
-    }
-
-    @Test
-    public void powExpressionTest() {
-        checkExpression("pow 2 4", 16);
-    }
-
-    @Test
-    public void sinExpressionTest() {
-        checkExpression("sin 0", 0);
-    }
-
-    @Test
-    public void cosExpressionTest() {
-        checkExpression("cos 0", 1);
-    }
-
-    @Test
-    public void sqrtExpressionTest() {
-        checkExpression("sqrt 100", 10);
-    }
-
-*/
 }
