@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Calculator</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Class that represent calculator.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -88,9 +89,13 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">Calculator</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Main constructor of calculator, with empty expression.</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">Calculator</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Additional constructor of calculator, with non-empty expression.</div>
+</div>
 </div>
 </section>
 </li>
@@ -107,10 +112,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate()" class="member-name-link">calculate</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Counts the expression, that was settled by constructor or setter.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setExpression(java.lang.String)" class="member-name-link">setExpression</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Setter for expression.</div>
+</div>
 </div>
 </div>
 </div>
@@ -132,12 +141,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>Calculator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Calculator</span>()</div>
+<div class="block">Main constructor of calculator, with empty expression.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="&lt;init&gt;(java.lang.String)">
 <h3>Calculator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Calculator</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</span></div>
+<div class="block">Additional constructor of calculator, with non-empty expression.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>expression</code> - - will be calculated expression</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -152,12 +167,22 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="setExpression(java.lang.String)">
 <h3>setExpression</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setExpression</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</span></div>
+<div class="block">Setter for expression.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>expression</code> - - will be calculated expression</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="calculate()">
 <h3>calculate</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a></span>&nbsp;<span class="element-name">calculate</span>()</div>
+<div class="block">Counts the expression, that was settled by constructor or setter.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>result of the calculated expression</dd>
+</dl>
 </section>
 </li>
 </ul>
