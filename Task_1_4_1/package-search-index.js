@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ru.nsu.fit.oop.veber.Grade"},{"l":"ru.nsu.fit.oop.veber.GradeBook"},{"l":"ru.nsu.fit.oop.veber.Semester"},{"l":"ru.nsu.fit.oop.veber.Subject"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ru.nsu.fit.oop.veber.grade"},{"l":"ru.nsu.fit.oop.veber.gradebook"},{"l":"ru.nsu.fit.oop.veber.semester"},{"l":"ru.nsu.fit.oop.veber.subject"}]
