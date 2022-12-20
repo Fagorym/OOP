@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber.Subject;
+package ru.nsu.fit.oop.veber.subject;
 
 public enum SubjectType {
     EXAM,

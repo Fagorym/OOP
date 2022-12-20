@@ -1,12 +1,12 @@
-package ru.nsu.fit.oop.veber.TestGradeBook;
+package ru.nsu.fit.oop.veber.testgradebook;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.nsu.fit.oop.veber.Grade.BinaryGrade;
-import ru.nsu.fit.oop.veber.Grade.FivePointGrade;
-import ru.nsu.fit.oop.veber.GradeBook.GradeBook;
-import ru.nsu.fit.oop.veber.Subject.SubjectType;
+import ru.nsu.fit.oop.veber.grade.BinaryGrade;
+import ru.nsu.fit.oop.veber.grade.FivePointGrade;
+import ru.nsu.fit.oop.veber.gradebook.GradeBook;
+import ru.nsu.fit.oop.veber.subject.SubjectType;
 
 public class TestMyGradeBook {
     GradeBook testGradeBook;
