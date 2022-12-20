@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber.Grade;
+package ru.nsu.fit.oop.veber.grade;
 
 /**
  * Enum for binary grade.

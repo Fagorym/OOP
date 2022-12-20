@@ -1,9 +1,9 @@
-package ru.nsu.fit.oop.veber.GradeBook;
+package ru.nsu.fit.oop.veber.gradebook;
 
-import ru.nsu.fit.oop.veber.Grade.Grade;
-import ru.nsu.fit.oop.veber.Semester.Semester;
-import ru.nsu.fit.oop.veber.Subject.Subject;
-import ru.nsu.fit.oop.veber.Subject.SubjectType;
+import ru.nsu.fit.oop.veber.grade.Grade;
+import ru.nsu.fit.oop.veber.semester.Semester;
+import ru.nsu.fit.oop.veber.subject.Subject;
+import ru.nsu.fit.oop.veber.subject.SubjectType;
 
 import java.util.ArrayList;
 

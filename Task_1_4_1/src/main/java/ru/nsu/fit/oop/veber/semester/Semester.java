@@ -1,10 +1,10 @@
-    package ru.nsu.fit.oop.veber.Semester;
+    package ru.nsu.fit.oop.veber.semester;
     
-    import ru.nsu.fit.oop.veber.Grade.BinaryGrade;
-    import ru.nsu.fit.oop.veber.Grade.FivePointGrade;
-    import ru.nsu.fit.oop.veber.Grade.Grade;
-    import ru.nsu.fit.oop.veber.Subject.Subject;
-    import ru.nsu.fit.oop.veber.Subject.SubjectType;
+    import ru.nsu.fit.oop.veber.grade.BinaryGrade;
+    import ru.nsu.fit.oop.veber.grade.FivePointGrade;
+    import ru.nsu.fit.oop.veber.grade.Grade;
+    import ru.nsu.fit.oop.veber.subject.Subject;
+    import ru.nsu.fit.oop.veber.subject.SubjectType;
     
     
     import java.util.HashSet;

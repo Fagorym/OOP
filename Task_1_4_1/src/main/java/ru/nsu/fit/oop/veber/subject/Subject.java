@@ -1,6 +1,6 @@
-package ru.nsu.fit.oop.veber.Subject;
+package ru.nsu.fit.oop.veber.subject;
 
-import ru.nsu.fit.oop.veber.Grade.Grade;
+import ru.nsu.fit.oop.veber.grade.Grade;
 
 
 import java.util.Objects;
