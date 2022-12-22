@@ -16,7 +16,7 @@ public class Calculator {
      */
     public Calculator() {
         this.floatDeque = new ArrayDeque<>();
-        this.factory = new Factory();
+        this.factory = new Factory(floatDeque);
     }
 
     /**
@@ -50,19 +50,13 @@ public class Calculator {
             String token = tokens[i];
             if (factory.getOperators().contains(token)) {
                 Operator operator = parseExpr(token);
-                float result;
-                if (operator instanceof BinaryOperator operator1) {
-                    result = operator1.calculate(floatDeque.pollFirst(), floatDeque.pollFirst());
-                } else if (operator instanceof UnaryOperator operator1) {
-                    result = operator1.calculate(floatDeque.pollFirst());
-                } else {
-                    throw new IllegalArgumentException("Something went wrong, check your expression line");
-                }
+                Float result;
+                result = operator.evaluate();
                 floatDeque.addFirst(result);
             } else if (Character.isDigit(token.charAt(0))) {
                 floatDeque.addFirst(Float.valueOf(token));
             } else {
-                throw new IllegalArgumentException("Something went wrong, check your expression line");
+                throw new IllegalArgumentException("Check your expression line");
             }
         }
         return floatDeque.pollFirst();

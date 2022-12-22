@@ -1,5 +1,11 @@
 package ru.nsu.fit.oop.veber;
 
+import ru.nsu.fit.oop.veber.binaryoperators.*;
+import ru.nsu.fit.oop.veber.unaryoperators.Cos;
+import ru.nsu.fit.oop.veber.unaryoperators.Sin;
+import ru.nsu.fit.oop.veber.unaryoperators.Sqrt;
+
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -9,13 +15,15 @@ import java.util.Set;
 public class Factory {
 
     private final HashMap<String, Operator> factory;
+    private final Deque<Float> expression;
 
     /**
      * Main constructor of the factory.
      * Created hashmap and init basic operators.
      */
-    public Factory() {
+    public Factory(Deque<Float> expression) {
         factory = new HashMap<>();
+        this.expression = expression;
         initOperatorMap();
     }
 
@@ -49,14 +57,14 @@ public class Factory {
     }
 
     private void initOperatorMap() {
-        factory.put("+", new BinaryOperator.Plus());
-        factory.put("-", new BinaryOperator.Minus());
-        factory.put("*", new BinaryOperator.Multiple());
-        factory.put("/", new BinaryOperator.Divide());
-        factory.put("sin", new UnaryOperator.Sin());
-        factory.put("cos", new UnaryOperator.Cos());
-        factory.put("log", new BinaryOperator.Log());
-        factory.put("pow", new BinaryOperator.Pow());
-        factory.put("sqrt", new UnaryOperator.Sqrt());
+        factory.put("+", new Plus(expression));
+        factory.put("-", new Minus(expression));
+        factory.put("*", new Multiple(expression));
+        factory.put("/", new Divide(expression));
+        factory.put("sin", new Sin(expression));
+        factory.put("cos", new Cos(expression));
+        factory.put("log", new Log(expression));
+        factory.put("pow", new Pow(expression));
+        factory.put("sqrt", new Sqrt(expression));
     }
 }
