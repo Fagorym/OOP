@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.fit.oop.veber","l":"Main"},{"p":"ru.nsu.fit.oop.veber","l":"Record"},{"p":"ru.nsu.fit.oop.veber","l":"RecordBook"}];updateSearchResults();
