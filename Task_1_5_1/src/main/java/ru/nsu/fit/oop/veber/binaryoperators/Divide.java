@@ -11,11 +11,20 @@ import java.util.List;
  */
 public class Divide extends Operator {
 
+    private final static String KEY = "/";
+    private final static Integer ARITY = 2;
+
 
     @Override
     protected Integer getArity() {
-        return 2;
+        return ARITY;
     }
+
+    @Override
+    protected String getKey() {
+        return KEY;
+    }
+
 
     @Override
     protected Double calculate(List<Double> operands) {

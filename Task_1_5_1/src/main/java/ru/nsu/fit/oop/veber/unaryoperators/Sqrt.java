@@ -11,11 +11,12 @@ import java.util.List;
 public class Sqrt extends Operator {
 
     private final static Integer ARITY = 1;
+    private final static String key = "sqrt";
 
 
     @Override
-    protected Integer getArity() {
-        return ARITY;
+    protected String getKey() {
+        return key;
     }
 
     @Override

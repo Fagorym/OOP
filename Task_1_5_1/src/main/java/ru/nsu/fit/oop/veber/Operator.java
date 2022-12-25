@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.veber;
 
 
-import java.util.Deque;
 import java.util.List;
 
 /**
@@ -9,11 +8,9 @@ import java.util.List;
  */
 abstract public class Operator {
 
-    Integer ARITY;
-    private Deque<Double> operands;
-
     protected abstract Integer getArity();
 
 
+    protected abstract String getKey();
     protected abstract Double calculate(List<Double> operands);
 }
