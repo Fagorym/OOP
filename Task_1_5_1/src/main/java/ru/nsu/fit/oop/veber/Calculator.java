@@ -53,7 +53,7 @@ public class Calculator {
                 Operator operator = parseExpr(tokens[i]);
                 List<Double> operands = new ArrayList<>();
                 for (int j = 0; j < operator.getArity(); j++) {
-                    operands.add(Double.valueOf(tokens[i--]));
+                    operands.add(floatDeque.pollFirst());
                 }
                 Double result = operator.calculate(operands);
                 floatDeque.addFirst(result);

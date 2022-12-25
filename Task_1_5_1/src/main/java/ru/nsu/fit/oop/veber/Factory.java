@@ -39,10 +39,10 @@ public class Factory {
      * @return operator by key
      */
     public Operator getOperator(String key) {
-        return factory.stream()
-                .filter((operator -> Objects.equals(operator.getKey(), key)))
-                .findFirst()
-                .orElse(new Number(key));
+        var optional = factory.stream()
+                .filter(operator -> key.equals(operator.getKey()))
+                .findFirst();
+        return optional.orElseGet(() -> new Number(key));
     }
 
     private void initOperatorMap() {

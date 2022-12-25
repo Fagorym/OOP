@@ -15,6 +15,11 @@ public class Sqrt extends Operator {
 
 
     @Override
+    protected Integer getArity() {
+        return ARITY;
+    }
+
+    @Override
     protected String getKey() {
         return key;
     }
