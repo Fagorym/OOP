@@ -79,6 +79,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Number</span>
 <span class="extends-implements">extends <a href="Operator.html" title="class in ru.nsu.fit.oop.veber">Operator</a></span></div>
+<div class="block">Class that represent number.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -91,7 +92,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">Number</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Default constructor for number.</div>
+</div>
 </div>
 </section>
 </li>
@@ -108,13 +111,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(java.util.List)" class="member-name-link">calculate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;operands)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Function that calculates result of operator.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getArity()" class="member-name-link">getArity</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Function that returns arity of operator.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getKey()" class="member-name-link">getKey</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Function that returns key of operator.</div>
+</div>
 </div>
 </div>
 </div>
@@ -136,6 +145,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(java.lang.String)">
 <h3>Number</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Number</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="block">Default constructor for number.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - will be key of the number</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -150,9 +164,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getArity()">
 <h3>getArity</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></span>&nbsp;<span class="element-name">getArity</span>()</div>
+<div class="block">Function that returns arity of operator.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Operator.html#getArity()">getArity</a></code>&nbsp;in class&nbsp;<code><a href="Operator.html" title="class in ru.nsu.fit.oop.veber">Operator</a></code></dd>
+<dt>Returns:</dt>
+<dd>arity of operator</dd>
 </dl>
 </section>
 </li>
@@ -160,9 +177,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getKey()">
 <h3>getKey</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getKey</span>()</div>
+<div class="block">Function that returns key of operator.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Operator.html#getKey()">getKey</a></code>&nbsp;in class&nbsp;<code><a href="Operator.html" title="class in ru.nsu.fit.oop.veber">Operator</a></code></dd>
+<dt>Returns:</dt>
+<dd>key of operator</dd>
 </dl>
 </section>
 </li>
@@ -170,9 +190,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="calculate(java.util.List)">
 <h3>calculate</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a></span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;operands)</span></div>
+<div class="block">Function that calculates result of operator.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Operator.html#calculate(java.util.List)">calculate</a></code>&nbsp;in class&nbsp;<code><a href="Operator.html" title="class in ru.nsu.fit.oop.veber">Operator</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>operands</code> - - list of operands that provided for operations</dd>
+<dt>Returns:</dt>
+<dd>result of operator</dd>
 </dl>
 </section>
 </li>
