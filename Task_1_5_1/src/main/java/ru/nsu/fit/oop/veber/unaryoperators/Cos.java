@@ -3,32 +3,24 @@ package ru.nsu.fit.oop.veber.unaryoperators;
 import ru.nsu.fit.oop.veber.Operator;
 
 import java.util.Deque;
+import java.util.List;
 
 /**
  * Class that represent cos operator.
  */
-public class Cos extends AbstractUnary implements Operator {
+public class Cos extends Operator {
 
-    private final Deque<Float> expression;
-
-    public Cos(Deque<Float> expression) {
-        this.expression = expression;
-    }
-
-    /**
-     * Calculates the cosinus of argument.
-     *
-     * @param fst - argument of expression
-     * @return - cos of argument
-     */
-    public float calculate(float fst) {
-        return (float) Math.cos(fst);
-    }
+    private final Integer ARITY = 1;
 
 
     @Override
-    public Float evaluate() {
-        return super.parseExpression(this::calculate, expression);
+    protected Integer getArity() {
+        return ARITY;
+    }
+
+    @Override
+    protected Double calculate(List<Double> operands) {
+        return Math.cos(operands.get(0));
     }
 }
     

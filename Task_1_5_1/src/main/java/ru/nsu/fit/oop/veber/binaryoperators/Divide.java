@@ -4,33 +4,22 @@ package ru.nsu.fit.oop.veber.binaryoperators;
 import ru.nsu.fit.oop.veber.Operator;
 
 import java.util.Deque;
+import java.util.List;
 
 /**
  * Class that represent divide operation.
  */
-public class Divide extends AbstractBinary implements Operator {
+public class Divide extends Operator {
 
-    private final Deque<Float> expression;
 
-    public Divide(Deque<Float> expression) {
-        this.expression = expression;
-    }
-
-    /**
-     * Calculates division of two arguments.
-     *
-     * @param fst - first argument of expression
-     * @param snd - second argument of expression
-     * @return division of two arguments
-     */
-
-    public Float calculate(Float fst, Float snd) {
-        return fst / snd;
+    @Override
+    protected Integer getArity() {
+        return 2;
     }
 
     @Override
-    public Float evaluate() {
-        return super.parseExpression(this::calculate, expression);
+    protected Double calculate(List<Double> operands) {
+        return operands.get(0) / operands.get(1);
     }
 }
     

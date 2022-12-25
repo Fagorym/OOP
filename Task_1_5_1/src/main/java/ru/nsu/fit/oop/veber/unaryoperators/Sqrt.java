@@ -3,30 +3,23 @@ package ru.nsu.fit.oop.veber.unaryoperators;
 import ru.nsu.fit.oop.veber.Operator;
 
 import java.util.Deque;
+import java.util.List;
 
 /**
  * Class that represent sqrt operator.
  */
-public class Sqrt extends AbstractUnary implements Operator {
+public class Sqrt extends Operator {
 
-    private final Deque<Float> expression;
+    private final static Integer ARITY = 1;
 
-    public Sqrt(Deque<Float> expression) {
-        this.expression = expression;
-    }
 
-    /**
-     * Calculates the sqrt of argument.
-     *
-     * @param fst - argument of expression
-     * @return sqrt of the argument
-     */
-    public float calculate(float fst) {
-        return (float) Math.sqrt(fst);
+    @Override
+    protected Integer getArity() {
+        return ARITY;
     }
 
     @Override
-    public Float evaluate() {
-        return super.parseExpression(this::calculate, expression);
+    protected Double calculate(List<Double> operands) {
+        return Math.sqrt(operands.get(0));
     }
 }

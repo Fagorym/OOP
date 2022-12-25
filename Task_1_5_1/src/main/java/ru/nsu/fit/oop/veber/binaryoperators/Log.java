@@ -3,30 +3,21 @@ package ru.nsu.fit.oop.veber.binaryoperators;
 import ru.nsu.fit.oop.veber.Operator;
 
 import java.util.Deque;
+import java.util.List;
 
 /**
  * Class that represent log operation.
  */
-public class Log extends AbstractBinary implements Operator {
-    private final Deque<Float> expression;
+public class Log extends Operator {
 
-    public Log(Deque<Float> expression) {
-        this.expression = expression;
-    }
 
-    /**
-     * Calculates log of first argument by second argument.
-     *
-     * @param fst - first argument of expression
-     * @param snd - second argument of expression
-     * @return log of first argument by second argument
-     */
-    public Float calculate(Float fst, Float snd) {
-        return (float) (Math.log(fst) / Math.log(snd));
+    @Override
+    protected Integer getArity() {
+        return 2;
     }
 
     @Override
-    public Float evaluate() {
-        return super.parseExpression(this::calculate, expression);
+    protected Double calculate(List<Double> operands) {
+        return (Math.log(operands.get(0)) / Math.log(operands.get(1)));
     }
 }
