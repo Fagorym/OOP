@@ -2,11 +2,18 @@ package ru.nsu.fit.oop.veber;
 
 
 import java.util.Deque;
+import java.util.List;
 
 /**
  * Marker interface for operators.
  */
-public interface Operator {
+abstract public class Operator {
 
-    Float evaluate();
+    Integer ARITY;
+    private Deque<Double> operands;
+
+    protected abstract Integer getArity();
+
+
+    protected abstract Double calculate(List<Double> operands);
 }

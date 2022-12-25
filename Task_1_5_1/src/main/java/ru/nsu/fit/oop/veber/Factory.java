@@ -15,13 +15,13 @@ import java.util.Set;
 public class Factory {
 
     private final HashMap<String, Operator> factory;
-    private final Deque<Float> expression;
+    private final Deque<Double> expression;
 
     /**
      * Main constructor of the factory.
      * Created hashmap and init basic operators.
      */
-    public Factory(Deque<Float> expression) {
+    public Factory(Deque<Double> expression) {
         factory = new HashMap<>();
         this.expression = expression;
         initOperatorMap();
@@ -57,14 +57,14 @@ public class Factory {
     }
 
     private void initOperatorMap() {
-        factory.put("+", new Plus(expression));
-        factory.put("-", new Minus(expression));
-        factory.put("*", new Multiple(expression));
-        factory.put("/", new Divide(expression));
-        factory.put("sin", new Sin(expression));
-        factory.put("cos", new Cos(expression));
-        factory.put("log", new Log(expression));
-        factory.put("pow", new Pow(expression));
-        factory.put("sqrt", new Sqrt(expression));
+        factory.put("+", new Plus());
+        factory.put("-", new Minus());
+        factory.put("*", new Multiple());
+        factory.put("/", new Divide());
+        factory.put("sin", new Sin());
+        factory.put("cos", new Cos());
+        factory.put("log", new Log());
+        factory.put("pow", new Pow());
+        factory.put("sqrt", new Sqrt());
     }
 }

@@ -4,32 +4,20 @@ package ru.nsu.fit.oop.veber.binaryoperators;
 import ru.nsu.fit.oop.veber.Operator;
 
 import java.util.Deque;
+import java.util.List;
 
 /**
  * Class that represents plus operation
  */
-public class Plus extends AbstractBinary implements Operator {
+public class Plus extends Operator {
 
-    private final Deque<Float> expression;
-
-    public Plus(Deque<Float> expression) {
-        this.expression = expression;
-    }
-
-    /**
-     * Calculates sum of two arguments.
-     *
-     * @param fst - first argument of expression
-     * @param snd - second argument of expression
-     * @return sum of two arguments
-     */
-    public float calculate(float fst, float snd) {
-        return fst + snd;
+    @Override
+    protected Integer getArity() {
+        return 2;
     }
 
     @Override
-    public Float evaluate() {
-        return super.parseExpression(this::calculate, expression);
+    protected Double calculate(List<Double> operands) {
+        return operands.get(0) + operands.get(1);
     }
-
 }

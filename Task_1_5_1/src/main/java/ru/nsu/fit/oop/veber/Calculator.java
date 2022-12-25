@@ -1,13 +1,15 @@
 package ru.nsu.fit.oop.veber;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 /**
  * Class that represent calculator.
  */
 public class Calculator {
-    private final Deque<Float> floatDeque;
+    private final Deque<Double> floatDeque;
     private final Factory factory;
     private String expression;
 
@@ -44,19 +46,17 @@ public class Calculator {
      *
      * @return result of the calculated expression
      */
-    public Float calculate() {
+    public Double calculate() {
         String[] tokens = expression.split(" ");
         for (int i = tokens.length - 1; i >= 0; i--) {
-            String token = tokens[i];
-            if (factory.getOperators().contains(token)) {
-                Operator operator = parseExpr(token);
-                Float result;
-                result = operator.evaluate();
+            if (factory.getOperators().contains(tokens[i])) {
+                Operator operator = parseExpr(tokens[i]);
+                List<Double> operands = new ArrayList<>();
+                for (int j = 0; j < operator.getArity(); j++) {
+                    operands.add(Double.valueOf(tokens[i++]));
+                }
+                Double result = operator.calculate(operands);
                 floatDeque.addFirst(result);
-            } else if (Character.isDigit(token.charAt(0))) {
-                floatDeque.addFirst(Float.valueOf(token));
-            } else {
-                throw new IllegalArgumentException("Check your expression line");
             }
         }
         return floatDeque.pollFirst();
