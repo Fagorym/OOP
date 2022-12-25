@@ -21,7 +21,7 @@ public class CalculatorTests {
             "- 5 2, 3",
             "* 100 2, 200",
             "/ 200 100, 2",
-            "pow 2 4, 16",
+            "^ 2 4, 16",
             "sin 0, 0",
             "cos 0, 1",
             "sqrt 100, 10"
