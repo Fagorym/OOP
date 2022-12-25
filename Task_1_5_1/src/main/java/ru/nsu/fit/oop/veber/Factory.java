@@ -5,7 +5,8 @@ import ru.nsu.fit.oop.veber.unaryoperators.Cos;
 import ru.nsu.fit.oop.veber.unaryoperators.Sin;
 import ru.nsu.fit.oop.veber.unaryoperators.Sqrt;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class that represent operator factory.
@@ -16,11 +17,11 @@ public class Factory {
 
     /**
      * Main constructor of the factory.
-     * Created hashmap and init basic operators.
+     * Create list and add basic operators.
      */
     public Factory() {
         factory = new ArrayList<>();
-        initOperatorMap();
+        initOperatorList();
     }
 
     /**
@@ -45,7 +46,7 @@ public class Factory {
         return optional.orElseGet(() -> new Number(key));
     }
 
-    private void initOperatorMap() {
+    private void initOperatorList() {
         factory.add(new Plus());
         factory.add(new Minus());
         factory.add(new Multiple());
