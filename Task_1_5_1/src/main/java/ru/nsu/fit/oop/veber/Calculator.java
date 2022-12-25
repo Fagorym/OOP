@@ -18,7 +18,7 @@ public class Calculator {
      */
     public Calculator() {
         this.floatDeque = new ArrayDeque<>();
-        this.factory = new Factory(floatDeque);
+        this.factory = new Factory();
     }
 
     /**
@@ -50,7 +50,7 @@ public class Calculator {
         String[] tokens = expression.split(" ");
         for (int i = tokens.length - 1; i >= 0; i--) {
             {
-                Operator operator = parseExpr(tokens[i]);
+                Operator operator = factory.getOperator(tokens[i]);
                 List<Double> operands = new ArrayList<>();
                 for (int j = 0; j < operator.getArity(); j++) {
                     operands.add(floatDeque.pollFirst());
@@ -61,10 +61,6 @@ public class Calculator {
         }
         return floatDeque.pollFirst();
 
-    }
-
-    private Operator parseExpr(String operator) {
-        return factory.getOperator(operator);
     }
 
 }

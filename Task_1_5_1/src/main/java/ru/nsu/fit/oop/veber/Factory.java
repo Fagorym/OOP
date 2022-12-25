@@ -18,7 +18,7 @@ public class Factory {
      * Main constructor of the factory.
      * Created hashmap and init basic operators.
      */
-    public Factory(Deque<Double> expression) {
+    public Factory() {
         factory = new ArrayList<>();
         initOperatorMap();
     }

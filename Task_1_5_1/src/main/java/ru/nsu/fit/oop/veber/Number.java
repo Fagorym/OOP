@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Number extends Operator {
 
-    private final Double key;
+    private final String key;
 
     public Number(String key) {
-        this.key = Double.valueOf(key);
+        this.key = key;
 
     }
 
@@ -19,12 +19,13 @@ public class Number extends Operator {
 
     @Override
     protected String getKey() {
-        return "";
+        return key;
     }
+
 
     @Override
     protected Double calculate(List<Double> operands) {
-        return key;
+        return Double.valueOf(key);
     }
 
 }
