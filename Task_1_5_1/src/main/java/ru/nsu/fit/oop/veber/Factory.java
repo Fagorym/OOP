@@ -5,36 +5,31 @@ import ru.nsu.fit.oop.veber.unaryoperators.Cos;
 import ru.nsu.fit.oop.veber.unaryoperators.Sin;
 import ru.nsu.fit.oop.veber.unaryoperators.Sqrt;
 
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Class that represent operator factory.
  */
 public class Factory {
 
-    private final HashMap<String, Operator> factory;
-    private final Deque<Double> expression;
+    private final List<Operator> factory;
 
     /**
      * Main constructor of the factory.
      * Created hashmap and init basic operators.
      */
     public Factory(Deque<Double> expression) {
-        factory = new HashMap<>();
-        this.expression = expression;
+        factory = new ArrayList<>();
         initOperatorMap();
     }
 
     /**
      * Adds custom operator to factory.
      *
-     * @param key      - will be string representation of the operator
      * @param operator - operator interface, that implemented main calculate operation for this operator
      */
-    public void addOperator(String key, Operator operator) {
-        factory.put(key, operator);
+    public void addOperator(Operator operator) {
+        factory.add(operator);
     }
 
     /**
@@ -44,27 +39,21 @@ public class Factory {
      * @return operator by key
      */
     public Operator getOperator(String key) {
-        return factory.get(key);
-    }
-
-    /**
-     * Getter for set of all operators, those fabric contains.
-     *
-     * @return set of all operators
-     */
-    public Set<String> getOperators() {
-        return factory.keySet();
+        return factory.stream()
+                .filter((operator -> Objects.equals(operator.getKey(), key)))
+                .findFirst()
+                .orElse(new Number(key));
     }
 
     private void initOperatorMap() {
-        factory.put("+", new Plus());
-        factory.put("-", new Minus());
-        factory.put("*", new Multiple());
-        factory.put("/", new Divide());
-        factory.put("sin", new Sin());
-        factory.put("cos", new Cos());
-        factory.put("log", new Log());
-        factory.put("pow", new Pow());
-        factory.put("sqrt", new Sqrt());
+        factory.add(new Plus());
+        factory.add(new Minus());
+        factory.add(new Multiple());
+        factory.add(new Divide());
+        factory.add(new Sin());
+        factory.add(new Cos());
+        factory.add(new Log());
+        factory.add(new Pow());
+        factory.add(new Sqrt());
     }
 }

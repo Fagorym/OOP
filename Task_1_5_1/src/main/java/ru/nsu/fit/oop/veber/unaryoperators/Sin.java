@@ -10,12 +10,18 @@ import java.util.List;
  */
 public class Sin extends Operator {
 
-    private final Integer ARITY = 1;
+    private final static Integer ARITY = 1;
+    private final static String key = "sin";
 
 
     @Override
     protected Integer getArity() {
         return ARITY;
+    }
+
+    @Override
+    protected String getKey() {
+        return key;
     }
 
     @Override

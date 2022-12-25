@@ -10,12 +10,17 @@ import java.util.List;
  */
 public class Cos extends Operator {
 
-    private final Integer ARITY = 1;
+    private final static Integer ARITY = 1;
+    private final static String key = "cos";
 
 
     @Override
     protected Integer getArity() {
         return ARITY;
+    }
+    @Override
+    protected String getKey() {
+        return key;
     }
 
     @Override

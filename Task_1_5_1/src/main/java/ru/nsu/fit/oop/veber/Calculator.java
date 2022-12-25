@@ -49,11 +49,11 @@ public class Calculator {
     public Double calculate() {
         String[] tokens = expression.split(" ");
         for (int i = tokens.length - 1; i >= 0; i--) {
-            if (factory.getOperators().contains(tokens[i])) {
+            {
                 Operator operator = parseExpr(tokens[i]);
                 List<Double> operands = new ArrayList<>();
                 for (int j = 0; j < operator.getArity(); j++) {
-                    operands.add(Double.valueOf(tokens[i++]));
+                    operands.add(Double.valueOf(tokens[i--]));
                 }
                 Double result = operator.calculate(operands);
                 floatDeque.addFirst(result);

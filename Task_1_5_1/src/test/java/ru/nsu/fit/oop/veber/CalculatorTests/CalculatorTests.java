@@ -28,7 +28,7 @@ public class CalculatorTests {
     })
     public void checkExpression(String expression, float expected) {
         calculator.setExpression(expression);
-        Float result = calculator.calculate();
+        Double result = calculator.calculate();
         Assertions.assertEquals(expected, result);
 
     }
