@@ -7,21 +7,9 @@ import java.util.List;
 /**
  * Class that represent sqrt operator.
  */
-public class Sqrt extends Operator {
+public class Sqrt extends AbstractUnary {
 
-    private final static Integer ARITY = 1;
     private final static String key = "sqrt";
-
-
-    /**
-     * Function that returns arity of operator.
-     *
-     * @return arity of operator
-     */
-    @Override
-    protected Integer getArity() {
-        return ARITY;
-    }
 
     /**
      * Function that returns key of operator.

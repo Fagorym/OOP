@@ -7,21 +7,9 @@ import java.util.List;
 /**
  * Class that represent sin operator.
  */
-public class Sin extends Operator {
+public class Sin extends AbstractUnary {
 
-    private final static Integer ARITY = 1;
     private final static String key = "sin";
-
-
-    /**
-     * Function that returns arity of operator.
-     *
-     * @return arity of operator
-     */
-    @Override
-    protected Integer getArity() {
-        return ARITY;
-    }
 
     /**
      * Function that returns key of operator.
