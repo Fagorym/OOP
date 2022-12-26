@@ -17,7 +17,7 @@ public class BookTest {
 
     @BeforeEach
     public void initBook() throws FileNotFoundException {
-        this.book = new RecordBook("../records.txt");
+        this.book = new RecordBook();
     }
 
     @Test
@@ -26,9 +26,8 @@ public class BookTest {
         book.addRecord("I love Java!", "But sometimes I hate it! :)");
         Collection<Record> records = book.getRecords();
         Assertions.assertEquals(1, records.size());
-        Assertions.assertEquals(records.stream().findFirst().get().name(), "I love Java!");
-        book.saveBook();
-        book.printBook();
+        Assertions.assertEquals(records.stream().findFirst().get().header(), "I love Java!");
+        book.saveRecords();
     }
 
     @Test
@@ -38,6 +37,6 @@ public class BookTest {
         Assertions.assertEquals(1, records.size());
         book.deleteRecord("I love Java!");
         Assertions.assertEquals(0, records.size());
-        book.saveBook();
+        book.saveRecords();
     }
 }
