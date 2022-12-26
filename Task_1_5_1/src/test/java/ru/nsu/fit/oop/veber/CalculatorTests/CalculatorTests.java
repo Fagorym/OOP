@@ -24,7 +24,8 @@ public class CalculatorTests {
             "^ 2 4, 16",
             "sin 0, 0",
             "cos 0, 1",
-            "sqrt 100, 10"
+            "sqrt 100, 10",
+            "log 8 2, 3"
     })
     public void checkExpression(String expression, float expected) {
         calculator.setExpression(expression);
