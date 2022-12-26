@@ -1,13 +1,15 @@
 package ru.nsu.fit.oop.veber;
 
+import picocli.CommandLine;
+
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+   /* public static void main(String[] args) throws IOException {
         if (args.length < 1) {
             throw new IllegalArgumentException("Wrong arguments count, try again");
         }
-        RecordBook book = new RecordBook();
+        RecordBook book = new RecordBook("../records.txt");
         switch (args[0]) {
             case "-add" -> {
                 if (args.length < 3) {
@@ -33,5 +35,14 @@ public class Main {
 
         }
         book.saveBook();
+    }
+
+    */
+
+    public static void main(String[] args) throws IOException {
+        RecordBook myBook = new RecordBook("../records.txt");
+        new CommandLine(myBook)
+                .setExecutionStrategy(myBook::executionStrategy)
+                .execute(args);
     }
 }
