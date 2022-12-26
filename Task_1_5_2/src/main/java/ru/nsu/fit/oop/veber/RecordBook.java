@@ -2,21 +2,22 @@ package ru.nsu.fit.oop.veber;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import picocli.CommandLine.*;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.*;
 
 import static java.lang.System.out;
 
+
+@Command(name = "notebook")
 public class RecordBook {
     private final File file;
     private TreeSet<Record> records;
 
-    public RecordBook() throws FileNotFoundException {
-        String filename = "./records.txt";
+    public RecordBook(String filename) throws FileNotFoundException {
         file = new File(filename);
         loadRecords();
         if (records == null) {
@@ -24,7 +25,8 @@ public class RecordBook {
         }
     }
 
-    public void addRecord(String name, String description) {
+    @Command(name = "-add")
+    public void addRecord(@Option(names = "-h") String name, @Option(names = "-d") String description) {
         String time = String.valueOf(LocalDateTime.now());
         Record value = new Record(time, name, description);
         records.add(value);
@@ -35,6 +37,7 @@ public class RecordBook {
         out.println(this);
     }
 
+    @Command(name = "-rm")
     public void deleteRecord(String name) {
         records.removeIf((record -> Objects.equals(record.name(), name)));
     }
@@ -52,6 +55,15 @@ public class RecordBook {
         }
 
 
+    }
+
+    private void init() {
+
+    }
+
+    public int executionStrategy(ParseResult parseResult) {
+        init(); // custom initialization to be done before executing any command or subcommand
+        return new RunLast().execute(parseResult); // default execution strategy
     }
 
     public String toString() {
