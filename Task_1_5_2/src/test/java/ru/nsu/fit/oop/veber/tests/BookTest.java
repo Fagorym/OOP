@@ -12,11 +12,11 @@ public class BookTest {
 
 
     @Test
-    public void testAddRecord() throws IOException {
+    public void testAddRecord() {
 
         Main main = new Main();
         RecordBook book = main.getBook();
-        String[] args = {"-add",
+        String[] args = {"add",
                 "-h=I love Java!",
                 "-d=But sometimes I hate it! :)"};
         Main.main(args);
@@ -24,7 +24,7 @@ public class BookTest {
         Record firstRecord = book.getRecords().stream().toList().get(0);
         Assertions.assertEquals("I love Java!", firstRecord.header());
         Assertions.assertEquals("But sometimes I hate it! :)", firstRecord.description());
-        args = new String[]{"-add",
+        args = new String[]{"add",
                 "-h=I dont love Java!",
                 "-d=But sometimes I love it! :)"};
         Main.main(args);
@@ -32,20 +32,20 @@ public class BookTest {
         Record secondRecord = book.getRecords().stream().toList().get(1);
         Assertions.assertEquals("I dont love Java!", secondRecord.header());
         Assertions.assertEquals("But sometimes I love it! :)", secondRecord.description());
-        args = new String[]{"-rm",
+        args = new String[]{"rm",
                 "-h=I dont love Java!"};
         Main.main(args);
-        args = new String[]{"-show"};
+        args = new String[]{"show"};
         Main.main(args);
 
     }
 
     @Test
-    public void testAddAnotherFileRecords() throws IOException {
+    public void testAddAnotherFileRecords() {
         Main main = new Main();
         RecordBook book = main.getBook();
         String[] args = {"-f=notebook.txt",
-                "-add",
+                "add",
                 "-h=I love Java!",
                 "-d=But sometimes I hate it! :)"};
         Main.main(args);
