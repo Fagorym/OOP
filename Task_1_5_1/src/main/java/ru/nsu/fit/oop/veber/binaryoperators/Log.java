@@ -7,20 +7,9 @@ import java.util.List;
 /**
  * Class that represent log operation.
  */
-public class Log extends Operator {
+public class Log extends AbstractBinary {
     private final static String KEY = "log";
-    private final static Integer ARITY = 2;
 
-
-    /**
-     * Function that returns arity of operator.
-     *
-     * @return arity of operator
-     */
-    @Override
-    protected Integer getArity() {
-        return ARITY;
-    }
 
     /**
      * Function that returns key of operator.
