@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.veber;
 
 import picocli.CommandLine;
+import ru.nsu.fit.oop.veber.recordbook.RecordBook;
 
 import java.io.IOException;
 
@@ -8,7 +9,7 @@ public class Main {
 
     private static RecordBook book = new RecordBook();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         new CommandLine(book).execute(args);
 
     }

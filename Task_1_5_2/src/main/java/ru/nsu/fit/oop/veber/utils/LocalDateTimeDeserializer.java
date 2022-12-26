@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.utils;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -13,7 +13,7 @@ import java.util.Locale;
 /**
  * Class that represent deserializer for GSON.
  */
-class LocalDateTimeDeserializer implements JsonDeserializer<LocalDateTime> {
+public class LocalDateTimeDeserializer implements JsonDeserializer<LocalDateTime> {
     /**
      * Method that deserializes LocalDateTime at JSON.
      *
