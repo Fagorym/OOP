@@ -17,7 +17,7 @@ public class BookTest {
 
     @BeforeEach
     public void initBook() throws FileNotFoundException {
-        this.book = new RecordBook();
+        this.book = new RecordBook("../records.txt");
     }
 
     @Test
