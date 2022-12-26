@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.recordbook;
 
 import java.io.*;
 import java.time.LocalDateTime;
