@@ -8,20 +8,8 @@ import java.util.List;
 /**
  * Class that represents multiple operation.
  */
-public class Multiple extends Operator {
+public class Multiple extends AbstractBinary {
     private final static String KEY = "*";
-    private final static Integer ARITY = 2;
-
-
-    /**
-     * Function that returns arity of operator.
-     *
-     * @return arity of operator
-     */
-    @Override
-    protected Integer getArity() {
-        return ARITY;
-    }
 
     /**
      * Function that returns key of operator.
