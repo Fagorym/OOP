@@ -26,9 +26,9 @@ public class RecordBook {
     }
 
     @Command(name = "-add")
-    public void addRecord(@Option(names = "-h") String name, @Option(names = "-d") String description) {
-        String time = String.valueOf(LocalDateTime.now());
-        Record value = new Record(time, name, description);
+    public void addRecord(@Option(names = "-h") String header, @Option(names = "-d") String description) {
+        String datetime = String.valueOf(LocalDateTime.now());
+        Record value = new Record(datetime, header, description);
         records.add(value);
 
     }
@@ -38,8 +38,8 @@ public class RecordBook {
     }
 
     @Command(name = "-rm")
-    public void deleteRecord(String name) {
-        records.removeIf((record -> Objects.equals(record.name(), name)));
+    public void deleteRecord(String header) {
+        records.removeIf((record -> Objects.equals(record.header(), header)));
     }
 
     public Collection<Record> getRecords() {
