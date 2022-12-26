@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 
 public class BookTest {
 
-    private Main cli;
-
 
     @Test
     public void testAddRecord() throws IOException {
@@ -44,6 +42,21 @@ public class BookTest {
         Main.main(args);
         args = new String[]{"-show"};
         Main.main(args);
+
+    }
+
+    @Test
+    public void testAddAnotherFileRecords() throws IOException {
+        Main main = new Main();
+        RecordBook book = main.getBook();
+        String[] args = {"-f=notebook.txt",
+                "-add",
+                "-h=I love Java!",
+                "-d=But sometimes I hate it! :)"};
+        Main.main(args);
+        Record firstRecord = book.getRecords().stream().toList().get(0);
+        Assertions.assertEquals("I love Java!", firstRecord.header());
+        Assertions.assertEquals("But sometimes I hate it! :)", firstRecord.description());
 
     }
 }
