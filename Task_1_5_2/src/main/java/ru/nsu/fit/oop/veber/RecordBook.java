@@ -1,17 +1,13 @@
 package ru.nsu.fit.oop.veber;
 
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import picocli.CommandLine.*;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.lang.System.load;
 import static java.lang.System.out;
 
 
@@ -29,8 +25,8 @@ public class RecordBook {
         loadRecords();
         String datetime = String.valueOf(LocalDateTime.now());
         Record value = new Record(header, description, datetime);
-        saveRecords();
         records.add(value);
+        saveRecords();
 
     }
 
