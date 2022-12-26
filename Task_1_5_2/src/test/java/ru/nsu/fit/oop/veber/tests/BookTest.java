@@ -1,17 +1,12 @@
 package ru.nsu.fit.oop.veber.tests;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.veber.Main;
-import ru.nsu.fit.oop.veber.Record;
-import ru.nsu.fit.oop.veber.RecordBook;
+import ru.nsu.fit.oop.veber.recordbook.Record;
+import ru.nsu.fit.oop.veber.recordbook.RecordBook;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 public class BookTest {
 

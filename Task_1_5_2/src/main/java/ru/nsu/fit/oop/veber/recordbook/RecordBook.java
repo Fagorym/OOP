@@ -1,10 +1,10 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.recordbook;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
 import picocli.CommandLine.*;
+import ru.nsu.fit.oop.veber.utils.CustomGsonParser;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Stream;
@@ -19,27 +19,10 @@ import static java.lang.System.out;
 @Command(name = "notebook")
 public class RecordBook {
 
-    private Gson gson;
+    private final Gson gson = new CustomGsonParser().getGson();
     @Option(names = {"-f", "-file"}, description = "Notebook file", defaultValue = "records.txt")
     private File file;
     private TreeSet<Record> records;
-
-    /**
-     * Default constructor of record book.
-     */
-    public RecordBook() {
-        initGson();
-    }
-
-    /**
-     * Function that inits GSON parser for LocalDateTime.
-     */
-    private void initGson() {
-        this.gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer())
-                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer())
-                .create();
-    }
 
     /**
      * Adds record to record book.

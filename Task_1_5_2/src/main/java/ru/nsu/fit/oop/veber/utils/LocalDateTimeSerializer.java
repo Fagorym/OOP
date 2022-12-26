@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.utils;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Class that represent serializer class for GSON.
  */
-class LocalDateTimeSerializer implements JsonSerializer<LocalDateTime> {
+public class LocalDateTimeSerializer implements JsonSerializer<LocalDateTime> {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd:HH:mm:ss.nnn");
 
     /**
