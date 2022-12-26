@@ -8,6 +8,9 @@ import ru.nsu.fit.oop.veber.utils.LocalDateTimeConverter;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
+/**
+ * Class that represent subcommand "show" for RecordBook.
+ */
 @Command(name = "show", description = "Function that shows record from record book")
 public class ShowRecords implements Runnable {
     @Option(names = "-from",
@@ -24,6 +27,9 @@ public class ShowRecords implements Runnable {
     @ParentCommand
     RecordBook book;
 
+    /**
+     * Function that print records, that matches provided parameters.
+     */
     @Override
     public void run() {
         book.loadRecords();

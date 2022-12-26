@@ -6,6 +6,9 @@ import picocli.CommandLine.Option;
 
 import java.time.LocalDateTime;
 
+/**
+ * Class that represent subcommand "add" for RecordBook.
+ */
 @Command(name = "add", description = "Function that adds record to record book")
 public class AddRecord implements Runnable {
 
@@ -16,6 +19,9 @@ public class AddRecord implements Runnable {
     @ParentCommand
     RecordBook book;
 
+    /**
+     * Function that add record with provided parameters.
+     */
     @Override
     public void run() {
         book.loadRecords();
