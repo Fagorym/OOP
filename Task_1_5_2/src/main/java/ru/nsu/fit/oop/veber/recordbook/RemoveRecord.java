@@ -6,6 +6,9 @@ import picocli.CommandLine.Command;
 
 import java.util.Objects;
 
+/**
+ * Class that represent subcommand "rm" for RecordBook.
+ */
 @Command(name = "rm", description = "Function that removes record from record book")
 public class RemoveRecord implements Runnable {
     @Option(names = "-h", description = "Header of the note")
@@ -14,6 +17,9 @@ public class RemoveRecord implements Runnable {
     @ParentCommand
     RecordBook book;
 
+    /**
+     * Function that remove record with provided header.
+     */
     @Override
     public void run() {
         book.loadRecords();
