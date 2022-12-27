@@ -1,5 +1,7 @@
 package ru.nsu.fit.oop.veber.unaryoperators;
 
+import ru.nsu.fit.oop.veber.numbers.Number;
+
 import java.util.List;
 
 /**
@@ -31,8 +33,10 @@ public class Cos extends AbstractUnary {
      * @return result of operator
      */
     @Override
-    protected Double calculate(List<Double> operands) {
-        return Math.cos(operands.get(0));
+    public Double calculate(List<Number> operands) {
+        return Math.cos(operands
+                .get(0)
+                .calculate(operands));
     }
 }
     

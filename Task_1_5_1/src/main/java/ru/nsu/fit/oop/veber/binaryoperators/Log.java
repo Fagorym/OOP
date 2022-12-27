@@ -1,5 +1,7 @@
 package ru.nsu.fit.oop.veber.binaryoperators;
 
+import ru.nsu.fit.oop.veber.numbers.Number;
+
 import java.util.List;
 
 /**
@@ -32,7 +34,7 @@ public class Log extends AbstractBinary {
      * @return result of operator
      */
     @Override
-    protected Double calculate(List<Double> operands) {
-        return (Math.log(operands.get(0)) / Math.log(operands.get(1)));
+    public Double calculate(List<Number> operands) {
+        return (Math.log(operands.get(0).calculate(operands)) / Math.log(operands.get(1).calculate(operands)));
     }
 }

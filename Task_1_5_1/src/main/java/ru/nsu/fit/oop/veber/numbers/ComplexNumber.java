@@ -8,13 +8,13 @@ public class ComplexNumber extends Number {
     private String key;
 
     @Override
-    protected Double calculate(List<Double> operands) {
+    public Double calculate(List<Number> operands) {
         return Double.valueOf(key);
     }
 
     @Override
     protected Boolean matches(String key) {
-        if (Pattern.matches("d*[+]d*i", key)) {
+        if (Pattern.matches("\\d*[+]\\d*[i]", key)) {
             this.key = key;
             return true;
         }

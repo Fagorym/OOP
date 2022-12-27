@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.veber.binaryoperators;
 
 
+import ru.nsu.fit.oop.veber.numbers.Number;
+
 import java.util.List;
 
 /**
@@ -32,8 +34,8 @@ public class Pow extends AbstractBinary {
      * @return result of operator
      */
     @Override
-    protected Double calculate(List<Double> operands) {
-        return Math.pow(operands.get(0), operands.get(1));
+    public Double calculate(List<Number> operands) {
+        return Math.pow(operands.get(0).calculate(operands), operands.get(1).calculate(operands));
     }
 }
 
