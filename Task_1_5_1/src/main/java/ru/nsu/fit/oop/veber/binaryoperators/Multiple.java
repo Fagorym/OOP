@@ -1,8 +1,6 @@
 package ru.nsu.fit.oop.veber.binaryoperators;
 
 
-import ru.nsu.fit.oop.veber.Operator;
-
 import java.util.List;
 
 /**
@@ -10,6 +8,11 @@ import java.util.List;
  */
 public class Multiple extends AbstractBinary {
     private final static String KEY = "*";
+
+    @Override
+    protected Boolean matches(String key) {
+        return KEY.equals(key);
+    }
 
     /**
      * Function that returns key of operator.
