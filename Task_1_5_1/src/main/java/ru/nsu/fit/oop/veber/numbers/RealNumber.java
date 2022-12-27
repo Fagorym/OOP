@@ -10,7 +10,7 @@ public class RealNumber extends Number {
 
     @Override
     protected Boolean matches(String key) {
-        if (Pattern.matches("(\\d+)", key)) {
+        if (Pattern.matches("(\\d+([.]\\d+)??)", key)) {
             this.key = key;
             return true;
         }
