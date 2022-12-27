@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.veber;
 
 
+import ru.nsu.fit.oop.veber.numbers.Number;
+
 import java.util.List;
 
 /**
@@ -37,7 +39,7 @@ abstract public class Operator implements Cloneable {
      * @param operands - list of operands that provided for operations
      * @return result of operator
      */
-    protected abstract Double calculate(List<Double> operands);
+    public abstract Double calculate(List<Number> operands);
 
     @Override
     public Operator clone() {

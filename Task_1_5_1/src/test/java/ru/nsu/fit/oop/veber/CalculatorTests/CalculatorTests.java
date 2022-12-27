@@ -2,10 +2,9 @@ package ru.nsu.fit.oop.veber.CalculatorTests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.nsu.fit.oop.veber.Calculator;
-import org.junit.jupiter.params.ParameterizedTest;
 
 public class CalculatorTests {
     private Calculator calculator;

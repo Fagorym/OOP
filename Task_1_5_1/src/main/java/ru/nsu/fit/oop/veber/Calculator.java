@@ -51,7 +51,7 @@ public class Calculator {
         for (int i = tokens.length - 1; i >= 0; i--) {
             {
                 Operator operator = factory.getOperator(tokens[i]);
-                List<Double> operands = new ArrayList<>();
+                List<Number> operands = new ArrayList<>();
                 for (int j = 0; j < operator.getArity(); j++) {
                     operands.add(floatDeque.pollFirst());
                 }
