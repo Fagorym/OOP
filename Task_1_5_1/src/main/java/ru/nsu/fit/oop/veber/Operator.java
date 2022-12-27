@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Abstract class of operator.
  */
-abstract public class Operator {
+abstract public class Operator implements Cloneable {
 
     /**
      * Function that returns arity of operator.
@@ -14,6 +14,14 @@ abstract public class Operator {
      * @return arity of operator
      */
     protected abstract Integer getArity();
+
+    /**
+     * Function that compare operator key with provided string.
+     *
+     * @return true - if operator key matches this string
+     * otherwise - false
+     */
+    protected abstract Boolean matches(String key);
 
 
     /**
@@ -30,4 +38,13 @@ abstract public class Operator {
      * @return result of operator
      */
     protected abstract Double calculate(List<Double> operands);
+
+    @Override
+    public Operator clone() {
+        try {
+            return (Operator) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

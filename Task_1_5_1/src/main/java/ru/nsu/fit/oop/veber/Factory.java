@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.veber;
 
 import ru.nsu.fit.oop.veber.binaryoperators.*;
+import ru.nsu.fit.oop.veber.numbers.ComplexNumber;
+import ru.nsu.fit.oop.veber.numbers.RealNumber;
 import ru.nsu.fit.oop.veber.unaryoperators.Cos;
 import ru.nsu.fit.oop.veber.unaryoperators.Sin;
 import ru.nsu.fit.oop.veber.unaryoperators.Sqrt;
@@ -40,10 +42,11 @@ public class Factory {
      * @return operator by key
      */
     public Operator getOperator(String key) {
-        var optional = factory.stream()
-                .filter(operator -> key.equals(operator.getKey()))
-                .findFirst();
-        return optional.orElseGet(() -> new Number(key));
+        return factory.stream()
+                .filter(operator -> operator.matches(key))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new)
+                .clone();
     }
 
     private void initOperatorList() {
@@ -56,5 +59,7 @@ public class Factory {
         factory.add(new Log());
         factory.add(new Pow());
         factory.add(new Sqrt());
+        factory.add(new RealNumber());
+        factory.add(new ComplexNumber());
     }
 }

@@ -1,7 +1,5 @@
 package ru.nsu.fit.oop.veber.unaryoperators;
 
-import ru.nsu.fit.oop.veber.Operator;
-
 import java.util.List;
 
 /**
@@ -9,7 +7,12 @@ import java.util.List;
  */
 public class Sin extends AbstractUnary {
 
-    private final static String key = "sin";
+    private final static String KEY = "sin";
+
+    @Override
+    protected Boolean matches(String key) {
+        return KEY.equals(key);
+    }
 
     /**
      * Function that returns key of operator.
@@ -18,7 +21,7 @@ public class Sin extends AbstractUnary {
      */
     @Override
     protected String getKey() {
-        return key;
+        return KEY;
     }
 
     /**
