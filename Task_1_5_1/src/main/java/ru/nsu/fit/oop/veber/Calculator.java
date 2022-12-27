@@ -1,15 +1,14 @@
 package ru.nsu.fit.oop.veber;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import ru.nsu.fit.oop.veber.numbers.Number;
+
+import java.util.*;
 
 /**
  * Class that represent calculator.
  */
 public class Calculator {
-    private final Deque<Double> floatDeque;
+    private final Deque<Number> floatDeque;
     private final Factory factory;
     private String expression;
 
@@ -56,10 +55,11 @@ public class Calculator {
                     operands.add(floatDeque.pollFirst());
                 }
                 Double result = operator.calculate(operands);
-                floatDeque.addFirst(result);
+                Number number = (Number) factory.getOperator(result.toString());
+                floatDeque.addFirst(number);
             }
         }
-        return floatDeque.pollFirst();
+        return floatDeque.pollFirst().calculate(Collections.emptyList());
 
     }
 
