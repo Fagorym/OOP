@@ -1,15 +1,15 @@
-package ru.nsu.fit.oop.veber.doubleoperators.unaryoperators;
+package ru.nsu.fit.oop.veber.real.unary;
 
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.List;
 
 /**
- * Class that represent sqrt operator.
+ * Class that represent cos operator.
  */
-public class Sqrt extends AbstractUnary {
+public class Cos extends AbstractUnary {
 
-    private final static String KEY = "sqrt";
+    private final static String KEY = "cos";
 
     @Override
     public Boolean matches(String key) {
@@ -34,8 +34,9 @@ public class Sqrt extends AbstractUnary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return Math.sqrt(operands
+        return Math.cos(operands
                 .get(0)
                 .calculate(operands));
     }
 }
+    

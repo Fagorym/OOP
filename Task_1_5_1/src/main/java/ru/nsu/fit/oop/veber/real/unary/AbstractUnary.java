@@ -1,6 +1,6 @@
-package ru.nsu.fit.oop.veber.doubleoperators.unaryoperators;
+package ru.nsu.fit.oop.veber.real.unary;
 
-import ru.nsu.fit.oop.veber.doubleoperators.Operator;
+import ru.nsu.fit.oop.veber.real.Operator;
 
 abstract public class AbstractUnary extends Operator {
 

@@ -1,15 +1,15 @@
-package ru.nsu.fit.oop.veber.doubleoperators.binaryoperators;
-
+package ru.nsu.fit.oop.veber.real.unary;
 
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.List;
 
 /**
- * Class that represents plus operation
+ * Class that represent sin operator.
  */
-public class Plus extends AbstractBinary {
-    private final static String KEY = "+";
+public class Sin extends AbstractUnary {
+
+    private final static String KEY = "sin";
 
     @Override
     public Boolean matches(String key) {
@@ -34,6 +34,8 @@ public class Plus extends AbstractBinary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return operands.get(0).calculate(operands) + operands.get(1).calculate(operands);
+        return Math.sin(operands
+                .get(0)
+                .calculate(operands));
     }
 }

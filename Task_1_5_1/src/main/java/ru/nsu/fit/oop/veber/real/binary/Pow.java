@@ -1,15 +1,16 @@
-package ru.nsu.fit.oop.veber.doubleoperators.unaryoperators;
+package ru.nsu.fit.oop.veber.real.binary;
+
 
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.List;
 
 /**
- * Class that represent cos operator.
+ * Class that represent pow operation.
  */
-public class Cos extends AbstractUnary {
+public class Pow extends AbstractBinary {
 
-    private final static String KEY = "cos";
+    private final static String KEY = "^";
 
     @Override
     public Boolean matches(String key) {
@@ -34,9 +35,7 @@ public class Cos extends AbstractUnary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return Math.cos(operands
-                .get(0)
-                .calculate(operands));
+        return Math.pow(operands.get(0).calculate(operands), operands.get(1).calculate(operands));
     }
 }
-    
+
