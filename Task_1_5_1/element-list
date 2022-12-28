@@ -1,4 +1,7 @@
 ru.nsu.fit.oop.veber
-ru.nsu.fit.oop.veber.binaryoperators
-ru.nsu.fit.oop.veber.numbers
-ru.nsu.fit.oop.veber.unaryoperators
+ru.nsu.fit.oop.veber.complex
+ru.nsu.fit.oop.veber.complex.binary
+ru.nsu.fit.oop.veber.complex.unary
+ru.nsu.fit.oop.veber.real
+ru.nsu.fit.oop.veber.real.binary
+ru.nsu.fit.oop.veber.real.unary
