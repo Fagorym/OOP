@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.veber.real.unary;
 
 import ru.nsu.fit.oop.veber.Number;
+import ru.nsu.fit.oop.veber.real.RealNumber;
 
 import java.util.List;
 
@@ -34,8 +35,8 @@ public class Cos extends AbstractUnary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return Math.cos(operands
-                .get(0)
+        return Math.cos(((RealNumber) operands
+                .get(0))
                 .calculate(operands));
     }
 }

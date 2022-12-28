@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.veber.real.binary;
 
 
 import ru.nsu.fit.oop.veber.Number;
+import ru.nsu.fit.oop.veber.real.RealNumber;
 
 import java.util.List;
 
@@ -35,7 +36,9 @@ public class Pow extends AbstractBinary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return Math.pow(operands.get(0).calculate(operands), operands.get(1).calculate(operands));
+        return Math.pow(
+                ((RealNumber) operands.get(0)).calculate(operands),
+                ((RealNumber) operands.get(1)).calculate(operands));
     }
 }
 
