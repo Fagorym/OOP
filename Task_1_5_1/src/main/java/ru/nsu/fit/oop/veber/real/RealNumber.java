@@ -1,9 +1,11 @@
 package ru.nsu.fit.oop.veber.real;
 
+import ru.nsu.fit.oop.veber.Number;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class RealNumber extends Operator {
+public class RealNumber extends Number {
 
     private String key;
 

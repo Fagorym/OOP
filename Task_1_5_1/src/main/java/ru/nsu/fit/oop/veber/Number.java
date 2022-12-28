@@ -1,6 +1,6 @@
-package ru.nsu.fit.oop.veber.numbers;
+package ru.nsu.fit.oop.veber;
 
-import ru.nsu.fit.oop.veber.doubleoperators.Operator;
+import ru.nsu.fit.oop.veber.real.Operator;
 
 
 /**
