@@ -45,7 +45,7 @@ public class Calculator {
      *
      * @return result of the calculated expression
      */
-    public Double calculate() {
+    public String calculate() {
         String[] tokens = expression.split(" ");
         for (int i = tokens.length - 1; i >= 0; i--) {
             {
@@ -54,12 +54,12 @@ public class Calculator {
                 for (int j = 0; j < operator.getArity(); j++) {
                     operands.add(floatDeque.pollFirst());
                 }
-                Double result = (Double) operator.calculate(operands);
-                Number number = (Number) factory.getOperator(result.toString());
+                String result = operator.calculate(operands).toString();
+                Number number = (Number) factory.getOperator(result);
                 floatDeque.addFirst(number);
             }
         }
-        return (Double) floatDeque.pollFirst().calculate(Collections.emptyList());
+        return floatDeque.pollFirst().calculate(Collections.emptyList()).toString();
 
     }
 

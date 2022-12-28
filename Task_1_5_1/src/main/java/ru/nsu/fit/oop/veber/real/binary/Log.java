@@ -37,7 +37,7 @@ public class Log extends AbstractBinary {
     @Override
     public Double calculate(List<Number> operands) {
         return (Math.log(
-                (((RealNumber) operands.get(0)).calculate(operands)) /
-                        Math.log(((RealNumber) operands.get(1)).calculate(operands))));
+                (((RealNumber) operands.get(0)).calculate(operands))) /
+                Math.log(((RealNumber) operands.get(1)).calculate(operands)));
     }
 }
