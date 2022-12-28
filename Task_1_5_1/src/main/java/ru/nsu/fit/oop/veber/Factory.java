@@ -2,6 +2,10 @@ package ru.nsu.fit.oop.veber;
 
 
 import ru.nsu.fit.oop.veber.complex.ComplexNumber;
+import ru.nsu.fit.oop.veber.complex.binary.*;
+import ru.nsu.fit.oop.veber.complex.unary.ComplexCos;
+import ru.nsu.fit.oop.veber.complex.unary.ComplexSin;
+import ru.nsu.fit.oop.veber.complex.unary.ComplexSqrt;
 import ru.nsu.fit.oop.veber.real.Operator;
 import ru.nsu.fit.oop.veber.real.RealNumber;
 import ru.nsu.fit.oop.veber.real.binary.*;
@@ -63,5 +67,13 @@ public class Factory {
         factory.add(new Sqrt());
         factory.add(new RealNumber());
         factory.add(new ComplexNumber());
+        factory.add(new ComplexPlus());
+        factory.add(new ComplexMinus());
+        factory.add(new ComplexDivide());
+        factory.add(new ComplexPow());
+        factory.add(new ComplexMultiple());
+        factory.add(new ComplexCos());
+        factory.add(new ComplexSin());
+        factory.add(new ComplexSqrt());
     }
 }
