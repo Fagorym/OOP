@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.veber.real.binary;
 
-import ru.nsu.fit.oop.veber.numbers.Number;
+import ru.nsu.fit.oop.veber.Number;
 
 import java.util.List;
 

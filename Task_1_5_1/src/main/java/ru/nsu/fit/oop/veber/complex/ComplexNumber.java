@@ -1,11 +1,12 @@
 package ru.nsu.fit.oop.veber.complex;
 
 import org.apache.commons.numbers.complex.Complex;
+import ru.nsu.fit.oop.veber.Number;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class ComplexNumber extends ComplexOperator {
+public class ComplexNumber extends Number {
 
     private String key;
 

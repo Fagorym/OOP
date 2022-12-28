@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.veber;
 
-import ru.nsu.fit.oop.veber.doubleoperators.Operator;
-import ru.nsu.fit.oop.veber.numbers.Number;
+import ru.nsu.fit.oop.veber.real.Operator;
 
 import java.util.*;
 
@@ -55,12 +54,12 @@ public class Calculator {
                 for (int j = 0; j < operator.getArity(); j++) {
                     operands.add(floatDeque.pollFirst());
                 }
-                Double result = operator.calculate(operands);
+                Double result = (Double) operator.calculate(operands);
                 Number number = (Number) factory.getOperator(result.toString());
                 floatDeque.addFirst(number);
             }
         }
-        return floatDeque.pollFirst().calculate(Collections.emptyList());
+        return (Double) floatDeque.pollFirst().calculate(Collections.emptyList());
 
     }
 

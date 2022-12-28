@@ -1,12 +1,13 @@
 package ru.nsu.fit.oop.veber;
 
-import ru.nsu.fit.oop.veber.doubleoperators.Operator;
-import ru.nsu.fit.oop.veber.doubleoperators.binaryoperators.*;
-import ru.nsu.fit.oop.veber.doubleoperators.unaryoperators.Cos;
-import ru.nsu.fit.oop.veber.doubleoperators.unaryoperators.Sin;
-import ru.nsu.fit.oop.veber.doubleoperators.unaryoperators.Sqrt;
-import ru.nsu.fit.oop.veber.numbers.ComplexNumber;
-import ru.nsu.fit.oop.veber.numbers.RealNumber;
+
+import ru.nsu.fit.oop.veber.complex.ComplexNumber;
+import ru.nsu.fit.oop.veber.real.Operator;
+import ru.nsu.fit.oop.veber.real.RealNumber;
+import ru.nsu.fit.oop.veber.real.binary.*;
+import ru.nsu.fit.oop.veber.real.unary.Cos;
+import ru.nsu.fit.oop.veber.real.unary.Sin;
+import ru.nsu.fit.oop.veber.real.unary.Sqrt;
 
 import java.util.ArrayList;
 import java.util.List;
