@@ -1,18 +1,18 @@
-package ru.nsu.fit.oop.veber.binaryoperators;
+package ru.nsu.fit.oop.veber.doubleoperators.unaryoperators;
 
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.List;
 
 /**
- * Class that represent log operation.
+ * Class that represent sin operator.
  */
-public class Log extends AbstractBinary {
-    private final static String KEY = "log";
+public class Sin extends AbstractUnary {
 
+    private final static String KEY = "sin";
 
     @Override
-    protected Boolean matches(String key) {
+    public Boolean matches(String key) {
         return KEY.equals(key);
     }
 
@@ -26,7 +26,6 @@ public class Log extends AbstractBinary {
         return KEY;
     }
 
-
     /**
      * Function that calculates result of operator.
      *
@@ -35,6 +34,8 @@ public class Log extends AbstractBinary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return (Math.log(operands.get(0).calculate(operands)) / Math.log(operands.get(1).calculate(operands)));
+        return Math.sin(operands
+                .get(0)
+                .calculate(operands));
     }
 }

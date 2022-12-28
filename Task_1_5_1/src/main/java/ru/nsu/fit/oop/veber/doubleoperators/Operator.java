@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.doubleoperators;
 
 
 import ru.nsu.fit.oop.veber.numbers.Number;
@@ -15,7 +15,7 @@ abstract public class Operator implements Cloneable {
      *
      * @return arity of operator
      */
-    protected abstract Integer getArity();
+    public abstract Integer getArity();
 
     /**
      * Function that compare operator key with provided string.
@@ -23,7 +23,7 @@ abstract public class Operator implements Cloneable {
      * @return true - if operator key matches this string
      * otherwise - false
      */
-    protected abstract Boolean matches(String key);
+    public abstract Boolean matches(String key);
 
 
     /**

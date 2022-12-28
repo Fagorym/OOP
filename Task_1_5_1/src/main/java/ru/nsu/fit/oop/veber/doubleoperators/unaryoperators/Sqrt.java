@@ -1,20 +1,18 @@
-package ru.nsu.fit.oop.veber.binaryoperators;
-
+package ru.nsu.fit.oop.veber.doubleoperators.unaryoperators;
 
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.List;
 
 /**
- * Class that represent divide operation.
+ * Class that represent sqrt operator.
  */
-public class Divide extends AbstractBinary {
+public class Sqrt extends AbstractUnary {
 
-    private final static String KEY = "/";
-
+    private final static String KEY = "sqrt";
 
     @Override
-    protected Boolean matches(String key) {
+    public Boolean matches(String key) {
         return KEY.equals(key);
     }
 
@@ -28,7 +26,6 @@ public class Divide extends AbstractBinary {
         return KEY;
     }
 
-
     /**
      * Function that calculates result of operator.
      *
@@ -37,8 +34,8 @@ public class Divide extends AbstractBinary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return operands.get(0).calculate(operands)
-                / operands.get(1).calculate(operands);
+        return Math.sqrt(operands
+                .get(0)
+                .calculate(operands));
     }
 }
-    

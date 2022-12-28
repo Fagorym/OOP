@@ -1,18 +1,20 @@
-package ru.nsu.fit.oop.veber.unaryoperators;
+package ru.nsu.fit.oop.veber.doubleoperators.binaryoperators;
+
 
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.List;
 
 /**
- * Class that represent sin operator.
+ * Class that represent divide operation.
  */
-public class Sin extends AbstractUnary {
+public class Divide extends AbstractBinary {
 
-    private final static String KEY = "sin";
+    private final static String KEY = "/";
+
 
     @Override
-    protected Boolean matches(String key) {
+    public Boolean matches(String key) {
         return KEY.equals(key);
     }
 
@@ -26,6 +28,7 @@ public class Sin extends AbstractUnary {
         return KEY;
     }
 
+
     /**
      * Function that calculates result of operator.
      *
@@ -34,8 +37,8 @@ public class Sin extends AbstractUnary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return Math.sin(operands
-                .get(0)
-                .calculate(operands));
+        return operands.get(0).calculate(operands)
+                / operands.get(1).calculate(operands);
     }
 }
+    
