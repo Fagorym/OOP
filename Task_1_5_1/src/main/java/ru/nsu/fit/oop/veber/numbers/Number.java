@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.veber.numbers;
 
-import ru.nsu.fit.oop.veber.Operator;
+import ru.nsu.fit.oop.veber.doubleoperators.Operator;
 
 
 /**
@@ -15,7 +15,7 @@ abstract public class Number extends Operator implements Cloneable {
      * @return arity of operator
      */
     @Override
-    protected Integer getArity() {
+    public Integer getArity() {
         return 0;
     }
 

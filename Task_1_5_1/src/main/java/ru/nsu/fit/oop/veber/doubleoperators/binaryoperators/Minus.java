@@ -1,18 +1,18 @@
-package ru.nsu.fit.oop.veber.binaryoperators;
-
+package ru.nsu.fit.oop.veber.doubleoperators.binaryoperators;
 
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.List;
 
 /**
- * Class that represents plus operation
+ * Class that represents minus operation
  */
-public class Plus extends AbstractBinary {
-    private final static String KEY = "+";
+public class Minus extends AbstractBinary {
+
+    private final static String KEY = "-";
 
     @Override
-    protected Boolean matches(String key) {
+    public Boolean matches(String key) {
         return KEY.equals(key);
     }
 
@@ -34,6 +34,6 @@ public class Plus extends AbstractBinary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return operands.get(0).calculate(operands) + operands.get(1).calculate(operands);
+        return operands.get(0).calculate(operands) - operands.get(1).calculate(operands);
     }
 }

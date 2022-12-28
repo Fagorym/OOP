@@ -13,7 +13,7 @@ public class ComplexNumber extends Number {
     }
 
     @Override
-    protected Boolean matches(String key) {
+    public Boolean matches(String key) {
         if (Pattern.matches("\\d*[.]\\d*[+]\\d*[.]\\d*[i]", key)) {
             this.key = key;
             return true;

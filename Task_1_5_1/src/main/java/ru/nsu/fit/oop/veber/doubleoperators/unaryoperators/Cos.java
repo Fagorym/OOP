@@ -1,18 +1,18 @@
-package ru.nsu.fit.oop.veber.binaryoperators;
-
+package ru.nsu.fit.oop.veber.doubleoperators.unaryoperators;
 
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.List;
 
 /**
- * Class that represents multiple operation.
+ * Class that represent cos operator.
  */
-public class Multiple extends AbstractBinary {
-    private final static String KEY = "*";
+public class Cos extends AbstractUnary {
+
+    private final static String KEY = "cos";
 
     @Override
-    protected Boolean matches(String key) {
+    public Boolean matches(String key) {
         return KEY.equals(key);
     }
 
@@ -34,6 +34,9 @@ public class Multiple extends AbstractBinary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return operands.get(0).calculate(operands) * operands.get(1).calculate(operands);
+        return Math.cos(operands
+                .get(0)
+                .calculate(operands));
     }
 }
+    

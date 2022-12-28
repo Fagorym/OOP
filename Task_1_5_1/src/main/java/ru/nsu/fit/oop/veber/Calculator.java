@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.veber;
 
+import ru.nsu.fit.oop.veber.doubleoperators.Operator;
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.*;
