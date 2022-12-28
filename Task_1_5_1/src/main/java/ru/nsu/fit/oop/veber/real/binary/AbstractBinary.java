@@ -1,6 +1,6 @@
-package ru.nsu.fit.oop.veber.doubleoperators.binaryoperators;
+package ru.nsu.fit.oop.veber.real.binary;
 
-import ru.nsu.fit.oop.veber.doubleoperators.Operator;
+import ru.nsu.fit.oop.veber.real.Operator;
 
 abstract public class AbstractBinary extends Operator {
     private static final Integer ARITY = 2;

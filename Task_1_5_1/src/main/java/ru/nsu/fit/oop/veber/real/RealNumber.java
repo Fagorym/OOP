@@ -1,12 +1,17 @@
-package ru.nsu.fit.oop.veber.numbers;
+package ru.nsu.fit.oop.veber.real;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class RealNumber extends Number {
+public class RealNumber extends Operator {
 
     private String key;
 
+
+    @Override
+    public Integer getArity() {
+        return 0;
+    }
 
     @Override
     public Boolean matches(String key) {
@@ -28,7 +33,7 @@ public class RealNumber extends Number {
     }
 
     @Override
-    public Number clone() {
+    public RealNumber clone() {
         RealNumber clone = (RealNumber) super.clone();
         clone.key = key;
         return clone;

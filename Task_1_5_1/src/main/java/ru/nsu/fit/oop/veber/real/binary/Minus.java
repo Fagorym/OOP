@@ -1,17 +1,15 @@
-package ru.nsu.fit.oop.veber.doubleoperators.binaryoperators;
-
+package ru.nsu.fit.oop.veber.real.binary;
 
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.List;
 
 /**
- * Class that represent divide operation.
+ * Class that represents minus operation
  */
-public class Divide extends AbstractBinary {
+public class Minus extends AbstractBinary {
 
-    private final static String KEY = "/";
-
+    private final static String KEY = "-";
 
     @Override
     public Boolean matches(String key) {
@@ -28,7 +26,6 @@ public class Divide extends AbstractBinary {
         return KEY;
     }
 
-
     /**
      * Function that calculates result of operator.
      *
@@ -37,8 +34,6 @@ public class Divide extends AbstractBinary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return operands.get(0).calculate(operands)
-                / operands.get(1).calculate(operands);
+        return operands.get(0).calculate(operands) - operands.get(1).calculate(operands);
     }
 }
-    

@@ -1,6 +1,8 @@
-package ru.nsu.fit.oop.veber.doubleoperators;
+package ru.nsu.fit.oop.veber.complex;
 
 
+import org.apache.commons.numbers.complex.Complex;
+import ru.nsu.fit.oop.veber.real.Operator;
 import ru.nsu.fit.oop.veber.numbers.Number;
 
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 /**
  * Abstract class of operator.
  */
-abstract public class Operator implements Cloneable {
+abstract public class ComplexOperator extends Operator implements Cloneable {
 
     /**
      * Function that returns arity of operator.
@@ -39,14 +41,10 @@ abstract public class Operator implements Cloneable {
      * @param operands - list of operands that provided for operations
      * @return result of operator
      */
-    public abstract Double calculate(List<Number> operands);
+    public abstract Complex calculate(List<Number> operands);
 
     @Override
-    public Operator clone() {
-        try {
-            return (Operator) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
+    public ComplexOperator clone() {
+        return (ComplexOperator) super.clone();
     }
 }

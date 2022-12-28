@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber.doubleoperators.binaryoperators;
+package ru.nsu.fit.oop.veber.real.binary;
 
 import ru.nsu.fit.oop.veber.numbers.Number;
 

@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber.doubleoperators.binaryoperators;
+package ru.nsu.fit.oop.veber.real.binary;
 
 
 import ru.nsu.fit.oop.veber.numbers.Number;
@@ -6,11 +6,10 @@ import ru.nsu.fit.oop.veber.numbers.Number;
 import java.util.List;
 
 /**
- * Class that represent pow operation.
+ * Class that represents multiple operation.
  */
-public class Pow extends AbstractBinary {
-
-    private final static String KEY = "^";
+public class Multiple extends AbstractBinary {
+    private final static String KEY = "*";
 
     @Override
     public Boolean matches(String key) {
@@ -35,7 +34,6 @@ public class Pow extends AbstractBinary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return Math.pow(operands.get(0).calculate(operands), operands.get(1).calculate(operands));
+        return operands.get(0).calculate(operands) * operands.get(1).calculate(operands);
     }
 }
-
