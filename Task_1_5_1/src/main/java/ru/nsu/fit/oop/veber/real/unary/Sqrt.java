@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.veber.real.unary;
 
 import ru.nsu.fit.oop.veber.Number;
+import ru.nsu.fit.oop.veber.real.RealNumber;
 
 import java.util.List;
 
@@ -34,8 +35,8 @@ public class Sqrt extends AbstractUnary {
      */
     @Override
     public Double calculate(List<Number> operands) {
-        return Math.sqrt(operands
-                .get(0)
+        return Math.sqrt(((RealNumber) operands
+                .get(0))
                 .calculate(operands));
     }
 }
