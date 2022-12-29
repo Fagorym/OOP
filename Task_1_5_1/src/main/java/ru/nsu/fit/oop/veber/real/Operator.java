@@ -41,6 +41,11 @@ abstract public class Operator implements Cloneable {
      */
     public abstract Object calculate(List<Number> operands);
 
+    /**
+     * Function that clone existed operator and return it.
+     *
+     * @return clone of this operator
+     */
     @Override
     public Operator clone() {
         try {

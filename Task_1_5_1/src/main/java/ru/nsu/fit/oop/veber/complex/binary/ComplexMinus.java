@@ -3,17 +3,29 @@ package ru.nsu.fit.oop.veber.complex.binary;
 import org.apache.commons.numbers.complex.Complex;
 import ru.nsu.fit.oop.veber.Number;
 import ru.nsu.fit.oop.veber.complex.ComplexNumber;
-import ru.nsu.fit.oop.veber.complex.ComplexOperator;
 
 import java.util.List;
 
 public class ComplexMinus extends AbstractComplexBinary {
     private final static String KEY = "-`";
+
+    /**
+     * Function that compare input key with KEY of operator.
+     *
+     * @param key - input key
+     * @return true - if keys equals
+     * otherwise - false
+     */
     @Override
     public Boolean matches(String key) {
         return KEY.equals(key);
     }
 
+    /**
+     * Function that returns key of operator.
+     *
+     * @return key of operator
+     */
     @Override
     protected String getKey() {
         return KEY;
