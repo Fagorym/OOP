@@ -127,7 +127,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#matches(java.lang.String)" class="member-name-link">matches</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Function that compare operator key with provided string.</div>
+<div class="block">Function that compare input key with KEY of operator.</div>
 </div>
 </div>
 </div>
@@ -170,13 +170,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="matches(java.lang.String)">
 <h3>matches</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></span>&nbsp;<span class="element-name">matches</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../ComplexOperator.html#matches(java.lang.String)">ComplexOperator</a></code></span></div>
-<div class="block">Function that compare operator key with provided string.</div>
+<div class="block">Function that compare input key with KEY of operator.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../ComplexOperator.html#matches(java.lang.String)">matches</a></code>&nbsp;in class&nbsp;<code><a href="../ComplexOperator.html" title="class in ru.nsu.fit.oop.veber.complex">ComplexOperator</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>key</code> - - input key</dd>
 <dt>Returns:</dt>
-<dd>true - if operator key matches this string
+<dd>true - if keys equals
  otherwise - false</dd>
 </dl>
 </section>
@@ -185,7 +186,6 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getKey()">
 <h3>getKey</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getKey</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../ComplexOperator.html#getKey()">ComplexOperator</a></code></span></div>
 <div class="block">Function that returns key of operator.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
