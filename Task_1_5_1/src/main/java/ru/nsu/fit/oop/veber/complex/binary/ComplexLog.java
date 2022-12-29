@@ -7,14 +7,30 @@ import ru.nsu.fit.oop.veber.complex.ComplexNumber;
 import java.util.List;
 
 public class ComplexLog extends AbstractComplexBinary {
+
+    private static final String KEY = "log`";
+
+    /**
+     * Function that compare input key with KEY of operator.
+     *
+     * @param key - input key
+     * @return true - if keys equals
+     * otherwise - false
+     */
     @Override
     public Boolean matches(String key) {
-        return null;
+        return KEY.equals(key);
     }
+
+    /**
+     * Function that returns key of operator.
+     *
+     * @return key of operator
+     */
 
     @Override
     protected String getKey() {
-        return null;
+        return KEY;
     }
 
     @Override
