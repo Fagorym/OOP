@@ -1,6 +1,5 @@
 package ru.nsu.fit.oop.veber;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class CustomThread extends Thread {
@@ -8,23 +7,24 @@ public class CustomThread extends Thread {
     private final Util util = new Util();
     private Boolean flag;
 
-    public CustomThread(Integer[] arr, Boolean flag) {
-        this.deque = new ArrayDeque<>();
-        for (Integer integer : arr) {
-            deque.addLast(integer);
-        }
+    public CustomThread(Deque<Integer> deque, Boolean flag) {
+        this.deque = deque;
         this.flag = flag;
     }
 
     @Override
     public void run() {
-        Integer x = deque.getFirst();
-        if (util.isNotPrime(x)) {
-            flag = true;
-            this.interrupt();
-        } else {
-            this.start();
-        }
+        while (!deque.isEmpty()) {
+            Integer x = deque.pollFirst();
 
+            if (util.isNotPrime(x)) {
+                flag = Boolean.TRUE;
+                this.interrupt();
+            }
+        }
+    }
+
+    public Boolean getValue() {
+        return flag;
     }
 }
