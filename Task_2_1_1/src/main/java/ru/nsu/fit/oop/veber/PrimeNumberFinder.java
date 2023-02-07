@@ -1,5 +1,8 @@
 package ru.nsu.fit.oop.veber;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class PrimeNumberFinder {
     private final Integer[] arr;
 
@@ -21,7 +24,8 @@ public class PrimeNumberFinder {
     }
 
     public Boolean parallelStreamFinder() {
-        return false;
+        List<Integer> list = Arrays.stream(arr).parallel().filter(this::isNotPrime).toList();
+        return !list.isEmpty();
     }
 
     private boolean isNotPrime(Integer x) {
