@@ -1,11 +1,13 @@
 package ru.nsu.fit.oop.veber;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
 
 public class PrimeNumberFinder {
-    private final Integer[] arr;
     private final Util util = new Util();
+    private final Integer[] arr;
 
     public PrimeNumberFinder(Integer[] arr) {
         this.arr = arr;
@@ -21,19 +23,27 @@ public class PrimeNumberFinder {
     }
 
     public Boolean parallelFinder() {
-        Boolean hasPrime = false;
         int threadCount = Thread.activeCount();
+        Boolean interruptAll = false;
+        boolean isAlive = true;
         CustomThread[] threads = new CustomThread[threadCount];
+        Deque<Integer> deque = new ArrayDeque<>(List.of(arr));
         for (int i = 0; i < threadCount; i++) {
-            threads[i] = new CustomThread(arr, hasPrime);
+            threads[i] = new CustomThread(deque, false);
             threads[i].start();
         }
-        for (int i = 0; i < threadCount; i++) {
-            if (threads[i].isAlive() && !hasPrime) {
-                i = 0;
+        while (isAlive) {
+            isAlive = false;
+            for (int i = 0; i < threadCount; i++) {
+                if (threads[i].getValue() || interruptAll) {
+                    interruptAll = true;
+                    threads[i].interrupt();
+                } else if (threads[i].isAlive()) {
+                    isAlive = true;
+                }
             }
         }
-        return hasPrime;
+        return interruptAll;
     }
 
     public Boolean parallelStreamFinder() {
