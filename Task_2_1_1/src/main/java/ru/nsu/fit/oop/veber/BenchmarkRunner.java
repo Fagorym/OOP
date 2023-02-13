@@ -21,11 +21,15 @@ public class BenchmarkRunner {
 
     @State(Scope.Benchmark)
     public static class executionPlan {
+        /*
         @Param({"4 6997927 6997937 6997967 6998009 6998029 6998039 6998051 6998053",
                 "6997927 6997937 6997967 6998009 4 6998029 6998039 6998051 6998053",
                 "6997927 6997937 6997967 6998009 6998029 6998039 6998051 6998053 4",
                 "7 6997927 6997937 6997967 6998009 6998029 6998039 6998051 6998053",
                 "7"})
+
+         */
+        @Param({"7"})
         public String arr;
     }
 
@@ -42,6 +46,7 @@ public class BenchmarkRunner {
 
         }
 
+        /*
         @Benchmark
         @BenchmarkMode(Mode.AverageTime)
         @OutputTimeUnit(TimeUnit.MILLISECONDS)
@@ -65,6 +70,8 @@ public class BenchmarkRunner {
             blackhole.consume(finder.haveNotPrime());
 
         }
+        */
+
 
         private Integer[] parseArray(executionPlan plan) {
             return Arrays.stream(plan.arr.split(" "))
