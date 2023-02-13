@@ -4,9 +4,8 @@ import java.util.Deque;
 
 public class CustomThread extends Thread {
     private final Deque<Integer> deque;
-    private Boolean flag;
-
     private final PrimeNumberFinder finder;
+    private Boolean flag;
 
     public CustomThread(Deque<Integer> deque, Boolean flag, PrimeNumberFinder finder) {
         this.deque = deque;
@@ -16,9 +15,16 @@ public class CustomThread extends Thread {
 
     @Override
     public void run() {
-        while (!deque.isEmpty()) {
-            Integer x = deque.pollFirst();
+        while (true) {
 
+            Integer x;
+            synchronized (deque) {
+                if (deque.isEmpty()) {
+                    break;
+                }
+
+                x = deque.pollFirst();
+            }
             if (finder.isNotPrime(x)) {
                 flag = Boolean.TRUE;
                 this.interrupt();
