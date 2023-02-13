@@ -11,6 +11,7 @@ public class ThreadPrimeNumberFinder implements PrimeNumberFinder {
 
     public ThreadPrimeNumberFinder(Integer[] arr) {
         this.arr = arr;
+        this.threadCount = Thread.activeCount();
     }
 
     public void setThreadCount(Integer threadCount) {
