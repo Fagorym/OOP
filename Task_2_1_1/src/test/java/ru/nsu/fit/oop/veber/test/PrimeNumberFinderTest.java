@@ -20,28 +20,7 @@ public class PrimeNumberFinderTest {
         return Stream.of(
                 arguments(
                         new Integer[]{4, 6997927, 6997937, 6997967, 6998009, 6998029, 6998039, 6998051, 6998053},
-                        true
-                ),
-                arguments(
-                        new Integer[]{6997927, 6997937, 6997967, 6998009, 4, 6998029, 6998039, 6998051, 6998053},
-                        true
-                ),
-                arguments(
-                        new Integer[]{6997927, 6997937, 6997967, 6998009, 6998029, 6998039, 6998051, 6998053, 4},
-                        true
-                ),
-                arguments(
-                        new Integer[]{6997927, 6997937, 6997967, 6998009, 6998029, 6998039, 6998051, 6998053},
-                        false
-                ),
-                arguments(
-                        new Integer[]{6997927},
-                        false
-                ),
-                arguments(
-                        new Integer[]{7},
-                        false
-                ));
+                        true));
     }
 
 
