@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - Task_2_1_1
 
 permissions:
   contents: write
