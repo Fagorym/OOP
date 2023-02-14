@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.veber;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
+import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
@@ -25,6 +26,7 @@ public class BenchmarkRunner {
                 .warmupForks(0)
                 .warmupIterations(0)
                 .result("target/jmh-reports/result.json")
+                .resultFormat(ResultFormatType.JSON)
                 .build();
 
         new Runner(opt).run();
