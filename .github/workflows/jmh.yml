@@ -37,7 +37,6 @@ jobs:
           name: JMH Benchmark
           tool: "jmh"
           output-file-path: ./target/jmh-reports/result.json
-          # Use personal access token instead of GITHUB_TOKEN due to https://github.community/t/github-action-not-triggering-gh-pages-upon-push/16096
           github-token: ${{ secrets.GITHUB_TOKEN }}
           auto-push: true
           alert-threshold: "200%"
@@ -58,4 +57,4 @@ jobs:
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: "@michaelmior"
-          gh-repository: "github.com/benchmark-action/github-action-benchmark-results"
+          gh-repository: "https://github.com/Fagorym/OOP"
