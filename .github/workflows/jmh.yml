@@ -57,4 +57,4 @@ jobs:
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: "@michaelmior"
-          gh-repository: "https://github.com/Fagorym/OOP"
+          gh-repository: "github.com/Fagorym/OOPs"
