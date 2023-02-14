@@ -6,14 +6,25 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class BenchmarkRunner {
 
     public static void main(String[] args) throws Exception {
+        Path path = Paths.get("target/jmh-reports/");
+        Files.createDirectories(path);
+        Path filepath = Paths.get("target/jmh-reports/result.json");
+        Files.createFile(filepath);
         Options opt = new OptionsBuilder()
                 .include(TestPrimeNumberFinders.class.getSimpleName())
+                .forks(0)
+                .warmupForks(0)
+                .warmupIterations(0)
+                .result("target/jmh-reports/result.json")
                 .build();
 
         new Runner(opt).run();
@@ -37,7 +48,7 @@ public class BenchmarkRunner {
         @Benchmark
         @BenchmarkMode(Mode.AverageTime)
         @OutputTimeUnit(TimeUnit.MILLISECONDS)
-        @Fork(value = 1, warmups = 1)
+        @Fork(value = 0, warmups = 0)
         @Warmup(batchSize = 1)
         public void sequential(Blackhole blackhole, executionPlan plan) {
             Integer[] arr = parseArray(plan);
