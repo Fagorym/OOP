@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1676351636683,
+  "lastUpdate": 1676351806835,
   "repoUrl": "https://github.com/Fagorym/OOP",
   "entries": {
     "JMH Benchmark": [
@@ -118,6 +118,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "ru.nsu.fit.oop.veber.BenchmarkRunner.TestPrimeNumberFinders.sequential",
             "value": 0.00010798761324276672,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 0\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "oleg-veber@mail.ru",
+            "name": "Fagor",
+            "username": "Fagorym"
+          },
+          "committer": {
+            "email": "oleg-veber@mail.ru",
+            "name": "Fagor",
+            "username": "Fagorym"
+          },
+          "distinct": true,
+          "id": "cfb86bbe69ee6604e35260ee7987a7b1c566bffd",
+          "message": "change repositoru name",
+          "timestamp": "2023-02-14T12:15:10+07:00",
+          "tree_id": "8303581e9acc4d8c5961cc86bd32fa92dc9a2b1b",
+          "url": "https://github.com/Fagorym/OOP/commit/cfb86bbe69ee6604e35260ee7987a7b1c566bffd"
+        },
+        "date": 1676351805255,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "ru.nsu.fit.oop.veber.BenchmarkRunner.TestPrimeNumberFinders.sequential",
+            "value": 0.00006797842285916959,
             "unit": "ms/op",
             "extra": "iterations: 5\nforks: 0\nthreads: 1"
           }
