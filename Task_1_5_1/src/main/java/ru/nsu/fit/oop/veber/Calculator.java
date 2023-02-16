@@ -54,8 +54,8 @@ public class Calculator {
                 for (int j = 0; j < operator.getArity(); j++) {
                     operands.add(floatDeque.pollFirst());
                 }
-                String result = operator.calculate(operands).toString();
-                Number number = (Number) factory.getOperator(result);
+                Result result = new Result(operator.calculate(operands));
+                Number number = (Number) factory.getOperator(result.getKey());
                 floatDeque.addFirst(number);
             }
         }
