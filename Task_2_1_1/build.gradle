@@ -11,6 +11,7 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
@@ -41,5 +42,12 @@ jacocoTestReport {
         xml.required = true
         csv.required = false
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "ru/nsu/fit/oop/veber/BenchmarkRunner.class"
+            ])
+        }))
     }
 }
