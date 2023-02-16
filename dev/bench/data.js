@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1676531170070,
+  "lastUpdate": 1676570760941,
   "repoUrl": "https://github.com/Fagorym/OOP",
   "entries": {
     "JMH Benchmark": [
@@ -322,6 +322,60 @@ window.BENCHMARK_DATA = {
           {
             "name": "ru.nsu.fit.oop.veber.BenchmarkRunner.TestPrimeNumberFinders.threads",
             "value": 0.30422746309934245,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "oleg-veber@mail.ru",
+            "name": "Fagor",
+            "username": "Fagorym"
+          },
+          "committer": {
+            "email": "oleg-veber@mail.ru",
+            "name": "Fagor",
+            "username": "Fagorym"
+          },
+          "distinct": true,
+          "id": "a0496cd47358b3fb2750336060a7bd4d82b1d766",
+          "message": "change thread logic",
+          "timestamp": "2023-02-17T00:48:20+07:00",
+          "tree_id": "9be324604ea6fd0e9ac6ff516e0d875671dda9b3",
+          "url": "https://github.com/Fagorym/OOP/commit/a0496cd47358b3fb2750336060a7bd4d82b1d766"
+        },
+        "date": 1676570759915,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "ru.nsu.fit.oop.veber.BenchmarkRunner.TestPrimeNumberFinders.threads",
+            "value": 68.52589848919952,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "ru.nsu.fit.oop.veber.BenchmarkRunner.TestPrimeNumberFinders.threads",
+            "value": 68.64167600958905,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "ru.nsu.fit.oop.veber.BenchmarkRunner.TestPrimeNumberFinders.threads",
+            "value": 71.06080726254736,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "ru.nsu.fit.oop.veber.BenchmarkRunner.TestPrimeNumberFinders.threads",
+            "value": 97.96796838435179,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "ru.nsu.fit.oop.veber.BenchmarkRunner.TestPrimeNumberFinders.threads",
+            "value": 0.28841520840907897,
             "unit": "ms/op",
             "extra": "iterations: 5\nforks: 1\nthreads: 1"
           }
