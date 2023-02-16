@@ -22,7 +22,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
-
+    finalizedBy jacocoTestReport
 }
 jar {
     manifest {
@@ -40,13 +40,16 @@ jacocoTestReport {
     dependsOn test
     reports {
         xml.required = true
-        csv.required = false
+        csv.required = true
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
-                    "ru/nsu/fit/oop/veber/BenchmarkRunner.class"
+                    "ru/nsu/fit/oop/veber/BenchmarkRunner*",
+                    "ru/nsu/fit/oop/veber/BenchmarkRunner.*",
+                    "ru/nsu/fit/oop/veber/BenchmarkRunner/*",
+                    "ru/nsu/fit/oop/veber/jmh_generated"
             ])
         }))
     }
