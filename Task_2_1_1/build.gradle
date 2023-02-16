@@ -29,6 +29,12 @@ jar {
     }
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 jacocoTestReport {
     dependsOn test
     reports {
