@@ -22,8 +22,7 @@ public class CustomThread extends Thread {
         try {
             semaphore.acquire();
         } catch (InterruptedException e) {
-            semaphore.release();
-            throw new RuntimeException(e);
+            this.interrupt();
         }
         while (!deque.isEmpty()) {
             Integer x = deque.pollFirst();
