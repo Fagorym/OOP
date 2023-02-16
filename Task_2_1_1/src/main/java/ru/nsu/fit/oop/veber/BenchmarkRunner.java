@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
+
 public class BenchmarkRunner {
 
     public static void main(String[] args) throws Exception {
@@ -28,6 +29,8 @@ public class BenchmarkRunner {
                 .warmupBatchSize(1)
                 .result("target/jmh-reports/result.json")
                 .resultFormat(ResultFormatType.JSON)
+                .mode(Mode.AverageTime)
+                .timeUnit(TimeUnit.MILLISECONDS)
                 .build();
 
         new Runner(opt).run();
@@ -44,19 +47,9 @@ public class BenchmarkRunner {
     }
 
     public static class TestPrimeNumberFinders {
-        @Benchmark
-        @BenchmarkMode(Mode.AverageTime)
-        @OutputTimeUnit(TimeUnit.MILLISECONDS)
-        public void sequential(Blackhole blackhole, executionPlan plan) {
-            Integer[] arr = parseArray(plan);
-            PrimeNumberFinder finder = new PrimeNumberFinderImpl(arr);
-            blackhole.consume(finder.haveNotPrime());
 
-        }
 
         @Benchmark
-        @BenchmarkMode(Mode.AverageTime)
-        @OutputTimeUnit(TimeUnit.MILLISECONDS)
         public void threads(Blackhole blackhole, executionPlan plan) {
             Integer[] arr = parseArray(plan);
             PrimeNumberFinder finder = new ThreadPrimeNumberFinder(arr);
@@ -64,15 +57,6 @@ public class BenchmarkRunner {
 
         }
 
-        @Benchmark
-        @BenchmarkMode(Mode.AverageTime)
-        @OutputTimeUnit(TimeUnit.MILLISECONDS)
-        public void parallel(Blackhole blackhole, executionPlan plan) {
-            Integer[] arr = parseArray(plan);
-            PrimeNumberFinder finder = new ParallelStreamPrimeNumberFinder(arr);
-            blackhole.consume(finder.haveNotPrime());
-
-        }
 
         private Integer[] parseArray(executionPlan plan) {
             return Arrays.stream(plan.arr.split(" "))
