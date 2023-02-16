@@ -21,16 +21,17 @@ public class CustomThread extends Thread {
     public void run() {
         try {
             semaphore.acquire();
+
+            while (!deque.isEmpty()) {
+                Integer x = deque.pollFirst();
+                semaphore.release();
+                if (finder.isNotPrime(x)) {
+                    flag = Boolean.TRUE;
+                    this.interrupt();
+                }
+            }
         } catch (InterruptedException e) {
             this.interrupt();
-        }
-        while (!deque.isEmpty()) {
-            Integer x = deque.pollFirst();
-            semaphore.release();
-            if (finder.isNotPrime(x)) {
-                flag = Boolean.TRUE;
-                this.interrupt();
-            }
         }
     }
 
