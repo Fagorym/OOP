@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'jacoco'
 }
 
 group 'ru.nsu.fit.oop.veber'
@@ -25,5 +26,14 @@ test {
 jar {
     manifest {
         attributes 'Main-Class': 'ru.nsu.fit.oop.veber.BenchmarkRunner'
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
