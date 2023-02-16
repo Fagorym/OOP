@@ -1,23 +1,33 @@
 package ru.nsu.fit.oop.veber;
 
-import java.util.concurrent.SynchronousQueue;
+import java.util.Deque;
+import java.util.concurrent.Semaphore;
 
 public class CustomThread extends Thread {
-    private final SynchronousQueue<Integer> queue;
+    private final Deque<Integer> deque;
     private final PrimeNumberFinder finder;
+    private final Semaphore semaphore;
     private Boolean flag;
 
-    public CustomThread(SynchronousQueue<Integer> queue, Boolean flag, PrimeNumberFinder finder) {
-        this.queue = queue;
+    public CustomThread(Deque<Integer> deque, Boolean flag, PrimeNumberFinder finder,
+                        Semaphore semaphore) {
+        this.deque = deque;
         this.flag = flag;
         this.finder = finder;
+        this.semaphore = semaphore;
     }
 
     @Override
     public void run() {
-
-        while (!queue.isEmpty()) {
-            Integer x = queue.poll();
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            semaphore.release();
+            throw new RuntimeException(e);
+        }
+        while (!deque.isEmpty()) {
+            Integer x = deque.pollFirst();
+            semaphore.release();
             if (finder.isNotPrime(x)) {
                 flag = Boolean.TRUE;
                 this.interrupt();

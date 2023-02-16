@@ -1,7 +1,9 @@
 package ru.nsu.fit.oop.veber;
 
-import java.util.Arrays;
-import java.util.concurrent.SynchronousQueue;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.List;
+import java.util.concurrent.Semaphore;
 
 public class ThreadPrimeNumberFinder implements PrimeNumberFinder {
 
@@ -22,10 +24,10 @@ public class ThreadPrimeNumberFinder implements PrimeNumberFinder {
     @Override
     public Boolean haveNotPrime() {
         CustomThread[] threads = new CustomThread[threadCount];
-        SynchronousQueue<Integer> queue = new SynchronousQueue<>();
-        queue.addAll(Arrays.asList(arr));
+        Deque<Integer> deque = new ArrayDeque<>(List.of(arr));
+        Semaphore semaphore = new Semaphore(1);
         for (int i = 0; i < threadCount; i++) {
-            threads[i] = new CustomThread(queue, false, this);
+            threads[i] = new CustomThread(deque, false, this, semaphore);
             threads[i].start();
         }
 
