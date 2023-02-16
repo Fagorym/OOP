@@ -42,18 +42,3 @@ jobs:
           alert-threshold: "200%"
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: "@michaelmior"
-
-      - name: Store benchmark result - separate results repo
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          name: JMH Benchmark
-          tool: "jmh"
-          output-file-path: ./target/jmh-reports/result.json
-          github-token: ${{ secrets.BENCHMARK_ACTION_BOT_TOKEN }}
-          auto-push: true
-          alert-threshold: "200%"
-          comment-on-alert: true
-          fail-on-alert: true
-          alert-comment-cc-users: "@michaelmior"
-          gh-repository: "github.com/Fagorym/OOP"
