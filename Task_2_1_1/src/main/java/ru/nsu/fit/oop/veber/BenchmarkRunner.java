@@ -22,9 +22,10 @@ public class BenchmarkRunner {
         Files.createFile(filepath);
         Options opt = new OptionsBuilder()
                 .include(TestPrimeNumberFinders.class.getSimpleName())
-                .forks(0)
-                .warmupForks(0)
-                .warmupIterations(0)
+                .forks(1)
+                .warmupForks(1)
+                .warmupIterations(5)
+                .warmupBatchSize(1)
                 .result("target/jmh-reports/result.json")
                 .resultFormat(ResultFormatType.JSON)
                 .build();
@@ -34,15 +35,11 @@ public class BenchmarkRunner {
 
     @State(Scope.Benchmark)
     public static class executionPlan {
-        /*
         @Param({"4 6997927 6997937 6997967 6998009 6998029 6998039 6998051 6998053",
                 "6997927 6997937 6997967 6998009 4 6998029 6998039 6998051 6998053",
                 "6997927 6997937 6997967 6998009 6998029 6998039 6998051 6998053 4",
                 "7 6997927 6997937 6997967 6998009 6998029 6998039 6998051 6998053",
                 "7"})
-
-         */
-        @Param({"7"})
         public String arr;
     }
 
@@ -50,8 +47,6 @@ public class BenchmarkRunner {
         @Benchmark
         @BenchmarkMode(Mode.AverageTime)
         @OutputTimeUnit(TimeUnit.MILLISECONDS)
-        @Fork(value = 0, warmups = 0)
-        @Warmup(batchSize = 1)
         public void sequential(Blackhole blackhole, executionPlan plan) {
             Integer[] arr = parseArray(plan);
             PrimeNumberFinder finder = new PrimeNumberFinderImpl(arr);
@@ -59,12 +54,9 @@ public class BenchmarkRunner {
 
         }
 
-        /*
         @Benchmark
         @BenchmarkMode(Mode.AverageTime)
         @OutputTimeUnit(TimeUnit.MILLISECONDS)
-        @Fork(value = 1, warmups = 1)
-        @Warmup(batchSize = 1)
         public void threads(Blackhole blackhole, executionPlan plan) {
             Integer[] arr = parseArray(plan);
             PrimeNumberFinder finder = new ThreadPrimeNumberFinder(arr);
@@ -75,16 +67,12 @@ public class BenchmarkRunner {
         @Benchmark
         @BenchmarkMode(Mode.AverageTime)
         @OutputTimeUnit(TimeUnit.MILLISECONDS)
-        @Fork(value = 1, warmups = 1)
-        @Warmup(batchSize = 1)
         public void parallel(Blackhole blackhole, executionPlan plan) {
             Integer[] arr = parseArray(plan);
             PrimeNumberFinder finder = new ParallelStreamPrimeNumberFinder(arr);
             blackhole.consume(finder.haveNotPrime());
 
         }
-        */
-
 
         private Integer[] parseArray(executionPlan plan) {
             return Arrays.stream(plan.arr.split(" "))
