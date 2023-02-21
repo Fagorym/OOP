@@ -50,9 +50,25 @@ public class BenchmarkRunner {
 
 
         @Benchmark
+        public void sequential(Blackhole blackhole, executionPlan plan) {
+            Integer[] arr = parseArray(plan);
+            PrimeNumberFinder finder = new PrimeNumberFinderImpl(arr);
+            blackhole.consume(finder.haveNotPrime());
+
+        }
+
+        @Benchmark
         public void threads(Blackhole blackhole, executionPlan plan) {
             Integer[] arr = parseArray(plan);
             PrimeNumberFinder finder = new ThreadPrimeNumberFinder(arr);
+            blackhole.consume(finder.haveNotPrime());
+
+        }
+
+        @Benchmark
+        public void parallel(Blackhole blackhole, executionPlan plan) {
+            Integer[] arr = parseArray(plan);
+            PrimeNumberFinder finder = new ParallelStreamPrimeNumberFinder(arr);
             blackhole.consume(finder.haveNotPrime());
 
         }
