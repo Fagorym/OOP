@@ -12,6 +12,7 @@ public class ParallelStreamPrimeNumberFinder implements PrimeNumberFinder {
 
     @Override
     public Boolean haveNotPrime() {
+        checkArrayCorrectness(arr);
         List<Integer> list = Arrays.stream(arr).parallel().filter(this::isNotPrime).toList();
         return !list.isEmpty();
     }
