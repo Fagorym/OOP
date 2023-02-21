@@ -9,6 +9,7 @@ public class PrimeNumberFinderImpl implements PrimeNumberFinder {
 
     @Override
     public Boolean haveNotPrime() {
+        checkArrayCorrectness(arr);
         for (Integer integer : arr) {
             if (isNotPrime(integer)) {
                 return true;
