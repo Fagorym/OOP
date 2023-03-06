@@ -1,3 +1,3 @@
 public interface Customer {
-    void orderPizza();
+    void orderPizza(OrderProvider pizzeria);
 }

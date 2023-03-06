@@ -1,3 +1,5 @@
 public interface Backer {
-    void makePizza();
+    Pizza makePizza() throws InterruptedException;
+
+    void getOrder(Order order);
 }
