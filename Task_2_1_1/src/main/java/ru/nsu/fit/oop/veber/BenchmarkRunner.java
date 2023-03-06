@@ -39,10 +39,10 @@ public class BenchmarkRunner {
     @State(Scope.Benchmark)
     public static class executionPlan {
         @Param({"1", "2", "4", "6"})
-        private int threadCount;
+        public int threadCount;
 
         @Param({"5", "10", "20", "100", "500", "1000", "5000", "10000", "100000"})
-        private int size;
+        public int size;
 
     }
 
@@ -75,12 +75,12 @@ public class BenchmarkRunner {
 
 
         private Integer[] parseArray(executionPlan plan) {
-            return (Integer[]) Arrays.stream("637093 "
+            return Arrays.stream("637093 "
                             .repeat(plan.size).
                             split(" ")
                     )
                     .map(Integer::parseInt)
-                    .toArray();
+                    .toArray(Integer[]::new);
 
 
         }
