@@ -38,12 +38,12 @@ public class BenchmarkRunner {
 
     @State(Scope.Benchmark)
     public static class executionPlan {
-        @Param({"4 6997927 6997937 6997967 6998009 6998029 6998039 6998051 6998053",
-                "6997927 6997937 6997967 6998009 4 6998029 6998039 6998051 6998053",
-                "6997927 6997937 6997967 6998009 6998029 6998039 6998051 6998053 4",
-                "7 6997927 6997937 6997967 6998009 6998029 6998039 6998051 6998053",
-                "7"})
-        public String arr;
+        @Param({"1", "2", "4", "6"})
+        private int threadCount;
+
+        @Param({"5", "10", "20", "100", "500", "1000", "5000", "10000", "100000"})
+        private int size;
+
     }
 
     public static class TestPrimeNumberFinders {
@@ -60,7 +60,7 @@ public class BenchmarkRunner {
         @Benchmark
         public void threads(Blackhole blackhole, executionPlan plan) throws InterruptedException {
             Integer[] arr = parseArray(plan);
-            PrimeNumberFinder finder = new ThreadPrimeNumberFinder(arr);
+            PrimeNumberFinder finder = new ThreadPrimeNumberFinder(arr, plan.threadCount);
             blackhole.consume(finder.haveNotPrime());
 
         }
@@ -75,9 +75,12 @@ public class BenchmarkRunner {
 
 
         private Integer[] parseArray(executionPlan plan) {
-            return Arrays.stream(plan.arr.split(" "))
+            return (Integer[]) Arrays.stream("637093 "
+                            .repeat(plan.size).
+                            split(" ")
+                    )
                     .map(Integer::parseInt)
-                    .toArray(Integer[]::new);
+                    .toArray();
 
 
         }
