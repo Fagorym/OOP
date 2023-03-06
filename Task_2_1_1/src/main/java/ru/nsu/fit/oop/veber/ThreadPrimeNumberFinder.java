@@ -27,11 +27,13 @@ public class ThreadPrimeNumberFinder implements PrimeNumberFinder {
 
         }
         try {
-
             for (int i = 0; i < threadCount; i++) {
-                threads[i].join();
-                result |= threads[i].getValue();
-
+                if (result) {
+                    threads[i].interrupt();
+                } else {
+                    threads[i].join();
+                    result = threads[i].getValue();
+                }
             }
         } catch (InterruptedException ignored) {
         }
