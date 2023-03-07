@@ -38,10 +38,10 @@ public class BenchmarkRunner {
 
     @State(Scope.Benchmark)
     public static class executionPlan {
-        @Param({"1", "2", "4", "6"})
+        @Param({"1", "3", "6"})
         public int threadCount;
 
-        @Param({"5", "10", "20", "100", "500", "1000", "5000", "10000", "100000"})
+        @Param({"5", "500", "10000", "100000"})
         public int size;
 
     }
