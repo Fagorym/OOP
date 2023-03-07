@@ -1,8 +1,7 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1676956646459,
+  "lastUpdate": 1678130272844,
   "repoUrl": "https://github.com/Fagorym/OOP",
   "entries": {
-    "JMH Benchmark": [
-    ]
+    "JMH Benchmark": []
   }
 }
