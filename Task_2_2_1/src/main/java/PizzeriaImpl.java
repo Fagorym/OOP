@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PizzeriaImpl implements OrderProvider {
+public class PizzeriaImpl implements OrderProvider, Runnable {
     private final List<Backer> backers;
     private final List<Courier> couriers;
     private final Warehouse warehouse;
@@ -10,7 +10,7 @@ public class PizzeriaImpl implements OrderProvider {
     public PizzeriaImpl() {
         backers = new ArrayList<>();
         couriers = new ArrayList<>();
-        warehouse = new WarehouseImpl();
+        warehouse = new WarehouseImpl(100);
         orders = new ArrayDeque<>();
         generateBackers();
         generateCouriers();
@@ -29,7 +29,7 @@ public class PizzeriaImpl implements OrderProvider {
         Random random = new Random();
         int maxBackers = random.nextInt(4) + 2;
         for (int i = 0; i < maxBackers; i++) {
-            Backer backer = new BackerImpl();
+            Backer backer = new BackerImpl(warehouse);
             backers.add(backer);
         }
     }
@@ -43,5 +43,11 @@ public class PizzeriaImpl implements OrderProvider {
     @Override
     public Queue<Order> getOrders() {
         return orders;
+    }
+
+    @Override
+    public void run() {
+        backers.forEach(Backer::run);
+        couriers.forEach(Courier::deliverPizza);
     }
 }
