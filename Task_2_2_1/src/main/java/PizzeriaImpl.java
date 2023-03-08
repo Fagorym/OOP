@@ -1,13 +1,10 @@
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class PizzeriaImpl implements OrderProvider {
-    private List<Backer> backers;
-    private List<Courier> couriers;
-    private Warehouse warehouse;
-    private Queue<Order> orders;
+    private final List<Backer> backers;
+    private final List<Courier> couriers;
+    private final Warehouse warehouse;
+    private final Queue<Order> orders;
 
 
     public PizzeriaImpl() {
@@ -15,6 +12,26 @@ public class PizzeriaImpl implements OrderProvider {
         couriers = new ArrayList<>();
         warehouse = new WarehouseImpl();
         orders = new ArrayDeque<>();
+        generateBackers();
+        generateCouriers();
+    }
+
+    private void generateCouriers() {
+        Random random = new Random();
+        int maxWorkers = random.nextInt(4) + 2;
+        for (int i = 0; i < maxWorkers; i++) {
+            Courier courier = new CourierImpl();
+            couriers.add(courier);
+        }
+    }
+
+    private void generateBackers() {
+        Random random = new Random();
+        int maxBackers = random.nextInt(4) + 2;
+        for (int i = 0; i < maxBackers; i++) {
+            Backer backer = new BackerImpl();
+            backers.add(backer);
+        }
     }
 
     @Override
