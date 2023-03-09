@@ -60,7 +60,5 @@ public class Calculator {
             }
         }
         return floatDeque.pollFirst().calculate(Collections.emptyList()).toString();
-
     }
-
 }
