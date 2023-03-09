@@ -37,20 +37,24 @@ public class BenchmarkRunner {
     }
 
     @State(Scope.Benchmark)
-    public static class executionPlan {
-        @Param({"1", "3", "6"})
-        public int threadCount;
+    public static class sizeExecutionPlan {
 
         @Param({"5", "500", "10000", "100000"})
         public int size;
 
     }
 
+    @State(Scope.Benchmark)
+    public static class threadCountExecutionPlan {
+        @Param({"1", "3", "6"})
+        public int threadCount;
+    }
+
     public static class TestPrimeNumberFinders {
 
 
         @Benchmark
-        public void sequential(Blackhole blackhole, executionPlan plan) throws InterruptedException {
+        public void sequential(Blackhole blackhole, sizeExecutionPlan plan) throws InterruptedException {
             Integer[] arr = parseArray(plan);
             PrimeNumberFinder finder = new PrimeNumberFinderImpl(arr);
             blackhole.consume(finder.haveNotPrime());
@@ -58,15 +62,15 @@ public class BenchmarkRunner {
         }
 
         @Benchmark
-        public void threads(Blackhole blackhole, executionPlan plan) throws InterruptedException {
+        public void threads(Blackhole blackhole, sizeExecutionPlan plan, threadCountExecutionPlan threadPlan) throws InterruptedException {
             Integer[] arr = parseArray(plan);
-            PrimeNumberFinder finder = new ThreadPrimeNumberFinder(arr, plan.threadCount);
+            PrimeNumberFinder finder = new ThreadPrimeNumberFinder(arr, threadPlan.threadCount);
             blackhole.consume(finder.haveNotPrime());
 
         }
 
         @Benchmark
-        public void parallel(Blackhole blackhole, executionPlan plan) throws InterruptedException {
+        public void parallel(Blackhole blackhole, sizeExecutionPlan plan) throws InterruptedException {
             Integer[] arr = parseArray(plan);
             PrimeNumberFinder finder = new ParallelStreamPrimeNumberFinder(arr);
             blackhole.consume(finder.haveNotPrime());
@@ -74,7 +78,7 @@ public class BenchmarkRunner {
         }
 
 
-        private Integer[] parseArray(executionPlan plan) {
+        private Integer[] parseArray(sizeExecutionPlan plan) {
             return Arrays.stream("637093 "
                             .repeat(plan.size).
                             split(" ")
