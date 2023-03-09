@@ -108,16 +108,17 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#parallel(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.executionPlan)" class="member-name-link">parallel</a><wbr>(org.openjdk.jmh.infra.Blackhole&nbsp;blackhole,
- <a href="BenchmarkRunner.executionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.executionPlan</a>&nbsp;plan)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#parallel(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.sizeExecutionPlan)" class="member-name-link">parallel</a><wbr>(org.openjdk.jmh.infra.Blackhole&nbsp;blackhole,
+ <a href="BenchmarkRunner.sizeExecutionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.sizeExecutionPlan</a>&nbsp;plan)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sequential(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.executionPlan)" class="member-name-link">sequential</a><wbr>(org.openjdk.jmh.infra.Blackhole&nbsp;blackhole,
- <a href="BenchmarkRunner.executionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.executionPlan</a>&nbsp;plan)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sequential(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.sizeExecutionPlan)" class="member-name-link">sequential</a><wbr>(org.openjdk.jmh.infra.Blackhole&nbsp;blackhole,
+ <a href="BenchmarkRunner.sizeExecutionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.sizeExecutionPlan</a>&nbsp;plan)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#threads(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.executionPlan)" class="member-name-link">threads</a><wbr>(org.openjdk.jmh.infra.Blackhole&nbsp;blackhole,
- <a href="BenchmarkRunner.executionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.executionPlan</a>&nbsp;plan)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#threads(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.sizeExecutionPlan,ru.nsu.fit.oop.veber.BenchmarkRunner.threadCountExecutionPlan)" class="member-name-link">threads</a><wbr>(org.openjdk.jmh.infra.Blackhole&nbsp;blackhole,
+ <a href="BenchmarkRunner.sizeExecutionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.sizeExecutionPlan</a>&nbsp;plan,
+ <a href="BenchmarkRunner.threadCountExecutionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.threadCountExecutionPlan</a>&nbsp;threadPlan)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
@@ -151,10 +152,10 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="sequential(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.executionPlan)">
+<section class="detail" id="sequential(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.sizeExecutionPlan)">
 <h3>sequential</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">sequential</span><wbr><span class="parameters">(org.openjdk.jmh.infra.Blackhole&nbsp;blackhole,
- <a href="BenchmarkRunner.executionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.executionPlan</a>&nbsp;plan)</span>
+ <a href="BenchmarkRunner.sizeExecutionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.sizeExecutionPlan</a>&nbsp;plan)</span>
                 throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <dl class="notes">
 <dt>Throws:</dt>
@@ -163,10 +164,11 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="threads(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.executionPlan)">
+<section class="detail" id="threads(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.sizeExecutionPlan,ru.nsu.fit.oop.veber.BenchmarkRunner.threadCountExecutionPlan)">
 <h3>threads</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">threads</span><wbr><span class="parameters">(org.openjdk.jmh.infra.Blackhole&nbsp;blackhole,
- <a href="BenchmarkRunner.executionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.executionPlan</a>&nbsp;plan)</span>
+ <a href="BenchmarkRunner.sizeExecutionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.sizeExecutionPlan</a>&nbsp;plan,
+ <a href="BenchmarkRunner.threadCountExecutionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.threadCountExecutionPlan</a>&nbsp;threadPlan)</span>
              throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <dl class="notes">
 <dt>Throws:</dt>
@@ -175,10 +177,10 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="parallel(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.executionPlan)">
+<section class="detail" id="parallel(org.openjdk.jmh.infra.Blackhole,ru.nsu.fit.oop.veber.BenchmarkRunner.sizeExecutionPlan)">
 <h3>parallel</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">parallel</span><wbr><span class="parameters">(org.openjdk.jmh.infra.Blackhole&nbsp;blackhole,
- <a href="BenchmarkRunner.executionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.executionPlan</a>&nbsp;plan)</span>
+ <a href="BenchmarkRunner.sizeExecutionPlan.html" title="class in ru.nsu.fit.oop.veber">BenchmarkRunner.sizeExecutionPlan</a>&nbsp;plan)</span>
               throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <dl class="notes">
 <dt>Throws:</dt>
