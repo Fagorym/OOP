@@ -39,8 +39,11 @@ public class BenchmarkRunner {
     @State(Scope.Benchmark)
     public static class sizeExecutionPlan {
 
-        @Param({"5", "500", "10000", "100000"})
+        @Param({"5", "100", "100000"})
         public int size;
+
+        @Param({"true", "false"})
+        public boolean earlyExit;
 
     }
 
@@ -79,13 +82,16 @@ public class BenchmarkRunner {
 
 
         private Integer[] parseArray(sizeExecutionPlan plan) {
-            return Arrays.stream("637093 "
+            Integer[] array = Arrays.stream("637093 "
                             .repeat(plan.size).
                             split(" ")
                     )
                     .map(Integer::parseInt)
                     .toArray(Integer[]::new);
-
+            if (plan.earlyExit) {
+                array[array.length - 1] = 4;
+            }
+            return array;
 
         }
     }
