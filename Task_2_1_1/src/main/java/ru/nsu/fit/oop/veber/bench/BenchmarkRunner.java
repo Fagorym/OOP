@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.bench;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
@@ -6,6 +6,10 @@ import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
+import ru.nsu.fit.oop.veber.ParallelStreamPrimeNumberFinder;
+import ru.nsu.fit.oop.veber.PrimeNumberFinder;
+import ru.nsu.fit.oop.veber.PrimeNumberFinderImpl;
+import ru.nsu.fit.oop.veber.ThreadPrimeNumberFinder;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
