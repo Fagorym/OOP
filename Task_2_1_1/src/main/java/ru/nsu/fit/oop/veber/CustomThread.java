@@ -18,9 +18,8 @@ public class CustomThread extends Thread {
     @Override
     public void run() {
         for (int i = start; i < end; i++) {
-            if (finder.isNotPrime(arr[i])) {
+            if (finder.isNotPrime(arr[i]) || this.isInterrupted()) {
                 flag = true;
-                this.interrupt();
             }
         }
 
