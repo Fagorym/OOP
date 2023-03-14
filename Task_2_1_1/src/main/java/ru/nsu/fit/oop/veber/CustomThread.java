@@ -20,6 +20,7 @@ public class CustomThread extends Thread {
         for (int i = start; i < end; i++) {
             if (finder.isNotPrime(arr[i]) || this.isInterrupted()) {
                 flag = true;
+                return;
             }
         }
 
