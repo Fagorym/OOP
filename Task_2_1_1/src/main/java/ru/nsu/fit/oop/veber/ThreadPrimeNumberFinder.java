@@ -12,9 +12,6 @@ public class ThreadPrimeNumberFinder implements PrimeNumberFinder {
 
     public ThreadPrimeNumberFinder(Integer[] arr, int threadCount) {
         this.arr = arr;
-        if (threadCount > Runtime.getRuntime().availableProcessors()) {
-            throw new IllegalArgumentException("You cannot use more threads than you have.");
-        }
         this.threadCount = threadCount;
     }
 
