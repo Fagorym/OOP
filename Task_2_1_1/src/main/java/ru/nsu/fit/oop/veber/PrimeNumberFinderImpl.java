@@ -11,7 +11,7 @@ public class PrimeNumberFinderImpl implements PrimeNumberFinder {
     public Boolean haveNotPrime() {
         checkArrayCorrectness(arr);
         for (Integer integer : arr) {
-            if (isNotPrime(integer) || Thread.currentThread().isInterrupted()) {
+            if (isNotPrime(integer)) {
                 return true;
             }
         }
