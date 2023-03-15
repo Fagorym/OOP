@@ -17,7 +17,7 @@ public interface PrimeNumberFinder {
      * @return true - not prime, false - prime
      */
     default Boolean isNotPrime(Integer x) {
-        for (int i = 2; i < x; i++) {
+        for (int i = 2; i * i <= x; i++) {
             if (x % i == 0) {
                 return true;
             }
