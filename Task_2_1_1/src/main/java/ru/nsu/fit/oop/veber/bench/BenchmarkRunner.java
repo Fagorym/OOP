@@ -35,7 +35,7 @@ public class BenchmarkRunner {
                 .result("target/jmh-reports/result.json")
                 .resultFormat(ResultFormatType.JSON)
                 .mode(Mode.Throughput)
-                .timeUnit(TimeUnit.MILLISECONDS)
+                .timeUnit(TimeUnit.SECONDS)
                 .build();
 
         new Runner(opt).run();
@@ -87,7 +87,7 @@ public class BenchmarkRunner {
 
 
         private Integer[] parseArray(sizeExecutionPlan plan) {
-            Integer[] array = Arrays.stream("637093 "
+            Integer[] array = Arrays.stream("6998009 "
                             .repeat(plan.size).
                             split(" ")
                     )
