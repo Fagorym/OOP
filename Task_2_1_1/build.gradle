@@ -46,9 +46,9 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
-                    "ru/nsu/fit/oop/veber/BenchmarkRunner*",
-                    "ru/nsu/fit/oop/veber/BenchmarkRunner.*",
-                    "ru/nsu/fit/oop/veber/BenchmarkRunner/*",
+                    "ru/nsu/fit/oop/veber/bench/BenchmarkRunner*",
+                    "ru/nsu/fit/oop/veber/bench/BenchmarkRunner.*",
+                    "ru/nsu/fit/oop/veber/bench/BenchmarkRunner/*",
                     "ru/nsu/fit/oop/veber/jmh_generated"
             ])
         }))

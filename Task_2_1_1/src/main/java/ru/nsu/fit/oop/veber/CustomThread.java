@@ -5,9 +5,9 @@ public class CustomThread extends Thread {
     private final int start;
     private final int end;
     private final PrimeNumberFinder finder;
-    private boolean flag;
+    private volatile boolean flag;
 
-    public CustomThread(Integer[] arr, int startIndex, int endIndex, Boolean flag, PrimeNumberFinder finder) {
+    public CustomThread(Integer[] arr, int startIndex, int endIndex, boolean flag, PrimeNumberFinder finder) {
         this.arr = arr;
         this.flag = flag;
         this.finder = finder;
