@@ -17,13 +17,15 @@ public class ThreadPrimeNumberFinder implements PrimeNumberFinder {
 
     @Override
     public Boolean haveNotPrime() {
-        boolean result = false;
         checkArrayCorrectness(arr);
+
         CustomThread[] threads = new CustomThread[threadCount];
+
         int tempLength = arr.length / threadCount;
         int tempRest = arr.length % threadCount;
         int startIndex = 0;
         int endIndex = tempLength + tempRest;
+
         for (int i = 0; i < threadCount; i++) {
             threads[i] = new CustomThread(arr, startIndex, endIndex, false, this);
             threads[i].start();
@@ -31,8 +33,11 @@ public class ThreadPrimeNumberFinder implements PrimeNumberFinder {
             endIndex += tempLength;
 
         }
-        boolean stillOneThreadIsAlive = false;
+
+        boolean result = false;
+        boolean stillOneThreadIsAlive;
         do {
+            stillOneThreadIsAlive = false;
             for (int i = 0; i < threadCount; i++) {
                 if (result) {
                     threads[i].interrupt();
@@ -42,6 +47,7 @@ public class ThreadPrimeNumberFinder implements PrimeNumberFinder {
                 }
             }
         } while (!result && stillOneThreadIsAlive);
+
         return result;
     }
 }
