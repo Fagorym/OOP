@@ -31,17 +31,17 @@ public class ThreadPrimeNumberFinder implements PrimeNumberFinder {
             endIndex += tempLength;
 
         }
-        boolean allThreadsAreAlive = true;
-        while (!result && allThreadsAreAlive) {
+        boolean stillOneThreadIsAlive = false;
+        do {
             for (int i = 0; i < threadCount; i++) {
                 if (result) {
                     threads[i].interrupt();
                 } else {
                     result = threads[i].getValue();
-                    allThreadsAreAlive = threads[i].isAlive();
+                    stillOneThreadIsAlive |= threads[i].isAlive();
                 }
             }
-        }
+        } while (!result && stillOneThreadIsAlive);
         return result;
     }
 }
