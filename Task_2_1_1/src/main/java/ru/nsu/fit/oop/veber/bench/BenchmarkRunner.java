@@ -28,10 +28,9 @@ public class BenchmarkRunner {
         Options opt = new OptionsBuilder()
                 .include(TestPrimeNumberFinders.class.getSimpleName())
                 .forks(1)
-                .threads(8)
-                .warmupForks(1)
-                .warmupIterations(5)
-                .warmupBatchSize(1)
+                .measurementIterations(3)
+                .warmupIterations(1)
+                .warmupBatchSize(3)
                 .result("target/jmh-reports/result.json")
                 .resultFormat(ResultFormatType.JSON)
                 .mode(Mode.Throughput)
@@ -44,7 +43,7 @@ public class BenchmarkRunner {
     @State(Scope.Benchmark)
     public static class sizeExecutionPlan {
 
-        @Param({"5", "20", "100", "5000", "100000"})
+        @Param({"1", "5", "20", "100", "600", "2000", "5000", "25000", "100000"})
         public int size;
 
         @Param({"true", "false"})
@@ -54,7 +53,7 @@ public class BenchmarkRunner {
 
     @State(Scope.Benchmark)
     public static class threadCountExecutionPlan {
-        @Param({"1", "2", "4", "8", "16"})
+        @Param({"1", "2", "3", "4", "8", "16"})
         public int threadCount;
     }
 
@@ -94,7 +93,7 @@ public class BenchmarkRunner {
                     .map(Integer::parseInt)
                     .toArray(Integer[]::new);
             if (plan.earlyExit) {
-                array[array.length - 1] = 4;
+                array[array.length / 2 - 1] = 4;
             }
             return array;
 
