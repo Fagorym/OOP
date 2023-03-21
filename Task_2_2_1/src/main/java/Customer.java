@@ -1,3 +1,3 @@
 public interface Customer {
-    void orderPizza(OrderProvider pizzeria);
+    void orderPizza(OrderProvider pizzeria, int pizzaCount);
 }

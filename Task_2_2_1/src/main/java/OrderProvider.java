@@ -1,7 +1,5 @@
-import java.util.Queue;
-
 public interface OrderProvider {
-    void addOrder(Order order);
+    void makeOrder(int count);
 
-    Queue<Order> getOrders();
+
 }
