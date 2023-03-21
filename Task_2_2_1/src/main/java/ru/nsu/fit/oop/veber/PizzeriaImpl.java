@@ -1,3 +1,5 @@
+package ru.nsu.fit.oop.veber;
+
 import java.util.*;
 
 public class PizzeriaImpl implements OrderProvider, Runnable {

@@ -1,3 +1,5 @@
+package ru.nsu.fit.oop.veber;
+
 public class BackerImpl implements Backer {
     private final int WORK_SPEED = 2000;
     private PizzaOrder currentOrder;
