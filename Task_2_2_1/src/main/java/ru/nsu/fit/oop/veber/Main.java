@@ -10,11 +10,14 @@ public class Main {
         OrderProvider pizzeria = new PizzeriaImpl();
         Random random = new Random();
         int customerCount = random.nextInt(3) + 3;
+        int exit = 0;
         Customer[] customers = new Customer[customerCount];
         for (int i = 0; i < customerCount; i++) {
             int pizzaCount = random.nextInt(3) + 1;
             customers[i] = new CustomerImpl();
             customers[i].orderPizza(pizzeria, pizzaCount);
         }
+        Runnable orderProcessor = (Runnable) pizzeria;
+        orderProcessor.run();
     }
 }

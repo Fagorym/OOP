@@ -1,28 +1,33 @@
 package ru.nsu.fit.oop.veber;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 public class WarehouseImpl implements Warehouse {
-    private int pizzaCount = 0;
+    private final Queue<Pizza> pizzas;
     private final int capacity;
 
     public WarehouseImpl(int capacity) {
         this.capacity = capacity;
+        pizzas = new ArrayDeque<>(capacity);
     }
 
     @Override
     public int getPizzaCount() {
-        return pizzaCount;
+        return pizzas.size();
     }
 
-    @Override
-    public void setPizzaCount(int count) {
-        if (count < 0) {
-            throw new IllegalArgumentException("ru.nsu.fit.oop.veber.Pizza count cannot be less than zero.");
-        }
-        pizzaCount = count;
+    public void addPizza(Pizza pizza) {
+        pizzas.add(pizza);
+    }
+
+    public Pizza getPizza() {
+        return pizzas.poll();
+
     }
 
     @Override
     public boolean isFull() {
-        return false;
+        return pizzas.size() == capacity;
     }
 }
