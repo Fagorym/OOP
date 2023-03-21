@@ -4,7 +4,9 @@ public class PizzeriaImpl implements OrderProvider, Runnable {
     private final List<Backer> backers;
     private final List<Courier> couriers;
     private final Warehouse warehouse;
-    private final Queue<Order> orders;
+    private final Queue<PizzaOrder> orders;
+
+    private int orderNumber = 0;
 
 
     public PizzeriaImpl() {
@@ -35,15 +37,12 @@ public class PizzeriaImpl implements OrderProvider, Runnable {
     }
 
     @Override
-    public void addOrder(Order order) {
+    synchronized public void makeOrder(int count) {
+        PizzaOrder order = new PizzaOrder(orderNumber++, count);
         orders.add(order);
-        System.out.println("В пиццерию поступил заказ с номером " + order.getId());
+        System.out.println("В пиццерию поступил заказ с номером " + order.id());
     }
 
-    @Override
-    public Queue<Order> getOrders() {
-        return orders;
-    }
 
     @Override
     public void run() {

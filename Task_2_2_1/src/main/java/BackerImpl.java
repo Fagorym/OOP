@@ -1,6 +1,6 @@
 public class BackerImpl implements Backer {
     private final int WORK_SPEED = 2000;
-    private Order currentOrder;
+    private PizzaOrder currentOrder;
     private final Warehouse warehouse;
 
     public BackerImpl(Warehouse warehouse) {
@@ -16,7 +16,7 @@ public class BackerImpl implements Backer {
     }
 
     @Override
-    public void getOrder(Order order) {
+    public void getOrder(PizzaOrder order) {
         currentOrder = order;
     }
 
