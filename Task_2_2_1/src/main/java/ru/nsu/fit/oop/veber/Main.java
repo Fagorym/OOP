@@ -1,3 +1,8 @@
+package ru.nsu.fit.oop.veber;
+
+import ru.nsu.fit.oop.veber.customer.Customer;
+import ru.nsu.fit.oop.veber.customer.CustomerImpl;
+
 import java.util.Random;
 
 public class Main {

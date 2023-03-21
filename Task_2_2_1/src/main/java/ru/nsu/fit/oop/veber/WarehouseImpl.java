@@ -1,3 +1,5 @@
+package ru.nsu.fit.oop.veber;
+
 public class WarehouseImpl implements Warehouse {
     private int pizzaCount = 0;
     private final int capacity;
@@ -14,7 +16,7 @@ public class WarehouseImpl implements Warehouse {
     @Override
     public void setPizzaCount(int count) {
         if (count < 0) {
-            throw new IllegalArgumentException("Pizza count cannot be less than zero.");
+            throw new IllegalArgumentException("ru.nsu.fit.oop.veber.Pizza count cannot be less than zero.");
         }
         pizzaCount = count;
     }
