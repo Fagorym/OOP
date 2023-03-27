@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.veber.courier;
 
-import ru.nsu.fit.oop.veber.order.Pizza;
+import ru.nsu.fit.oop.veber.order.PizzaOrder;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 
 import java.util.ArrayDeque;
@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class CourierImpl implements Courier, Runnable {
     private final Warehouse warehouse;
-    private final Queue<Pizza> bag;
+    private final Queue<PizzaOrder> bag;
 
     private final int baggageCount;
 
@@ -21,9 +21,13 @@ public class CourierImpl implements Courier, Runnable {
     @Override
     public void deliverPizza() throws InterruptedException {
         while (!isBagFull()) {
-            Pizza pizza = warehouse.getPizza();
-            bag.add(pizza);
-            System.out.println("Courier " + this + " received pizza " + pizza.toString());
+            PizzaOrder pizzaOrder = warehouse.getPizza();
+            bag.add(pizzaOrder);
+            System.out.println("Courier " + this + " received pizza " + pizzaOrder.toString());
+        }
+        for (PizzaOrder pizzaOrder : bag) {
+            pizzaOrder.getConsumer().accept(null);
+            bag.remove(pizzaOrder);
         }
     }
 

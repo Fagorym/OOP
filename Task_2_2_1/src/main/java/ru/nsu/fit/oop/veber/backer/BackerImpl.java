@@ -17,10 +17,11 @@ public class BackerImpl implements Backer {
     }
 
     @Override
-    public Pizza makePizza(int orderId) throws InterruptedException {
+    public Pizza makePizza(PizzaOrder order) throws InterruptedException {
         Thread.sleep(workingTime);
         Pizza pizza = new Pizza();
-        System.out.println("Pizza man " + this + " creates pizza for order " + orderId);
+        System.out.println("Pizza man " + this + " creates pizza for order " + order.getId());
+        order.setPizza(pizza);
         return pizza;
     }
 
@@ -29,8 +30,9 @@ public class BackerImpl implements Backer {
         try {
             System.out.println("Hello from backer " + this);
             PizzaOrder order = orderGetter.getOrder();
-            Pizza pizza = makePizza(order.id());
-            warehouse.addPizza(pizza);
+            Pizza pizza = makePizza(order);
+            order.setPizza(pizza);
+            warehouse.addPizza(order);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
