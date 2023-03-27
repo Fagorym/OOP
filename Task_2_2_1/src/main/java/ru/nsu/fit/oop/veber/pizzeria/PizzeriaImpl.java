@@ -30,15 +30,15 @@ public class PizzeriaImpl implements Pizzeria {
 
     public PizzeriaImpl(ConfigurationDto configurationDto) {
 
-        warehouse = new WarehouseImpl(configurationDto.getWarehouse().capacity());
+        warehouse = new WarehouseImpl(configurationDto.getWarehouse().getCapacity());
         couriers = new ArrayList<>();
         for (CourierDto courierDto : configurationDto.getCouriers()) {
-            Courier courier = new CourierImpl(warehouse, courierDto.baggageCount());
+            Courier courier = new CourierImpl(warehouse, courierDto.getBaggageCount());
             couriers.add(courier);
         }
         backers = new ArrayList<>();
         for (BackerDto backerDto : configurationDto.getBackers()) {
-            Backer backer = new BackerImpl(warehouse, this, backerDto.workingTime());
+            Backer backer = new BackerImpl(warehouse, this, backerDto.getWorkingTime());
             backers.add(backer);
         }
         orders = new ArrayDeque<>();
