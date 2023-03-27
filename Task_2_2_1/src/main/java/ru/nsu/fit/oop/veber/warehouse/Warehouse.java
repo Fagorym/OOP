@@ -1,12 +1,14 @@
 package ru.nsu.fit.oop.veber.warehouse;
 
-import ru.nsu.fit.oop.veber.order.Pizza;
+import ru.nsu.fit.oop.veber.order.PizzaOrder;
 
 public interface Warehouse {
 
-    void addPizza(Pizza pizza) throws InterruptedException;
+    void addPizza(PizzaOrder pizza) throws InterruptedException;
 
-    Pizza getPizza() throws InterruptedException;
+    PizzaOrder getPizza() throws InterruptedException;
 
     boolean isFull();
+
+    boolean isEmpty();
 }
