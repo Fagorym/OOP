@@ -13,11 +13,6 @@ public class PizzaOrder {
         this.id = id;
         this.count = count;
     }
-    
-
-    public void setPizza(Pizza pizza) {
-        this.pizza = pizza;
-    }
 
     public Consumer<Void> getConsumer() {
         return consumer;
@@ -29,6 +24,14 @@ public class PizzaOrder {
 
     public int getCount() {
         return count;
+    }
+
+    public Pizza getPizza() {
+        return pizza;
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
     }
 
     public int getId() {
