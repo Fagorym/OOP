@@ -1,55 +1,49 @@
 package ru.nsu.fit.oop.veber.pizzeria;
 
 import ru.nsu.fit.oop.veber.backer.Backer;
+import ru.nsu.fit.oop.veber.backer.BackerDto;
 import ru.nsu.fit.oop.veber.backer.BackerImpl;
 import ru.nsu.fit.oop.veber.courier.Courier;
+import ru.nsu.fit.oop.veber.courier.CourierDto;
 import ru.nsu.fit.oop.veber.courier.CourierImpl;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
+import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class PizzeriaImpl implements OrderProvider, OrderGetter, Runnable {
+public class PizzeriaImpl implements Pizzeria {
     private final List<Backer> backers;
     private final List<Courier> couriers;
     private final Warehouse warehouse;
     private final Queue<PizzaOrder> orders;
 
-    private boolean isOpened;
 
     private int orderNumber = 0;
 
 
-    public PizzeriaImpl() {
-        backers = new ArrayList<>();
-        couriers = new ArrayList<>();
-        warehouse = new WarehouseImpl(2);
-        orders = new ArrayDeque<>();
-        generateBackers();
-        generateCouriers();
-        isOpened = true;
-    }
+    public PizzeriaImpl(ConfigurationDto configurationDto) {
 
-    private void generateCouriers() {
-        Random random = new Random();
-        int maxWorkers = random.nextInt(4) + 2;
-        for (int i = 0; i < maxWorkers; i++) {
-            Courier courier = new CourierImpl(warehouse);
+        warehouse = new WarehouseImpl(configurationDto.getWarehouse().capacity());
+        couriers = new ArrayList<>();
+        for (CourierDto courierDto : configurationDto.getCouriers()) {
+            Courier courier = new CourierImpl(warehouse, courierDto.baggageCount());
             couriers.add(courier);
         }
-    }
-
-    private void generateBackers() {
-        Random random = new Random();
-        int maxBackers = random.nextInt(4) + 2;
-        for (int i = 0; i < maxBackers; i++) {
-            Backer backer = new BackerImpl(warehouse, this);
+        backers = new ArrayList<>();
+        for (BackerDto backerDto : configurationDto.getBackers()) {
+            Backer backer = new BackerImpl(warehouse, this, backerDto.workingTime());
             backers.add(backer);
         }
+        orders = new ArrayDeque<>();
     }
+
 
     @Override
     synchronized public void makeOrder(int count) {
@@ -60,7 +54,7 @@ public class PizzeriaImpl implements OrderProvider, OrderGetter, Runnable {
 
     @Override
     public void run() {
-        while (isOpened) {
+        while (true) {
             List<Runnable> workers = new ArrayList<>(backers);
             workers.addAll(couriers);
             ExecutorService executorService = Executors.newFixedThreadPool(10);
