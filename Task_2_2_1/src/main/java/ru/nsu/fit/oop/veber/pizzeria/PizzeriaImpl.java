@@ -1,4 +1,12 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.pizzeria;
+
+import ru.nsu.fit.oop.veber.backer.Backer;
+import ru.nsu.fit.oop.veber.backer.BackerImpl;
+import ru.nsu.fit.oop.veber.courier.Courier;
+import ru.nsu.fit.oop.veber.courier.CourierImpl;
+import ru.nsu.fit.oop.veber.order.PizzaOrder;
+import ru.nsu.fit.oop.veber.warehouse.Warehouse;
+import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;

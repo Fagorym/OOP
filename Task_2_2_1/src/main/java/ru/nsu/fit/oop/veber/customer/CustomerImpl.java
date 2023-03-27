@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.veber.customer;
 
-import ru.nsu.fit.oop.veber.OrderProvider;
+import ru.nsu.fit.oop.veber.pizzeria.OrderProvider;
 
 public class CustomerImpl implements Customer {
     @Override
