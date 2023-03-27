@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
+import ru.nsu.fit.oop.veber.parsing.PizzeriaParser;
+import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
 
@@ -16,5 +18,16 @@ public class TestPizzeria {
         warehouse.addPizza(new PizzaOrder(2, 4));
         Assertions.assertTrue(warehouse.isFull());
         Assertions.assertFalse(warehouse.isEmpty());
+    }
+
+    @Test
+    public void TestParser() throws InterruptedException {
+        PizzeriaParser parser = new PizzeriaParser();
+        Pizzeria pizzeria = parser.parsePizzeriaFromFile("C:\\Users\\charl\\IdeaProjects\\OOP\\Task_2_2_1\\src\\main\\resources\\config.json");
+        pizzeria.makeOrder(4);
+        PizzaOrder order = pizzeria.getOrder();
+        Assertions.assertEquals(order.getId(), 0);
+        Assertions.assertEquals(order.getCount(), 4);
+        Assertions.assertNull(order.getPizza());
     }
 }
