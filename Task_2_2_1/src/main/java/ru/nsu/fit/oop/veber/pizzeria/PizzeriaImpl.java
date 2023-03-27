@@ -27,6 +27,10 @@ public class PizzeriaImpl implements Pizzeria {
     private final Queue<PizzaOrder> orders;
     private int orderNumber = 0;
 
+    private CustomerService customerService;
+
+    private WorkersService workersService;
+
 
     public PizzeriaImpl(ConfigurationDto configurationDto) {
         Warehouse warehouse = new WarehouseImpl(configurationDto.getWarehouse().getCapacity());
@@ -56,13 +60,21 @@ public class PizzeriaImpl implements Pizzeria {
     public void run() {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         List<Service> services = new ArrayList<>();
-        services.add(new CustomerService(this));
-        services.add(new WorkersService(backers, couriers));
+        workersService = new WorkersService(backers, couriers, this);
+        customerService = new CustomerService(this);
+        services.add(customerService);
+        services.add(workersService);
         try {
             executorService.invokeAll(services);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    public void stopWorking() {
+        workersService.closeService();
+        customerService.shutdown();
     }
 
     @Override
@@ -73,5 +85,10 @@ public class PizzeriaImpl implements Pizzeria {
             }
             return orders.poll();
         }
+    }
+
+    @Override
+    public boolean isNoOrders() {
+        return orders.isEmpty();
     }
 }

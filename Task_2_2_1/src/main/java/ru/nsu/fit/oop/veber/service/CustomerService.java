@@ -12,18 +12,28 @@ public class CustomerService implements Service {
 
     private final Pizzeria pizzeria;
 
+    private ExecutorService executorService;
+
+    private boolean isAlive = true;
+
     public CustomerService(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
+    }
+
+    public void shutdown() {
+        executorService.shutdownNow();
+        isAlive = false;
     }
 
 
     @Override
     public Void call() {
         final int MIN_CUSTOMER_COUNT = 3;
-        ExecutorService executorCustomers = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
+        executorService = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
         List<Customer> customerList = new CustomerRepository(MIN_CUSTOMER_COUNT, pizzeria).generateCustomers();
-        while (true) {
-            customerList.forEach(executorCustomers::execute);
+        while (isAlive) {
+            customerList.forEach(executorService::execute);
         }
+        return null;
     }
 }

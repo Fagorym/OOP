@@ -24,7 +24,7 @@ public class CustomerImpl implements Customer {
             Thread.sleep(sleepTime);
 
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            System.out.println("Customer " + this + " was interrupted");
         }
     }
 }
