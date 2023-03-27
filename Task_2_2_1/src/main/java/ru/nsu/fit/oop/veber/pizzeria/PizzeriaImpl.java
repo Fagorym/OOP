@@ -8,6 +8,9 @@ import ru.nsu.fit.oop.veber.courier.CourierDto;
 import ru.nsu.fit.oop.veber.courier.CourierImpl;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
 import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
+import ru.nsu.fit.oop.veber.service.CustomerService;
+import ru.nsu.fit.oop.veber.service.Service;
+import ru.nsu.fit.oop.veber.service.WorkersService;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
 
@@ -21,7 +24,6 @@ import java.util.concurrent.Executors;
 public class PizzeriaImpl implements Pizzeria {
     private final List<Backer> backers;
     private final List<Courier> couriers;
-    private final Warehouse warehouse;
     private final Queue<PizzaOrder> orders;
 
 
@@ -30,7 +32,7 @@ public class PizzeriaImpl implements Pizzeria {
 
     public PizzeriaImpl(ConfigurationDto configurationDto) {
 
-        warehouse = new WarehouseImpl(configurationDto.getWarehouse().getCapacity());
+        Warehouse warehouse = new WarehouseImpl(configurationDto.getWarehouse().getCapacity());
         couriers = new ArrayList<>();
         for (CourierDto courierDto : configurationDto.getCouriers()) {
             Courier courier = new CourierImpl(warehouse, courierDto.getBaggageCount());
@@ -57,11 +59,15 @@ public class PizzeriaImpl implements Pizzeria {
 
     @Override
     public void run() {
-        while (true) {
-            List<Runnable> workers = new ArrayList<>(backers);
-            workers.addAll(couriers);
-            ExecutorService executorService = Executors.newFixedThreadPool(4);
-            workers.forEach(executorService::execute);
+
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        List<Service> services = new ArrayList<>();
+        services.add(new WorkersService(backers, couriers));
+        services.add(new CustomerService(this));
+        try {
+            executorService.invokeAll(services);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
