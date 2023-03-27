@@ -16,8 +16,13 @@ public class Main {
 
         final int MIN_CUSTOMER_COUNT = 3;
         List<Customer> customerList = new CustomerRepository(MIN_CUSTOMER_COUNT, pizzeria).generateCustomers();
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
-        customerList.forEach(executorService::execute);
-        executorService.execute(pizzeria);
+        ExecutorService executorCustomers = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
+        ExecutorService executorPizzeria = Executors.newFixedThreadPool(4);
+        executorPizzeria.execute(pizzeria);
+        while (true) {
+            customerList.forEach(executorCustomers::execute);
+
+        }
+
     }
 }
