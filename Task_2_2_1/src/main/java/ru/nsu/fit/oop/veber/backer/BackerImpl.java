@@ -26,14 +26,13 @@ public class BackerImpl implements Backer {
 
     @Override
     public void run() {
-        while (true) {
-            try {
-                PizzaOrder order = orderGetter.getOrder();
-                Pizza pizza = makePizza(order.id());
-                warehouse.addPizza(pizza);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        try {
+            System.out.println("Hello from backer " + this);
+            PizzaOrder order = orderGetter.getOrder();
+            Pizza pizza = makePizza(order.id());
+            warehouse.addPizza(pizza);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

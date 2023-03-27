@@ -22,7 +22,8 @@ public class CustomerService implements Service {
         final int MIN_CUSTOMER_COUNT = 3;
         ExecutorService executorCustomers = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
         List<Customer> customerList = new CustomerRepository(MIN_CUSTOMER_COUNT, pizzeria).generateCustomers();
-        customerList.forEach(executorCustomers::execute);
-        return null;
+        while (true) {
+            customerList.forEach(executorCustomers::execute);
+        }
     }
 }

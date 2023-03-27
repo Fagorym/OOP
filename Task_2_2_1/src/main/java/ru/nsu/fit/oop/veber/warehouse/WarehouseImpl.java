@@ -20,6 +20,7 @@ public class WarehouseImpl implements Warehouse {
                 this.wait();
             }
             pizzas.add(pizza);
+            notifyAll();
         }
 
     }
@@ -29,6 +30,7 @@ public class WarehouseImpl implements Warehouse {
             while (isEmpty()) {
                 this.wait();
             }
+            notifyAll();
             return pizzas.poll();
         }
 

@@ -25,13 +25,10 @@ public class PizzeriaImpl implements Pizzeria {
     private final List<Backer> backers;
     private final List<Courier> couriers;
     private final Queue<PizzaOrder> orders;
-
-
     private int orderNumber = 0;
 
 
     public PizzeriaImpl(ConfigurationDto configurationDto) {
-
         Warehouse warehouse = new WarehouseImpl(configurationDto.getWarehouse().getCapacity());
         couriers = new ArrayList<>();
         for (CourierDto courierDto : configurationDto.getCouriers()) {
@@ -49,21 +46,18 @@ public class PizzeriaImpl implements Pizzeria {
 
     @Override
     synchronized public void makeOrder(int count) {
-        System.out.println("Hello from customer from making order");
-        System.out.println("Hello from customer in synchronized");
         PizzaOrder order = new PizzaOrder(orderNumber++, count);
         orders.add(order);
         System.out.println("Pizzeria received order with number " + order.id());
-
+        notifyAll();
     }
 
     @Override
     public void run() {
-
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         List<Service> services = new ArrayList<>();
-        services.add(new WorkersService(backers, couriers));
         services.add(new CustomerService(this));
+        services.add(new WorkersService(backers, couriers));
         try {
             executorService.invokeAll(services);
         } catch (InterruptedException e) {
