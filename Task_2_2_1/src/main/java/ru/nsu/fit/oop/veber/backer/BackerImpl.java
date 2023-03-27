@@ -5,22 +5,20 @@ import ru.nsu.fit.oop.veber.order.PizzaOrder;
 import ru.nsu.fit.oop.veber.pizzeria.OrderGetter;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 
-import java.util.Random;
-
 public class BackerImpl implements Backer {
-    private final int WORK_SPEED;
+    private final int workingTime;
     private final OrderGetter orderGetter;
     private final Warehouse warehouse;
 
-    public BackerImpl(Warehouse warehouse, OrderGetter orderGetter) {
+    public BackerImpl(Warehouse warehouse, OrderGetter orderGetter, int workingTime) {
         this.warehouse = warehouse;
         this.orderGetter = orderGetter;
-        WORK_SPEED = new Random().nextInt(2000) + 1000;
+        this.workingTime = workingTime;
     }
 
     @Override
     public Pizza makePizza(int orderId) throws InterruptedException {
-        Thread.sleep(WORK_SPEED);
+        Thread.sleep(workingTime);
         Pizza pizza = new Pizza();
         System.out.println("Pizza man " + this + " creates pizza for order " + orderId);
         return pizza;

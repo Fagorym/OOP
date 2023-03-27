@@ -5,9 +5,11 @@ import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 
 public class CourierImpl implements Courier, Runnable {
     private final Warehouse warehouse;
+    private final int baggageCount;
 
-    public CourierImpl(Warehouse warehouse) {
+    public CourierImpl(Warehouse warehouse, int baggageCount) {
         this.warehouse = warehouse;
+        this.baggageCount = baggageCount;
     }
 
     @Override
