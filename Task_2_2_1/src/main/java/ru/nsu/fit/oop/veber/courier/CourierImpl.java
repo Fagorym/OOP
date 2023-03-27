@@ -29,12 +29,10 @@ public class CourierImpl implements Courier, Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            try {
-                deliverPizza();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        try {
+            deliverPizza();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -22,7 +22,8 @@ public class WorkersService implements Service {
         ExecutorService executorService = Executors.newFixedThreadPool(backers.size() + couriers.size());
         List<Runnable> workers = new ArrayList<>(backers);
         workers.addAll(couriers);
-        workers.forEach(executorService::execute);
-        return null;
+        while (true) {
+            workers.forEach(executorService::execute);
+        }
     }
 }
