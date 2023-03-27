@@ -47,9 +47,12 @@ public class PizzeriaImpl implements Pizzeria {
 
     @Override
     synchronized public void makeOrder(int count) {
+        System.out.println("Hello from customer from making order");
+        System.out.println("Hello from customer in synchronized");
         PizzaOrder order = new PizzaOrder(orderNumber++, count);
         orders.add(order);
         System.out.println("Pizzeria received order with number " + order.id());
+
     }
 
     @Override
@@ -57,7 +60,7 @@ public class PizzeriaImpl implements Pizzeria {
         while (true) {
             List<Runnable> workers = new ArrayList<>(backers);
             workers.addAll(couriers);
-            ExecutorService executorService = Executors.newFixedThreadPool(10);
+            ExecutorService executorService = Executors.newFixedThreadPool(4);
             workers.forEach(executorService::execute);
         }
     }
@@ -65,8 +68,8 @@ public class PizzeriaImpl implements Pizzeria {
     @Override
     public PizzaOrder getOrder() throws InterruptedException {
         synchronized (this) {
-            if (orders.isEmpty()) {
-                this.wait();
+            while (orders.isEmpty()) {
+                wait();
             }
             return orders.poll();
         }

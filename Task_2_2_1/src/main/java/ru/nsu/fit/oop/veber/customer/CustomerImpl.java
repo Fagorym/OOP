@@ -2,6 +2,8 @@ package ru.nsu.fit.oop.veber.customer;
 
 import ru.nsu.fit.oop.veber.pizzeria.OrderProvider;
 
+import java.util.Random;
+
 public class CustomerImpl implements Customer {
     private final OrderProvider provider;
     private final int pizzaCountInOrder;
@@ -14,13 +16,15 @@ public class CustomerImpl implements Customer {
 
     @Override
     public void run() {
-        while (true) {
+        System.out.println("Hello from customer " + this);
+        try {
             provider.makeOrder(pizzaCountInOrder);
-            try {
-                this.wait(10000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            int MIN_SLEEP_TIME = 1000;
+            int sleepTime = new Random().nextInt(5000) + MIN_SLEEP_TIME;
+            Thread.sleep(sleepTime);
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }
