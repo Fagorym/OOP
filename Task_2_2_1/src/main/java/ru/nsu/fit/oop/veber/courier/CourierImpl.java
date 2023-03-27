@@ -1,4 +1,7 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.courier;
+
+import ru.nsu.fit.oop.veber.order.Pizza;
+import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 
 public class CourierImpl implements Courier, Runnable {
     private final Warehouse warehouse;

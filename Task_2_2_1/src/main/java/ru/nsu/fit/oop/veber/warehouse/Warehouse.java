@@ -1,4 +1,6 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.warehouse;
+
+import ru.nsu.fit.oop.veber.order.Pizza;
 
 public interface Warehouse {
 
