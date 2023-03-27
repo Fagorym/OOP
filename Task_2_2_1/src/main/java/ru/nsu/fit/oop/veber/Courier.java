@@ -1,5 +1,5 @@
 package ru.nsu.fit.oop.veber;
 
-public interface Courier {
-    void deliverPizza();
+public interface Courier extends Runnable {
+    void deliverPizza() throws InterruptedException;
 }

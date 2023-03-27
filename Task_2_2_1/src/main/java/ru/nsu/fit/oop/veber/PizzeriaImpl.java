@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.veber;
 
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class PizzeriaImpl implements OrderProvider, OrderGetter, Runnable {
     private final List<Backer> backers;
@@ -8,7 +10,7 @@ public class PizzeriaImpl implements OrderProvider, OrderGetter, Runnable {
     private final Warehouse warehouse;
     private final Queue<PizzaOrder> orders;
 
-    private boolean isOpened = true;
+    private boolean isOpened;
 
     private int orderNumber = 0;
 
@@ -16,17 +18,18 @@ public class PizzeriaImpl implements OrderProvider, OrderGetter, Runnable {
     public PizzeriaImpl() {
         backers = new ArrayList<>();
         couriers = new ArrayList<>();
-        warehouse = new WarehouseImpl(100);
+        warehouse = new WarehouseImpl(2);
         orders = new ArrayDeque<>();
         generateBackers();
         generateCouriers();
+        isOpened = true;
     }
 
     private void generateCouriers() {
         Random random = new Random();
         int maxWorkers = random.nextInt(4) + 2;
         for (int i = 0; i < maxWorkers; i++) {
-            Courier courier = new CourierImpl();
+            Courier courier = new CourierImpl(warehouse);
             couriers.add(courier);
         }
     }
@@ -50,13 +53,20 @@ public class PizzeriaImpl implements OrderProvider, OrderGetter, Runnable {
     @Override
     public void run() {
         while (isOpened) {
-            backers.forEach(Backer::run);
-            couriers.forEach(Courier::deliverPizza);
+            List<Runnable> workers = new ArrayList<>(backers);
+            workers.addAll(couriers);
+            ExecutorService executorService = Executors.newFixedThreadPool(10);
+            workers.forEach(executorService::execute);
         }
     }
 
     @Override
-    public PizzaOrder getOrder() {
-        return orders.poll();
+    public PizzaOrder getOrder() throws InterruptedException {
+        synchronized (this) {
+            if (orders.isEmpty()) {
+                this.wait();
+            }
+            return orders.poll();
+        }
     }
 }

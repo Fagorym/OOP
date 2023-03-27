@@ -1,11 +1,10 @@
 package ru.nsu.fit.oop.veber;
 
 public interface Warehouse {
-    int getPizzaCount();
 
-    void addPizza(Pizza pizza);
+    void addPizza(Pizza pizza) throws InterruptedException;
 
-    Pizza getPizza();
+    Pizza getPizza() throws InterruptedException;
 
     boolean isFull();
 }

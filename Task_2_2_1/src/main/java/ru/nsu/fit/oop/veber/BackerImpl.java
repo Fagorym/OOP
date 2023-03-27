@@ -17,23 +17,20 @@ public class BackerImpl implements Backer {
     public Pizza makePizza(int orderId) throws InterruptedException {
         Thread.sleep(WORK_SPEED);
         Pizza pizza = new Pizza();
-        System.out.println("Pizza man creates pizza for order " + orderId);
+        System.out.println("Pizza man " + this + " creates pizza for order " + orderId);
         return pizza;
     }
 
     @Override
     public void run() {
-        try {
-            PizzaOrder order = orderGetter.getOrder();
-            Pizza pizza = makePizza(order.id());
-            synchronized (warehouse) {
-                while (warehouse.isFull()) {
-                    Thread.currentThread().wait();
-                }
+        while (true) {
+            try {
+                PizzaOrder order = orderGetter.getOrder();
+                Pizza pizza = makePizza(order.id());
                 warehouse.addPizza(pizza);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
         }
     }
 }

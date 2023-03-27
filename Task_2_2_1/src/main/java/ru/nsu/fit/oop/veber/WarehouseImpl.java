@@ -12,22 +12,32 @@ public class WarehouseImpl implements Warehouse {
         pizzas = new ArrayDeque<>(capacity);
     }
 
-    @Override
-    public int getPizzaCount() {
-        return pizzas.size();
+    public void addPizza(Pizza pizza) throws InterruptedException {
+        synchronized (this) {
+            while (this.isFull()) {
+                this.wait();
+            }
+            pizzas.add(pizza);
+        }
+
     }
 
-    public void addPizza(Pizza pizza) {
-        pizzas.add(pizza);
-    }
-
-    public Pizza getPizza() {
-        return pizzas.poll();
+    public Pizza getPizza() throws InterruptedException {
+        synchronized (this) {
+            while (isEmpty()) {
+                this.wait();
+            }
+            return pizzas.poll();
+        }
 
     }
 
     @Override
     public boolean isFull() {
         return pizzas.size() == capacity;
+    }
+
+    public boolean isEmpty() {
+        return pizzas.size() == 0;
     }
 }

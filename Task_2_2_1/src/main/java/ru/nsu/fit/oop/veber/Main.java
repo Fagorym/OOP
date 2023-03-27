@@ -13,7 +13,7 @@ public class Main {
         int exit = 0;
         Customer[] customers = new Customer[customerCount];
         for (int i = 0; i < customerCount; i++) {
-            int pizzaCount = random.nextInt(3) + 1;
+            int pizzaCount = random.nextInt(5) + 1;
             customers[i] = new CustomerImpl();
             customers[i].orderPizza(pizzeria, pizzaCount);
         }
