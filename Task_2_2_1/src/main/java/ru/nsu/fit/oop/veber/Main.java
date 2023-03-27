@@ -16,10 +16,17 @@ public class Main {
         while (isWorking) {
             String command = new Scanner(System.in).nextLine();
             switch (command) {
-                case "start" -> executorPizzeria.submit(pizzeria);
-                case "stop", "end" -> {
-                    executorPizzeria.shutdownNow();
-                    isWorking = false;
+                case "start" -> {
+                    System.out.println("Starting work");
+                    executorPizzeria.submit(pizzeria);
+                }
+                case "stop" -> {
+                    System.out.println("Stopping work");
+                    pizzeria.stopWorking();
+                }
+                case "end" -> {
+                    System.out.println("Ending work");
+                    return;
                 }
                 default -> System.out.println("Unknown command");
             }
