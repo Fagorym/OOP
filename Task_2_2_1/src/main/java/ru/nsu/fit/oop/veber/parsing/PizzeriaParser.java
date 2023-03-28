@@ -7,8 +7,8 @@ import ru.nsu.fit.oop.veber.exception.PizzeriaParsingException;
 import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 import ru.nsu.fit.oop.veber.pizzeria.PizzeriaImpl;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class PizzeriaParser {
 
@@ -22,11 +22,11 @@ public class PizzeriaParser {
 
     public Pizzeria parsePizzeriaFromFile(String filepath) {
         JsonReader reader;
-        try {
-            reader = new JsonReader(new FileReader(filepath));
-        } catch (FileNotFoundException ex) {
+        InputStream inputStream = this.getClass().getResourceAsStream(filepath);
+        if (inputStream == null) {
             throw new PizzeriaParsingException(filepath);
         }
+        reader = new JsonReader(new InputStreamReader(inputStream));
         ConfigurationDto configurationDto = gson.fromJson(reader, ConfigurationDto.class);
         return new PizzeriaImpl(configurationDto);
 
