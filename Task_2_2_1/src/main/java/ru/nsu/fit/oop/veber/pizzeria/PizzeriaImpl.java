@@ -33,15 +33,15 @@ public class PizzeriaImpl implements Pizzeria {
 
 
     public PizzeriaImpl(ConfigurationDto configurationDto) {
-        Warehouse warehouse = new WarehouseImpl(configurationDto.getWarehouse().getCapacity());
+        Warehouse warehouse = new WarehouseImpl(configurationDto.warehouse().capacity());
         couriers = new ArrayList<>();
-        for (CourierDto courierDto : configurationDto.getCouriers()) {
-            Courier courier = new CourierImpl(warehouse, courierDto.getBaggageCount());
+        for (CourierDto courierDto : configurationDto.couriers()) {
+            Courier courier = new CourierImpl(warehouse, courierDto.baggageCount());
             couriers.add(courier);
         }
         backers = new ArrayList<>();
-        for (BackerDto backerDto : configurationDto.getBackers()) {
-            Backer backer = new BackerImpl(warehouse, this, backerDto.getWorkingTime());
+        for (BackerDto backerDto : configurationDto.backers()) {
+            Backer backer = new BackerImpl(warehouse, this, backerDto.workingTime());
             backers.add(backer);
         }
         orders = new ArrayDeque<>();
@@ -93,4 +93,5 @@ public class PizzeriaImpl implements Pizzeria {
     public boolean isNoOrders() {
         return orders.isEmpty();
     }
+
 }
