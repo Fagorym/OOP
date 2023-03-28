@@ -1,6 +1,5 @@
 package ru.nsu.fit.oop.veber.service;
 
-import ru.nsu.fit.oop.veber.customer.Customer;
 import ru.nsu.fit.oop.veber.customer.CustomerRepository;
 import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 
@@ -30,7 +29,7 @@ public class CustomerService implements Service {
     public Void call() {
         final int MIN_CUSTOMER_COUNT = 3;
         executorService = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
-        List<Customer> customerList = new CustomerRepository(MIN_CUSTOMER_COUNT, pizzeria).generateCustomers();
+        List<Runnable> customerList = new CustomerRepository(MIN_CUSTOMER_COUNT, pizzeria).generateCustomers();
         while (isAlive) {
             customerList.forEach(executorService::execute);
         }

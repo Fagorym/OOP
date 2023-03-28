@@ -7,7 +7,6 @@ import ru.nsu.fit.oop.veber.backer.BackerImpl;
 import ru.nsu.fit.oop.veber.courier.Courier;
 import ru.nsu.fit.oop.veber.courier.CourierDto;
 import ru.nsu.fit.oop.veber.courier.CourierImpl;
-import ru.nsu.fit.oop.veber.customer.Customer;
 import ru.nsu.fit.oop.veber.customer.CustomerRepository;
 import ru.nsu.fit.oop.veber.exception.PizzeriaParsingException;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
@@ -87,7 +86,7 @@ public class TestPizzeria {
     @Test
     public void testCustomerRepository() throws InterruptedException {
         CustomerRepository customerRepository = new CustomerRepository(1, pizzeria);
-        List<Customer> customers = customerRepository.generateCustomers();
+        List<Runnable> customers = customerRepository.generateCustomers();
         Assertions.assertTrue(customers.size() >= 1 && customers.size() <= 4);
         customers.get(0).run();
 
