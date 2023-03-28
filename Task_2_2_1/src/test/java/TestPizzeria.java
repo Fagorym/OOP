@@ -6,6 +6,8 @@ import ru.nsu.fit.oop.veber.backer.BackerImpl;
 import ru.nsu.fit.oop.veber.courier.Courier;
 import ru.nsu.fit.oop.veber.courier.CourierDto;
 import ru.nsu.fit.oop.veber.courier.CourierImpl;
+import ru.nsu.fit.oop.veber.customer.Customer;
+import ru.nsu.fit.oop.veber.customer.CustomerRepository;
 import ru.nsu.fit.oop.veber.exception.PizzeriaParsingException;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
 import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
@@ -14,6 +16,8 @@ import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 import ru.nsu.fit.oop.veber.pizzeria.PizzeriaImpl;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
+
+import java.util.List;
 
 public class TestPizzeria {
     @Test
@@ -63,4 +67,15 @@ public class TestPizzeria {
         Courier courier = new CourierImpl(pizzeria.getWarehouse(), 1);
         courier.run();
     }
+
+    @Test
+    public void testCustomerRepository() {
+        PizzeriaParser parser = new PizzeriaParser();
+        ConfigurationDto configurationDto = parser.getConfigurationDtoFromFile("/testconfig.json");
+        Pizzeria pizzeria = new PizzeriaImpl(configurationDto);
+        CustomerRepository customerRepository = new CustomerRepository(1, pizzeria);
+        List<Customer> customers = customerRepository.generateCustomers();
+        Assertions.assertTrue(customers.size() >= 1 && customers.size() <= 4);
+    }
+
 }

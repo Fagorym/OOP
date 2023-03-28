@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class that represents customer repository.
+ * Main aim of this class - generate a bunch of customers that can create orders.
+ */
 public class CustomerRepository {
     private final int customerCount;
     private final Pizzeria pizzeria;

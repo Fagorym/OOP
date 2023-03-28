@@ -18,6 +18,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 java {
@@ -26,11 +27,22 @@ java {
     }
 }
 
+
 jacocoTestReport {
     dependsOn test
     reports {
         xml.required = true
         csv.required = false
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(
+                    dir: it,
+                    exclude: 'ru.nsu.fit.veber.Main')
+        }
+        )
+        )
     }
 }
