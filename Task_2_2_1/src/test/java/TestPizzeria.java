@@ -1,7 +1,11 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.veber.backer.Backer;
 import ru.nsu.fit.oop.veber.backer.BackerDto;
+import ru.nsu.fit.oop.veber.backer.BackerImpl;
+import ru.nsu.fit.oop.veber.courier.Courier;
 import ru.nsu.fit.oop.veber.courier.CourierDto;
+import ru.nsu.fit.oop.veber.courier.CourierImpl;
 import ru.nsu.fit.oop.veber.exception.PizzeriaParsingException;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
 import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
@@ -51,5 +55,12 @@ public class TestPizzeria {
         Assertions.assertEquals(order.getId(), 0);
         Assertions.assertEquals(order.getCount(), 4);
         Assertions.assertNull(order.getPizza());
+
+        pizzeria.makeOrder(4);
+        Backer backer = new BackerImpl(pizzeria.getWarehouse(), pizzeria, configurationDto.backers().get(0).workingTime());
+        backer.run();
+
+        Courier courier = new CourierImpl(pizzeria.getWarehouse(), 1);
+        courier.run();
     }
 }
