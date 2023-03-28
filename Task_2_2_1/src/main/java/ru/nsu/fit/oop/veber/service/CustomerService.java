@@ -20,7 +20,7 @@ public class CustomerService implements Service {
         this.pizzeria = pizzeria;
     }
 
-    public void shutdown() {
+    public void closeService() {
         executorService.shutdownNow();
         isAlive = false;
     }

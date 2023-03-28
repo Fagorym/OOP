@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.veber.backer.Backer;
 import ru.nsu.fit.oop.veber.backer.BackerDto;
@@ -14,12 +15,28 @@ import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
 import ru.nsu.fit.oop.veber.parsing.PizzeriaParser;
 import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 import ru.nsu.fit.oop.veber.pizzeria.PizzeriaImpl;
+import ru.nsu.fit.oop.veber.service.CustomerService;
+import ru.nsu.fit.oop.veber.service.Service;
+import ru.nsu.fit.oop.veber.service.WorkersService;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class TestPizzeria {
+    private Pizzeria pizzeria;
+
+    @BeforeEach
+    public void init() {
+        PizzeriaParser parser = new PizzeriaParser();
+        ConfigurationDto configurationDto = parser.getConfigurationDtoFromFile("/testconfig.json");
+        pizzeria = new PizzeriaImpl(configurationDto);
+    }
+
     @Test
     public void TestWarehouse() throws InterruptedException {
         Warehouse warehouse = new WarehouseImpl(2);
@@ -53,7 +70,6 @@ public class TestPizzeria {
         Assertions.assertEquals(configurationDto.warehouse().capacity(), 5);
 
 
-        Pizzeria pizzeria = new PizzeriaImpl(configurationDto);
         pizzeria.makeOrder(4);
         PizzaOrder order = pizzeria.getOrder();
         Assertions.assertEquals(order.getId(), 0);
@@ -69,13 +85,35 @@ public class TestPizzeria {
     }
 
     @Test
-    public void testCustomerRepository() {
-        PizzeriaParser parser = new PizzeriaParser();
-        ConfigurationDto configurationDto = parser.getConfigurationDtoFromFile("/testconfig.json");
-        Pizzeria pizzeria = new PizzeriaImpl(configurationDto);
+    public void testCustomerRepository() throws InterruptedException {
         CustomerRepository customerRepository = new CustomerRepository(1, pizzeria);
         List<Customer> customers = customerRepository.generateCustomers();
         Assertions.assertTrue(customers.size() >= 1 && customers.size() <= 4);
+        customers.get(0).run();
+
+        CustomerService customerService = new CustomerService(pizzeria);
+
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Future<Void> future = executorService.submit(customerService);
+
+        Thread.sleep(1000);
+        Assertions.assertFalse(future.isDone());
+
+        customerService.closeService();
+        Thread.sleep(1000);
+
+        Assertions.assertTrue(future.isDone());
+    }
+
+    @Test
+    public void testServices() throws ExecutionException, InterruptedException {
+        PizzeriaImpl pizzeria1 = (PizzeriaImpl) pizzeria;
+        Service service = new WorkersService(pizzeria1.getBackers(), pizzeria1.getCouriers(), pizzeria);
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Future<Void> future = executorService.submit(service);
+        Assertions.assertFalse(future.isDone());
+        service.closeService();
+        Assertions.assertNull(future.get());
     }
 
 }
