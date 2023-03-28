@@ -1,7 +1,9 @@
 package ru.nsu.fit.oop.veber;
 
+import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
 import ru.nsu.fit.oop.veber.parsing.PizzeriaParser;
 import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
+import ru.nsu.fit.oop.veber.pizzeria.PizzeriaImpl;
 
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
@@ -10,7 +12,8 @@ import java.util.concurrent.Executors;
 public class Main {
     public static void main(String[] args) {
         PizzeriaParser parser = new PizzeriaParser();
-        Pizzeria pizzeria = parser.parsePizzeriaFromFile("Task_2_2_1/src/main/resources/config.json");
+        ConfigurationDto configurationDto = parser.getConfigurationDtoFromFile("/config.json");
+        Pizzeria pizzeria = new PizzeriaImpl(configurationDto);
         ExecutorService executorPizzeria = Executors.newSingleThreadExecutor();
         boolean isWorking = true;
         while (isWorking) {
