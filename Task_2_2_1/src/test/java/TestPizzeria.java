@@ -77,10 +77,10 @@ public class TestPizzeria {
         Assertions.assertNull(order.getPizza());
 
         pizzeria.makeOrder(4);
-        Backer backer = new BackerImpl(pizzeria.getWarehouse(), pizzeria, configurationDto.backers().get(0).workingTime());
+        Backer backer = new BackerImpl(((PizzeriaImpl) pizzeria).getWarehouse(), pizzeria, configurationDto.backers().get(0).workingTime());
         backer.run();
 
-        Courier courier = new CourierImpl(pizzeria.getWarehouse(), 1);
+        Courier courier = new CourierImpl(((PizzeriaImpl) pizzeria).getWarehouse(), 1);
         courier.run();
     }
 
