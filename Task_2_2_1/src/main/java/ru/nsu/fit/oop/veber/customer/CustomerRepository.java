@@ -25,7 +25,7 @@ public class CustomerRepository {
         List<Runnable> customers = new ArrayList<>();
         for (int i = 0; i < customerCount; i++) {
             int pizzaCountInOrder = new Random().nextInt(3) + 1;
-            Customer customer = new CustomerImpl(pizzeria, pizzaCountInOrder);
+            Runnable customer = new CustomerImpl(pizzeria, pizzaCountInOrder);
             customers.add(customer);
         }
         return customers;

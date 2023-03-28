@@ -4,7 +4,7 @@ import ru.nsu.fit.oop.veber.pizzeria.OrderProvider;
 
 import java.util.Random;
 
-public class CustomerImpl implements Customer {
+public class CustomerImpl implements Runnable {
     private final OrderProvider provider;
     private final int pizzaCountInOrder;
 
