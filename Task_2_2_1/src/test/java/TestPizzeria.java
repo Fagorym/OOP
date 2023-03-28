@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.veber.backer.BackerDto;
 import ru.nsu.fit.oop.veber.courier.CourierDto;
+import ru.nsu.fit.oop.veber.exception.PizzeriaParsingException;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
 import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
 import ru.nsu.fit.oop.veber.parsing.PizzeriaParser;
@@ -28,6 +29,9 @@ public class TestPizzeria {
     public void TestParser() throws InterruptedException {
         PizzeriaParser parser = new PizzeriaParser();
         ConfigurationDto configurationDto = parser.getConfigurationDtoFromFile("/testconfig.json");
+        Assertions.assertThrows(PizzeriaParsingException.class,
+                () ->
+                        parser.getConfigurationDtoFromFile("/unexistedfile.json.txt.csv"));
         Assertions.assertEquals(configurationDto.backers().size(), 2);
         int i = 0;
         for (BackerDto backerDto : configurationDto.backers()) {
