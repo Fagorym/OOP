@@ -75,7 +75,7 @@ public class PizzeriaImpl implements Pizzeria {
 
     public void stopWorking() {
         workersService.closeService();
-        customerService.shutdown();
+        customerService.closeService();
     }
 
     @Override
@@ -96,5 +96,13 @@ public class PizzeriaImpl implements Pizzeria {
     @Override
     public Warehouse getWarehouse() {
         return warehouse;
+    }
+
+    public List<Courier> getCouriers() {
+        return couriers;
+    }
+
+    public List<Backer> getBackers() {
+        return backers;
     }
 }
