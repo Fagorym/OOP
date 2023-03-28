@@ -21,8 +21,8 @@ public class CustomerRepository {
 
     }
 
-    public List<Customer> generateCustomers() {
-        List<Customer> customers = new ArrayList<>();
+    public List<Runnable> generateCustomers() {
+        List<Runnable> customers = new ArrayList<>();
         for (int i = 0; i < customerCount; i++) {
             int pizzaCountInOrder = new Random().nextInt(3) + 1;
             Customer customer = new CustomerImpl(pizzeria, pizzaCountInOrder);
