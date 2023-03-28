@@ -25,15 +25,14 @@ public class PizzeriaImpl implements Pizzeria {
     private final List<Backer> backers;
     private final List<Courier> couriers;
     private final Queue<PizzaOrder> orders;
+    private final Warehouse warehouse;
     private int orderNumber = 0;
-
     private CustomerService customerService;
-
     private WorkersService workersService;
 
 
     public PizzeriaImpl(ConfigurationDto configurationDto) {
-        Warehouse warehouse = new WarehouseImpl(configurationDto.warehouse().capacity());
+        warehouse = new WarehouseImpl(configurationDto.warehouse().capacity());
         couriers = new ArrayList<>();
         for (CourierDto courierDto : configurationDto.couriers()) {
             Courier courier = new CourierImpl(warehouse, courierDto.baggageCount());
@@ -94,4 +93,8 @@ public class PizzeriaImpl implements Pizzeria {
         return orders.isEmpty();
     }
 
+    @Override
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
 }
