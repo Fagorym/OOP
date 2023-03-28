@@ -23,7 +23,7 @@ public class TestPizzeria {
     @Test
     public void TestParser() throws InterruptedException {
         PizzeriaParser parser = new PizzeriaParser();
-        Pizzeria pizzeria = parser.parsePizzeriaFromFile("C:\\Users\\charl\\IdeaProjects\\OOP\\Task_2_2_1\\src\\main\\resources\\config.json");
+        Pizzeria pizzeria = parser.parsePizzeriaFromFile("/config.json");
         pizzeria.makeOrder(4);
         PizzaOrder order = pizzeria.getOrder();
         Assertions.assertEquals(order.getId(), 0);

@@ -1,0 +1,21 @@
+{
+  "backers": [
+    {
+      "workingTime": 100
+    },
+    {
+      "workingTime": 10000
+    }
+  ],
+  "couriers": [
+    {
+      "baggageCount": 2
+    },
+    {
+      "baggageCount": 1
+    }
+  ],
+  "warehouse": {
+    "capacity": 5
+  }
+}
