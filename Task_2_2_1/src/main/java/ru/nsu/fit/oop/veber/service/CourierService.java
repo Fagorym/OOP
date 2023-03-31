@@ -15,8 +15,13 @@ public class CourierService implements Service {
     }
 
     @Override
-    public void closeService() {
+    public void stopService() {
+        couriers.forEach(Courier::stopWorking);
+    }
 
+    @Override
+    public void resumeService() {
+        couriers.forEach(Courier::resumeWorking);
     }
 
     @Override

@@ -14,7 +14,13 @@ public class BackerService implements Service {
         this.backers = backers;
     }
 
-    public void closeService() {
+    public void stopService() {
+        backers.forEach(Backer::stopWorking);
+    }
+
+    @Override
+    public void resumeService() {
+        backers.forEach(Backer::resumeWorking);
     }
 
     @Override

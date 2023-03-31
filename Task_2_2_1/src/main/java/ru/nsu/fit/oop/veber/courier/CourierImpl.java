@@ -12,6 +12,8 @@ public class CourierImpl implements Courier, Runnable {
 
     private final int baggageCount;
 
+    private boolean isWorking = true;
+
     public CourierImpl(Warehouse warehouse, int baggageCount) {
         this.warehouse = warehouse;
         this.baggageCount = baggageCount;
@@ -32,11 +34,23 @@ public class CourierImpl implements Courier, Runnable {
     }
 
     @Override
+    public void stopWorking() {
+        isWorking = false;
+    }
+
+    @Override
+    public void resumeWorking() {
+        isWorking = true;
+    }
+
+    @Override
     public void run() {
-        try {
-            deliverPizza();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        while (isWorking) {
+            try {
+                deliverPizza();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

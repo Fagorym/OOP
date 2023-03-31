@@ -1,9 +1,9 @@
 package ru.nsu.fit.oop.veber.service;
 
+import ru.nsu.fit.oop.veber.customer.Customer;
 import ru.nsu.fit.oop.veber.customer.CustomerImpl;
 import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
@@ -13,33 +13,39 @@ public class CustomerService implements Service, CustomerGenerator {
 
     private final Pizzeria pizzeria;
     private final int MIN_CUSTOMER_COUNT = 3;
-    private ExecutorService executorService;
+    private List<Customer> customers;
 
     public CustomerService(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
     }
 
-    public void closeService() {
-        executorService.shutdownNow();
-    }
-
 
     @Override
     public void run() {
-        executorService = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
-        List<Runnable> customerList = generate();
-        customerList.forEach(executorService::execute);
+        ExecutorService executorService = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
+        customers = generate();
+        customers.forEach(executorService::execute);
     }
 
     @Override
-    public List<Runnable> generate() {
-        List<Runnable> customers = new ArrayList<>();
+    public List<Customer> generate() {
         int customerCount = new Random().nextInt(3) + MIN_CUSTOMER_COUNT;
         for (int i = 0; i < customerCount; i++) {
             int pizzaCountInOrder = new Random().nextInt(3) + 1;
-            Runnable customer = new CustomerImpl(pizzeria, pizzaCountInOrder);
+            Customer customer = new CustomerImpl(pizzeria, pizzaCountInOrder);
             customers.add(customer);
         }
         return customers;
+    }
+
+    @Override
+    public void stopService() {
+        customers.forEach(Customer::stopOrdering);
+
+    }
+
+    @Override
+    public void resumeService() {
+        customers.forEach(Customer::resumeOrdering);
     }
 }
