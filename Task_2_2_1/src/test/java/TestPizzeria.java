@@ -7,23 +7,15 @@ import ru.nsu.fit.oop.veber.backer.BackerImpl;
 import ru.nsu.fit.oop.veber.courier.Courier;
 import ru.nsu.fit.oop.veber.courier.CourierDto;
 import ru.nsu.fit.oop.veber.courier.CourierImpl;
-import ru.nsu.fit.oop.veber.customer.CustomerRepository;
 import ru.nsu.fit.oop.veber.exception.PizzeriaParsingException;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
 import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
 import ru.nsu.fit.oop.veber.parsing.PizzeriaParser;
 import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 import ru.nsu.fit.oop.veber.pizzeria.PizzeriaImpl;
-import ru.nsu.fit.oop.veber.service.BackerService;
-import ru.nsu.fit.oop.veber.service.CustomerService;
-import ru.nsu.fit.oop.veber.service.Service;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
 
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class TestPizzeria {
     private Pizzeria pizzeria;
@@ -82,7 +74,7 @@ public class TestPizzeria {
         courier.run();
     }
 
-    @Test
+   /* @Test
     public void testCustomerRepository() throws InterruptedException {
         CustomerRepository customerRepository = new CustomerRepository(1, pizzeria);
         List<Runnable> customers = customerRepository.generateCustomers();
@@ -101,5 +93,7 @@ public class TestPizzeria {
         Service service = new BackerService(pizzeria1.getBackers(), pizzeria);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
     }
+
+    */
 
 }

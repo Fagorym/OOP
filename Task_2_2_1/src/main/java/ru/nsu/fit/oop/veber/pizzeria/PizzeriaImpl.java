@@ -9,8 +9,8 @@ import ru.nsu.fit.oop.veber.courier.CourierImpl;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
 import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
 import ru.nsu.fit.oop.veber.service.BackerService;
+import ru.nsu.fit.oop.veber.service.CourierService;
 import ru.nsu.fit.oop.veber.service.CustomerService;
-import ru.nsu.fit.oop.veber.service.Service;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
 
@@ -27,6 +27,7 @@ public class PizzeriaImpl implements Pizzeria {
     private int orderNumber = 0;
     private CustomerService customerService;
     private BackerService backerService;
+    private CourierService courierService;
 
 
     public PizzeriaImpl(ConfigurationDto configurationDto) {
@@ -57,16 +58,19 @@ public class PizzeriaImpl implements Pizzeria {
 
     @Override
     public void run() {
-        List<Service> services = new ArrayList<>();
-        backerService = new BackerService(backers, this);
+        backerService = new BackerService(backers);
+        courierService = new CourierService(couriers);
         customerService = new CustomerService(this);
-        services.add(customerService);
+        backerService.run();
+        courierService.run();
+        customerService.run();
     }
 
 
     public void stopWorking() {
         backerService.closeService();
         customerService.closeService();
+        courierService.closeService();
     }
 
     @Override
@@ -86,11 +90,13 @@ public class PizzeriaImpl implements Pizzeria {
         return warehouse;
     }
 
-    public List<Courier> getCouriers() {
+/*    public List<Courier> getCouriers() {
         return couriers;
     }
 
     public List<Backer> getBackers() {
         return backers;
     }
+    
+ */
 }
