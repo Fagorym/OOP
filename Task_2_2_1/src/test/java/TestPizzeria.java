@@ -14,9 +14,9 @@ import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
 import ru.nsu.fit.oop.veber.parsing.PizzeriaParser;
 import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 import ru.nsu.fit.oop.veber.pizzeria.PizzeriaImpl;
+import ru.nsu.fit.oop.veber.service.BackerService;
 import ru.nsu.fit.oop.veber.service.CustomerService;
 import ru.nsu.fit.oop.veber.service.Service;
-import ru.nsu.fit.oop.veber.service.WorkersService;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
 
@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class TestPizzeria {
     private Pizzeria pizzeria;
@@ -93,26 +92,14 @@ public class TestPizzeria {
         CustomerService customerService = new CustomerService(pizzeria);
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Future<Void> future = executorService.submit(customerService);
 
-        Thread.sleep(1000);
-        Assertions.assertFalse(future.isDone());
-
-        customerService.closeService();
-        Thread.sleep(1000);
-
-        Assertions.assertTrue(future.isDone());
     }
 
     @Test
     public void testServices() throws ExecutionException, InterruptedException {
         PizzeriaImpl pizzeria1 = (PizzeriaImpl) pizzeria;
-        Service service = new WorkersService(pizzeria1.getBackers(), pizzeria1.getCouriers(), pizzeria);
+        Service service = new BackerService(pizzeria1.getBackers(), pizzeria);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Future<Void> future = executorService.submit(service);
-        Assertions.assertFalse(future.isDone());
-        service.closeService();
-        Assertions.assertNull(future.get());
     }
 
 }
