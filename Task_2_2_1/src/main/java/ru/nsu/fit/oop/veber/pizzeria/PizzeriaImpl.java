@@ -51,7 +51,7 @@ public class PizzeriaImpl implements Pizzeria {
     synchronized public void makeOrder(int count) {
         PizzaOrder order = new PizzaOrder(orderNumber++, count);
         order.setConsumer((x) ->
-                System.out.println("Order was successfully delivered"));
+                System.out.println("Order " + order.getId() + " was successfully delivered"));
         orders.add(order);
         System.out.println("Pizzeria received order with number " + order.getId());
         notifyAll();
