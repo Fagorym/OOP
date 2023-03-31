@@ -14,7 +14,6 @@ public class CustomerService implements Service, CustomerGenerator {
     private final Pizzeria pizzeria;
     private final int MIN_CUSTOMER_COUNT = 3;
     private ExecutorService executorService;
-    private boolean isAlive = true;
 
     public CustomerService(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
@@ -22,7 +21,6 @@ public class CustomerService implements Service, CustomerGenerator {
 
     public void closeService() {
         executorService.shutdownNow();
-        isAlive = false;
     }
 
 
@@ -30,9 +28,7 @@ public class CustomerService implements Service, CustomerGenerator {
     public void run() {
         executorService = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
         List<Runnable> customerList = generate();
-        while (isAlive) {
-            customerList.forEach(executorService::execute);
-        }
+        customerList.forEach(executorService::execute);
     }
 
     @Override
