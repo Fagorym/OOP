@@ -79,13 +79,11 @@ public class PizzeriaImpl implements Pizzeria {
     }
 
     @Override
-    public PizzaOrder getOrder() throws InterruptedException {
-        synchronized (this) {
-            while (orders.isEmpty()) {
-                wait();
-            }
-            return orders.poll();
+    synchronized public PizzaOrder getOrder() throws InterruptedException {
+        while (orders.isEmpty()) {
+            wait();
         }
+        return orders.poll();
     }
 
     @Override
@@ -93,7 +91,6 @@ public class PizzeriaImpl implements Pizzeria {
         return orders.isEmpty();
     }
 
-    @Override
     public Warehouse getWarehouse() {
         return warehouse;
     }
