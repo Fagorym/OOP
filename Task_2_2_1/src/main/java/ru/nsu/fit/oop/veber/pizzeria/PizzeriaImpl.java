@@ -68,9 +68,17 @@ public class PizzeriaImpl implements Pizzeria {
 
 
     public void stopWorking() {
-        backerService.closeService();
-        customerService.closeService();
-        courierService.closeService();
+        customerService.stopService();
+    }
+
+    public void resumeWorking() {
+        customerService.resumeService();
+    }
+
+    public void endWorking() {
+        customerService.stopService();
+        backerService.stopService();
+        courierService.stopService();
     }
 
     @Override
