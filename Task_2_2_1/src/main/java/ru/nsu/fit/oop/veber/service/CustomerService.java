@@ -4,6 +4,7 @@ import ru.nsu.fit.oop.veber.customer.Customer;
 import ru.nsu.fit.oop.veber.customer.CustomerImpl;
 import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
@@ -13,17 +14,18 @@ public class CustomerService implements Service, CustomerGenerator {
 
     private final Pizzeria pizzeria;
     private final int MIN_CUSTOMER_COUNT = 3;
-    private List<Customer> customers;
+    private final List<Customer> customers;
 
     public CustomerService(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
+        customers = new ArrayList<>();
     }
 
 
     @Override
     public void run() {
         ExecutorService executorService = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
-        customers = generate();
+        generate();
         customers.forEach(executorService::execute);
     }
 
