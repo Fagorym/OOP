@@ -1,7 +1,5 @@
 package ru.nsu.fit.oop.veber.order;
 
-import java.util.function.Consumer;
-
 /**
  * Class that represents pizza order.
  */
@@ -10,7 +8,7 @@ public class PizzaOrder {
     private final int count;
 
     private Pizza pizza;
-    private Consumer<Void> consumer;
+    private Runnable consumer;
 
     /**
      * Default constructor of pizza order.
@@ -23,11 +21,11 @@ public class PizzaOrder {
         this.count = count;
     }
 
-    public Consumer<Void> getConsumer() {
+    public Runnable getConsumer() {
         return consumer;
     }
 
-    public void setConsumer(Consumer<Void> consumer) {
+    public void setConsumer(Runnable consumer) {
         this.consumer = consumer;
     }
 
