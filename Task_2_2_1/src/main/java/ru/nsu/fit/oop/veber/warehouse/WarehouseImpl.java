@@ -15,26 +15,22 @@ public class WarehouseImpl implements Warehouse {
     }
 
     @Override
-    public void addPizza(PizzaOrder order) throws InterruptedException {
-        synchronized (this) {
-            while (this.isFull()) {
-                this.wait();
-            }
-            pizzas.add(order);
-            notifyAll();
+    synchronized public void addPizza(PizzaOrder order) throws InterruptedException {
+        while (this.isFull()) {
+            this.wait();
         }
+        pizzas.add(order);
+        notifyAll();
 
     }
 
     @Override
-    public PizzaOrder getPizza() throws InterruptedException {
-        synchronized (this) {
-            while (isEmpty()) {
-                this.wait();
-            }
-            notifyAll();
-            return pizzas.poll();
+    synchronized public PizzaOrder getPizza() throws InterruptedException {
+        while (isEmpty()) {
+            this.wait();
         }
+        notifyAll();
+        return pizzas.poll();
 
     }
 
