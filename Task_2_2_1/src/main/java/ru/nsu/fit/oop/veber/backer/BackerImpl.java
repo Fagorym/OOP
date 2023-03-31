@@ -21,7 +21,6 @@ public class BackerImpl implements Backer {
         Thread.sleep(workingTime);
         Pizza pizza = new Pizza();
         System.out.println("Pizza man " + this + " creates pizza for order " + order.getId());
-        order.setPizza(pizza);
         return pizza;
     }
 
