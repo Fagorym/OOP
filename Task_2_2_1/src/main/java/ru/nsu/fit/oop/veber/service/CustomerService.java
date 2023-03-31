@@ -26,13 +26,12 @@ public class CustomerService implements Service {
 
 
     @Override
-    public Void call() {
+    public void run() {
         final int MIN_CUSTOMER_COUNT = 3;
         executorService = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
         List<Runnable> customerList = new CustomerRepository(MIN_CUSTOMER_COUNT, pizzeria).generateCustomers();
         while (isAlive) {
             customerList.forEach(executorService::execute);
         }
-        return null;
     }
 }

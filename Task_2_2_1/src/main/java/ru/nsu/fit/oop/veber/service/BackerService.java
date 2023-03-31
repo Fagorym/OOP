@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.veber.service;
 
 import ru.nsu.fit.oop.veber.backer.Backer;
-import ru.nsu.fit.oop.veber.courier.Courier;
 import ru.nsu.fit.oop.veber.pizzeria.OrderGetter;
 
 import java.util.ArrayList;
@@ -9,17 +8,14 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class WorkersService implements Service {
+public class BackerService implements Service {
     private final List<Backer> backers;
-    private final List<Courier> couriers;
-
     private final OrderGetter orderGetter;
 
     private boolean isOpened;
 
-    public WorkersService(List<Backer> backers, List<Courier> couriers, OrderGetter orderGetter) {
+    public BackerService(List<Backer> backers, OrderGetter orderGetter) {
         this.backers = backers;
-        this.couriers = couriers;
         this.orderGetter = orderGetter;
         isOpened = true;
     }
@@ -29,13 +25,11 @@ public class WorkersService implements Service {
     }
 
     @Override
-    public Void call() {
-        ExecutorService executorService = Executors.newFixedThreadPool(backers.size() + couriers.size());
+    public void run() {
+        ExecutorService executorService = Executors.newFixedThreadPool(backers.size());
         List<Runnable> workers = new ArrayList<>(backers);
-        workers.addAll(couriers);
         while (isOpened || !orderGetter.isNoOrders()) {
             workers.forEach(executorService::execute);
         }
-        return null;
     }
 }

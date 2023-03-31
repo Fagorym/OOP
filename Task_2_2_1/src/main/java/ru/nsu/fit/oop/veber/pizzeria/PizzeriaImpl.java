@@ -8,9 +8,9 @@ import ru.nsu.fit.oop.veber.courier.CourierDto;
 import ru.nsu.fit.oop.veber.courier.CourierImpl;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
 import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
+import ru.nsu.fit.oop.veber.service.BackerService;
 import ru.nsu.fit.oop.veber.service.CustomerService;
 import ru.nsu.fit.oop.veber.service.Service;
-import ru.nsu.fit.oop.veber.service.WorkersService;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
 
@@ -18,8 +18,6 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class PizzeriaImpl implements Pizzeria {
     private final List<Backer> backers;
@@ -28,7 +26,7 @@ public class PizzeriaImpl implements Pizzeria {
     private final Warehouse warehouse;
     private int orderNumber = 0;
     private CustomerService customerService;
-    private WorkersService workersService;
+    private BackerService backerService;
 
 
     public PizzeriaImpl(ConfigurationDto configurationDto) {
@@ -59,22 +57,15 @@ public class PizzeriaImpl implements Pizzeria {
 
     @Override
     public void run() {
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
         List<Service> services = new ArrayList<>();
-        workersService = new WorkersService(backers, couriers, this);
+        backerService = new BackerService(backers, this);
         customerService = new CustomerService(this);
         services.add(customerService);
-        services.add(workersService);
-        try {
-            executorService.invokeAll(services);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
 
     public void stopWorking() {
-        workersService.closeService();
+        backerService.closeService();
         customerService.closeService();
     }
 
