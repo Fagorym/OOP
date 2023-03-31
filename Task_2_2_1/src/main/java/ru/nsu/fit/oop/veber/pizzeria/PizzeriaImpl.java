@@ -50,7 +50,7 @@ public class PizzeriaImpl implements Pizzeria {
     @Override
     synchronized public void makeOrder(int count) {
         PizzaOrder order = new PizzaOrder(orderNumber++, count);
-        order.setConsumer((x) ->
+        order.setConsumer(() ->
                 System.out.println("Order " + order.getId() + " was successfully delivered"));
         orders.add(order);
         System.out.println("Pizzeria received order with number " + order.getId());

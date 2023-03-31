@@ -26,7 +26,7 @@ public class CourierImpl implements Courier, Runnable {
             System.out.println("Courier " + this + " received pizza " + pizzaOrder.toString());
         }
         for (PizzaOrder pizzaOrder : bag) {
-            pizzaOrder.getConsumer().accept(null);
+            pizzaOrder.getConsumer().run();
             bag.remove(pizzaOrder);
         }
     }
