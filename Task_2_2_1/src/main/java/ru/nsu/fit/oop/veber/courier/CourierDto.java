@@ -5,5 +5,5 @@ package ru.nsu.fit.oop.veber.courier;
  *
  * @param baggageCount - maximum pizza count that courier can get.
  */
-public record CourierDto(int baggageCount) {
+public record CourierDto(int baggageCount, int deliveryTimeMs) {
 }

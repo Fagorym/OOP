@@ -1,18 +1,20 @@
 {
   "backers": [
     {
-      "workingTime": 100
+      "workingTimeMs": 1
     },
     {
-      "workingTime": 10000
+      "workingTimeMs": 1
     }
   ],
   "couriers": [
     {
-      "baggageCount": 2
+      "baggageCount": 1,
+      "deliveryTimeMs": 10000
     },
     {
-      "baggageCount": 1
+      "baggageCount": 1,
+      "deliveryTimeMs": 10000
     }
   ],
   "warehouse": {

@@ -34,12 +34,12 @@ public class PizzeriaImpl implements Pizzeria {
         warehouse = new WarehouseImpl(configurationDto.warehouse().capacity());
         couriers = new ArrayList<>();
         for (CourierDto courierDto : configurationDto.couriers()) {
-            Courier courier = new CourierImpl(warehouse, courierDto.baggageCount());
+            Courier courier = new CourierImpl(warehouse, courierDto.baggageCount(), courierDto.deliveryTimeMs());
             couriers.add(courier);
         }
         backers = new ArrayList<>();
         for (BackerDto backerDto : configurationDto.backers()) {
-            Backer backer = new BackerImpl(warehouse, this, backerDto.workingTime());
+            Backer backer = new BackerImpl(warehouse, this, backerDto.workingTimeMs());
             backers.add(backer);
         }
         orders = new ArrayDeque<>();
@@ -79,6 +79,7 @@ public class PizzeriaImpl implements Pizzeria {
         customerService.stopService();
         backerService.stopService();
         courierService.stopService();
+        notifyAll();
     }
 
     @Override
