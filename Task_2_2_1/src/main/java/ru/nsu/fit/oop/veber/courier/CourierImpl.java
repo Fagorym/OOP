@@ -12,12 +12,15 @@ public class CourierImpl implements Courier, Runnable {
 
     private final int baggageCount;
 
+    private final int deliveryTimeMs;
+
     private boolean isWorking = true;
 
-    public CourierImpl(Warehouse warehouse, int baggageCount) {
+    public CourierImpl(Warehouse warehouse, int baggageCount, int deliveryTimeMs) {
         this.warehouse = warehouse;
         this.baggageCount = baggageCount;
         this.bag = new ArrayDeque<>();
+        this.deliveryTimeMs = deliveryTimeMs;
     }
 
     @Override
@@ -28,6 +31,7 @@ public class CourierImpl implements Courier, Runnable {
             System.out.println("Courier " + this + " received pizza " + pizzaOrder.toString());
         }
         for (PizzaOrder pizzaOrder : bag) {
+            Thread.sleep(deliveryTimeMs);
             pizzaOrder.getConsumer().run();
             bag.remove(pizzaOrder);
         }
