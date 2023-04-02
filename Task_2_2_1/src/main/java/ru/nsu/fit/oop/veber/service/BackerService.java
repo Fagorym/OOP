@@ -8,24 +8,20 @@ import java.util.concurrent.Executors;
 
 public class BackerService implements Service {
     private final List<Backer> backers;
+    private final ExecutorService executorService;
 
 
     public BackerService(List<Backer> backers) {
         this.backers = backers;
+        executorService = Executors.newFixedThreadPool(backers.size());
     }
 
     public void stopService() {
-        backers.forEach(Backer::stopWorking);
-    }
-
-    @Override
-    public void resumeService() {
-        backers.forEach(Backer::resumeWorking);
+        executorService.shutdownNow();
     }
 
     @Override
     public void run() {
-        ExecutorService executorService = Executors.newFixedThreadPool(backers.size());
         backers.forEach(executorService::execute);
     }
 }

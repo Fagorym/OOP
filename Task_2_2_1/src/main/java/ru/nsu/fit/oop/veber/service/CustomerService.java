@@ -1,6 +1,5 @@
 package ru.nsu.fit.oop.veber.service;
 
-import ru.nsu.fit.oop.veber.customer.Customer;
 import ru.nsu.fit.oop.veber.customer.CustomerImpl;
 import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 
@@ -14,27 +13,28 @@ public class CustomerService implements Service, CustomerGenerator {
 
     private final Pizzeria pizzeria;
     private final int MIN_CUSTOMER_COUNT = 3;
-    private final List<Customer> customers;
+    private final List<Runnable> customers;
+    private final ExecutorService executorService;
 
     public CustomerService(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
         customers = new ArrayList<>();
+        executorService = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
     }
 
 
     @Override
     public void run() {
-        ExecutorService executorService = Executors.newFixedThreadPool(MIN_CUSTOMER_COUNT);
         generate();
         customers.forEach(executorService::execute);
     }
 
     @Override
-    public List<Customer> generate() {
+    public List<Runnable> generate() {
         int customerCount = new Random().nextInt(3) + MIN_CUSTOMER_COUNT;
         for (int i = 0; i < customerCount; i++) {
             int pizzaCountInOrder = new Random().nextInt(3) + 1;
-            Customer customer = new CustomerImpl(pizzeria, pizzaCountInOrder);
+            Runnable customer = new CustomerImpl(pizzeria, pizzaCountInOrder);
             customers.add(customer);
         }
         return customers;
@@ -42,12 +42,8 @@ public class CustomerService implements Service, CustomerGenerator {
 
     @Override
     public void stopService() {
-        customers.forEach(Customer::stopOrdering);
+        executorService.shutdownNow();
 
     }
 
-    @Override
-    public void resumeService() {
-        customers.forEach(Customer::resumeOrdering);
-    }
 }

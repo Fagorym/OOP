@@ -24,10 +24,6 @@ public class Main {
                     System.out.println("Stopping work");
                     pizzeria.stopWorking();
                 }
-                case "resume" -> {
-                    System.out.println("Resuming work");
-                    pizzeria.resumeWorking();
-                }
                 case "end" -> {
                     pizzeria.endWorking();
                     System.out.println("Ending work");

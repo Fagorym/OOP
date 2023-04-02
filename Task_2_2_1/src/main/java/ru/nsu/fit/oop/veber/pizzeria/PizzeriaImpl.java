@@ -20,29 +20,29 @@ import java.util.List;
 import java.util.Queue;
 
 public class PizzeriaImpl implements Pizzeria {
-    private final List<Backer> backers;
-    private final List<Courier> couriers;
     private final Queue<PizzaOrder> orders;
     private final Warehouse warehouse;
+    private final CustomerService customerService;
+    private final BackerService backerService;
+    private final CourierService courierService;
     private int orderNumber = 0;
-    private CustomerService customerService;
-    private BackerService backerService;
-    private CourierService courierService;
-
 
     public PizzeriaImpl(ConfigurationDto configurationDto) {
         warehouse = new WarehouseImpl(configurationDto.warehouse().capacity());
-        couriers = new ArrayList<>();
+        List<Courier> couriers = new ArrayList<>();
         for (CourierDto courierDto : configurationDto.couriers()) {
             Courier courier = new CourierImpl(warehouse, courierDto.baggageCount(), courierDto.deliveryTimeMs());
             couriers.add(courier);
         }
-        backers = new ArrayList<>();
+        List<Backer> backers = new ArrayList<>();
         for (BackerDto backerDto : configurationDto.backers()) {
             Backer backer = new BackerImpl(warehouse, this, backerDto.workingTimeMs());
             backers.add(backer);
         }
         orders = new ArrayDeque<>();
+        backerService = new BackerService(backers);
+        courierService = new CourierService(couriers);
+        customerService = new CustomerService(this);
     }
 
 
@@ -58,24 +58,17 @@ public class PizzeriaImpl implements Pizzeria {
 
     @Override
     public void run() {
-        backerService = new BackerService(backers);
-        courierService = new CourierService(couriers);
-        customerService = new CustomerService(this);
         backerService.run();
         courierService.run();
         customerService.run();
     }
 
 
-    public void stopWorking() {
+    synchronized public void stopWorking() {
         customerService.stopService();
     }
 
-    public void resumeWorking() {
-        customerService.resumeService();
-    }
-
-    public void endWorking() {
+    synchronized public void endWorking() {
         customerService.stopService();
         backerService.stopService();
         courierService.stopService();
@@ -99,13 +92,11 @@ public class PizzeriaImpl implements Pizzeria {
         return warehouse;
     }
 
-/*    public List<Courier> getCouriers() {
-        return couriers;
+    public BackerService getBackerService() {
+        return backerService;
     }
 
-    public List<Backer> getBackers() {
-        return backers;
+    public CourierService getCourierService() {
+        return courierService;
     }
-
- */
 }

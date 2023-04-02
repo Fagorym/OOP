@@ -10,24 +10,20 @@ public class CourierService implements Service {
 
     private final List<Courier> couriers;
 
+    private final ExecutorService executorService;
+
     public CourierService(List<Courier> couriers) {
         this.couriers = couriers;
+        executorService = Executors.newFixedThreadPool(couriers.size());
     }
 
     @Override
     public void stopService() {
-        couriers.forEach(Courier::stopWorking);
-    }
-
-    @Override
-    public void resumeService() {
-        couriers.forEach(Courier::resumeWorking);
+        executorService.shutdownNow();
     }
 
     @Override
     public void run() {
-        ExecutorService executorService = Executors.newFixedThreadPool(couriers.size());
         couriers.forEach(executorService::execute);
-
     }
 }
