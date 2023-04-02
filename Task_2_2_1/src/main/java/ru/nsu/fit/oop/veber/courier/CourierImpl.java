@@ -14,7 +14,6 @@ public class CourierImpl implements Courier, Runnable {
 
     private final int deliveryTimeMs;
 
-    private boolean isWorking = true;
 
     public CourierImpl(Warehouse warehouse, int baggageCount, int deliveryTimeMs) {
         this.warehouse = warehouse;
@@ -37,23 +36,15 @@ public class CourierImpl implements Courier, Runnable {
         }
     }
 
-    @Override
-    public void stopWorking() {
-        isWorking = false;
-    }
-
-    @Override
-    public void resumeWorking() {
-        isWorking = true;
-    }
 
     @Override
     public void run() {
-        while (isWorking) {
+        while (true) {
             try {
                 deliverPizza();
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                System.out.println("Courier thread was interrupted");
+                return;
             }
         }
     }

@@ -4,11 +4,10 @@ import ru.nsu.fit.oop.veber.pizzeria.OrderProvider;
 
 import java.util.Random;
 
-public class CustomerImpl implements Customer {
+public class CustomerImpl implements Runnable {
     private final OrderProvider provider;
     private final int pizzaCountInOrder;
 
-    private boolean isOrdering = true;
 
     public CustomerImpl(OrderProvider provider, int pizzaCount) {
         this.provider = provider;
@@ -18,7 +17,7 @@ public class CustomerImpl implements Customer {
 
     @Override
     public void run() {
-        while (isOrdering) {
+        while (true) {
             System.out.println("Hello from customer " + this);
             try {
                 provider.makeOrder(pizzaCountInOrder);
@@ -28,17 +27,8 @@ public class CustomerImpl implements Customer {
 
             } catch (InterruptedException e) {
                 System.out.println("Customer " + this + " was interrupted");
+                return;
             }
         }
-    }
-
-    @Override
-    public void stopOrdering() {
-        isOrdering = false;
-    }
-
-    @Override
-    public void resumeOrdering() {
-        isOrdering = true;
     }
 }

@@ -7,14 +7,21 @@ import ru.nsu.fit.oop.veber.backer.BackerImpl;
 import ru.nsu.fit.oop.veber.courier.Courier;
 import ru.nsu.fit.oop.veber.courier.CourierDto;
 import ru.nsu.fit.oop.veber.courier.CourierImpl;
+import ru.nsu.fit.oop.veber.customer.CustomerImpl;
 import ru.nsu.fit.oop.veber.exception.PizzeriaParsingException;
 import ru.nsu.fit.oop.veber.order.PizzaOrder;
 import ru.nsu.fit.oop.veber.parsing.ConfigurationDto;
 import ru.nsu.fit.oop.veber.parsing.PizzeriaParser;
 import ru.nsu.fit.oop.veber.pizzeria.Pizzeria;
 import ru.nsu.fit.oop.veber.pizzeria.PizzeriaImpl;
+import ru.nsu.fit.oop.veber.service.BackerService;
+import ru.nsu.fit.oop.veber.service.CourierService;
+import ru.nsu.fit.oop.veber.service.CustomerGenerator;
+import ru.nsu.fit.oop.veber.service.CustomerService;
 import ru.nsu.fit.oop.veber.warehouse.Warehouse;
 import ru.nsu.fit.oop.veber.warehouse.WarehouseImpl;
+
+import java.util.List;
 
 
 public class TestPizzeria {
@@ -48,52 +55,102 @@ public class TestPizzeria {
                 () ->
                         parser.getConfigurationDtoFromFile("/unexistedfile.json.txt.csv"));
         Assertions.assertEquals(configurationDto.backers().size(), 2);
-        int i = 0;
+        int i = 10000;
         for (BackerDto backerDto : configurationDto.backers()) {
-            Assertions.assertEquals(backerDto.workingTime(), i++);
+            Assertions.assertEquals(backerDto.workingTimeMs(), i++);
         }
         Assertions.assertEquals(configurationDto.couriers().size(), 2);
-        i = 0;
+        i = 1;
         for (CourierDto courierDto : configurationDto.couriers()) {
             Assertions.assertEquals(courierDto.baggageCount(), i++);
         }
-        Assertions.assertEquals(configurationDto.warehouse().capacity(), 5);
+        Assertions.assertEquals(configurationDto.warehouse().capacity(), 1);
 
-
-        pizzeria.makeOrder(4);
-        PizzaOrder order = pizzeria.getOrder();
-        Assertions.assertEquals(order.getId(), 0);
-        Assertions.assertEquals(order.getCount(), 4);
-        Assertions.assertNull(order.getPizza());
+        BackerDto firstBackerDto = configurationDto.backers().get(0);
+        CourierDto firstCourierDto = configurationDto.couriers().get(0);
+        Warehouse warehouse = ((PizzeriaImpl) pizzeria).getWarehouse();
 
         pizzeria.makeOrder(4);
-        Backer backer = new BackerImpl(((PizzeriaImpl) pizzeria).getWarehouse(), pizzeria, configurationDto.backers().get(0).workingTime());
-        backer.run();
+        Backer backer = new BackerImpl(warehouse, pizzeria, firstBackerDto.workingTimeMs());
+        Thread backerThread = new Thread(backer);
+        backerThread.start();
+        Assertions.assertFalse(warehouse.isFull());
 
-        Courier courier = new CourierImpl(((PizzeriaImpl) pizzeria).getWarehouse(), 1);
-        courier.run();
-    }
+        Thread.sleep(firstBackerDto.workingTimeMs() + 1000);
+        Assertions.assertTrue(pizzeria.isNoOrders());
+        Assertions.assertTrue(warehouse.isFull());
 
-   /* @Test
-    public void testCustomerRepository() throws InterruptedException {
-        CustomerRepository customerRepository = new CustomerRepository(1, pizzeria);
-        List<Runnable> customers = customerRepository.generateCustomers();
-        Assertions.assertTrue(customers.size() >= 1 && customers.size() <= 4);
-        customers.get(0).run();
+        Courier courier = new CourierImpl(warehouse, firstCourierDto.baggageCount(), firstCourierDto.deliveryTimeMs());
+        Thread courierThread = new Thread(courier);
+        courierThread.start();
+        Thread.sleep(firstCourierDto.deliveryTimeMs());
 
-        CustomerService customerService = new CustomerService(pizzeria);
+        Assertions.assertTrue(backerThread.isAlive());
+        Assertions.assertTrue(courierThread.isAlive());
 
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        backerThread.interrupt();
+        courierThread.interrupt();
+        Thread.sleep(500);
+        Assertions.assertFalse(backerThread.isAlive());
+        Assertions.assertFalse(courierThread.isAlive());
 
     }
 
     @Test
-    public void testServices() throws ExecutionException, InterruptedException {
-        PizzeriaImpl pizzeria1 = (PizzeriaImpl) pizzeria;
-        Service service = new BackerService(pizzeria1.getBackers(), pizzeria);
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+    public void testCustomerRepository() {
+        CustomerGenerator generator = new CustomerService(pizzeria);
+        List<Runnable> customers = generator.generate();
+        Assertions.assertTrue(customers.size() <= 4);
     }
 
-    */
+    @Test
+    public void testCustomerServices() throws InterruptedException {
+        Assertions.assertTrue(pizzeria.isNoOrders());
+        CustomerService service = new CustomerService(pizzeria);
+        Thread customerServiceThread = new Thread(service);
+        customerServiceThread.start();
+        Thread.sleep(1000);
+        Assertions.assertFalse(pizzeria.isNoOrders());
+        service.stopService();
+        while (!pizzeria.isNoOrders()) {
+            pizzeria.getOrder();
+        }
+        Thread.sleep(3000);
+        Assertions.assertTrue(pizzeria.isNoOrders());
+        System.out.println(customerServiceThread.isAlive());
+    }
+
+    @Test
+    public void testWorkerService() throws InterruptedException {
+        Thread customerThread = new Thread(new CustomerImpl(pizzeria, 1));
+        customerThread.start();
+        Thread.sleep(1000);
+        Assertions.assertFalse(pizzeria.isNoOrders());
+        customerThread.interrupt();
+
+        BackerService backerService = ((PizzeriaImpl) pizzeria).getBackerService();
+        Thread backerServiceThread = new Thread(backerService);
+        backerServiceThread.start();
+        Thread.sleep(11001);
+        Assertions.assertTrue(pizzeria.isNoOrders());
+
+        backerService.stopService();
+        Thread.sleep(1000);
+        Assertions.assertFalse(backerServiceThread.isAlive());
+
+
+        CourierService courierService = ((PizzeriaImpl) pizzeria).getCourierService();
+        Thread courierServiceThread = new Thread(courierService);
+        courierServiceThread.start();
+        Assertions.assertFalse(((PizzeriaImpl) pizzeria).getWarehouse().isEmpty());
+        Thread.sleep(5000);
+        Assertions.assertTrue(((PizzeriaImpl) pizzeria).getWarehouse().isEmpty());
+
+        courierService.stopService();
+        Thread.sleep(1000);
+        Assertions.assertFalse(courierServiceThread.isAlive());
+
+    }
+
 
 }

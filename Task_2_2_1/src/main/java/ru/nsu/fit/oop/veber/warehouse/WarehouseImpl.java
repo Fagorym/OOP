@@ -43,4 +43,6 @@ public class WarehouseImpl implements Warehouse {
     public boolean isEmpty() {
         return pizzas.size() == 0;
     }
+
+
 }

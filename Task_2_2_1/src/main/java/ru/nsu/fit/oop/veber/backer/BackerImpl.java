@@ -10,8 +10,6 @@ public class BackerImpl implements Backer {
     private final OrderGetter orderGetter;
     private final Warehouse warehouse;
 
-    private boolean isWorking = true;
-
     public BackerImpl(Warehouse warehouse, OrderGetter orderGetter, int workingTime) {
         this.warehouse = warehouse;
         this.orderGetter = orderGetter;
@@ -27,18 +25,8 @@ public class BackerImpl implements Backer {
     }
 
     @Override
-    public void stopWorking() {
-        isWorking = false;
-    }
-
-    @Override
-    public void resumeWorking() {
-        isWorking = true;
-    }
-
-    @Override
     public void run() {
-        while (isWorking) {
+        while (true) {
             try {
                 System.out.println("Hello from backer " + this);
                 PizzaOrder order = orderGetter.getOrder();
@@ -46,7 +34,8 @@ public class BackerImpl implements Backer {
                 order.setPizza(pizza);
                 warehouse.addPizza(order);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                System.out.println("Backer thread was interrupted");
+                return;
             }
         }
     }
