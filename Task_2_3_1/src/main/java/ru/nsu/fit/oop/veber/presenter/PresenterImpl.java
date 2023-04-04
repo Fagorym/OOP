@@ -7,6 +7,8 @@ import ru.nsu.fit.oop.veber.view.ConsoleView;
 import ru.nsu.fit.oop.veber.view.GraphicalView;
 import ru.nsu.fit.oop.veber.view.View;
 
+import java.awt.event.KeyEvent;
+
 public class PresenterImpl implements Presenter {
     private final Snake snake;
     private final View view;
@@ -14,12 +16,8 @@ public class PresenterImpl implements Presenter {
     public PresenterImpl(Strategy strategy) {
         snake = new Snake();
         switch (strategy) {
-            case console -> {
-                view = new ConsoleView();
-            }
-            case graphical -> {
-                view = new GraphicalView();
-            }
+            case console -> view = new ConsoleView();
+            case graphical -> view = new GraphicalView(this);
             default -> throw new IllegalArgumentException();
         }
 
@@ -39,5 +37,17 @@ public class PresenterImpl implements Presenter {
     @Override
     public void rotateSnake(Direction direction) {
 // TODO: сделать поворот
+    }
+
+    @Override
+    public void processKeyInput(KeyEvent event) {
+        switch (event.getKeyCode()) {
+            case KeyEvent.VK_UP -> moveSnake(Direction.up);
+            case KeyEvent.VK_DOWN -> moveSnake(Direction.down);
+            case KeyEvent.VK_LEFT -> moveSnake(Direction.left);
+            case KeyEvent.VK_RIGHT -> moveSnake(Direction.right);
+        }
+
+
     }
 }
