@@ -8,6 +8,7 @@ module ru.nsu.fit.oop.veber {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires com.googlecode.lanterna;
 
     opens ru.nsu.fit.oop.veber to javafx.fxml;
     exports ru.nsu.fit.oop.veber;

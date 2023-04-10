@@ -46,6 +46,7 @@ dependencies {
     implementation('com.github.almasb:fxgl:17.1') {
         exclude(group: 'org.openjfx')
     }
+    implementation('com.googlecode.lanterna:lanterna:3.2.0-alpha1')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

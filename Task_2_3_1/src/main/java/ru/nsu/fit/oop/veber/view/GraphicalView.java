@@ -3,10 +3,8 @@ package ru.nsu.fit.oop.veber.view;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Box;
+import ru.nsu.fit.oop.veber.model.Snake;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
-
-import javafx.stage.Stage;
 
 public class GraphicalView implements View {
 
@@ -24,5 +22,10 @@ public class GraphicalView implements View {
         StackPane root = new StackPane();
         root.getChildren().add(btn1);
         Scene scene = new Scene(root);
+    }
+
+    @Override
+    public void renderSnake(Snake snake) {
+
     }
 }
