@@ -1,11 +1,12 @@
 package ru.nsu.fit.oop.veber.view;
 
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Box;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import javafx.stage.Stage;
 
 public class GraphicalView implements View {
 
@@ -19,41 +20,9 @@ public class GraphicalView implements View {
 
     private void createUI() {
 
-        Box topBox = Box.createHorizontalBox();
-
-        topBox.add(Box.createHorizontalStrut((800)));
-
-        topBox.add(Box.createVerticalStrut((600)));
-
-        JFrame frame = new JFrame("Passive MVP Swing");
-
-        (frame.getContentPane()).setBackground(Color.white);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.add(topBox, BorderLayout.NORTH);
-
-        frame.addKeyListener(new KeyListener() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent event) {
-                System.out.println("was pressed " + event.getKeyCode());
-                presenter.processKeyInput(event);
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
-
-        frame.pack();
-
-        frame.setVisible(true);
-
-        frame.setLocationRelativeTo(null);
+        Button btn1 = new Button("Say, Hello World");
+        StackPane root = new StackPane();
+        root.getChildren().add(btn1);
+        Scene scene = new Scene(root);
     }
 }

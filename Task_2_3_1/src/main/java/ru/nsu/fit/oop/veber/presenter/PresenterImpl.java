@@ -7,7 +7,6 @@ import ru.nsu.fit.oop.veber.view.ConsoleView;
 import ru.nsu.fit.oop.veber.view.GraphicalView;
 import ru.nsu.fit.oop.veber.view.View;
 
-import java.awt.event.KeyEvent;
 
 public class PresenterImpl implements Presenter {
     private final Snake snake;
@@ -40,14 +39,7 @@ public class PresenterImpl implements Presenter {
     }
 
     @Override
-    public void processKeyInput(KeyEvent event) {
-        switch (event.getKeyCode()) {
-            case KeyEvent.VK_UP -> moveSnake(Direction.up);
-            case KeyEvent.VK_DOWN -> moveSnake(Direction.down);
-            case KeyEvent.VK_LEFT -> moveSnake(Direction.left);
-            case KeyEvent.VK_RIGHT -> moveSnake(Direction.right);
-        }
-
+    public void processKeyInput(int event) {
 
     }
 }
