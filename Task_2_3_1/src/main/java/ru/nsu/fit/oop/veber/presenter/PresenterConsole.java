@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.veber.presenter;
 
+import ru.nsu.fit.oop.veber.model.Box;
 import ru.nsu.fit.oop.veber.model.Food;
 import ru.nsu.fit.oop.veber.model.Snake;
 import ru.nsu.fit.oop.veber.utils.Direction;
@@ -11,25 +12,30 @@ public class PresenterConsole implements Presenter {
     private final Snake snake;
 
     private final Food food;
+
+    private final Box box;
     private final View consoleView;
 
     public PresenterConsole() {
         snake = new Snake(5, 5);
         food = new Food(3, 5);
+        box = new Box(30, 15);
         consoleView = new ConsoleView(this);
     }
 
     public void startGameProcess() {
-        while (true) {
-            consoleView.gameProcess(snake, food);
+        boolean gameProcessActive = true;
+        while (gameProcessActive) {
+            consoleView.gameProcess(snake, food, box);
             snake.checkFoodCollision(food);
-            snake.checkBoxCollision();
+            gameProcessActive = !snake.checkBoxCollision(box);
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
+        consoleView.endGame();
     }
 
 

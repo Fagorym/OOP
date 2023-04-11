@@ -67,12 +67,10 @@ public class Snake {
     }
 
 
-    public void checkBoxCollision() {
-        if (x == 0 || x == 40) {
-            System.out.println("GAME OVER");
-        } else if (y == 0 || y == 40) {
-            System.out.println("GAME OVER");
-        }
+    public boolean checkBoxCollision(Box box) {
+        if (x == 0 || x >= box.getLength()) {
+            return true;
+        } else return y == 0 || y >= box.getLength();
     }
 
 

@@ -1,11 +1,13 @@
 package ru.nsu.fit.oop.veber.view;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import ru.nsu.fit.oop.veber.model.Box;
 import ru.nsu.fit.oop.veber.model.Food;
 import ru.nsu.fit.oop.veber.model.Snake;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
@@ -15,8 +17,6 @@ import java.io.IOException;
 public class ConsoleView implements View {
 
     private final Presenter presenter;
-    private final int SCENE_LENGTH = 60;
-    private final int SCENE_HEIGHT = 20;
 
     private Screen screen;
     private TextGraphics graphics;
@@ -32,13 +32,13 @@ public class ConsoleView implements View {
         graphics.drawLine(food.getX(), food.getY(), food.getX(), food.getY(), '@');
     }
 
-    private void renderField() {
-        graphics.drawLine(0, 0, SCENE_LENGTH, 0, '#');
-        for (int i = 1; i < SCENE_HEIGHT; i++) {
-            graphics.drawLine(0, i, 1, i, '#');
-            graphics.drawLine(SCENE_LENGTH - 1, i, SCENE_LENGTH, i, '#');
+    private void renderField(Box box) {
+        graphics.drawLine(0, 0, box.getLength(), 0, '#');
+        for (int i = 1; i < box.getHeight(); i++) {
+            graphics.drawLine(0, i, 0, i, '#');
+            graphics.drawLine(box.getLength(), i, box.getLength(), i, '#');
         }
-        graphics.drawLine(0, SCENE_HEIGHT, SCENE_LENGTH, SCENE_HEIGHT, '#');
+        graphics.drawLine(0, box.getHeight(), box.getLength(), box.getHeight(), '#');
     }
 
     private void createScene() {
@@ -64,7 +64,7 @@ public class ConsoleView implements View {
     }
 
 
-    public void gameProcess(Snake snake, Food food) {
+    public void gameProcess(Snake snake, Food food, Box box) {
         try {
             KeyStroke keyStroke = screen.pollInput();
             if (keyStroke != null) {
@@ -72,12 +72,31 @@ public class ConsoleView implements View {
             }
             screen.clear();
             terminal.clearScreen();
-            renderField();
+            renderField(box);
             snake.update();
             renderFood(food);
             renderSnake(snake);
             terminal.flush();
             screen.refresh();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void endGame() {
+        try {
+            terminal.clearScreen();
+            graphics.putString(TerminalPosition.TOP_LEFT_CORNER, "GAME IS OVER");
+            graphics.putString(TerminalPosition.OFFSET_1x1, "PRESS ANY KEY TO EXIT");
+            terminal.flush();
+            screen.refresh();
+            KeyStroke keyStroke;
+            do {
+                keyStroke = screen.pollInput();
+
+            } while (keyStroke == null);
+            System.exit(0);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
