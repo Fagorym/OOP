@@ -32,21 +32,6 @@ public class PresenterConsole implements Presenter {
         }
     }
 
-    @Override
-    public void moveSnake(Direction direction) {
-        switch (direction) {
-            case up -> snake.setY(snake.getY() + 1);
-            case down -> snake.setY(snake.getY() - 1);
-            case left -> snake.setX(snake.getX() - 1);
-            case right -> snake.setX(snake.getX() + 1);
-            //FIXME: Поворот неправильный
-        }
-    }
-
-    @Override
-    public void rotateSnake(Direction direction) {
-// TODO: сделать поворот
-    }
 
     @Override
     public void processKeyInput(Character event) {
