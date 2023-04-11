@@ -1,29 +1,31 @@
 package ru.nsu.fit.oop.veber.view;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import ru.nsu.fit.oop.veber.model.Food;
 import ru.nsu.fit.oop.veber.model.Snake;
+import ru.nsu.fit.oop.veber.presenter.Presenter;
 
 import java.io.IOException;
 
 public class ConsoleView implements View {
 
+    private final Presenter presenter;
     private final int SCENE_LENGTH = 60;
     private final int SCENE_HEIGHT = 20;
-    private final Snake snake = new Snake(10, 4);
-    private final Food food = new Food(10, 15);
+
     private Screen screen;
     private TextGraphics graphics;
 
     private Terminal terminal;
 
-    public ConsoleView() {
+    public ConsoleView(Presenter presenter) {
+        this.presenter = presenter;
         createScene();
-        gameProcess();
     }
 
     private void renderFood(Food food) {
@@ -45,6 +47,7 @@ public class ConsoleView implements View {
             screen = new TerminalScreen(terminal);
             graphics = terminal.newTextGraphics();
             terminal.setCursorVisible(false);
+
         } catch (IOException exception) {
             System.out.println("Exception while creating terminal");
         }
@@ -54,24 +57,27 @@ public class ConsoleView implements View {
     @Override
     public void renderSnake(Snake snake) {
         graphics.drawLine(snake.getX(), snake.getY(), snake.getX(), snake.getY(), '$');
+        for (Snake tailBlock : snake.getTail()) {
+            graphics.drawLine(tailBlock.getX(), tailBlock.getY(), tailBlock.getX(), tailBlock.getY(), '$');
+
+        }
     }
 
 
-    public void gameProcess() {
+    public void gameProcess(Snake snake, Food food) {
         try {
-            while (true) {
-                screen.clear();
-                terminal.clearScreen();
-                renderField();
-                snake.update();
-                renderSnake(snake);
-                renderFood(food);
-                terminal.flush();
-                screen.refresh();
-                Thread.sleep(1000);
+            KeyStroke keyStroke = screen.pollInput();
+            if (keyStroke != null) {
+                presenter.processKeyInput(keyStroke.getCharacter());
             }
-        } catch (InterruptedException ex) {
-            System.out.println("THREAD WAS INTERRUPTED");
+            screen.clear();
+            terminal.clearScreen();
+            renderField();
+            snake.update();
+            renderFood(food);
+            renderSnake(snake);
+            terminal.flush();
+            screen.refresh();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -7,5 +7,7 @@ public interface Presenter {
 
     void rotateSnake(Direction direction);
 
-    void processKeyInput(int event);
+    void processKeyInput(Character character);
+
+    void startGameProcess();
 }

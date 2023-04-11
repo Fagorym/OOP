@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.veber.view;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import ru.nsu.fit.oop.veber.model.Food;
 import ru.nsu.fit.oop.veber.model.Snake;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 
@@ -26,6 +27,11 @@ public class GraphicalView implements View {
 
     @Override
     public void renderSnake(Snake snake) {
+
+    }
+
+    @Override
+    public void gameProcess(Snake snake, Food food) {
 
     }
 }
