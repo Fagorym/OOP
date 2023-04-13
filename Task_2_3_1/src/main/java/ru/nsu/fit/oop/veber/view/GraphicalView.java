@@ -13,18 +13,16 @@ import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
 
 public class GraphicalView implements View {
 
-    private final Stage stage;
 
     private final Presenter presenter;
 
     private final GraphicsContext context;
-    private final int TIMER_TICK = 1000000000;
+    private final int TIMER_TICK = 1_000_000_00;
 
     private final int DEFAULT_BLOCK_SIZE = 10;
 
 
     public GraphicalView(Stage stage) {
-        this.stage = stage;
         this.presenter = new PresenterImpl(this);
 
         VBox root = new VBox();
@@ -45,7 +43,7 @@ public class GraphicalView implements View {
             }
         }.start();
 
-        scene.setOnKeyPressed((keyEvent) -> presenter.processKeyInput(keyEvent.getCharacter().charAt(0)));
+        scene.setOnKeyPressed(presenter::processKeyInput);
         stage.setScene(scene);
         stage.setTitle("Snake Game");
         stage.setResizable(true);
@@ -57,6 +55,10 @@ public class GraphicalView implements View {
     public void renderSnake(Snake snake) {
         context.setFill(Color.LIGHTGREEN);
         drawObject(snake.getHeadBlock());
+        for (SnakeBlock bodyBlock : snake.getBody()) {
+            drawObject(bodyBlock);
+        }
+        drawObject(snake.getTailBlock());
     }
 
     @Override
@@ -72,7 +74,6 @@ public class GraphicalView implements View {
 
     @Override
     public void refreshScreen() {
-
     }
 
     @Override

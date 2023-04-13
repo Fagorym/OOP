@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.veber.presenter;
 
+import javafx.scene.input.KeyEvent;
 import ru.nsu.fit.oop.veber.model.Box;
 import ru.nsu.fit.oop.veber.model.CollisionChecker;
 import ru.nsu.fit.oop.veber.model.Food;
@@ -28,13 +29,14 @@ public class PresenterImpl implements Presenter {
     }
 
     @Override
-    public void processKeyInput(Character event) {
+    public void processKeyInput(KeyEvent event) {
 
-        Direction direction = switch (event) {
-            case 'w' -> Direction.up;
-            case 'd' -> Direction.right;
-            case 's' -> Direction.down;
-            default -> Direction.left;
+        Direction direction = switch (event.getCode()) {
+            case RIGHT, D -> Direction.right;
+            case LEFT, A -> Direction.left;
+            case UP, W -> Direction.up;
+            case DOWN, S -> Direction.down;
+            default -> null;
         };
         snake.setDirection(direction);
     }

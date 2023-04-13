@@ -1,10 +1,10 @@
 package ru.nsu.fit.oop.veber.presenter;
 
+import javafx.scene.input.KeyEvent;
 import ru.nsu.fit.oop.veber.model.Box;
 import ru.nsu.fit.oop.veber.model.CollisionChecker;
 import ru.nsu.fit.oop.veber.model.Food;
 import ru.nsu.fit.oop.veber.model.Snake;
-import ru.nsu.fit.oop.veber.view.View;
 
 public class PresenterGraphical implements Presenter {
 
@@ -12,8 +12,6 @@ public class PresenterGraphical implements Presenter {
     private final Food food;
     private final Box box;
     private final CollisionChecker collisionChecker;
-    private final int TIMER_TICK = 1000;
-    private View graphicalView;
 
     public PresenterGraphical() {
         snake = new Snake(10, 10);
@@ -25,10 +23,12 @@ public class PresenterGraphical implements Presenter {
         collisionChecker.addObject(snake.getTailBlock());
     }
 
+
     @Override
-    public void processKeyInput(Character character) {
+    public void processKeyInput(KeyEvent event) {
 
     }
+
 
     @Override
     public void startGameProcess() {

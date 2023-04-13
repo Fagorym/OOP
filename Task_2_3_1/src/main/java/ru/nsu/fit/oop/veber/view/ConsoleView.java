@@ -29,7 +29,6 @@ public class ConsoleView implements View {
             try {
                 KeyStroke keyStroke = screen.pollInput();
                 if (keyStroke != null) {
-                    presenter.processKeyInput(keyStroke.getCharacter());
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
