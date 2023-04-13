@@ -10,7 +10,7 @@ public class Food extends GeometricalObject {
 
     public void generate(Box box) {
         Random random = new Random();
-        this.setX(random.nextInt(box.getLength() - 1) + 1);
-        this.setY(random.nextInt(box.getHeight() - 1) + 1);
+        this.setX(random.nextInt(box.getLength() - 2) + 1);
+        this.setY(random.nextInt(box.getHeight() - 2) + 1);
     }
 }
