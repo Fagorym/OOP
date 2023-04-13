@@ -3,7 +3,7 @@ package ru.nsu.fit.oop.veber.application;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterConsole;
 
-public class SnakeGame implements Application {
+public class SnakeGame implements MyApplication {
 
     private final Presenter presenter;
 
@@ -11,8 +11,9 @@ public class SnakeGame implements Application {
         presenter = new PresenterConsole();
     }
 
+
     @Override
-    public void launch() {
+    public void startGameProcess() {
         presenter.startGameProcess();
     }
 }
