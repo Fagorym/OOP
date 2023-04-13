@@ -14,7 +14,5 @@ public class SnakeGame implements Application {
     @Override
     public void launch() {
         presenter.startGameProcess();
-
-
     }
 }

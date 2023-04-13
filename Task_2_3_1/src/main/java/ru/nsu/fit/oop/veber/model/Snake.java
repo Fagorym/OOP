@@ -8,83 +8,56 @@ import java.util.Random;
 
 public class Snake {
 
-    Deque<Snake> tail;
-    private int x;
-    private int y;
-
+    Deque<SnakeBlock> tail;
     private Direction direction;
 
-    private Snake headBlock;
+    private SnakeBlock headBlock;
 
     public Snake(int x, int y) {
-        this.x = x;
-        this.y = y;
         this.tail = new ArrayDeque<>();
-        this.tail.add(this);
-        this.headBlock = this;
+        this.headBlock = new SnakeBlock(x, y);
+        this.tail.add(headBlock);
         this.direction = Direction.right;
     }
 
-    public Snake(int x, int y, Direction direction) {
-        this.x = x;
-        this.y = y;
-        this.tail = new ArrayDeque<>();
-        this.direction = direction;
-    }
-
     public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
+        return headBlock.getX();
     }
 
     public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
+        return headBlock.getY();
     }
 
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
-    public void checkFoodCollision(Food food) {
-        if (food.getX() == headBlock.x && food.getY() == headBlock.y) {
-            food.setX(new Random().nextInt(15) + 2);
-            food.setY(new Random().nextInt(15) + 2);
-            Snake newTail = switch (direction) {
-                case down -> new Snake(x, y - 1, direction);
-                case right -> new Snake(x - 1, y, direction);
-                case left -> new Snake(x + 1, y, direction);
-                case up -> new Snake(x, y + 1, direction);
+    public void checkFoodCollision(Food food, Box box) {
+        if (food.getX() == headBlock.getX() && food.getY() == headBlock.getY()) {
+            food.setX(new Random().nextInt(20) + 1);
+            food.setY(new Random().nextInt(20) + 1);
+            SnakeBlock newTail = switch (direction) {
+                case down -> new SnakeBlock(headBlock.getX(), headBlock.getY() - 1);
+                case right -> new SnakeBlock(headBlock.getX() + 1, headBlock.getY());
+                case left -> new SnakeBlock(headBlock.getX() - 1, headBlock.getY());
+                case up -> new SnakeBlock(headBlock.getX(), headBlock.getY() + 1);
             };
             tail.addLast(newTail);
         }
     }
 
 
-    public boolean checkBoxCollision(Box box) {
-        if (x == 0 || x >= box.getLength()) {
-            return true;
-        } else return y == 0 || y >= box.getLength();
-    }
-
-
     public void update() {
-        Snake headBlock = tail.peekFirst();
-        Snake tailBlock = tail.pollLast();
-        tailBlock.y = headBlock.y;
-        tailBlock.x = headBlock.x;
+        SnakeBlock headBlock = tail.peekFirst();
+        SnakeBlock tailBlock = tail.pollLast();
+        tailBlock.setX(headBlock.getX());
+        tailBlock.setY(headBlock.getY());
         {
             switch (direction) {
-                case right -> tailBlock.x = headBlock.x + 1;
-                case left -> tailBlock.x = headBlock.x - 1;
-                case down -> tailBlock.y = headBlock.y + 1;
-                case up -> tailBlock.y = headBlock.y - 1;
+                case right -> tailBlock.setX(headBlock.getX() + 1);
+                case left -> tailBlock.setX(headBlock.getX() - 1);
+                case down -> tailBlock.setY(headBlock.getY() + 1);
+                case up -> tailBlock.setY(headBlock.getY() - 1);
             }
         }
         this.headBlock = tailBlock;
@@ -92,7 +65,11 @@ public class Snake {
 
     }
 
-    public Deque<Snake> getTail() {
+    public Deque<SnakeBlock> getTail() {
         return tail;
+    }
+
+    public SnakeBlock getHeadBlock() {
+        return headBlock;
     }
 }

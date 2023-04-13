@@ -7,9 +7,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import ru.nsu.fit.oop.veber.model.Box;
-import ru.nsu.fit.oop.veber.model.Food;
-import ru.nsu.fit.oop.veber.model.Snake;
+import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 
 import java.io.IOException;
@@ -33,12 +31,9 @@ public class ConsoleView implements View {
     }
 
     private void renderField(Box box) {
-        graphics.drawLine(0, 0, box.getLength(), 0, '#');
-        for (int i = 1; i < box.getHeight(); i++) {
-            graphics.drawLine(0, i, 0, i, '#');
-            graphics.drawLine(box.getLength(), i, box.getLength(), i, '#');
+        for (GeometricalObject cell : box.getCells()) {
+            graphics.drawLine(cell.getX(), cell.getY(), cell.getX(), cell.getY(), '#');
         }
-        graphics.drawLine(0, box.getHeight(), box.getLength(), box.getHeight(), '#');
     }
 
     private void createScene() {
@@ -57,7 +52,7 @@ public class ConsoleView implements View {
     @Override
     public void renderSnake(Snake snake) {
         graphics.drawLine(snake.getX(), snake.getY(), snake.getX(), snake.getY(), '$');
-        for (Snake tailBlock : snake.getTail()) {
+        for (SnakeBlock tailBlock : snake.getTail()) {
             graphics.drawLine(tailBlock.getX(), tailBlock.getY(), tailBlock.getX(), tailBlock.getY(), '$');
 
         }

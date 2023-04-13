@@ -1,25 +1,34 @@
 package ru.nsu.fit.oop.veber.presenter;
 
 import ru.nsu.fit.oop.veber.model.Box;
+import ru.nsu.fit.oop.veber.model.CollisionChecker;
 import ru.nsu.fit.oop.veber.model.Food;
 import ru.nsu.fit.oop.veber.model.Snake;
 import ru.nsu.fit.oop.veber.utils.Direction;
 import ru.nsu.fit.oop.veber.view.ConsoleView;
 import ru.nsu.fit.oop.veber.view.View;
 
+import java.util.ResourceBundle;
+
 
 public class PresenterConsole implements Presenter {
+
+    private final ResourceBundle bundle = ResourceBundle.getBundle("config");
     private final Snake snake;
 
     private final Food food;
 
     private final Box box;
+
+    private final CollisionChecker collisionChecker;
     private final View consoleView;
 
     public PresenterConsole() {
-        snake = new Snake(5, 5);
+        snake = new Snake(10, 10);
         food = new Food(3, 5);
-        box = new Box(30, 15);
+        box = new Box(15, 30);
+        collisionChecker = new CollisionChecker();
+        collisionChecker.addObjects(box.getCells());
         consoleView = new ConsoleView(this);
     }
 
@@ -27,8 +36,8 @@ public class PresenterConsole implements Presenter {
         boolean gameProcessActive = true;
         while (gameProcessActive) {
             consoleView.gameProcess(snake, food, box);
-            snake.checkFoodCollision(food);
-            gameProcessActive = !snake.checkBoxCollision(box);
+            snake.checkFoodCollision(food, box);
+            gameProcessActive = collisionChecker.checkCollision(snake.getHeadBlock());
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) {

@@ -1,19 +1,28 @@
 package ru.nsu.fit.oop.veber.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Box {
-    private final int length;
-    private final int height;
+    private final List<Cell> cells;
 
     public Box(int length, int height) {
-        this.length = length;
-        this.height = height;
+        cells = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            if (i == 0 || i == height - 1) {
+                for (int j = 0; j < length; j++) {
+                    Cell cell = new Cell(i, j);
+                    cells.add(cell);
+                }
+            } else {
+                cells.add(new Cell(i, 0));
+                cells.add(new Cell(i, length - 1));
+
+            }
+        }
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getLength() {
-        return length;
+    public List<Cell> getCells() {
+        return cells;
     }
 }
