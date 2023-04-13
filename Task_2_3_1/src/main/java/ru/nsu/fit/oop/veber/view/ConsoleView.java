@@ -9,28 +9,48 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
+import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
 
 import java.io.IOException;
 
 public class ConsoleView implements View {
 
     private final Presenter presenter;
-
+    private final int TIMER_TICK = 1000;
     private Screen screen;
     private TextGraphics graphics;
-
     private Terminal terminal;
 
-    public ConsoleView(Presenter presenter) {
-        this.presenter = presenter;
+    public ConsoleView() {
+        this.presenter = new PresenterImpl(this);
         createScene();
+        long lastTick = 0;
+        while (true) {
+            try {
+                KeyStroke keyStroke = screen.pollInput();
+                if (keyStroke != null) {
+                    presenter.processKeyInput(keyStroke.getCharacter());
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            presenter.startGameProcess();
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
     }
 
-    private void renderFood(Food food) {
+    public void renderFood(Food food) {
         drawObject(food);
     }
 
-    private void renderField(Box box) {
+    @Override
+    public void renderBackground(Box box) {
         for (GeometricalObject cell : box.getCells()) {
             drawObject(cell);
         }
@@ -67,30 +87,12 @@ public class ConsoleView implements View {
     }
 
 
-    public void gameProcess(Snake snake, Food food, Box box) {
-        try {
-            KeyStroke keyStroke = screen.pollInput();
-            if (keyStroke != null) {
-                presenter.processKeyInput(keyStroke.getCharacter());
-            }
-            screen.clear();
-            terminal.clearScreen();
-            renderField(box);
-            renderFood(food);
-            renderSnake(snake);
-            terminal.flush();
-            screen.refresh();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Override
     public void endGame() {
         try {
             terminal.clearScreen();
             graphics.putString(TerminalPosition.TOP_LEFT_CORNER, "GAME IS OVER");
-            graphics.putString(TerminalPosition.OFFSET_1x1, "PRESS ANY KEY TO EXIT");
+            graphics.putString(new TerminalPosition(0, 1), "PRESS ANY KEY TO EXIT");
             terminal.flush();
             screen.refresh();
             KeyStroke keyStroke;
@@ -99,6 +101,27 @@ public class ConsoleView implements View {
 
             } while (keyStroke == null);
             System.exit(0);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void clearScreen() {
+        screen.clear();
+        try {
+            terminal.clearScreen();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public void refreshScreen() {
+        try {
+            terminal.flush();
+            screen.refresh();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

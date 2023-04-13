@@ -5,9 +5,16 @@ import ru.nsu.fit.oop.veber.model.Food;
 import ru.nsu.fit.oop.veber.model.Snake;
 
 public interface View {
+
     void renderSnake(Snake snake);
 
-    void gameProcess(Snake snake, Food food, Box box);
-
     void endGame();
+
+    void clearScreen();
+
+    void refreshScreen();
+
+    void renderFood(Food food);
+
+    void renderBackground(Box box);
 }
