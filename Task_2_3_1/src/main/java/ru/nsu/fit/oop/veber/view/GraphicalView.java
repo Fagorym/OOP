@@ -1,8 +1,8 @@
 package ru.nsu.fit.oop.veber.view;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import ru.nsu.fit.oop.veber.model.Box;
 import ru.nsu.fit.oop.veber.model.Food;
 import ru.nsu.fit.oop.veber.model.Snake;
@@ -12,23 +12,22 @@ public class GraphicalView implements View {
 
     private final Presenter presenter;
 
+    private final int TIMER_TICK = 1000000000;
+    private GraphicsContext context;
 
-    public GraphicalView(Presenter presenter) {
+
+    public GraphicalView(Presenter presenter, GraphicsContext context) {
         this.presenter = presenter;
-        createUI();
+        this.context = context;
     }
 
-    private void createUI() {
-
-        Button btn1 = new Button("Say, Hello World");
-        StackPane root = new StackPane();
-        root.getChildren().add(btn1);
-        Scene scene = new Scene(root);
+    private void createScene(Stage stage) {
     }
 
     @Override
     public void renderSnake(Snake snake) {
-
+        context.setFill(Color.LIGHTGREEN);
+        context.fillRect(snake.getHeadBlock().getX(), snake.getHeadBlock().getY(), 1, 1);
     }
 
     @Override
@@ -38,6 +37,5 @@ public class GraphicalView implements View {
 
     @Override
     public void endGame() {
-
     }
 }
