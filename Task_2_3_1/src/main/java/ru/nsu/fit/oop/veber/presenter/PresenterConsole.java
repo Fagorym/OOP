@@ -45,7 +45,7 @@ public class PresenterConsole implements Presenter {
                 case SNAKE, WALL -> gameProcessActive = false;
                 case FOOD -> {
                     collisionChecker.removeObject(food);
-                    food.generate(box);
+                    food.generate(box, collisionChecker);
                     collisionChecker.addObject(food);
                     collisionChecker.addObject(snake.generateNewSnakeBlock());
                 }

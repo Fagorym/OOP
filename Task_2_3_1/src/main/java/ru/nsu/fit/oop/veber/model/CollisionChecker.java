@@ -18,8 +18,14 @@ public class CollisionChecker {
         return CollisionObject.NOTHING;
     }
 
-    public void addObject(GeometricalObject obj) {
+    public boolean addObject(GeometricalObject obj) {
+        Coordinate objectCoordinate = obj.getCoordinate();
+        if (objectByCoordinate.containsKey(objectCoordinate) &&
+                objectByCoordinate.get(objectCoordinate) != CollisionObject.NOTHING) {
+            return false;
+        }
         objectByCoordinate.put(obj.getCoordinate(), obj.getCollisionObject());
+        return true;
     }
 
     public void addObjects(Collection<? extends GeometricalObject> objects) {
