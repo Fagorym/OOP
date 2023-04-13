@@ -27,12 +27,12 @@ public class ConsoleView implements View {
     }
 
     private void renderFood(Food food) {
-        graphics.drawLine(food.getX(), food.getY(), food.getX(), food.getY(), '@');
+        drawObject(food);
     }
 
     private void renderField(Box box) {
         for (GeometricalObject cell : box.getCells()) {
-            graphics.drawLine(cell.getX(), cell.getY(), cell.getX(), cell.getY(), '#');
+            drawObject(cell);
         }
     }
 
@@ -51,11 +51,19 @@ public class ConsoleView implements View {
 
     @Override
     public void renderSnake(Snake snake) {
-        graphics.drawLine(snake.getX(), snake.getY(), snake.getX(), snake.getY(), '$');
-        for (SnakeBlock tailBlock : snake.getTail()) {
-            graphics.drawLine(tailBlock.getX(), tailBlock.getY(), tailBlock.getX(), tailBlock.getY(), '$');
+        SnakeBlock head = snake.getHeadBlock();
+        drawObject(head);
 
+        for (SnakeBlock bodyBlock : snake.getBody()) {
+            drawObject(bodyBlock);
         }
+
+        SnakeBlock tail = snake.getTailBlock();
+        drawObject(tail);
+    }
+
+    private void drawObject(GeometricalObject obj) {
+        graphics.drawLine(obj.getX(), obj.getY(), obj.getX(), obj.getY(), obj.getVisualRepresentation());
     }
 
 
@@ -68,7 +76,6 @@ public class ConsoleView implements View {
             screen.clear();
             terminal.clearScreen();
             renderField(box);
-            snake.update();
             renderFood(food);
             renderSnake(snake);
             terminal.flush();

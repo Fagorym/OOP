@@ -5,23 +5,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CollisionChecker {
-    private final Map<Coordinate, Boolean> isFilled;
+    private final Map<Coordinate, CollisionObject> objectByCoordinate;
 
     public CollisionChecker() {
-        isFilled = new HashMap<>();
+        objectByCoordinate = new HashMap<>();
     }
 
-    public boolean checkCollision(GeometricalObject obj) {
-        return isFilled.get(obj.getCoordinate()) == null || isFilled.get(obj.getCoordinate());
+    public CollisionObject checkCollision(GeometricalObject obj) {
+        if (objectByCoordinate.containsKey(obj.getCoordinate())) {
+            return objectByCoordinate.get(obj.getCoordinate());
+        }
+        return CollisionObject.NOTHING;
     }
 
     public void addObject(GeometricalObject obj) {
-        isFilled.put(obj.getCoordinate(), false);
+        objectByCoordinate.put(obj.getCoordinate(), obj.getCollisionObject());
     }
 
     public void addObjects(Collection<? extends GeometricalObject> objects) {
         for (GeometricalObject obj : objects) {
             addObject(obj);
         }
+    }
+
+    public void removeObject(GeometricalObject object) {
+        objectByCoordinate.put(object.getCoordinate(), CollisionObject.NOTHING);
     }
 }

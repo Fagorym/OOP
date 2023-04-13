@@ -26,18 +26,29 @@ public class PresenterConsole implements Presenter {
     public PresenterConsole() {
         snake = new Snake(10, 10);
         food = new Food(3, 5);
-        box = new Box(15, 30);
+        box = new Box(50, 15);
         collisionChecker = new CollisionChecker();
         collisionChecker.addObjects(box.getCells());
+        collisionChecker.addObject(food);
         consoleView = new ConsoleView(this);
     }
 
     public void startGameProcess() {
         boolean gameProcessActive = true;
         while (gameProcessActive) {
+            snake.update();
             consoleView.gameProcess(snake, food, box);
-            snake.checkFoodCollision(food, box);
-            gameProcessActive = collisionChecker.checkCollision(snake.getHeadBlock());
+            switch (collisionChecker.checkCollision(snake.getHeadBlock())) {
+                case SNAKE, WALL -> gameProcessActive = false;
+                case FOOD -> {
+                    collisionChecker.removeObject(food);
+                    food.generate(box);
+                    collisionChecker.addObject(food);
+                    snake.generateNewSnakeBlock();
+                }
+                case NOTHING -> {
+                }
+            }
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) {
