@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
@@ -16,8 +17,15 @@ public class GraphicalView implements View {
 
     private final Presenter presenter;
 
+    private final AnimationTimer timer;
+
+    private final Scene scene;
+
     private final GraphicsContext context;
     private final int TIMER_TICK = 1_000_000_00;
+
+    private final int SCREEN_HEIGHT = 1024;
+    private final int SCREEN_LENGTH = 1280;
 
     private final int DEFAULT_BLOCK_SIZE = 10;
 
@@ -26,12 +34,12 @@ public class GraphicalView implements View {
         this.presenter = new PresenterImpl(this);
 
         VBox root = new VBox();
-        Canvas canvas = new Canvas(1280, 1024);
+        Canvas canvas = new Canvas(SCREEN_LENGTH, SCREEN_HEIGHT);
         context = canvas.getGraphicsContext2D();
         root.getChildren().add(canvas);
-        Scene scene = new Scene(root, 1280, 1024);
+        scene = new Scene(root, SCREEN_LENGTH, SCREEN_HEIGHT);
 
-        new AnimationTimer() {
+        timer = new AnimationTimer() {
             long lastTick = 0;
 
             @Override
@@ -41,8 +49,9 @@ public class GraphicalView implements View {
                     presenter.startGameProcess();
                 }
             }
-        }.start();
+        };
 
+        timer.start();
         scene.setOnKeyPressed(presenter::processKeyInput);
         stage.setScene(scene);
         stage.setTitle("Snake Game");
@@ -63,12 +72,20 @@ public class GraphicalView implements View {
 
     @Override
     public void endGame() {
+        clearScreen();
+        context.setFill(Color.BLACK);
+        context.setFont(Font.font(32));
+        context.fillText("GAME OVER", SCREEN_LENGTH / 2, SCREEN_HEIGHT / 2);
+        context.fillText("PRESS ANY KEY TO END", SCREEN_LENGTH / 2, SCREEN_HEIGHT / 2 + 50);
+        timer.stop();
+        scene.setOnKeyPressed((event) -> System.exit(0));
+
     }
 
     @Override
     public void clearScreen() {
         context.setFill(Color.WHITE);
-        context.fillRect(0, 0, 1024, 1280);
+        context.fillRect(0, 0, SCREEN_HEIGHT, SCREEN_LENGTH);
 
     }
 

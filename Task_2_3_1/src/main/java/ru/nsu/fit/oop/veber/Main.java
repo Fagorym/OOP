@@ -5,7 +5,7 @@ import ru.nsu.fit.oop.veber.application.SnakeGameGraphical;
 
 public class Main {
     public static void main(String[] args) {
-        switch ("graphical") {
+        switch ("console") {
             case "graphical" -> new SnakeGameGraphical().startGameProcess();
             case "console" -> new SnakeGameConsole().startGameProcess();
         }

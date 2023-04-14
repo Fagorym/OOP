@@ -22,7 +22,7 @@ public class Snake {
     }
 
     public void setDirection(Direction direction) {
-        if (this.direction.getOpposite() != direction) {
+        if (direction != null && this.direction.getOpposite() != direction) {
             this.direction = direction;
         }
     }

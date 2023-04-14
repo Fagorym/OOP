@@ -24,11 +24,11 @@ public class ConsoleView implements View {
     public ConsoleView() {
         this.presenter = new PresenterImpl(this);
         createScene();
-        long lastTick = 0;
         while (true) {
             try {
                 KeyStroke keyStroke = screen.pollInput();
                 if (keyStroke != null) {
+                    presenter.processKeyInput(keyStroke);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);

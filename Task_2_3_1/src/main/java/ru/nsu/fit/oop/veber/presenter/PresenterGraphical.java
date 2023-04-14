@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.veber.presenter;
 
+import com.googlecode.lanterna.input.KeyStroke;
 import javafx.scene.input.KeyEvent;
 import ru.nsu.fit.oop.veber.model.Box;
 import ru.nsu.fit.oop.veber.model.CollisionChecker;
@@ -26,6 +27,11 @@ public class PresenterGraphical implements Presenter {
 
     @Override
     public void processKeyInput(KeyEvent event) {
+
+    }
+
+    @Override
+    public void processKeyInput(KeyStroke stroke) {
 
     }
 
