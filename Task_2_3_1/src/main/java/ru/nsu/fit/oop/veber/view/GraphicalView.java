@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
+import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 
 public class GraphicalView implements View {
 
@@ -24,14 +25,14 @@ public class GraphicalView implements View {
     private final GraphicsContext context;
     private final int TIMER_TICK = 1_000_000_00;
 
-    private final int SCREEN_HEIGHT = 1024;
-    private final int SCREEN_LENGTH = 1280;
-
-    private final int DEFAULT_BLOCK_SIZE = 10;
-
+    private final int SCREEN_LENGTH;
+    private final int SCREEN_HEIGHT;
 
     public GraphicalView(Stage stage) {
-        this.presenter = new PresenterImpl(this);
+        GameConfiguration gameConfiguration = GameConfiguration.getINSTANCE();
+        SCREEN_LENGTH = gameConfiguration.getGRAPHIC_SCREEN_LENGTH();
+        SCREEN_HEIGHT = gameConfiguration.getGRAPHIC_SCREEN_HEIGHT();
+        this.presenter = new PresenterImpl(this, SCREEN_HEIGHT, SCREEN_LENGTH);
 
         VBox root = new VBox();
         Canvas canvas = new Canvas(SCREEN_LENGTH, SCREEN_HEIGHT);
@@ -85,7 +86,7 @@ public class GraphicalView implements View {
     @Override
     public void clearScreen() {
         context.setFill(Color.WHITE);
-        context.fillRect(0, 0, SCREEN_HEIGHT, SCREEN_LENGTH);
+        context.fillRect(0, 0, SCREEN_LENGTH, SCREEN_HEIGHT);
 
     }
 
@@ -109,6 +110,7 @@ public class GraphicalView implements View {
 
 
     private void drawObject(GeometricalObject obj) {
+        final int DEFAULT_BLOCK_SIZE = 10;
         context.fillRect(obj.getX() * DEFAULT_BLOCK_SIZE,
                 obj.getY() * DEFAULT_BLOCK_SIZE,
                 DEFAULT_BLOCK_SIZE,

@@ -7,6 +7,7 @@ import ru.nsu.fit.oop.veber.model.CollisionChecker;
 import ru.nsu.fit.oop.veber.model.Food;
 import ru.nsu.fit.oop.veber.model.Snake;
 import ru.nsu.fit.oop.veber.utils.Direction;
+import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 import ru.nsu.fit.oop.veber.view.View;
 
 public class PresenterImpl implements Presenter {
@@ -18,11 +19,12 @@ public class PresenterImpl implements Presenter {
     private final CollisionChecker collisionChecker;
 
 
-    public PresenterImpl(View view) {
+    public PresenterImpl(View view, int screenHeight, int screenLength) {
+        GameConfiguration gameConfiguration = GameConfiguration.getINSTANCE();
         this.view = view;
-        snake = new Snake(10, 10);
-        food = new Food(3, 5);
-        box = new Box(50, 15);
+        snake = new Snake(gameConfiguration.getSNAKE_INITIAL_COORDINATE_X(), gameConfiguration.getFOOD_INITIAL_COORDINATE_Y());
+        food = new Food(gameConfiguration.getFOOD_INITIAL_COORDINATE_X(), gameConfiguration.getFOOD_INITIAL_COORDINATE_Y());
+        box = new Box(50, 30);
         collisionChecker = new CollisionChecker();
         collisionChecker.addObjects(box.getCells());
         collisionChecker.addObject(food);

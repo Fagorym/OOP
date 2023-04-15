@@ -19,7 +19,6 @@ public class Coordinate {
         if (this == obj)
             return true;
         if (obj instanceof Coordinate point) {
-            System.out.println(point.x + " " + x + " " + point.y + " " + y);
             return point.x == x && point.y == y;
         }
         return false;

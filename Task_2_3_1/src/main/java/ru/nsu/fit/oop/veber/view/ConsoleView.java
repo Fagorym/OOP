@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.veber.view;
 
 import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
@@ -10,19 +11,21 @@ import com.googlecode.lanterna.terminal.Terminal;
 import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
+import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 
 import java.io.IOException;
 
 public class ConsoleView implements View {
 
-    private final Presenter presenter;
-    private final int TIMER_TICK = 1000;
     private Screen screen;
     private TextGraphics graphics;
     private Terminal terminal;
 
     public ConsoleView() {
-        this.presenter = new PresenterImpl(this);
+        GameConfiguration gameConfiguration = GameConfiguration.getINSTANCE();
+        Presenter presenter = new PresenterImpl(this,
+                gameConfiguration.getCONSOLE_SCREEN_HEIGHT(),
+                gameConfiguration.getCONSOLE_SCREEN_LENGTH());
         createScene();
         while (true) {
             try {
@@ -57,7 +60,9 @@ public class ConsoleView implements View {
 
     private void createScene() {
         try {
-            terminal = new DefaultTerminalFactory().createTerminal();
+            terminal = new DefaultTerminalFactory()
+                    .setInitialTerminalSize(new TerminalSize(1024, 1280))
+                    .createTerminal();
             screen = new TerminalScreen(terminal);
             graphics = terminal.newTextGraphics();
             terminal.setCursorVisible(false);
