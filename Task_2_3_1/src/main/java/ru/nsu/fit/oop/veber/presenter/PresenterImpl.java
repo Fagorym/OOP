@@ -31,7 +31,6 @@ public class PresenterImpl implements Presenter {
 
     @Override
     public void processKeyInput(KeyEvent event) {
-
         Direction direction = switch (event.getCode()) {
             case RIGHT, D -> Direction.right;
             case LEFT, A -> Direction.left;
@@ -67,7 +66,6 @@ public class PresenterImpl implements Presenter {
             case FOOD -> {
                 collisionChecker.removeObject(food);
                 food.generate(box, collisionChecker);
-                collisionChecker.addObject(food);
                 collisionChecker.addObject(snake.generateNewSnakeBlock());
             }
             case NOTHING -> {

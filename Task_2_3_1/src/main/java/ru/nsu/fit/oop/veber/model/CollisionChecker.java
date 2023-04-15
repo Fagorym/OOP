@@ -24,7 +24,7 @@ public class CollisionChecker {
                 objectByCoordinate.get(objectCoordinate) != CollisionObject.NOTHING) {
             return false;
         }
-        objectByCoordinate.put(obj.getCoordinate(), obj.getCollisionObject());
+        objectByCoordinate.put(objectCoordinate, obj.getCollisionObject());
         return true;
     }
 
@@ -35,6 +35,6 @@ public class CollisionChecker {
     }
 
     public void removeObject(GeometricalObject object) {
-        objectByCoordinate.put(object.getCoordinate(), CollisionObject.NOTHING);
+        objectByCoordinate.remove(object.getCoordinate());
     }
 }
