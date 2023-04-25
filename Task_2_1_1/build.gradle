@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'jacoco'
+}
+
+group 'ru.nsu.fit.oop.veber'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.openjdk.jmh:jmh-core:1.35'
+    annotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.35'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+jar {
+    manifest {
+        attributes 'Main-Class': 'ru.nsu.fit.oop.veber.BenchmarkRunner'
+    }
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        csv.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "ru/nsu/fit/oop/veber/bench/BenchmarkRunner*",
+                    "ru/nsu/fit/oop/veber/bench/BenchmarkRunner.*",
+                    "ru/nsu/fit/oop/veber/bench/BenchmarkRunner/*",
+                    "ru/nsu/fit/oop/veber/jmh_generated"
+            ])
+        }))
+    }
+}
