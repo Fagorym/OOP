@@ -1,1 +1,1 @@
-java -classpath ./buildBat nsu.fit.veber.heapsort.Main %*
+java -classpath ./buildBat nsu.fit.veber.heapsort.ru.nsu.fit.oop.veber.Main %*
