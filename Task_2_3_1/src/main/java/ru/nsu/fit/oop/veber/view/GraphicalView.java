@@ -47,7 +47,7 @@ public class GraphicalView implements View {
             public void handle(long now) {
                 if (now - lastTick > TIMER_TICK || lastTick == 0) {
                     lastTick = now;
-                    presenter.startGameProcess();
+                    presenter.makeGameStep();
                 }
             }
         };

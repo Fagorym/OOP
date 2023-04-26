@@ -56,7 +56,7 @@ public class PresenterImpl implements Presenter {
     }
 
     @Override
-    public void startGameProcess() {
+    public void makeGameStep() {
         collisionChecker.removeObject(snake.getTailBlock());
         collisionChecker.addObject(snake.getHeadBlock());
         snake.move();

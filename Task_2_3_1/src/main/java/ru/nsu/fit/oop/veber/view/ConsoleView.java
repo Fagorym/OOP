@@ -37,7 +37,7 @@ public class ConsoleView implements View {
                 throw new RuntimeException(e);
             }
 
-            presenter.startGameProcess();
+            presenter.makeGameStep();
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
