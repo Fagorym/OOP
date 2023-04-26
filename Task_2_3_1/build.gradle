@@ -40,9 +40,6 @@ dependencies {
     }
     implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
-    implementation('com.github.almasb:fxgl:17.1') {
-        exclude(group: 'org.openjfx')
-    }
     implementation('com.googlecode.lanterna:lanterna:3.2.0-alpha1')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
