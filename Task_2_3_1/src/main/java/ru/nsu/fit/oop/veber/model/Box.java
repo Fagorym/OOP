@@ -26,7 +26,7 @@ public class Box {
         }
     }
 
-    public List<Wall> getCells() {
+    public List<Wall> getWalls() {
         return walls;
     }
 

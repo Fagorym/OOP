@@ -20,6 +20,6 @@ public class GraphicalConverter implements Converter {
 
     @Override
     public Primitive<?> convert(BoxElement element) {
-        return new Primitive<>(objectTypeColorMap.get(element.getCollisionObject()));
+        return new Primitive<>(objectTypeColorMap.get(element.getObjectType()));
     }
 }

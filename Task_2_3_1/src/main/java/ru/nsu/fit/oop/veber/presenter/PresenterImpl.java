@@ -23,7 +23,7 @@ public class PresenterImpl implements Presenter {
         food = new Food(gameConfiguration.getFOOD_INITIAL_COORDINATE_X(), gameConfiguration.getFOOD_INITIAL_COORDINATE_Y());
         box = new Box(50, 30);
         collisionChecker = new CollisionChecker();
-        collisionChecker.addObjects(box.getCells());
+        collisionChecker.addObjects(box.getWalls());
         collisionChecker.addObject(food);
         collisionChecker.addObject(snake.getTailBlock());
     }
@@ -83,7 +83,7 @@ public class PresenterImpl implements Presenter {
         }
         view.render(snake.getTailBlock());
         view.render(food);
-        for (Wall wall : box.getCells()) {
+        for (Wall wall : box.getWalls()) {
             view.render(wall);
         }
     }

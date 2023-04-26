@@ -29,7 +29,7 @@ public class BoxElement {
         return coordinate;
     }
 
-    public ObjectType getCollisionObject() {
+    public ObjectType getObjectType() {
         return objectType;
     }
 }

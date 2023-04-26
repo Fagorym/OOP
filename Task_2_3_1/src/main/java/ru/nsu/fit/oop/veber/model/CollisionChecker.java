@@ -24,7 +24,7 @@ public class CollisionChecker {
                 objectByCoordinate.get(objectCoordinate) != ObjectType.NOTHING) {
             return false;
         }
-        objectByCoordinate.put(objectCoordinate, obj.getCollisionObject());
+        objectByCoordinate.put(objectCoordinate, obj.getObjectType());
         return true;
     }
 
