@@ -2,13 +2,13 @@ package ru.nsu.fit.oop.veber.model;
 
 public class GeometricalObject {
     private final Coordinate coordinate;
-    private final CollisionObject collisionObject;
+    private final ObjectType objectType;
 
     private final char visualRepresentation;
 
-    public GeometricalObject(int x, int y, CollisionObject collisionObject, Character visualRepresentation) {
+    public GeometricalObject(int x, int y, ObjectType objectType, Character visualRepresentation) {
         this.coordinate = new Coordinate(x, y);
-        this.collisionObject = collisionObject;
+        this.objectType = objectType;
         this.visualRepresentation = visualRepresentation;
     }
 
@@ -32,8 +32,8 @@ public class GeometricalObject {
         return coordinate;
     }
 
-    public CollisionObject getCollisionObject() {
-        return collisionObject;
+    public ObjectType getCollisionObject() {
+        return objectType;
     }
 
     public char getVisualRepresentation() {

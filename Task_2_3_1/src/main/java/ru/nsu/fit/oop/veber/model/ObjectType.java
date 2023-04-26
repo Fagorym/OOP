@@ -1,5 +1,5 @@
 package ru.nsu.fit.oop.veber.model;
 
-public enum CollisionObject {
+public enum ObjectType {
     FOOD, WALL, SNAKE, NOTHING
 }

@@ -5,7 +5,7 @@ import java.util.Random;
 public class Food extends GeometricalObject {
 
     public Food(int x, int y) {
-        super(x, y, CollisionObject.FOOD, '@');
+        super(x, y, ObjectType.FOOD, '@');
     }
 
     public void generate(Box box, CollisionChecker collisionChecker) {
