@@ -2,10 +2,7 @@ package ru.nsu.fit.oop.veber.presenter;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import javafx.scene.input.KeyEvent;
-import ru.nsu.fit.oop.veber.model.Box;
-import ru.nsu.fit.oop.veber.model.CollisionChecker;
-import ru.nsu.fit.oop.veber.model.Food;
-import ru.nsu.fit.oop.veber.model.Snake;
+import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.utils.Direction;
 import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 import ru.nsu.fit.oop.veber.view.View;
@@ -75,9 +72,19 @@ public class PresenterImpl implements Presenter {
             }
         }
         view.clearScreen();
-        view.renderFood(food);
-        view.renderBackground(box);
-        view.renderSnake(snake);
+        renderAllElements();
         view.refreshScreen();
+    }
+
+    private void renderAllElements() {
+        view.render(snake.getHeadBlock());
+        for (SnakeBlock snakeBlock : snake.getBody()) {
+            view.render(snakeBlock);
+        }
+        view.render(snake.getTailBlock());
+        view.render(food);
+        for (Wall wall : box.getCells()) {
+            view.render(wall);
+        }
     }
 }

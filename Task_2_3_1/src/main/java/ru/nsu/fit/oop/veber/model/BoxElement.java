@@ -4,12 +4,9 @@ public class BoxElement {
     private final Coordinate coordinate;
     private final ObjectType objectType;
 
-    private final char visualRepresentation;
-
-    public BoxElement(int x, int y, ObjectType objectType, Character visualRepresentation) {
+    public BoxElement(int x, int y, ObjectType objectType) {
         this.coordinate = new Coordinate(x, y);
         this.objectType = objectType;
-        this.visualRepresentation = visualRepresentation;
     }
 
     public int getY() {
@@ -34,9 +31,5 @@ public class BoxElement {
 
     public ObjectType getCollisionObject() {
         return objectType;
-    }
-
-    public char getVisualRepresentation() {
-        return visualRepresentation;
     }
 }

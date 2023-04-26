@@ -6,17 +6,22 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import ru.nsu.fit.oop.veber.model.*;
+import ru.nsu.fit.oop.veber.model.BoxElement;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
+import ru.nsu.fit.oop.veber.renderer.Converter;
+import ru.nsu.fit.oop.veber.renderer.GraphicalConverter;
 import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 
 public class GraphicalView implements View {
 
 
     private final Presenter presenter;
+
+    private final Converter converter;
 
     private final AnimationTimer timer;
 
@@ -33,6 +38,7 @@ public class GraphicalView implements View {
         SCREEN_LENGTH = gameConfiguration.getGRAPHIC_SCREEN_LENGTH();
         SCREEN_HEIGHT = gameConfiguration.getGRAPHIC_SCREEN_HEIGHT();
         this.presenter = new PresenterImpl(this, SCREEN_HEIGHT, SCREEN_LENGTH);
+        this.converter = new GraphicalConverter();
 
         VBox root = new VBox();
         Canvas canvas = new Canvas(SCREEN_LENGTH, SCREEN_HEIGHT);
@@ -62,16 +68,6 @@ public class GraphicalView implements View {
     }
 
     @Override
-    public void renderSnake(Snake snake) {
-        context.setFill(Color.LIGHTGREEN);
-        drawObject(snake.getHeadBlock());
-        for (SnakeBlock bodyBlock : snake.getBody()) {
-            drawObject(bodyBlock);
-        }
-        drawObject(snake.getTailBlock());
-    }
-
-    @Override
     public void endGame() {
         clearScreen();
         context.setFill(Color.BLACK);
@@ -94,23 +90,9 @@ public class GraphicalView implements View {
     public void refreshScreen() {
     }
 
-    @Override
-    public void renderFood(Food food) {
-        context.setFill(Color.ORANGERED);
-        drawObject(food);
-    }
-
-    @Override
-    public void renderBackground(Box box) {
-        context.setFill(Color.GREY);
-        for (Wall wall : box.getCells()) {
-            drawObject(wall);
-        }
-    }
-
-
-    private void drawObject(BoxElement obj) {
+    public void render(BoxElement obj) {
         final int DEFAULT_BLOCK_SIZE = 10;
+        context.setFill((Paint) converter.convert(obj).getRepresentation());
         context.fillRect(obj.getX() * DEFAULT_BLOCK_SIZE,
                 obj.getY() * DEFAULT_BLOCK_SIZE,
                 DEFAULT_BLOCK_SIZE,

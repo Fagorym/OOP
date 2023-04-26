@@ -8,15 +8,18 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import ru.nsu.fit.oop.veber.model.*;
+import ru.nsu.fit.oop.veber.model.BoxElement;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
+import ru.nsu.fit.oop.veber.renderer.ConsoleConverter;
+import ru.nsu.fit.oop.veber.renderer.Converter;
 import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 
 import java.io.IOException;
 
 public class ConsoleView implements View {
 
+    private final Converter converter;
     private Screen screen;
     private TextGraphics graphics;
     private Terminal terminal;
@@ -26,6 +29,7 @@ public class ConsoleView implements View {
         Presenter presenter = new PresenterImpl(this,
                 gameConfiguration.getCONSOLE_SCREEN_HEIGHT(),
                 gameConfiguration.getCONSOLE_SCREEN_LENGTH());
+        converter = new ConsoleConverter();
         createScene();
         while (true) {
             try {
@@ -47,17 +51,6 @@ public class ConsoleView implements View {
         }
     }
 
-    public void renderFood(Food food) {
-        drawObject(food);
-    }
-
-    @Override
-    public void renderBackground(Box box) {
-        for (BoxElement cell : box.getCells()) {
-            drawObject(cell);
-        }
-    }
-
     private void createScene() {
         try {
             terminal = new DefaultTerminalFactory()
@@ -72,24 +65,6 @@ public class ConsoleView implements View {
         }
 
     }
-
-    @Override
-    public void renderSnake(Snake snake) {
-        SnakeBlock head = snake.getHeadBlock();
-        drawObject(head);
-
-        for (SnakeBlock bodyBlock : snake.getBody()) {
-            drawObject(bodyBlock);
-        }
-
-        SnakeBlock tail = snake.getTailBlock();
-        drawObject(tail);
-    }
-
-    private void drawObject(BoxElement obj) {
-        graphics.drawLine(obj.getX(), obj.getY(), obj.getX(), obj.getY(), obj.getVisualRepresentation());
-    }
-
 
     @Override
     public void endGame() {
@@ -129,5 +104,11 @@ public class ConsoleView implements View {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void render(BoxElement obj) {
+        graphics.drawLine(obj.getX(), obj.getY(), obj.getX(), obj.getY(), (Character) converter.convert(obj).getRepresentation());
+
     }
 }

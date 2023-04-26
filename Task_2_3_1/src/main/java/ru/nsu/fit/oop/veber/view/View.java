@@ -1,12 +1,8 @@
 package ru.nsu.fit.oop.veber.view;
 
-import ru.nsu.fit.oop.veber.model.Box;
-import ru.nsu.fit.oop.veber.model.Food;
-import ru.nsu.fit.oop.veber.model.Snake;
+import ru.nsu.fit.oop.veber.model.BoxElement;
 
 public interface View {
-
-    void renderSnake(Snake snake);
 
     void endGame();
 
@@ -14,7 +10,5 @@ public interface View {
 
     void refreshScreen();
 
-    void renderFood(Food food);
-
-    void renderBackground(Box box);
+    void render(BoxElement boxElement);
 }
