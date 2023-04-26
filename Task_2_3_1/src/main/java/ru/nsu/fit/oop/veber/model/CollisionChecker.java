@@ -11,14 +11,14 @@ public class CollisionChecker {
         objectByCoordinate = new HashMap<>();
     }
 
-    public ObjectType checkCollision(GeometricalObject obj) {
+    public ObjectType checkCollision(BoxElement obj) {
         if (objectByCoordinate.containsKey(obj.getCoordinate())) {
             return objectByCoordinate.get(obj.getCoordinate());
         }
         return ObjectType.NOTHING;
     }
 
-    public boolean addObject(GeometricalObject obj) {
+    public boolean addObject(BoxElement obj) {
         Coordinate objectCoordinate = obj.getCoordinate();
         if (objectByCoordinate.containsKey(objectCoordinate) &&
                 objectByCoordinate.get(objectCoordinate) != ObjectType.NOTHING) {
@@ -28,13 +28,13 @@ public class CollisionChecker {
         return true;
     }
 
-    public void addObjects(Collection<? extends GeometricalObject> objects) {
-        for (GeometricalObject obj : objects) {
+    public void addObjects(Collection<? extends BoxElement> objects) {
+        for (BoxElement obj : objects) {
             addObject(obj);
         }
     }
 
-    public void removeObject(GeometricalObject object) {
+    public void removeObject(BoxElement object) {
         objectByCoordinate.remove(object.getCoordinate());
     }
 }

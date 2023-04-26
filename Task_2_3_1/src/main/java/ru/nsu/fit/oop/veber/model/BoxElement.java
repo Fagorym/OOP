@@ -1,12 +1,12 @@
 package ru.nsu.fit.oop.veber.model;
 
-public class GeometricalObject {
+public class BoxElement {
     private final Coordinate coordinate;
     private final ObjectType objectType;
 
     private final char visualRepresentation;
 
-    public GeometricalObject(int x, int y, ObjectType objectType, Character visualRepresentation) {
+    public BoxElement(int x, int y, ObjectType objectType, Character visualRepresentation) {
         this.coordinate = new Coordinate(x, y);
         this.objectType = objectType;
         this.visualRepresentation = visualRepresentation;

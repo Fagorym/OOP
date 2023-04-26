@@ -2,7 +2,7 @@ package ru.nsu.fit.oop.veber.model;
 
 import java.util.Random;
 
-public class Food extends GeometricalObject {
+public class Food extends BoxElement {
 
     public Food(int x, int y) {
         super(x, y, ObjectType.FOOD, '@');

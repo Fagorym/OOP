@@ -109,7 +109,7 @@ public class GraphicalView implements View {
     }
 
 
-    private void drawObject(GeometricalObject obj) {
+    private void drawObject(BoxElement obj) {
         final int DEFAULT_BLOCK_SIZE = 10;
         context.fillRect(obj.getX() * DEFAULT_BLOCK_SIZE,
                 obj.getY() * DEFAULT_BLOCK_SIZE,

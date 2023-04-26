@@ -53,7 +53,7 @@ public class ConsoleView implements View {
 
     @Override
     public void renderBackground(Box box) {
-        for (GeometricalObject cell : box.getCells()) {
+        for (BoxElement cell : box.getCells()) {
             drawObject(cell);
         }
     }
@@ -86,7 +86,7 @@ public class ConsoleView implements View {
         drawObject(tail);
     }
 
-    private void drawObject(GeometricalObject obj) {
+    private void drawObject(BoxElement obj) {
         graphics.drawLine(obj.getX(), obj.getY(), obj.getX(), obj.getY(), obj.getVisualRepresentation());
     }
 
