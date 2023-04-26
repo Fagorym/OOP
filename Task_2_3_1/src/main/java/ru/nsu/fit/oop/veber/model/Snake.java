@@ -31,14 +31,7 @@ public class Snake {
     public void move() {
         tailBlock.setY(headBlock.getY());
         tailBlock.setX(headBlock.getX());
-        {
-            switch (direction) {
-                case RIGHT -> tailBlock.setX(headBlock.getX() + 1);
-                case LEFT -> tailBlock.setX(headBlock.getX() - 1);
-                case DOWN -> tailBlock.setY(headBlock.getY() + 1);
-                case UP -> tailBlock.setY(headBlock.getY() - 1);
-            }
-        }
+        direction.getMove().accept(headBlock, tailBlock);
         body.addFirst(headBlock);
         this.headBlock = tailBlock;
         this.tailBlock = body.removeLast();
@@ -58,12 +51,7 @@ public class Snake {
     }
 
     public SnakeBlock generateNewSnakeBlock() {
-        SnakeBlock newTail = switch (direction) {
-            case DOWN -> new SnakeBlock(headBlock.getX(), headBlock.getY() - 1);
-            case RIGHT -> new SnakeBlock(headBlock.getX() + 1, headBlock.getY());
-            case LEFT -> new SnakeBlock(headBlock.getX() - 1, headBlock.getY());
-            case UP -> new SnakeBlock(headBlock.getX(), headBlock.getY() + 1);
-        };
+        SnakeBlock newTail = direction.getGenerateFunction().apply(headBlock);
         body.addLast(tailBlock);
         this.tailBlock = newTail;
         return newTail;
