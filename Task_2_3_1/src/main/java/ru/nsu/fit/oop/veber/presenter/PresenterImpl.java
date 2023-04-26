@@ -34,10 +34,10 @@ public class PresenterImpl implements Presenter {
     @Override
     public void processKeyInput(KeyEvent event) {
         Direction direction = switch (event.getCode()) {
-            case RIGHT, D -> Direction.right;
-            case LEFT, A -> Direction.left;
-            case UP, W -> Direction.up;
-            case DOWN, S -> Direction.down;
+            case RIGHT, D -> Direction.RIGHT;
+            case LEFT, A -> Direction.LEFT;
+            case UP, W -> Direction.UP;
+            case DOWN, S -> Direction.DOWN;
             default -> null;
         };
         snake.setDirection(direction);
@@ -46,10 +46,10 @@ public class PresenterImpl implements Presenter {
     @Override
     public void processKeyInput(KeyStroke stroke) {
         Direction direction = switch (stroke.getCharacter()) {
-            case 'W' -> Direction.up;
-            case 'D' -> Direction.right;
-            case 'S' -> Direction.down;
-            case 'A' -> Direction.left;
+            case 'W' -> Direction.UP;
+            case 'D' -> Direction.RIGHT;
+            case 'S' -> Direction.DOWN;
+            case 'A' -> Direction.LEFT;
             default -> null;
         };
         snake.setDirection(direction);

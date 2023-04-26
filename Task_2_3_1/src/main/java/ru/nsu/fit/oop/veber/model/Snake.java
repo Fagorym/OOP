@@ -18,7 +18,7 @@ public class Snake {
         this.body = new ArrayDeque<>();
         this.headBlock = new SnakeBlock(x, y);
         this.tailBlock = new SnakeBlock(x - 1, y);
-        this.direction = Direction.right;
+        this.direction = Direction.RIGHT;
     }
 
     public void setDirection(Direction direction) {
@@ -33,10 +33,10 @@ public class Snake {
         tailBlock.setX(headBlock.getX());
         {
             switch (direction) {
-                case right -> tailBlock.setX(headBlock.getX() + 1);
-                case left -> tailBlock.setX(headBlock.getX() - 1);
-                case down -> tailBlock.setY(headBlock.getY() + 1);
-                case up -> tailBlock.setY(headBlock.getY() - 1);
+                case RIGHT -> tailBlock.setX(headBlock.getX() + 1);
+                case LEFT -> tailBlock.setX(headBlock.getX() - 1);
+                case DOWN -> tailBlock.setY(headBlock.getY() + 1);
+                case UP -> tailBlock.setY(headBlock.getY() - 1);
             }
         }
         body.addFirst(headBlock);
@@ -59,10 +59,10 @@ public class Snake {
 
     public SnakeBlock generateNewSnakeBlock() {
         SnakeBlock newTail = switch (direction) {
-            case down -> new SnakeBlock(headBlock.getX(), headBlock.getY() - 1);
-            case right -> new SnakeBlock(headBlock.getX() + 1, headBlock.getY());
-            case left -> new SnakeBlock(headBlock.getX() - 1, headBlock.getY());
-            case up -> new SnakeBlock(headBlock.getX(), headBlock.getY() + 1);
+            case DOWN -> new SnakeBlock(headBlock.getX(), headBlock.getY() - 1);
+            case RIGHT -> new SnakeBlock(headBlock.getX() + 1, headBlock.getY());
+            case LEFT -> new SnakeBlock(headBlock.getX() - 1, headBlock.getY());
+            case UP -> new SnakeBlock(headBlock.getX(), headBlock.getY() + 1);
         };
         body.addLast(tailBlock);
         this.tailBlock = newTail;

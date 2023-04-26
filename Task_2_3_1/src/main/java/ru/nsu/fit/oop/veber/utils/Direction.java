@@ -1,14 +1,14 @@
 package ru.nsu.fit.oop.veber.utils;
 
 public enum Direction {
-    left, right, down, up;
+    LEFT, RIGHT, DOWN, UP;
 
     public Direction getOpposite() {
         return switch (this) {
-            case up -> down;
-            case down -> up;
-            case left -> right;
-            case right -> left;
+            case UP -> DOWN;
+            case DOWN -> UP;
+            case LEFT -> RIGHT;
+            case RIGHT -> LEFT;
         };
     }
 }
