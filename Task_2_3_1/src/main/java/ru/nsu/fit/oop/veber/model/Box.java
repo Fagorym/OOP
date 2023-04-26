@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Box {
-    private final List<Cell> cells;
+    private final List<Wall> walls;
     private final int length;
     private final int height;
 
     public Box(int length, int height) {
         this.length = length;
         this.height = height;
-        cells = new ArrayList<>();
+        walls = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             if (i == 0 || i == height - 1) {
                 for (int j = 0; j < length; j++) {
-                    Cell cell = new Cell(j, i);
-                    cells.add(cell);
+                    Wall wall = new Wall(j, i);
+                    walls.add(wall);
                 }
             } else {
-                cells.add(new Cell(0, i));
-                cells.add(new Cell(length - 1, i));
+                walls.add(new Wall(0, i));
+                walls.add(new Wall(length - 1, i));
 
             }
         }
     }
 
-    public List<Cell> getCells() {
-        return cells;
+    public List<Wall> getCells() {
+        return walls;
     }
 
     public int getLength() {

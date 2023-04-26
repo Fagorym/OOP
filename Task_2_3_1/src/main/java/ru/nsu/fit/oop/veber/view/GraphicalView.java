@@ -103,8 +103,8 @@ public class GraphicalView implements View {
     @Override
     public void renderBackground(Box box) {
         context.setFill(Color.GREY);
-        for (Cell cell : box.getCells()) {
-            drawObject(cell);
+        for (Wall wall : box.getCells()) {
+            drawObject(wall);
         }
     }
 
