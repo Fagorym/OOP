@@ -1,30 +1,25 @@
 package ru.nsu.fit.oop.veber.model;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CollisionChecker {
-    private final Map<Coordinate, ObjectType> objectByCoordinate;
+    private final ObjectType[][] objects;
 
     public CollisionChecker() {
-        objectByCoordinate = new HashMap<>();
+        objects = new ObjectType[100][100];
+        Arrays.stream(objects).forEach(x -> Arrays.fill(x, ObjectType.NOTHING));
     }
 
     public ObjectType checkCollision(BoxElement obj) {
-        if (objectByCoordinate.containsKey(obj.getCoordinate())) {
-            return objectByCoordinate.get(obj.getCoordinate());
-        }
-        return ObjectType.NOTHING;
+        return objects[obj.getX()][obj.getY()];
     }
 
     public boolean addObject(BoxElement obj) {
-        Coordinate objectCoordinate = obj.getCoordinate();
-        if (objectByCoordinate.containsKey(objectCoordinate) &&
-                objectByCoordinate.get(objectCoordinate) != ObjectType.NOTHING) {
+        if (objects[obj.getX()][obj.getY()] != ObjectType.NOTHING) {
             return false;
         }
-        objectByCoordinate.put(objectCoordinate, obj.getObjectType());
+        objects[obj.getX()][obj.getY()] = obj.getObjectType();
         return true;
     }
 
@@ -35,6 +30,6 @@ public class CollisionChecker {
     }
 
     public void removeObject(BoxElement object) {
-        objectByCoordinate.remove(object.getCoordinate());
+        objects[object.getX()][object.getY()] = ObjectType.NOTHING;
     }
 }
