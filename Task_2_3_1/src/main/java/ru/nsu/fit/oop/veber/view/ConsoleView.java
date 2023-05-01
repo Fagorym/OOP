@@ -13,7 +13,6 @@ import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
 import ru.nsu.fit.oop.veber.renderer.ConsoleConverter;
 import ru.nsu.fit.oop.veber.renderer.Converter;
-import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 
 import java.io.IOException;
 
@@ -25,10 +24,7 @@ public class ConsoleView implements View {
     private Terminal terminal;
 
     public ConsoleView() {
-        GameConfiguration gameConfiguration = GameConfiguration.getINSTANCE();
-        Presenter presenter = new PresenterImpl(this,
-                gameConfiguration.getCONSOLE_SCREEN_HEIGHT(),
-                gameConfiguration.getCONSOLE_SCREEN_LENGTH());
+        Presenter presenter = new PresenterImpl(this);
         converter = new ConsoleConverter();
         createScene();
         while (true) {

@@ -4,28 +4,29 @@ import com.googlecode.lanterna.input.KeyStroke;
 import javafx.scene.input.KeyEvent;
 import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.utils.Direction;
-import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 import ru.nsu.fit.oop.veber.view.View;
 
 public class PresenterImpl implements Presenter {
 
     private final View view;
-    private final Snake snake;
-    private final Food food;
-    private final Box box;
+    private final Environment environment;
+
     private final CollisionChecker collisionChecker;
 
+    private final Snake snake;
 
-    public PresenterImpl(View view, int screenHeight, int screenLength) {
-        GameConfiguration gameConfiguration = GameConfiguration.getINSTANCE();
+    private final Food food;
+
+    private final Box box;
+
+
+    public PresenterImpl(View view) {
         this.view = view;
-        snake = new Snake(gameConfiguration.getSNAKE_INITIAL_COORDINATE_X(), gameConfiguration.getFOOD_INITIAL_COORDINATE_Y());
-        food = new Food(gameConfiguration.getFOOD_INITIAL_COORDINATE_X(), gameConfiguration.getFOOD_INITIAL_COORDINATE_Y());
-        box = new Box(50, 30);
-        collisionChecker = new CollisionChecker();
-        collisionChecker.addObjects(box.getWalls());
-        collisionChecker.addObject(food);
-        collisionChecker.addObject(snake.getTailBlock());
+        this.environment = new Environment();
+        snake = environment.getSnake();
+        food = environment.getFood();
+        box = environment.getBox();
+        collisionChecker = environment.getCollisionChecker();
     }
 
     @Override

@@ -19,6 +19,6 @@ public class ConsoleConverter implements Converter {
 
     @Override
     public Primitive<Character> convert(BoxElement element) {
-        return new Primitive<>(objectsToVisual.get(element.getCollisionObject()));
+        return new Primitive<>(objectsToVisual.get(element.getObjectType()));
     }
 }

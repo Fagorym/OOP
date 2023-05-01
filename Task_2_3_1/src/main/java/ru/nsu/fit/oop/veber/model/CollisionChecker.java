@@ -6,8 +6,8 @@ import java.util.Collection;
 public class CollisionChecker {
     private final ObjectType[][] objects;
 
-    public CollisionChecker() {
-        objects = new ObjectType[100][100];
+    public CollisionChecker(int height, int length) {
+        objects = new ObjectType[length][height];
         Arrays.stream(objects).forEach(x -> Arrays.fill(x, ObjectType.NOTHING));
     }
 

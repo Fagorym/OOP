@@ -1,0 +1,11 @@
+{
+  "graphicalScreenLength": 200,
+  "graphicalScreenHeight": 200,
+  "consoleScreenLength": 200,
+  "consoleScreenHeight": 200,
+  "foodCount": 1,
+  "snakeInitialCoordinateX": 5,
+  "snakeInitialCoordinateY": 10,
+  "defaultBlockSize": 10,
+  "gameSpeed": 1
+}

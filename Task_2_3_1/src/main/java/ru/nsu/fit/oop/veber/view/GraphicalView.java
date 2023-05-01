@@ -14,7 +14,6 @@ import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
 import ru.nsu.fit.oop.veber.renderer.Converter;
 import ru.nsu.fit.oop.veber.renderer.GraphicalConverter;
-import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 
 public class GraphicalView implements View {
 
@@ -30,14 +29,12 @@ public class GraphicalView implements View {
     private final GraphicsContext context;
     private final int TIMER_TICK = 1_000_000_00;
 
-    private final int SCREEN_LENGTH;
-    private final int SCREEN_HEIGHT;
+    private final int SCREEN_LENGTH = 400;
+    private final int SCREEN_HEIGHT = 500;
+
 
     public GraphicalView(Stage stage) {
-        GameConfiguration gameConfiguration = GameConfiguration.getINSTANCE();
-        SCREEN_LENGTH = gameConfiguration.getGRAPHIC_SCREEN_LENGTH();
-        SCREEN_HEIGHT = gameConfiguration.getGRAPHIC_SCREEN_HEIGHT();
-        this.presenter = new PresenterImpl(this, SCREEN_HEIGHT, SCREEN_LENGTH);
+        this.presenter = new PresenterImpl(this);
         this.converter = new GraphicalConverter();
 
         VBox root = new VBox();
