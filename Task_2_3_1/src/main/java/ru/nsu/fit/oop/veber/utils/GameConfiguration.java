@@ -2,14 +2,14 @@ package ru.nsu.fit.oop.veber.utils;
 
 public class GameConfiguration {
     private static GameConfiguration gameConfiguration;
-    private final int graphicalScreenLength = 500;
-    private final int graphicalScreenHeight = 300;
-    private final int consoleScreenLength = 400;
-    private final int consoleScreenHeight = 200;
-    private final int foodCount = 1;
-    private final int snakeInitialCoordinateX = 10;
-    private final int snakeInitialCoordinateY = 10;
-    private final int defaultBlockSize = 10;
+    private int graphicalScreenLength;
+    private int graphicalScreenHeight;
+    private int consoleScreenLength;
+    private int consoleScreenHeight;
+    private int foodCount;
+    private int snakeInitialCoordinateX;
+    private int snakeInitialCoordinateY;
+    private int defaultBlockSize;
 
     public static GameConfiguration getGameConfiguration() {
         return gameConfiguration;

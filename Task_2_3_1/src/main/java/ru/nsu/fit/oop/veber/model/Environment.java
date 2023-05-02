@@ -17,13 +17,15 @@ public class Environment {
         this.snake = new Snake(gameConfiguration.getSnakeInitialCoordinateX(),
                 gameConfiguration.getSnakeInitialCoordinateY());
 
-        this.food = new Food(gameConfiguration.getSnakeInitialCoordinateX(),
-                gameConfiguration.getSnakeInitialCoordinateY());
 
         this.box = new Box(gameConfiguration.getConsoleScreenHeight(),
                 gameConfiguration.getConsoleScreenHeight());
 
-        collisionChecker.addObject(snake.getTailBlock());
+
+        this.food = new Food(0, 0);
+        food.generate(box, collisionChecker);
+
+        collisionChecker.addObject(snake.getHeadBlock());
         collisionChecker.addObject(food);
         collisionChecker.addObjects(box.getWalls());
 

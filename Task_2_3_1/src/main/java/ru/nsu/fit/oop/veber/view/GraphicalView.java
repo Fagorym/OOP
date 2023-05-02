@@ -29,8 +29,8 @@ public class GraphicalView implements View {
     private final GraphicsContext context;
     private final int TIMER_TICK = 1_000_000_00;
 
-    private final int SCREEN_LENGTH = 400;
-    private final int SCREEN_HEIGHT = 500;
+    private final int SCREEN_LENGTH = 1000;
+    private final int SCREEN_HEIGHT = 1000;
 
 
     public GraphicalView(Stage stage) {

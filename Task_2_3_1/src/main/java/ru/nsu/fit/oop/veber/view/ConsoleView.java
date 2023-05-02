@@ -25,8 +25,10 @@ public class ConsoleView implements View {
     private TextGraphics graphics;
     private Terminal terminal;
 
+    private final Presenter presenter;
+
     public ConsoleView() {
-        Presenter presenter = new PresenterImpl(this);
+        presenter = new PresenterImpl(this);
         converter = new ConsoleConverter();
         createScene();
         presenter.start();
@@ -100,6 +102,7 @@ public class ConsoleView implements View {
                 try {
                     KeyStroke keyStroke = screen.pollInput();
                     if (keyStroke != null) {
+                        presenter.processKeyInput(keyStroke);
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -107,7 +110,7 @@ public class ConsoleView implements View {
 
                 try {
                     step.run();
-                    Thread.sleep(1000);
+                    Thread.sleep(200);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
