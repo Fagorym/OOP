@@ -6,36 +6,31 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import ru.nsu.fit.oop.veber.model.BoxElement;
+import ru.nsu.fit.oop.veber.dto.GraphicalDto;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
-import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
-import ru.nsu.fit.oop.veber.renderer.Converter;
-import ru.nsu.fit.oop.veber.renderer.GraphicalConverter;
+import ru.nsu.fit.oop.veber.presenter.PresenterGraphic;
 import ru.nsu.fit.oop.veber.timer.GraphicalTimer;
 import ru.nsu.fit.oop.veber.timer.Timer;
+
+import java.util.List;
 
 public class GraphicalView implements View {
 
 
     private final Presenter presenter;
-
-    private final Converter converter;
-
     private final Scene scene;
 
     private final GraphicsContext context;
     private final int TIMER_TICK = 1_000_000_00;
 
-    private final int SCREEN_LENGTH = 1000;
-    private final int SCREEN_HEIGHT = 1000;
+    private final double SCREEN_LENGTH = 1000;
+    private final double SCREEN_HEIGHT = 1000;
 
 
     public GraphicalView(Stage stage) {
-        this.presenter = new PresenterImpl(this);
-        this.converter = new GraphicalConverter();
+        this.presenter = new PresenterGraphic(this);
 
         VBox root = new VBox();
         Canvas canvas = new Canvas(SCREEN_LENGTH, SCREEN_HEIGHT);
@@ -72,16 +67,17 @@ public class GraphicalView implements View {
     }
 
     @Override
-    public void refreshScreen() {
+    public void render() {
+        List<GraphicalDto> dtoList = presenter.getDtoList();
+        dtoList.forEach(this::render);
     }
 
-    public void render(BoxElement obj) {
-        final int DEFAULT_BLOCK_SIZE = 10;
-        context.setFill((Paint) converter.convert(obj).getRepresentation());
-        context.fillRect(obj.getX() * DEFAULT_BLOCK_SIZE,
-                obj.getY() * DEFAULT_BLOCK_SIZE,
-                DEFAULT_BLOCK_SIZE,
-                DEFAULT_BLOCK_SIZE);
+    public void render(GraphicalDto dto) {
+        context.setFill(dto.getColor());
+        context.fillRect(dto.getX() * dto.getBlockSize(),
+                dto.getY() * dto.getBlockSize(),
+                dto.getBlockSize(),
+                dto.getBlockSize());
     }
 
     @Override

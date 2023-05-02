@@ -1,6 +1,5 @@
 package ru.nsu.fit.oop.veber.view;
 
-import ru.nsu.fit.oop.veber.model.BoxElement;
 import ru.nsu.fit.oop.veber.timer.Timer;
 
 public interface View {
@@ -9,9 +8,7 @@ public interface View {
 
     void clearScreen();
 
-    void refreshScreen();
-
-    void render(BoxElement boxElement);
+    void render();
 
     Timer setTimer(Runnable gameStep);
 }

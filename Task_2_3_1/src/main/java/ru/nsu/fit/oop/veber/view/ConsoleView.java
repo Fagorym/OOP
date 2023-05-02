@@ -8,19 +8,17 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import ru.nsu.fit.oop.veber.model.BoxElement;
+import ru.nsu.fit.oop.veber.dto.ConsoleDto;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
-import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
-import ru.nsu.fit.oop.veber.renderer.ConsoleConverter;
-import ru.nsu.fit.oop.veber.renderer.Converter;
+import ru.nsu.fit.oop.veber.presenter.PresenterConsole;
 import ru.nsu.fit.oop.veber.timer.ConsoleTimer;
 import ru.nsu.fit.oop.veber.timer.Timer;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ConsoleView implements View {
 
-    private final Converter converter;
     private Screen screen;
     private TextGraphics graphics;
     private Terminal terminal;
@@ -28,8 +26,7 @@ public class ConsoleView implements View {
     private final Presenter presenter;
 
     public ConsoleView() {
-        presenter = new PresenterImpl(this);
-        converter = new ConsoleConverter();
+        presenter = new PresenterConsole(this);
         createScene();
         presenter.start();
     }
@@ -79,23 +76,27 @@ public class ConsoleView implements View {
 
     }
 
+
     @Override
-    public void refreshScreen() {
+    public void render() {
+        List<ConsoleDto> consoleDtoList = presenter.getDtoList();
+        consoleDtoList.forEach(this::renderDto);
         try {
             terminal.flush();
             screen.refresh();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public void render(BoxElement obj) {
-        graphics.drawLine(obj.getX(), obj.getY(), obj.getX(), obj.getY(), (Character) converter.convert(obj).getRepresentation());
 
     }
 
+    private void renderDto(ConsoleDto dto) {
+        graphics.drawLine(dto.getX(), dto.getY(), dto.getX(), dto.getY(), dto.getSymbol());
+
+    }
+
     @Override
+    @SuppressWarnings("busy-waiting")
     public Timer setTimer(Runnable step) {
         return new ConsoleTimer(new Thread(() -> {
             while (true) {

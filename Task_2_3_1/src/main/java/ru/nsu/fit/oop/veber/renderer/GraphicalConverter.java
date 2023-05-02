@@ -1,14 +1,14 @@
 package ru.nsu.fit.oop.veber.renderer;
 
 import javafx.scene.paint.Color;
+import ru.nsu.fit.oop.veber.dto.GraphicalDto;
 import ru.nsu.fit.oop.veber.model.BoxElement;
 import ru.nsu.fit.oop.veber.model.ObjectType;
-import ru.nsu.fit.oop.veber.utils.Primitive;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class GraphicalConverter implements Converter {
+public class GraphicalConverter implements Converter<GraphicalDto> {
     private final Map<ObjectType, Color> objectTypeColorMap = new HashMap<>();
 
     public GraphicalConverter() {
@@ -19,7 +19,7 @@ public class GraphicalConverter implements Converter {
     }
 
     @Override
-    public Primitive<?> convert(BoxElement element) {
-        return new Primitive<>(objectTypeColorMap.get(element.getObjectType()));
+    public GraphicalDto convert(BoxElement element) {
+        return new GraphicalDto(element.getX(), element.getY(), objectTypeColorMap.get(element.getObjectType()));
     }
 }
