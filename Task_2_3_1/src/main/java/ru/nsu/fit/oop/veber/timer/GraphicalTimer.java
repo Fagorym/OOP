@@ -13,4 +13,9 @@ public class GraphicalTimer implements Timer {
     public void start() {
         animationTimer.start();
     }
+
+    @Override
+    public void stop() {
+        animationTimer.stop();
+    }
 }

@@ -1,7 +1,5 @@
 package ru.nsu.fit.oop.veber.presenter;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import javafx.scene.input.KeyEvent;
 import ru.nsu.fit.oop.veber.dto.ConsoleDto;
 import ru.nsu.fit.oop.veber.renderer.ConsoleConverter;
 import ru.nsu.fit.oop.veber.renderer.Converter;
@@ -16,16 +14,6 @@ public class PresenterConsole extends AbstractPresenter implements Presenter {
     public PresenterConsole(View view) {
         super(view);
         this.converter = new ConsoleConverter();
-    }
-
-    @Override
-    public void processKeyInput(KeyEvent event) {
-
-    }
-
-    @Override
-    public void processKeyInput(KeyStroke stroke) {
-
     }
 
     @Override

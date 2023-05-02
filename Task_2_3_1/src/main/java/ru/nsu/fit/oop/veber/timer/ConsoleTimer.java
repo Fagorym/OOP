@@ -11,4 +11,9 @@ public class ConsoleTimer implements Timer {
     public void start() {
         thread.start();
     }
+
+    @Override
+    public void stop() {
+        thread.interrupt();
+    }
 }

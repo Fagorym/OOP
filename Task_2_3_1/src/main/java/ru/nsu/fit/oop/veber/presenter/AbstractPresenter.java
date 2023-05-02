@@ -1,9 +1,12 @@
 package ru.nsu.fit.oop.veber.presenter;
 
+import com.googlecode.lanterna.input.KeyStroke;
+import javafx.scene.input.KeyEvent;
 import ru.nsu.fit.oop.veber.dto.BaseDto;
 import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.renderer.Converter;
 import ru.nsu.fit.oop.veber.timer.Timer;
+import ru.nsu.fit.oop.veber.utils.Direction;
 import ru.nsu.fit.oop.veber.view.View;
 
 import java.util.ArrayList;
@@ -40,6 +43,7 @@ public abstract class AbstractPresenter implements Presenter {
         switch (collisionChecker.checkCollision(snake.getHeadBlock())) {
             case SNAKE, WALL -> {
                 view.endGame();
+                timer.stop();
                 return;
             }
             case FOOD -> {
@@ -68,5 +72,29 @@ public abstract class AbstractPresenter implements Presenter {
         dtoList.add(converter.convert(food));
         dtoList.addAll(box.getWalls().stream().map(converter::convert).toList());
         return dtoList;
+    }
+
+    @Override
+    public void processKeyInput(KeyEvent event) {
+        Direction direction = switch (event.getCode()) {
+            case RIGHT, D -> Direction.RIGHT;
+            case LEFT, A -> Direction.LEFT;
+            case UP, W -> Direction.UP;
+            case DOWN, S -> Direction.DOWN;
+            default -> null;
+        };
+        snake.setDirection(direction);
+    }
+
+    @Override
+    public void processKeyInput(KeyStroke stroke) {
+        Direction direction = switch (stroke.getCharacter()) {
+            case 'W' -> Direction.UP;
+            case 'D' -> Direction.RIGHT;
+            case 'S' -> Direction.DOWN;
+            case 'A' -> Direction.LEFT;
+            default -> null;
+        };
+        snake.setDirection(direction);
     }
 }
