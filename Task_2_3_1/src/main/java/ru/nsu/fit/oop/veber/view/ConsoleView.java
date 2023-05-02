@@ -106,8 +106,8 @@ public class ConsoleView implements View {
                 }
 
                 try {
-                    Thread.sleep(4000);
                     step.run();
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

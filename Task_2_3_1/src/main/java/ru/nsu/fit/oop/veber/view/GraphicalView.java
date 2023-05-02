@@ -49,6 +49,8 @@ public class GraphicalView implements View {
         stage.setResizable(true);
         stage.show();
 
+        presenter.start();
+
     }
 
     @Override
