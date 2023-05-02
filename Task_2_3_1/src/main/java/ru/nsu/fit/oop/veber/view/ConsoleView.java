@@ -13,6 +13,8 @@ import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
 import ru.nsu.fit.oop.veber.renderer.ConsoleConverter;
 import ru.nsu.fit.oop.veber.renderer.Converter;
+import ru.nsu.fit.oop.veber.timer.ConsoleTimer;
+import ru.nsu.fit.oop.veber.timer.Timer;
 
 import java.io.IOException;
 
@@ -27,24 +29,7 @@ public class ConsoleView implements View {
         Presenter presenter = new PresenterImpl(this);
         converter = new ConsoleConverter();
         createScene();
-        while (true) {
-            try {
-                KeyStroke keyStroke = screen.pollInput();
-                if (keyStroke != null) {
-                    presenter.processKeyInput(keyStroke);
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            presenter.makeGameStep();
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-        }
+        presenter.start();
     }
 
     private void createScene() {
@@ -106,5 +91,27 @@ public class ConsoleView implements View {
     public void render(BoxElement obj) {
         graphics.drawLine(obj.getX(), obj.getY(), obj.getX(), obj.getY(), (Character) converter.convert(obj).getRepresentation());
 
+    }
+
+    @Override
+    public Timer setTimer(Runnable step) {
+        return new ConsoleTimer(new Thread(() -> {
+            while (true) {
+                try {
+                    KeyStroke keyStroke = screen.pollInput();
+                    if (keyStroke != null) {
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                try {
+                    Thread.sleep(4000);
+                    step.run();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }));
     }
 }

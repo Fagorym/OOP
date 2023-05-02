@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.veber.presenter;
 import com.googlecode.lanterna.input.KeyStroke;
 import javafx.scene.input.KeyEvent;
 import ru.nsu.fit.oop.veber.model.*;
+import ru.nsu.fit.oop.veber.timer.Timer;
 import ru.nsu.fit.oop.veber.utils.Direction;
 import ru.nsu.fit.oop.veber.view.View;
 
@@ -19,6 +20,8 @@ public class PresenterImpl implements Presenter {
 
     private final Box box;
 
+    private final Timer timer;
+
 
     public PresenterImpl(View view) {
         this.view = view;
@@ -27,6 +30,7 @@ public class PresenterImpl implements Presenter {
         food = environment.getFood();
         box = environment.getBox();
         collisionChecker = environment.getCollisionChecker();
+        timer = view.setTimer(this::makeGameStep);
     }
 
     @Override
@@ -75,6 +79,11 @@ public class PresenterImpl implements Presenter {
         view.clearScreen();
         renderAllElements();
         view.refreshScreen();
+    }
+
+    @Override
+    public void start() {
+        timer.start();
     }
 
     private void renderAllElements() {

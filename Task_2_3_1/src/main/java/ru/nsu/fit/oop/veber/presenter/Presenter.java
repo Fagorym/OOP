@@ -9,4 +9,6 @@ public interface Presenter {
     void processKeyInput(KeyStroke stroke);
 
     void makeGameStep();
+
+    void start();
 }

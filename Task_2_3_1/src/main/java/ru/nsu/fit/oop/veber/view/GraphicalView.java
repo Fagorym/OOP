@@ -14,6 +14,8 @@ import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterImpl;
 import ru.nsu.fit.oop.veber.renderer.Converter;
 import ru.nsu.fit.oop.veber.renderer.GraphicalConverter;
+import ru.nsu.fit.oop.veber.timer.GraphicalTimer;
+import ru.nsu.fit.oop.veber.timer.Timer;
 
 public class GraphicalView implements View {
 
@@ -21,8 +23,6 @@ public class GraphicalView implements View {
     private final Presenter presenter;
 
     private final Converter converter;
-
-    private final AnimationTimer timer;
 
     private final Scene scene;
 
@@ -43,19 +43,6 @@ public class GraphicalView implements View {
         root.getChildren().add(canvas);
         scene = new Scene(root, SCREEN_LENGTH, SCREEN_HEIGHT);
 
-        timer = new AnimationTimer() {
-            long lastTick = 0;
-
-            @Override
-            public void handle(long now) {
-                if (now - lastTick > TIMER_TICK || lastTick == 0) {
-                    lastTick = now;
-                    presenter.makeGameStep();
-                }
-            }
-        };
-
-        timer.start();
         scene.setOnKeyPressed(presenter::processKeyInput);
         stage.setScene(scene);
         stage.setTitle("Snake Game");
@@ -71,7 +58,6 @@ public class GraphicalView implements View {
         context.setFont(Font.font(32));
         context.fillText("GAME OVER", SCREEN_LENGTH / 2, SCREEN_HEIGHT / 2);
         context.fillText("PRESS ANY KEY TO END", SCREEN_LENGTH / 2, SCREEN_HEIGHT / 2 + 50);
-        timer.stop();
         scene.setOnKeyPressed((event) -> System.exit(0));
 
     }
@@ -94,5 +80,20 @@ public class GraphicalView implements View {
                 obj.getY() * DEFAULT_BLOCK_SIZE,
                 DEFAULT_BLOCK_SIZE,
                 DEFAULT_BLOCK_SIZE);
+    }
+
+    @Override
+    public Timer setTimer(Runnable step) {
+        return new GraphicalTimer(new AnimationTimer() {
+            long lastTick = 0;
+
+            @Override
+            public void handle(long now) {
+                if (now - lastTick > TIMER_TICK || lastTick == 0) {
+                    lastTick = now;
+                    step.run();
+                }
+            }
+        });
     }
 }
