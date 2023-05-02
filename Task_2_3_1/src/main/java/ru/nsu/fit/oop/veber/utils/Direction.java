@@ -23,8 +23,16 @@ public enum Direction {
             (head) -> new SnakeBlock(head.getX(), head.getY() + 1)
     );
 
+    static {
+        LEFT.opposite = RIGHT;
+        RIGHT.opposite = LEFT;
+        UP.opposite = DOWN;
+        DOWN.opposite = UP;
+    }
+
     private final BiConsumer<SnakeBlock, SnakeBlock> moveFunction;
     private final Function<SnakeBlock, SnakeBlock> generateFunction;
+    private Direction opposite;
 
     Direction(BiConsumer<SnakeBlock, SnakeBlock> move, Function<SnakeBlock, SnakeBlock> generate) {
         this.moveFunction = move;
@@ -32,12 +40,7 @@ public enum Direction {
     }
 
     public Direction getOpposite() {
-        return switch (this) {
-            case UP -> DOWN;
-            case DOWN -> UP;
-            case LEFT -> RIGHT;
-            case RIGHT -> LEFT;
-        };
+        return opposite;
     }
 
     public BiConsumer<SnakeBlock, SnakeBlock> getMove() {
