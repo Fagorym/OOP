@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.veber.view;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -11,6 +12,9 @@ import java.util.ResourceBundle;
 public class MainMenuView extends AbstractView implements Initializable {
 
 
+    public Button settingsButton;
+    public Button playButton;
+    public AnchorPane rootPane;
     @FXML
     private Button exitButton;
 
