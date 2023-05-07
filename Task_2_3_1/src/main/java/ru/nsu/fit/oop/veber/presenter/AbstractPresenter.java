@@ -7,7 +7,7 @@ import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.renderer.Converter;
 import ru.nsu.fit.oop.veber.timer.Timer;
 import ru.nsu.fit.oop.veber.utils.Direction;
-import ru.nsu.fit.oop.veber.view.View;
+import ru.nsu.fit.oop.veber.view.GameView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class AbstractPresenter implements Presenter {
     protected final Environment environment;
     protected final Snake snake;
-    protected final View view;
+    protected final GameView view;
 
     protected final Food food;
 
@@ -25,7 +25,7 @@ public abstract class AbstractPresenter implements Presenter {
 
     protected final Timer timer;
 
-    public AbstractPresenter(View view) {
+    public AbstractPresenter(GameView view) {
         this.view = view;
         this.environment = new Environment();
         snake = environment.getSnake();

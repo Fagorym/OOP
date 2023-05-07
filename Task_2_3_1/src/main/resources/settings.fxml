@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="settingsPane" prefHeight="300" prefWidth="400"
+            xmlns="http://javafx.com/javafx/11.0.2" fx:controller="ru.nsu.fit.oop.veber.view.SettingsView">
+    <VBox layoutX="105.0" layoutY="66.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
+          AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <Label text="Настройки"/>
+        <Label text="Скорость игры"/>
+        <Slider fx:id="gameSpeedSlider" majorTickUnit="1.0" min="1.0" showTickLabels="true" showTickMarks="true"
+                value="2.0"/>
+        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveButton" text="Сохранить"/>
+        <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButton" text="Назад"/>
+    </VBox>
+</AnchorPane>

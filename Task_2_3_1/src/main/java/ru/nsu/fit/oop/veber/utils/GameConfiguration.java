@@ -9,7 +9,8 @@ public class GameConfiguration {
     private int foodCount;
     private int snakeInitialCoordinateX;
     private int snakeInitialCoordinateY;
-    private int defaultBlockSize;
+
+    private double gameSpeed;
 
     public static GameConfiguration getGameConfiguration() {
         return gameConfiguration;
@@ -19,20 +20,12 @@ public class GameConfiguration {
         GameConfiguration.gameConfiguration = gameConfiguration;
     }
 
-    public static GameConfiguration getInstance() {
-        return gameConfiguration;
-    }
-
     public int getConsoleScreenHeight() {
         return consoleScreenHeight;
     }
 
     public int getConsoleScreenLength() {
         return consoleScreenLength;
-    }
-
-    public int getDefaultBlockSize() {
-        return defaultBlockSize;
     }
 
     public int getFoodCount() {
@@ -53,5 +46,13 @@ public class GameConfiguration {
 
     public int getSnakeInitialCoordinateY() {
         return snakeInitialCoordinateY;
+    }
+
+    public double getGameSpeed() {
+        return gameSpeed;
+    }
+
+    public void setGameSpeed(double gameSpeed) {
+        this.gameSpeed = gameSpeed;
     }
 }

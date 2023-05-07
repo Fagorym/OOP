@@ -1,6 +1,6 @@
 {
-  "graphicalScreenLength": 50,
-  "graphicalScreenHeight": 50,
+  "graphicalScreenLength": 100,
+  "graphicalScreenHeight": 100,
   "consoleScreenLength": 50,
   "consoleScreenHeight": 50,
   "foodCount": 1,

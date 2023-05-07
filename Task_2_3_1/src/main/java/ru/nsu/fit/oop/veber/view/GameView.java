@@ -2,7 +2,7 @@ package ru.nsu.fit.oop.veber.view;
 
 import ru.nsu.fit.oop.veber.timer.Timer;
 
-public interface View {
+public interface GameView {
 
     void endGame();
 

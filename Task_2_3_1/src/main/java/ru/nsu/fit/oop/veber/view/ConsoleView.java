@@ -17,7 +17,7 @@ import ru.nsu.fit.oop.veber.timer.Timer;
 import java.io.IOException;
 import java.util.List;
 
-public class ConsoleView implements View {
+public class ConsoleView implements GameView {
 
     private Screen screen;
     private TextGraphics graphics;

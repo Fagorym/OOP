@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="box"
+      onKeyPressed="#handleKeyPressed" xmlns="http://javafx.com/javafx/11.0.2"
+      fx:controller="ru.nsu.fit.oop.veber.view.GameViewImpl">
+
+    <Canvas fx:id="gameCanvas" onKeyPressed="#handleKeyPressed" focusTraversable="true" height="800" width="600"/>
+</VBox>

@@ -16,7 +16,7 @@ import ru.nsu.fit.oop.veber.timer.Timer;
 
 import java.util.List;
 
-public class GraphicalView implements View {
+public class GraphicalView implements GameView {
 
 
     private final Presenter presenter;

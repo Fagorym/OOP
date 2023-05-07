@@ -1,14 +1,12 @@
 package ru.nsu.fit.oop.veber.application;
 
 import ru.nsu.fit.oop.veber.view.ConsoleView;
-import ru.nsu.fit.oop.veber.view.View;
+import ru.nsu.fit.oop.veber.view.GameView;
 
 public class SnakeGameConsole implements MyApplication {
 
-    private final View consoleView;
-
     public SnakeGameConsole() {
-        consoleView = new ConsoleView();
+        GameView consoleView = new ConsoleView();
     }
 
 
