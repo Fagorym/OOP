@@ -8,7 +8,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import ru.nsu.fit.oop.veber.dto.GraphicalDto;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterGraphic;
@@ -57,8 +56,7 @@ public class GameViewImpl extends AbstractView implements Initializable, GameVie
 
     @Override
     public void endGame() {
-        Stage stage = (Stage) gameCanvas.getScene().getWindow();
-        stage.close();
+        sceneManager.changeScene("lose.fxml", gameCanvas.getScene());
     }
 
     @Override

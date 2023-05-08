@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?language JavaScript?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" prefHeight="300" prefWidth="400"
+            xmlns="http://javafx.com/javafx/11.0.2" stylesheets="gameStyle.css">
+    <Label text="Победа!"/>
+    <fx:script>
+        console.log("Hello")
+    </fx:script>
+</AnchorPane>
