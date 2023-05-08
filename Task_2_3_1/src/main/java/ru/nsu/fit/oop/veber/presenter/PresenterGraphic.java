@@ -24,4 +24,8 @@ public class PresenterGraphic extends AbstractPresenter implements Presenter {
     }
 
 
+    @Override
+    public void stop() {
+        timer.stop();
+    }
 }

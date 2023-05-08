@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,8 +11,13 @@ import java.util.ResourceBundle;
 public class MainMenuView extends AbstractView implements Initializable {
 
 
+    @FXML
     public Button settingsButton;
+
+    @FXML
     public Button playButton;
+
+    @FXML
     public AnchorPane rootPane;
     @FXML
     private Button exitButton;
@@ -34,8 +38,7 @@ public class MainMenuView extends AbstractView implements Initializable {
 
     @FXML
     void handleExitButton() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        sceneManager.exit(exitButton.getScene());
     }
 
     @Override

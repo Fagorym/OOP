@@ -11,4 +11,6 @@ public interface GameView {
     void render();
 
     Timer setTimer(Runnable gameStep);
+
+    void pause();
 }

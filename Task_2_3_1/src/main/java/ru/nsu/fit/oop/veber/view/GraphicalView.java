@@ -94,4 +94,9 @@ public class GraphicalView implements GameView {
             }
         });
     }
+
+    @Override
+    public void pause() {
+
+    }
 }

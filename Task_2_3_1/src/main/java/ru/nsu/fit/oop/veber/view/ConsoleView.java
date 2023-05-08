@@ -13,28 +13,31 @@ import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterConsole;
 import ru.nsu.fit.oop.veber.timer.ConsoleTimer;
 import ru.nsu.fit.oop.veber.timer.Timer;
+import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 
 import java.io.IOException;
 import java.util.List;
 
 public class ConsoleView implements GameView {
-
+    private final int columnsCount;
+    private final int rowsCount;
+    private final Presenter presenter;
     private Screen screen;
     private TextGraphics graphics;
     private Terminal terminal;
 
-    private final Presenter presenter;
-
     public ConsoleView() {
         presenter = new PresenterConsole(this);
         createScene();
+        this.rowsCount = GameConfiguration.getGameConfiguration().getConsoleScreenHeight();
+        this.columnsCount = GameConfiguration.getGameConfiguration().getConsoleScreenLength();
         presenter.start();
     }
 
     private void createScene() {
         try {
             terminal = new DefaultTerminalFactory()
-                    .setInitialTerminalSize(new TerminalSize(1024, 1280))
+                    .setInitialTerminalSize(new TerminalSize(100, rowsCount))
                     .createTerminal();
             screen = new TerminalScreen(terminal);
             graphics = terminal.newTextGraphics();
@@ -117,4 +120,10 @@ public class ConsoleView implements GameView {
             }
         }));
     }
+
+    @Override
+    public void pause() {
+
+    }
+
 }

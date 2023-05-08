@@ -16,4 +16,6 @@ public interface Presenter {
     void start();
 
     <T extends BaseDto> List<T> getDtoList();
+
+    void stop();
 }

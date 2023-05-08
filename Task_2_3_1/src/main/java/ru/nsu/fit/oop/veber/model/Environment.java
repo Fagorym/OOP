@@ -11,15 +11,15 @@ public class Environment {
 
     public Environment() {
         GameConfiguration gameConfiguration = GameConfiguration.getGameConfiguration();
-        this.collisionChecker = new CollisionChecker(gameConfiguration.getConsoleScreenLength(),
-                gameConfiguration.getConsoleScreenHeight());
+        this.collisionChecker = new CollisionChecker(gameConfiguration.getBoxHeight(),
+                gameConfiguration.getBoxLength());
 
         this.snake = new Snake(gameConfiguration.getSnakeInitialCoordinateX(),
                 gameConfiguration.getSnakeInitialCoordinateY());
 
 
-        this.box = new Box(gameConfiguration.getConsoleScreenHeight(),
-                gameConfiguration.getConsoleScreenHeight());
+        this.box = new Box(gameConfiguration.getBoxLength(),
+                gameConfiguration.getBoxHeight());
 
 
         this.food = new Food(0, 0);

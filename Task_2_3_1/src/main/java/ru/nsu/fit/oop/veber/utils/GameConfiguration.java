@@ -9,11 +9,21 @@ public class GameConfiguration {
     private int foodCount;
     private int snakeInitialCoordinateX;
     private int snakeInitialCoordinateY;
+    private int boxHeight;
+    private int boxLength;
 
     private double gameSpeed;
 
     public static GameConfiguration getGameConfiguration() {
         return gameConfiguration;
+    }
+
+    public int getBoxHeight() {
+        return boxHeight;
+    }
+
+    public int getBoxLength() {
+        return boxLength;
     }
 
     public static void setGameConfiguration(GameConfiguration gameConfiguration) {

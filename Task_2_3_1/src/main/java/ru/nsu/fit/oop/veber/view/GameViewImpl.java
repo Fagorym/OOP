@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -25,7 +26,12 @@ public class GameViewImpl extends AbstractView implements Initializable, GameVie
     public Canvas gameCanvas;
     @FXML
     public VBox box;
-    Presenter presenter;
+    @FXML
+    public AnchorPane pauseMenu;
+
+    private boolean isPaused = false;
+
+    private Presenter presenter;
 
     public GameViewImpl() {
         super();
@@ -33,6 +39,10 @@ public class GameViewImpl extends AbstractView implements Initializable, GameVie
 
     @FXML
     void handleKeyPressed(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == javafx.scene.input.KeyCode.ESCAPE) {
+            togglePause();
+            return;
+        }
         presenter.processKeyInput(keyEvent);
     }
 
@@ -88,4 +98,27 @@ public class GameViewImpl extends AbstractView implements Initializable, GameVie
             }
         });
     }
+
+    @Override
+    public void pause() {
+        gameCanvas.setVisible(false);
+    }
+
+    public void handleExitButton() {
+        sceneManager.exit(box.getScene());
+    }
+
+    public void handleContinueButton() {
+        togglePause();
+    }
+
+    private void togglePause() {
+        if (isPaused) {
+            presenter.start();
+        }
+        pauseMenu.setVisible(!isPaused);
+        gameCanvas.setVisible(isPaused);
+        isPaused = !isPaused;
+    }
+
 }

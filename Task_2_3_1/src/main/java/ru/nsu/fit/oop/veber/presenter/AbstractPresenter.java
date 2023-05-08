@@ -76,14 +76,16 @@ public abstract class AbstractPresenter implements Presenter {
 
     @Override
     public void processKeyInput(KeyEvent event) {
-        Direction direction = switch (event.getCode()) {
-            case RIGHT, D -> Direction.RIGHT;
-            case LEFT, A -> Direction.LEFT;
-            case UP, W -> Direction.UP;
-            case DOWN, S -> Direction.DOWN;
-            default -> null;
-        };
-        snake.setDirection(direction);
+        switch (event.getCode()) {
+            case RIGHT, D -> snake.setDirection(Direction.RIGHT);
+            case LEFT, A -> snake.setDirection(Direction.LEFT);
+            case UP, W -> snake.setDirection(Direction.UP);
+            case DOWN, S -> snake.setDirection(Direction.DOWN);
+            case ESCAPE -> {
+                view.pause();
+                timer.stop();
+            }
+        }
     }
 
     @Override

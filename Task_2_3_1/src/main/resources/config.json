@@ -1,11 +1,13 @@
 {
   "graphicalScreenLength": 100,
   "graphicalScreenHeight": 100,
-  "consoleScreenLength": 50,
-  "consoleScreenHeight": 50,
+  "consoleScreenLength": 100,
+  "consoleScreenHeight": 100,
   "foodCount": 1,
   "snakeInitialCoordinateX": 5,
   "snakeInitialCoordinateY": 10,
   "defaultBlockSize": 10,
-  "gameSpeed": 1
+  "gameSpeed": 1,
+  "boxHeight": 50,
+  "boxLength": 50
 }

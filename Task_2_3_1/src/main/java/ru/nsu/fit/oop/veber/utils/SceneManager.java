@@ -19,4 +19,9 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
+
+    public void exit(Scene scene) {
+        Stage stage = (Stage) scene.getWindow();
+        stage.close();
+    }
 }

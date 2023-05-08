@@ -7,7 +7,7 @@ public class CollisionChecker {
     private final ObjectType[][] objects;
 
     public CollisionChecker(int height, int length) {
-        objects = new ObjectType[length][height];
+        objects = new ObjectType[height][length];
         Arrays.stream(objects).forEach(x -> Arrays.fill(x, ObjectType.NOTHING));
     }
 

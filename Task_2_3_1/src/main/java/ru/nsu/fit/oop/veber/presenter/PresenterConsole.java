@@ -21,4 +21,9 @@ public class PresenterConsole extends AbstractPresenter implements Presenter {
     public List<ConsoleDto> getDtoList() {
         return super.getDtoList(converter);
     }
+
+    @Override
+    public void stop() {
+        timer.stop();
+    }
 }
