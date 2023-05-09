@@ -17,7 +17,7 @@ public abstract class AbstractPresenter implements Presenter {
     protected final Snake snake;
     protected final GameView view;
 
-    protected final Food food;
+    protected final List<Food> food;
 
     protected final Box box;
 
@@ -40,15 +40,17 @@ public abstract class AbstractPresenter implements Presenter {
         collisionChecker.removeObject(snake.getTailBlock());
         collisionChecker.addObject(snake.getHeadBlock());
         snake.move();
-        switch (collisionChecker.checkCollision(snake.getHeadBlock())) {
+        BoxElement collisionElement = collisionChecker.checkCollision(snake.getHeadBlock());
+        switch (collisionElement.getObjectType()) {
             case SNAKE, WALL -> {
                 view.endGame();
                 timer.stop();
                 return;
             }
             case FOOD -> {
+                Food food = (Food) collisionElement;
                 collisionChecker.removeObject(food);
-                food.generate(box, collisionChecker);
+                food.getNewCoordinates(box, collisionChecker);
                 collisionChecker.addObject(snake.generateNewSnakeBlock());
             }
             case NOTHING -> {
@@ -69,7 +71,7 @@ public abstract class AbstractPresenter implements Presenter {
         dtoList.add(converter.convert(snake.getHeadBlock()));
         dtoList.addAll(snake.getBody().stream().map(converter::convert).toList());
         dtoList.add(converter.convert(snake.getTailBlock()));
-        dtoList.add(converter.convert(food));
+        dtoList.addAll(food.stream().map(converter::convert).toList());
         dtoList.addAll(box.getWalls().stream().map(converter::convert).toList());
         return dtoList;
     }

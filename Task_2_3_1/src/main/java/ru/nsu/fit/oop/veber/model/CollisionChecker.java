@@ -1,25 +1,28 @@
 package ru.nsu.fit.oop.veber.model;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 public class CollisionChecker {
-    private final ObjectType[][] objects;
+    private final BoxElement[][] objects;
 
     public CollisionChecker(int height, int length) {
-        objects = new ObjectType[length][height];
-        Arrays.stream(objects).forEach(x -> Arrays.fill(x, ObjectType.NOTHING));
+        objects = new BoxElement[length][height];
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < height; j++) {
+                objects[i][j] = new Nothing(i, j);
+            }
+        }
     }
 
-    public ObjectType checkCollision(BoxElement obj) {
+    public BoxElement checkCollision(BoxElement obj) {
         return objects[obj.getX()][obj.getY()];
     }
 
     public boolean addObject(BoxElement obj) {
-        if (objects[obj.getX()][obj.getY()] != ObjectType.NOTHING) {
+        if (objects[obj.getX()][obj.getY()].getObjectType() != ObjectType.NOTHING) {
             return false;
         }
-        objects[obj.getX()][obj.getY()] = obj.getObjectType();
+        objects[obj.getX()][obj.getY()] = obj;
         return true;
     }
 
@@ -30,6 +33,6 @@ public class CollisionChecker {
     }
 
     public void removeObject(BoxElement object) {
-        objects[object.getX()][object.getY()] = ObjectType.NOTHING;
+        objects[object.getX()][object.getY()] = new Nothing(object.getX(), object.getY());
     }
 }

@@ -1,9 +1,7 @@
 {
-  "graphicalScreenLength": 100,
-  "graphicalScreenHeight": 100,
   "consoleScreenLength": 100,
   "consoleScreenHeight": 100,
-  "foodCount": 1,
+  "foodCount": 5,
   "snakeInitialCoordinateX": 5,
   "snakeInitialCoordinateY": 10,
   "defaultBlockSize": 10,

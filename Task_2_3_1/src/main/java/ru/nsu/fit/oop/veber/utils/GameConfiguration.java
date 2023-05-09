@@ -5,8 +5,6 @@ import javafx.scene.paint.Color;
 
 public class GameConfiguration {
     private static GameConfiguration gameConfiguration;
-    private int graphicalScreenLength;
-    private int graphicalScreenHeight;
     private int consoleScreenLength;
     private int consoleScreenHeight;
     private int foodCount;
@@ -65,22 +63,6 @@ public class GameConfiguration {
 
     public void setFoodCount(int foodCount) {
         this.foodCount = foodCount;
-    }
-
-    public int getGraphicalScreenHeight() {
-        return graphicalScreenHeight;
-    }
-
-    public void setGraphicalScreenHeight(int graphicalScreenHeight) {
-        this.graphicalScreenHeight = graphicalScreenHeight;
-    }
-
-    public int getGraphicalScreenLength() {
-        return graphicalScreenLength;
-    }
-
-    public void setGraphicalScreenLength(int graphicalScreenLength) {
-        this.graphicalScreenLength = graphicalScreenLength;
     }
 
     public int getSnakeInitialCoordinateX() {
