@@ -79,6 +79,16 @@ public class GameViewImpl extends AbstractView implements Initializable, GameVie
                 dto.getBlockSize(),
                 dto.getBlockSize()
         );
+
+        if (dto.getColor() == Color.GREEN) {
+            gameCanvas.getGraphicsContext2D().setFill(Color.ORANGE);
+            gameCanvas.getGraphicsContext2D().fillRect(
+                    dto.getX() * dto.getBlockSize(),
+                    dto.getY() * dto.getBlockSize(),
+                    5,
+                    5
+            );
+        }
     }
 
     @Override

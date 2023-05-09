@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import java.lang.String?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="settingsPane" prefHeight="300" prefWidth="400"
             xmlns="http://javafx.com/javafx/11.0.2" fx:controller="ru.nsu.fit.oop.veber.view.SettingsView">
     <VBox layoutX="105.0" layoutY="66.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
@@ -11,6 +13,16 @@
         <Slider fx:id="gameSpeedSlider" majorTickUnit="0.5" min="1.0" max="5.0" showTickLabels="true"
                 showTickMarks="true"
                 value="1.0"/>
+        <Label text="Цвет змеи"/>
+        <ChoiceBox value="Зеленая" fx:id="colorChoice">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Зеленая"/>
+                    <String fx:value="Красная"/>
+                    <String fx:value="Синяя"/>
+                </FXCollections>
+            </items>
+        </ChoiceBox>
         <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveButton" text="Сохранить"/>
         <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButton" text="Назад"/>
     </VBox>

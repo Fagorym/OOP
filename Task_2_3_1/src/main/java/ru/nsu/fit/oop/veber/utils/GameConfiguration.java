@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.veber.utils;
 
 
+import javafx.scene.paint.Color;
+
 public class GameConfiguration {
     private static GameConfiguration gameConfiguration;
     private int graphicalScreenLength;
@@ -14,6 +16,8 @@ public class GameConfiguration {
     private int boxLength;
 
     private double gameSpeed;
+
+    private transient Color snakeColor = Color.GREEN;
 
     public static GameConfiguration getGameConfiguration() {
         return gameConfiguration;
@@ -101,5 +105,13 @@ public class GameConfiguration {
 
     public void setGameSpeed(double gameSpeed) {
         this.gameSpeed = gameSpeed;
+    }
+
+    public Color getSnakeColor() {
+        return snakeColor;
+    }
+
+    public void setSnakeColor(Color snakeColor) {
+        this.snakeColor = snakeColor;
     }
 }
