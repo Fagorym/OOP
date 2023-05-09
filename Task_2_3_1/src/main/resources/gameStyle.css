@@ -14,7 +14,6 @@
 
 /* Общий стиль для кнопок */
 .button {
-    -fx-background-color: #2E7D32;
     -fx-border-radius: 15;
     -fx-background-radius: 15;
     -fx-text-fill: white;
@@ -24,6 +23,7 @@
     -fx-cursor: hand;
     -fx-alignment: center;
 }
+
 
 /* Стиль для кнопок при наведении */
 .button:hover {

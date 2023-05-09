@@ -8,7 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import ru.nsu.fit.oop.veber.dto.GraphicalDto;
+import ru.nsu.fit.oop.veber.dto.graphical.GraphicalDto;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterGraphic;
 import ru.nsu.fit.oop.veber.timer.GraphicalTimer;
@@ -68,27 +68,7 @@ public class GameViewImpl extends AbstractView implements Initializable, GameVie
     @Override
     public void render() {
         List<GraphicalDto> dtoList = presenter.getDtoList();
-        dtoList.forEach(this::render);
-    }
-
-    private void render(GraphicalDto dto) {
-        gameCanvas.getGraphicsContext2D().setFill(dto.getColor());
-        gameCanvas.getGraphicsContext2D().fillRect(
-                dto.getX() * dto.getBlockSize(),
-                dto.getY() * dto.getBlockSize(),
-                dto.getBlockSize(),
-                dto.getBlockSize()
-        );
-
-        if (dto.getColor() == Color.GREEN) {
-            gameCanvas.getGraphicsContext2D().setFill(Color.ORANGE);
-            gameCanvas.getGraphicsContext2D().fillRect(
-                    dto.getX() * dto.getBlockSize(),
-                    dto.getY() * dto.getBlockSize(),
-                    5,
-                    5
-            );
-        }
+        dtoList.forEach(dto -> dto.render(gameCanvas.getGraphicsContext2D()));
     }
 
     @Override

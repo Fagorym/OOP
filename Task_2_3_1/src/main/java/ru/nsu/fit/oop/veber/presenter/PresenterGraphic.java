@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.veber.presenter;
 
-import ru.nsu.fit.oop.veber.dto.GraphicalDto;
+import ru.nsu.fit.oop.veber.dto.graphical.GraphicalDto;
 import ru.nsu.fit.oop.veber.renderer.Converter;
 import ru.nsu.fit.oop.veber.renderer.GraphicalConverter;
 import ru.nsu.fit.oop.veber.view.GameView;

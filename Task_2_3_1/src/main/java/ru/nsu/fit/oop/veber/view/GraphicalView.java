@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import ru.nsu.fit.oop.veber.dto.GraphicalDto;
+import ru.nsu.fit.oop.veber.dto.graphical.GraphicalDto;
 import ru.nsu.fit.oop.veber.presenter.Presenter;
 import ru.nsu.fit.oop.veber.presenter.PresenterGraphic;
 import ru.nsu.fit.oop.veber.timer.GraphicalTimer;

@@ -16,7 +16,7 @@
     </VBox>
 
     <AnchorPane fx:id="pauseMenu" visible="false">
-        <VBox layoutX="250.0" layoutY="300.0" spacing="10.0">
+        <VBox layoutX="250.0" layoutY="300.0" spacing="10.0" opacity="0">
             <Button fx:id="continueButton" mnemonicParsing="false" onAction="#handleContinueButton" text="Продолжить"/>
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExitButton" text="Выход"/>
         </VBox>
