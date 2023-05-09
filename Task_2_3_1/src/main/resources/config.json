@@ -8,6 +8,6 @@
   "snakeInitialCoordinateY": 10,
   "defaultBlockSize": 10,
   "gameSpeed": 1,
-  "boxHeight": 50,
-  "boxLength": 50
+  "boxHeight": 60,
+  "boxLength": 80
 }
