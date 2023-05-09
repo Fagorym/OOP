@@ -27,7 +27,6 @@ public class GameViewImpl extends AbstractView implements Initializable, GameVie
     public VBox box;
     @FXML
     public AnchorPane pauseMenu;
-
     private boolean isPaused = false;
 
     private Presenter presenter;

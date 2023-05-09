@@ -2,8 +2,6 @@
   "consoleScreenLength": 100,
   "consoleScreenHeight": 100,
   "foodCount": 5,
-  "snakeInitialCoordinateX": 5,
-  "snakeInitialCoordinateY": 10,
   "defaultBlockSize": 10,
   "gameSpeed": 1,
   "boxHeight": 60,

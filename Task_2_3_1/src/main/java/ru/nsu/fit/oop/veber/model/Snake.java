@@ -4,6 +4,7 @@ import ru.nsu.fit.oop.veber.utils.Direction;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Random;
 
 public class Snake {
 
@@ -14,6 +15,7 @@ public class Snake {
 
     private SnakeBlock tailBlock;
 
+
     public Snake(int x, int y) {
         this.body = new ArrayDeque<>();
         this.headBlock = new SnakeBlock(x, y);
@@ -21,12 +23,22 @@ public class Snake {
         this.direction = Direction.RIGHT;
     }
 
+    static public Snake generate(Box box, CollisionChecker collisionChecker) {
+        Snake snake;
+        do {
+            Random random = new Random();
+            int x = random.nextInt(box.getLength() - 2) + 1;
+            int y = random.nextInt(box.getHeight() - 2) + 1;
+            snake = new Snake(x, y);
+        } while (!collisionChecker.addObject(snake.getHeadBlock()));
+        return snake;
+    }
+
     public void setDirection(Direction direction) {
         if (direction != null && this.direction.getOpposite() != direction) {
             this.direction = direction;
         }
     }
-
 
     public void move() {
         tailBlock.setY(headBlock.getY());

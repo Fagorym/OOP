@@ -17,12 +17,11 @@ public class Environment {
         this.collisionChecker = new CollisionChecker(gameConfiguration.getBoxHeight(),
                 gameConfiguration.getBoxLength());
 
-        this.snake = new Snake(gameConfiguration.getSnakeInitialCoordinateX(),
-                gameConfiguration.getSnakeInitialCoordinateY());
-
 
         this.box = new Box(gameConfiguration.getBoxLength(),
                 gameConfiguration.getBoxHeight());
+
+        this.snake = Snake.generate(box, collisionChecker);
 
         foodList = new ArrayList<>();
         for (int i = 0; i < gameConfiguration.getFoodCount(); i++) {
