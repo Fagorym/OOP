@@ -105,7 +105,7 @@ public class GameViewImpl extends AbstractView implements Initializable, GameVie
             presenter.start();
         }
         pauseMenu.setVisible(!isPaused);
-        gameCanvas.setVisible(isPaused);
+        gameCanvas.setVisible(true);
         isPaused = !isPaused;
     }
 

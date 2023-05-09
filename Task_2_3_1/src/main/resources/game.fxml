@@ -15,8 +15,8 @@
         <Canvas fx:id="gameCanvas" onKeyPressed="#handleKeyPressed" focusTraversable="true" height="800" width="600"/>
     </VBox>
 
-    <AnchorPane fx:id="pauseMenu" visible="false">
-        <VBox layoutX="250.0" layoutY="300.0" spacing="10.0" opacity="0">
+    <AnchorPane fx:id="pauseMenu">
+        <VBox layoutX="250.0" layoutY="300.0" spacing="10.0">
             <Button fx:id="continueButton" mnemonicParsing="false" onAction="#handleContinueButton" text="Продолжить"/>
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExitButton" text="Выход"/>
         </VBox>
