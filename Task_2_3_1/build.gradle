@@ -67,6 +67,12 @@ jlink {
     }
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 jlinkZip {
     group = 'distribution'
 }
