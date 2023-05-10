@@ -19,6 +19,7 @@ public class GameConfiguration {
         return gameConfiguration;
     }
 
+
     public static void setGameConfiguration(GameConfiguration gameConfiguration) {
         GameConfiguration.gameConfiguration = gameConfiguration;
     }

@@ -1,0 +1,9 @@
+{
+  "consoleScreenLength": 100,
+  "consoleScreenHeight": 100,
+  "foodCount": 5,
+  "defaultBlockSize": 10,
+  "gameSpeed": 1,
+  "boxHeight": 60,
+  "boxLength": 80
+}
