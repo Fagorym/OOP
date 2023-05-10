@@ -1,0 +1,11 @@
+module:ru.nsu.fit.oop.veber
+ru.nsu.fit.oop.veber
+ru.nsu.fit.oop.veber.application
+ru.nsu.fit.oop.veber.dto
+ru.nsu.fit.oop.veber.dto.graphical
+ru.nsu.fit.oop.veber.model
+ru.nsu.fit.oop.veber.presenter
+ru.nsu.fit.oop.veber.renderer
+ru.nsu.fit.oop.veber.timer
+ru.nsu.fit.oop.veber.utils
+ru.nsu.fit.oop.veber.view
