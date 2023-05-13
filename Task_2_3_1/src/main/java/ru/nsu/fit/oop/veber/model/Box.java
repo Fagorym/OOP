@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.veber.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Box {
@@ -24,6 +25,10 @@ public class Box {
 
             }
         }
+    }
+
+    public void addWalls(Collection<Wall> walls) {
+        this.walls.addAll(walls);
     }
 
     public List<Wall> getWalls() {

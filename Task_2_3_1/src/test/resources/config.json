@@ -5,5 +5,6 @@
   "defaultBlockSize": 10,
   "gameSpeed": 1,
   "boxHeight": 60,
-  "boxLength": 80
+  "boxLength": 80,
+  "extraWalls": 10
 }

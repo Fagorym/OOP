@@ -11,6 +11,8 @@ public class GameConfiguration {
     private int boxHeight;
     private int boxLength;
 
+    private int extraWalls;
+
     private double gameSpeed;
 
     private transient Color snakeColor = Color.GREEN;
@@ -78,5 +80,13 @@ public class GameConfiguration {
 
     public void setSnakeColor(Color snakeColor) {
         this.snakeColor = snakeColor;
+    }
+
+    public int getExtraWalls() {
+        return extraWalls;
+    }
+
+    public void setExtraWalls(int extraWalls) {
+        this.extraWalls = extraWalls;
     }
 }
