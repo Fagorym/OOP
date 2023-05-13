@@ -62,6 +62,17 @@ jacocoTestReport {
         csv.required = false
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "ru/nsu/fit/oop/veber/view/*",
+                    "ru/nsu/fit/oop/veber/presenter/*",
+                    "ru/nsu/fit/oop/veber/timer/*",
+                    "ru/nsu/fit/oop/veber/renderer/*",
+                    "ru/nsu/fit/oop/veber/dto/*"
+            ])
+        }))
+    }
 }
 
 jlink {
