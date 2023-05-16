@@ -100,7 +100,7 @@ public class TestPizzeria {
     public void testCustomerRepository() {
         CustomerGenerator generator = new CustomerService(pizzeria);
         List<Runnable> customers = generator.generate();
-        Assertions.assertTrue(customers.size() <= 4);
+        Assertions.assertTrue(customers.size() >= 3 && customers.size() <= 6);
     }
 
     @Test
