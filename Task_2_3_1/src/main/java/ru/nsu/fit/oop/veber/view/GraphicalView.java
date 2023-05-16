@@ -16,6 +16,9 @@ import ru.nsu.fit.oop.veber.timer.Timer;
 
 import java.util.List;
 
+/**
+ * Graphical game view without FXML. (old version)
+ */
 public class GraphicalView implements GameView {
 
 

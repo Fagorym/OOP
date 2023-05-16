@@ -11,6 +11,9 @@ import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * FXML settings screen view.
+ */
 public class SettingsView extends AbstractView {
     private final Map<String, Color> nameToColor;
     @FXML

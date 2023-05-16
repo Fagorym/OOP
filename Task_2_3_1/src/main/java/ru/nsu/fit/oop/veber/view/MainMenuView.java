@@ -8,6 +8,10 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * FXML Main menu view.
+ */
+
 public class MainMenuView extends AbstractView implements Initializable {
 
 

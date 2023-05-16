@@ -3,6 +3,9 @@ package ru.nsu.fit.oop.veber.utils;
 
 import javafx.scene.paint.Color;
 
+/**
+ * Game configuration class.
+ */
 public class GameConfiguration {
     private static GameConfiguration gameConfiguration;
     private int consoleScreenLength;

@@ -7,7 +7,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Scene manager.
+ */
 public class SceneManager {
+    /**
+     * Function, that changed current scene.
+     *
+     * @param fxmlPath path for fxml document for new scene.
+     * @param scene    current scene.
+     */
     public void changeScene(String fxmlPath, Scene scene) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlPath));
@@ -19,6 +28,12 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Function for exiting from game.
+     *
+     * @param scene current scene.
+     */
 
     public void exit(Scene scene) {
         Stage stage = (Stage) scene.getWindow();

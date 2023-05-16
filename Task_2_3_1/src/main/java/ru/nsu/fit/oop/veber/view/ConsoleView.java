@@ -18,6 +18,9 @@ import ru.nsu.fit.oop.veber.utils.GameConfiguration;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Console game view.
+ */
 public class ConsoleView implements GameView {
     private final int columnsCount;
     private final int rowsCount;

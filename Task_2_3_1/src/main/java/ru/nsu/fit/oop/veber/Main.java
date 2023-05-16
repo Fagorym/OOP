@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Scanner;
 
+/**
+ * Main class.
+ * Hello screen, where you choose current implementation of the game.
+ */
 public class Main {
     public static void main(String[] args) {
         try (Reader reader = new FileReader("Task_2_3_1/src/main/resources/config.json")) {

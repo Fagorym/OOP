@@ -19,6 +19,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * FXML game view.
+ */
 public class GameViewImpl extends AbstractView implements Initializable, GameView {
 
     @FXML
