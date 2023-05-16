@@ -35,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -78,6 +79,8 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">GameView</span></div>
+<div class="block">Interface of the game screen view.
+ Must be connected with timer, can be paused, can be ended, etc.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -94,19 +97,29 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#clearScreen()" class="member-name-link">clearScreen</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Function, that clears the game screen.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#endGame()" class="member-name-link">endGame</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Function, that ended the game.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#pause()" class="member-name-link">pause</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Function, that paused the game.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#render()" class="member-name-link">render</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Function, that render the game screen.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../timer/Timer.html" title="interface in ru.nsu.fit.oop.veber.timer">Timer</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setTimer(java.lang.Runnable)" class="member-name-link">setTimer</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;gameStep)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Function, that set the timer and returns it.</div>
+</div>
 </div>
 </div>
 </div>
@@ -125,30 +138,41 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="endGame()">
 <h3>endGame</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">endGame</span>()</div>
+<div class="block">Function, that ended the game.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="clearScreen()">
 <h3>clearScreen</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">clearScreen</span>()</div>
+<div class="block">Function, that clears the game screen.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="render()">
 <h3>render</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">render</span>()</div>
+<div class="block">Function, that render the game screen.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="setTimer(java.lang.Runnable)">
 <h3>setTimer</h3>
 <div class="member-signature"><span class="return-type"><a href="../timer/Timer.html" title="interface in ru.nsu.fit.oop.veber.timer">Timer</a></span>&nbsp;<span class="element-name">setTimer</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;gameStep)</span></div>
+<div class="block">Function, that set the timer and returns it.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>gameStep</code> - callback function, that we used for game step.</dd>
+<dt>Returns:</dt>
+<dd>settled timer.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="pause()">
 <h3>pause</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">pause</span>()</div>
+<div class="block">Function, that paused the game.</div>
 </section>
 </li>
 </ul>

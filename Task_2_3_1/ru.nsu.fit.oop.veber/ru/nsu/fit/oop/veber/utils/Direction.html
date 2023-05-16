@@ -35,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -84,6 +85,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public enum </span><span class="element-name type-name-label">Direction</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="Direction.html" title="enum class in ru.nsu.fit.oop.veber.utils">Direction</a>&gt;</span></div>
+<div class="block">Snake direction class.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -128,13 +130,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="../model/SnakeBlock.html" title="class in ru.nsu.fit.oop.veber.model">SnakeBlock</a>,<wbr><a href="../model/SnakeBlock.html" title="class in ru.nsu.fit.oop.veber.model">SnakeBlock</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGenerateFunction()" class="member-name-link">getGenerateFunction</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Function for getting generate function.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiConsumer.html" title="class or interface in java.util.function" class="external-link">BiConsumer</a>&lt;<a href="../model/SnakeBlock.html" title="class in ru.nsu.fit.oop.veber.model">SnakeBlock</a>,<wbr><a href="../model/SnakeBlock.html" title="class in ru.nsu.fit.oop.veber.model">SnakeBlock</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMove()" class="member-name-link">getMove</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Function for getting move function.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Direction.html" title="enum class in ru.nsu.fit.oop.veber.utils">Direction</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOpposite()" class="member-name-link">getOpposite</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Function for getting opposite direction;</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Direction.html" title="enum class in ru.nsu.fit.oop.veber.utils">Direction</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -233,18 +241,33 @@ not permitted.)</div>
 <section class="detail" id="getOpposite()">
 <h3>getOpposite</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Direction.html" title="enum class in ru.nsu.fit.oop.veber.utils">Direction</a></span>&nbsp;<span class="element-name">getOpposite</span>()</div>
+<div class="block">Function for getting opposite direction;</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>opposite direction.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getMove()">
 <h3>getMove</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiConsumer.html" title="class or interface in java.util.function" class="external-link">BiConsumer</a>&lt;<a href="../model/SnakeBlock.html" title="class in ru.nsu.fit.oop.veber.model">SnakeBlock</a>,<wbr><a href="../model/SnakeBlock.html" title="class in ru.nsu.fit.oop.veber.model">SnakeBlock</a>&gt;</span>&nbsp;<span class="element-name">getMove</span>()</div>
+<div class="block">Function for getting move function.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>move function.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getGenerateFunction()">
 <h3>getGenerateFunction</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="../model/SnakeBlock.html" title="class in ru.nsu.fit.oop.veber.model">SnakeBlock</a>,<wbr><a href="../model/SnakeBlock.html" title="class in ru.nsu.fit.oop.veber.model">SnakeBlock</a>&gt;</span>&nbsp;<span class="element-name">getGenerateFunction</span>()</div>
+<div class="block">Function for getting generate function.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>generate function.</dd>
+</dl>
 </section>
 </li>
 </ul>
