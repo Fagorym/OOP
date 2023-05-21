@@ -1,8 +1,11 @@
 package ru.nsu.fit.oop.veber.model;
 
-import java.util.List;
+import lombok.Data;
 
+import java.util.ArrayList;
+
+@Data
 public class Group {
-    private String number;
-    private List<Student> students;
+    private ArrayList<Student> students;
+    private Integer number;
 }
