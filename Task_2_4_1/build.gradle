@@ -7,6 +7,7 @@ version 'unspecified'
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
 }
 
 dependencies {
@@ -15,6 +16,10 @@ dependencies {
     implementation 'info.picocli:picocli:4.6.2'
     implementation 'org.codehaus.groovy:groovy-all:3.0.17'
     implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'org.eclipse.jgit:org.eclipse.jgit:4.11.9.201909030838-r'
+    implementation 'org.gradle:gradle-tooling-api:7.1'
+    runtimeOnly 'org.gradle:gradle-tooling-api:7.1'
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.10'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
