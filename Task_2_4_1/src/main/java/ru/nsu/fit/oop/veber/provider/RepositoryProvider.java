@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.provider;
 
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jgit.api.Git;
@@ -13,10 +13,10 @@ import java.util.List;
 
 @Slf4j
 public class RepositoryProvider {
-    private final static String REPOSITORY_PATH_PREFIX = "./students/";
+    private final static String DEFAULT_REPOSITORY_PATH_PREFIX = "./Task_2_4_1/build/students/";
 
     public static Project cloneRepository(Student student) {
-        String studentPath = REPOSITORY_PATH_PREFIX + student.getNickname();
+        String studentPath = DEFAULT_REPOSITORY_PATH_PREFIX + student.getNickname();
 
         try (
                 Git ignored = Git.cloneRepository()

@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Task extends Parcelable {
 
-    private static final String CONFIG_PATH = "Task_2_4_1/src/main/java/ru/nsu/fit/oop/veber/tasks.groovy";
+    private static final String CONFIG_PATH = "Task_2_4_1/src/main/java/ru/nsu/fit/oop/veber/config/tasks.groovy";
     private String id;
     private String name;
     private int score;

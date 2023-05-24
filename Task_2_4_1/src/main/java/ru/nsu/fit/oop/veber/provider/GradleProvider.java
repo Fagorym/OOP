@@ -1,10 +1,7 @@
-package ru.nsu.fit.oop.veber;
+package ru.nsu.fit.oop.veber.provider;
 
 import lombok.extern.slf4j.Slf4j;
-import org.gradle.tooling.BuildException;
-import org.gradle.tooling.BuildLauncher;
-import org.gradle.tooling.GradleConnector;
-import org.gradle.tooling.ProjectConnection;
+import org.gradle.tooling.*;
 import ru.nsu.fit.oop.veber.model.Project;
 import ru.nsu.fit.oop.veber.model.Task;
 
@@ -41,10 +38,11 @@ public class GradleProvider {
 
     private static void makeTask(Project project, String taskName, Task task) {
         if (project.getPath() == null) {
-            log.warn("Path to project was null");
-            return;
+            log.error("Path to project was not specified. Check configuration file.");
+            throw new RuntimeException();
         }
         File file = new File(project.getPath() + "/" + task.getId());
+
         if (!file.exists()) {
             log.warn(
                     "File with task {} is not exist for student {}",
@@ -53,6 +51,7 @@ public class GradleProvider {
             );
             return;
         }
+
         try (
                 ProjectConnection connection = GradleConnector.newConnector()
                         .forProjectDirectory(file)
@@ -61,6 +60,7 @@ public class GradleProvider {
             log.info("Connection was success for {}", project.getStudent());
             BuildLauncher build = connection.newBuild();
             build.forTasks(taskName);
+            build.addProgressListener((ProgressListener) msg -> log.debug(msg.getDescription()));
             build.run();
             log.info("Executing task {} was success for {}", taskName, project.getStudent().getFullName());
         } catch (BuildException e) {

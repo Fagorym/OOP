@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.veber
+package ru.nsu.fit.oop.veber.config
 
 import ru.nsu.fit.oop.veber.model.Task
 

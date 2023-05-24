@@ -3,6 +3,8 @@ package ru.nsu.fit.oop.veber;
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
 import ru.nsu.fit.oop.veber.model.*;
+import ru.nsu.fit.oop.veber.provider.GradleProvider;
+import ru.nsu.fit.oop.veber.provider.RepositoryProvider;
 
 import java.util.HashMap;
 import java.util.List;
