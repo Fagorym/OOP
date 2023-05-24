@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.veber;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.api.errors.JGitInternalException;
 import ru.nsu.fit.oop.veber.model.Project;
 import ru.nsu.fit.oop.veber.model.Student;
 
@@ -32,6 +33,10 @@ public class RepositoryProvider {
         } catch (GitAPIException ex) {
             log.error(ex.getMessage());
             throw new RuntimeException("Cannot clone repository for student " + student.getNickname());
+        } catch (JGitInternalException ex) {
+            log.warn("Destination directory path already exists for {}", student.getNickname());
+            log.warn("Skipping cloning for student {}", student.getNickname());
+            return new Project(studentPath, student);
         }
     }
 

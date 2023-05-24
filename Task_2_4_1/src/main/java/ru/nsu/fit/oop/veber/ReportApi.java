@@ -8,7 +8,7 @@ import ru.nsu.fit.oop.veber.model.Project;
 
 import java.util.List;
 
-@Command(name = "report")
+@Command(name = "-make")
 @NoArgsConstructor
 @Slf4j
 public class ReportApi implements Runnable {
