@@ -1,9 +1,20 @@
 package ru.nsu.fit.oop.veber.model;
 
-public class Task {
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class Task extends Parcelable {
+
+    private static final String CONFIG_PATH = "Task_2_4_1/src/main/java/ru/nsu/fit/oop/veber/tasks.groovy";
     private String id;
     private String name;
     private int score;
     private boolean isGiven;
     private boolean hasTests;
+
+    public static String getConfigPath() {
+        return CONFIG_PATH;
+    }
 }
