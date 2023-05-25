@@ -2,8 +2,10 @@ package ru.nsu.fit.oop.veber;
 
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
+import ru.nsu.fit.oop.veber.checker.TaskBuilder;
+import ru.nsu.fit.oop.veber.checker.TaskDocsGenerator;
+import ru.nsu.fit.oop.veber.checker.TaskTestChecker;
 import ru.nsu.fit.oop.veber.model.*;
-import ru.nsu.fit.oop.veber.provider.GradleProvider;
 import ru.nsu.fit.oop.veber.provider.RepositoryProvider;
 
 import java.util.HashMap;
@@ -17,6 +19,7 @@ public class ReportApi implements Runnable {
     private final Group group;
     private final Map<String, Map<String, Report>> reports;
     private final List<Task> tasks;
+
     private List<Project> projectList;
 
     public ReportApi() {
@@ -39,7 +42,7 @@ public class ReportApi implements Runnable {
     private void buildProjects() {
         for (Task task : tasks) {
             log.info("Start task {} building process", task.getId());
-            GradleProvider.buildProject(projectList, task);
+            TaskBuilder.buildProject(projectList, task, reports);
             log.info("Building process for task {} was success", task.getId());
         }
     }
@@ -47,7 +50,7 @@ public class ReportApi implements Runnable {
     private void checkTests() {
         for (Task task : tasks) {
             log.info("Start task {} test checking process", task.getId());
-            GradleProvider.checkTasks(projectList, task);
+            TaskTestChecker.checkTasks(projectList, task, reports);
             log.info("Test task {} checking was success", task.getId());
         }
     }
@@ -55,7 +58,7 @@ public class ReportApi implements Runnable {
     private void generateDocs() {
         for (Task task : tasks) {
             log.info("Start generating javadocs process for task {}", task.getId());
-            GradleProvider.generateDocs(projectList, task);
+            TaskDocsGenerator.generateDocs(projectList, task, reports);
             log.info("Generating javadocs was success for task {}", task.getId());
         }
 
