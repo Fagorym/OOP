@@ -6,6 +6,7 @@ import ru.nsu.fit.oop.veber.checker.TaskBuilder;
 import ru.nsu.fit.oop.veber.checker.TaskDocsGenerator;
 import ru.nsu.fit.oop.veber.checker.TaskTestChecker;
 import ru.nsu.fit.oop.veber.model.*;
+import ru.nsu.fit.oop.veber.provider.HtmlProvider;
 import ru.nsu.fit.oop.veber.provider.RepositoryProvider;
 
 import java.util.HashMap;
@@ -19,11 +20,11 @@ public class ReportApi implements Runnable {
     private final Group group;
     private final Map<String, Map<String, Report>> reports;
     private final List<Task> tasks;
-
-    private List<Project> projectList;
     private final TaskBuilder taskBuilder;
     private final TaskDocsGenerator taskDocsGenerator;
     private final TaskTestChecker taskTestChecker;
+    private final HtmlProvider htmlProvider;
+    private List<Project> projectList;
 
     public ReportApi() {
         log.info("Parsing group instance from config.");
@@ -43,6 +44,7 @@ public class ReportApi implements Runnable {
         taskBuilder = new TaskBuilder();
         taskTestChecker = new TaskTestChecker();
         taskDocsGenerator = new TaskDocsGenerator();
+        htmlProvider = new HtmlProvider();
     }
 
     private void buildProjects() {
@@ -72,7 +74,7 @@ public class ReportApi implements Runnable {
 
     private void makeReport() {
         log.info("Start making report process");
-        reports.values().forEach(System.out::println);
+        htmlProvider.generateHtml(reports);
         log.info("Generating report was success");
 
     }
