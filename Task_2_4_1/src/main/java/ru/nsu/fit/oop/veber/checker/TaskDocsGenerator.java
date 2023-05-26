@@ -8,14 +8,15 @@ import java.util.Collection;
 import java.util.Map;
 
 public class TaskDocsGenerator extends TaskExecutor {
-    public static void generateDocs(
+    public void generateDocs(
             Collection<Project> projects,
             Task task,
             Map<String, Map<String, Report>> reports
     ) {
         projects.forEach(project -> {
             Report report = reports.get(task.getId()).get(project.getStudent().getNickname());
-            makeTask(project, "javadoc", task, report);
+            report.setHasDocs(makeTask(project, "javadoc", task));
+            report.setTaskId(task.getId());
         });
     }
 }

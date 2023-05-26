@@ -9,14 +9,15 @@ import java.util.Map;
 
 public class TaskBuilder extends TaskExecutor {
 
-    public static void buildProject(
+    public void buildProject(
             Collection<Project> projects,
             Task task,
             Map<String, Map<String, Report>> reports
     ) {
         projects.forEach(project -> {
             Report report = reports.get(task.getId()).get(project.getStudent().getNickname());
-            makeTask(project, "build", task, report);
+            report.setWasBuilt(makeTask(project, "build", task));
+            report.setTaskId(task.getId());
         });
     }
 }

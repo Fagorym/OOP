@@ -21,6 +21,9 @@ public class ReportApi implements Runnable {
     private final List<Task> tasks;
 
     private List<Project> projectList;
+    private final TaskBuilder taskBuilder;
+    private final TaskDocsGenerator taskDocsGenerator;
+    private final TaskTestChecker taskTestChecker;
 
     public ReportApi() {
         log.info("Parsing group instance from config.");
@@ -37,12 +40,15 @@ public class ReportApi implements Runnable {
             }
             reports.put(task.getId(), studentReports);
         }
+        taskBuilder = new TaskBuilder();
+        taskTestChecker = new TaskTestChecker();
+        taskDocsGenerator = new TaskDocsGenerator();
     }
 
     private void buildProjects() {
         for (Task task : tasks) {
             log.info("Start task {} building process", task.getId());
-            TaskBuilder.buildProject(projectList, task, reports);
+            taskBuilder.buildProject(projectList, task, reports);
             log.info("Building process for task {} was success", task.getId());
         }
     }
@@ -50,7 +56,7 @@ public class ReportApi implements Runnable {
     private void checkTests() {
         for (Task task : tasks) {
             log.info("Start task {} test checking process", task.getId());
-            TaskTestChecker.checkTasks(projectList, task, reports);
+            taskTestChecker.checkTasks(projectList, task, reports);
             log.info("Test task {} checking was success", task.getId());
         }
     }
@@ -58,7 +64,7 @@ public class ReportApi implements Runnable {
     private void generateDocs() {
         for (Task task : tasks) {
             log.info("Start generating javadocs process for task {}", task.getId());
-            TaskDocsGenerator.generateDocs(projectList, task, reports);
+            taskDocsGenerator.generateDocs(projectList, task, reports);
             log.info("Generating javadocs was success for task {}", task.getId());
         }
 
@@ -66,7 +72,7 @@ public class ReportApi implements Runnable {
 
     private void makeReport() {
         log.info("Start making report process");
-        // TODO: Making report
+        reports.values().forEach(System.out::println);
         log.info("Generating report was success");
 
     }
