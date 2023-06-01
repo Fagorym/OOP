@@ -12,6 +12,13 @@ public class HtmlProvider {
     public void generateHtml(Map<String, Map<String, Report>> reports) {
         StringBuilder sb = new StringBuilder();
         sb.append("<html>");
+        String styles = "<style>" +
+                "table {border-collapse: collapse; width: 100%;}" +
+                "th, td {border: 1px solid #dddddd; text-align: center; padding: 8px;}" +
+                "th {background-color: #f2f2f2;}" +
+                "tr:nth-child(even) {background-color: #f2f2f2;}" +
+                "</style>";
+        sb.append(styles);
         sb.append("<style>\n")
                 .append("table, th, td {\n")
                 .append("  border:1px solid black;\n")
@@ -20,20 +27,39 @@ public class HtmlProvider {
         sb.append("<head>");
         sb.append("</head>");
         for (var entry : reports.entrySet()) {
-            sb.append("<h1>").append(entry.getKey()).append("</h1>");
-            sb.append("<table>");
-            sb.append("<th> Student </th>");
-            sb.append("<th> Built </th>");
-            sb.append("<th> Docs </th>");
-            sb.append("<th> Tests </th>");
-            for (var taskStudentEntry : entry.getValue().entrySet()) {
-                sb.append("<tr>");
-                sb.append("<td>").append(taskStudentEntry.getKey()).append("</td>");
-                sb.append("<td>").append(taskStudentEntry.getValue().isWasBuilt()).append("</td>");
-                sb.append("<td>").append(taskStudentEntry.getValue().isHasDocs()).append("</td>");
-                sb.append("<td>").append(taskStudentEntry.getValue().isWasTested()).append("</td>");
-                sb.append("</tr>");
+            sb.append("<table border=\"1\">\n");
+            sb.append("<tr>\n");
+            sb.append("<th rowspan=\"2\">Student</th>\n");
+
+            int numberOfTasks = 1;
+            for (int i = 1; i <= numberOfTasks; i++) {
+                sb.append("<th colspan=\"4\">").append(entry.getKey()).append("</th>\n");
             }
+            sb.append("</tr>\n");
+
+            sb.append("<tr>\n");
+            for (int i = 1; i <= numberOfTasks; i++) {
+                sb.append("<th>Build</th>\n");
+                sb.append("<th>Test</th>\n");
+                sb.append("<th>javadoc</th>\n");
+                sb.append("<th>Score</th>\n");
+            }
+            sb.append("</tr>\n");
+
+            for (var studentEntry : entry.getValue().entrySet()) {
+                sb.append("<tr>\n");
+                sb.append("<td>").append(studentEntry.getKey()).append("</td>\n");
+
+                for (int i = 1; i <= numberOfTasks; i++) {
+                    sb.append("<td>").append(studentEntry.getValue().isWasBuilt() ? "+" : "-").append("</td>\n");
+                    sb.append("<td>").append(studentEntry.getValue().isWasBuilt() ? "+" : "-").append("</td>\n");
+                    sb.append("<td>").append(studentEntry.getValue().isWasBuilt() ? "+" : "-").append("</td>\n");
+                    sb.append("<td>").append(studentEntry.getValue().isWasBuilt()).append("</td>\n");
+                }
+
+                sb.append("</tr>\n");
+            }
+
             sb.append("</table>");
         }
         sb.append("</body>");
