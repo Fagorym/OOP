@@ -47,29 +47,22 @@ public class ReportApi implements Runnable {
         htmlProvider = new HtmlProvider();
     }
 
-    private void buildProjects() {
-        for (Task task : tasks) {
-            log.info("Start task {} building process", task.getId());
-            taskBuilder.buildProject(projectList, task, reports);
-            log.info("Building process for task {} was success", task.getId());
-        }
+    private void buildProjects(Task task) {
+        log.info("Start task {} building process", task.getId());
+        taskBuilder.buildProject(projectList, task, reports);
+        log.info("Building process for task {} was success", task.getId());
     }
 
-    private void checkTests() {
-        for (Task task : tasks) {
-            log.info("Start task {} test checking process", task.getId());
-            taskTestChecker.checkTasks(projectList, task, reports);
-            log.info("Test task {} checking was success", task.getId());
-        }
+    private void checkTests(Task task) {
+        log.info("Start task {} test checking process", task.getId());
+        taskTestChecker.checkTasks(projectList, task, reports);
+        log.info("Test task {} checking was success", task.getId());
     }
 
-    private void generateDocs() {
-        for (Task task : tasks) {
-            log.info("Start generating javadocs process for task {}", task.getId());
-            taskDocsGenerator.generateDocs(projectList, task, reports);
-            log.info("Generating javadocs was success for task {}", task.getId());
-        }
-
+    private void generateDocs(Task task) {
+        log.info("Start generating javadocs process for task {}", task.getId());
+        taskDocsGenerator.generateDocs(projectList, task, reports);
+        log.info("Generating javadocs was success for task {}", task.getId());
     }
 
     private void makeReport() {
@@ -89,9 +82,30 @@ public class ReportApi implements Runnable {
     @Override
     public void run() {
         cloneRepositories();
-        buildProjects();
-        checkTests();
-        generateDocs();
+        for (Task task : tasks) {
+            if (task.isGiven()) {
+                buildProjects(task);
+                checkTests(task);
+                generateDocs(task);
+            } else {
+                reports.get(task.getId()).values().forEach(
+                        curTask -> {
+                            curTask.setWasTested(true);
+                            curTask.setWasBuilt(true);
+                            curTask.setHasDocs(true);
+                        }
+                );
+
+            }
+        }
+        reports.values().forEach(
+                reports -> reports.values().forEach(
+                        report -> report.setScore(
+                                (report.isHasDocs() ? 1 : 0) * (report.isWasTested() ? 1 : 0) *
+                                        (report.isWasBuilt() ? 1 : 0)
+                        )
+                )
+        );
         makeReport();
     }
 }

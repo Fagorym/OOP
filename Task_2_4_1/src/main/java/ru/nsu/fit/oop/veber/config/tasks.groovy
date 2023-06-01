@@ -16,6 +16,13 @@ import ru.nsu.fit.oop.veber.model.Task
                 score: 1,
                 isGiven: true,
                 hasTests: true
+        ),
+        new Task(
+                id: "Task_1_3_1",
+                name: "Tree task",
+                score: 1,
+                isGiven: false,
+                hasTests: false
         )
 
 ]

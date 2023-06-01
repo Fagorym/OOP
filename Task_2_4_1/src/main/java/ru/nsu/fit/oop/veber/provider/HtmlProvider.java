@@ -5,6 +5,7 @@ import ru.nsu.fit.oop.veber.model.Report;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Collections;
 import java.util.Map;
 
 @Data
@@ -19,49 +20,43 @@ public class HtmlProvider {
                 "tr:nth-child(even) {background-color: #f2f2f2;}" +
                 "</style>";
         sb.append(styles);
-        sb.append("<style>\n")
-                .append("table, th, td {\n")
-                .append("  border:1px solid black;\n")
-                .append("}\n")
-                .append("</style>");
         sb.append("<head>");
         sb.append("</head>");
-        for (var entry : reports.entrySet()) {
-            sb.append("<table border=\"1\">\n");
-            sb.append("<tr>\n");
-            sb.append("<th rowspan=\"2\">Student</th>\n");
+        sb.append("<table border=\"1\">\n");
+        sb.append("<tr>\n");
+        sb.append("<th rowspan=\"2\">Student</th>\n");
 
-            int numberOfTasks = 1;
-            for (int i = 1; i <= numberOfTasks; i++) {
-                sb.append("<th colspan=\"4\">").append(entry.getKey()).append("</th>\n");
-            }
-            sb.append("</tr>\n");
-
-            sb.append("<tr>\n");
-            for (int i = 1; i <= numberOfTasks; i++) {
-                sb.append("<th>Build</th>\n");
-                sb.append("<th>Test</th>\n");
-                sb.append("<th>javadoc</th>\n");
-                sb.append("<th>Score</th>\n");
-            }
-            sb.append("</tr>\n");
-
-            for (var studentEntry : entry.getValue().entrySet()) {
-                sb.append("<tr>\n");
-                sb.append("<td>").append(studentEntry.getKey()).append("</td>\n");
-
-                for (int i = 1; i <= numberOfTasks; i++) {
-                    sb.append("<td>").append(studentEntry.getValue().isWasBuilt() ? "+" : "-").append("</td>\n");
-                    sb.append("<td>").append(studentEntry.getValue().isWasBuilt() ? "+" : "-").append("</td>\n");
-                    sb.append("<td>").append(studentEntry.getValue().isWasBuilt() ? "+" : "-").append("</td>\n");
-                    sb.append("<td>").append(studentEntry.getValue().isWasBuilt()).append("</td>\n");
-                }
-
-                sb.append("</tr>\n");
-            }
-
-            sb.append("</table>");
+        int numberOfTasks = reports.size();
+        for (var taskEntry : reports.entrySet()) {
+            sb.append("<th colspan=\"4\">").append(taskEntry.getKey()).append("</th>\n");
         }
+        sb.append("</tr>\n");
+
+        sb.append("<tr>\n");
+        for (int i = 1; i <= numberOfTasks; i++) {
+            sb.append("<th>Build</th>\n");
+            sb.append("<th>Test</th>\n");
+            sb.append("<th>Javadoc</th>\n");
+            sb.append("<th>Score</th>\n");
+        }
+        sb.append("</tr>\n");
+        var currentTaskForStudents = reports.values().stream().findFirst().orElse(Collections.emptyMap());
+        for (String student : currentTaskForStudents.keySet()) {
+            sb.append("<tr>\n");
+            sb.append("<td>").append(student).append("</td>\n");
+
+            for (String taskName : reports.keySet()) {
+                Report report = reports.get(taskName).get(student);
+                sb.append("<td>").append(report.isWasBuilt() ? "+" : "-").append("</td>\n");
+                sb.append("<td>").append(report.isWasTested() ? "+" : "-").append("</td>\n");
+                sb.append("<td>").append(report.isHasDocs() ? "+" : "-").append("</td>\n");
+                sb.append("<td>").append(report.getScore()).append("</td>\n");
+            }
+
+            sb.append("</tr>\n");
+        }
+
+        sb.append("</table>");
         sb.append("</body>");
         sb.append("</html>");
         try {

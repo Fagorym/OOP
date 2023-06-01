@@ -8,4 +8,5 @@ public class Report {
     private boolean wasBuilt;
     private boolean wasTested;
     private boolean hasDocs;
+    private int score;
 }
