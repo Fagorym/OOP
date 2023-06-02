@@ -6,12 +6,19 @@ import ru.nsu.fit.oop.veber.model.Report;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Data
 public class HtmlProvider {
     public void generateHtml(Map<String, Map<String, Report>> reports) {
         StringBuilder sb = new StringBuilder();
+        Set<String> students = reports.values().stream()
+                .map(Map::keySet)
+                .findFirst()
+                .orElse(Collections.emptySet());
+        Map<String, Integer> totalScoreForStudent = new HashMap<>();
         sb.append("<html>");
         String styles = "<style>" +
                 "table {border-collapse: collapse; width: 100%;}" +
@@ -40,8 +47,7 @@ public class HtmlProvider {
             sb.append("<th>Score</th>\n");
         }
         sb.append("</tr>\n");
-        var currentTaskForStudents = reports.values().stream().findFirst().orElse(Collections.emptyMap());
-        for (String student : currentTaskForStudents.keySet()) {
+        for (String student : students) {
             sb.append("<tr>\n");
             sb.append("<td>").append(student).append("</td>\n");
 
@@ -51,12 +57,28 @@ public class HtmlProvider {
                 sb.append("<td>").append(report.isWasTested() ? "+" : "-").append("</td>\n");
                 sb.append("<td>").append(report.isHasDocs() ? "+" : "-").append("</td>\n");
                 sb.append("<td>").append(report.getScore()).append("</td>\n");
+                if (totalScoreForStudent.containsKey(student)) {
+                    totalScoreForStudent.put(student, report.getScore());
+                } else {
+                    int curScore = totalScoreForStudent.get(student);
+                    totalScoreForStudent.put(student, curScore + report.getScore());
+                }
             }
 
             sb.append("</tr>\n");
         }
 
         sb.append("</table>");
+
+        sb.append("\n\n<table>");
+        sb.append("<tr>");
+        sb.append("<th rowspan=\"2\">Student</th>\n");
+        sb.append("<th colspan=\"4\">Total</th>\n");
+        for (String student : students) {
+            sb.append("<td>").append(student).append("</td>");
+            sb.append("<td>").append(totalScoreForStudent.get(student)).append("</td>\n");
+        }
+
         sb.append("</body>");
         sb.append("</html>");
         try {
