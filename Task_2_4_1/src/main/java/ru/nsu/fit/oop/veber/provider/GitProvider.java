@@ -52,7 +52,7 @@ public class GitProvider implements VersionControlProvider {
         ) {
             log.info("Repository for student {} cloned successfully", student.getNickname());
             StudentResults results = new StudentResults(studentPath, student, git);
-            log.info("Project instance created successfully");
+            log.info("Result instance created successfully");
             return results;
 
         } catch (GitAPIException ex) {
