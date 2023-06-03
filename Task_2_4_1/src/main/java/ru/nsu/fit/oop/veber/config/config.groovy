@@ -20,6 +20,11 @@ group = new Group(
                         nickname: "mihailCCfit",
                         fullName: "Цуканов Михаил Сергеевич",
                         repositoryUrl: "https://github.com/MihailCCfit/oop"
+                ),
+                new Student(
+                        nickname: "rafi2002",
+                        fullName: "Рафикул Ал Масуд",
+                        repositoryUrl: "https://github.com/rafi2002/oop"
                 )
         ]
 )

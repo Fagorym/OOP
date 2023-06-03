@@ -57,7 +57,7 @@ public class HtmlProvider {
                 sb.append("<td>").append(report.isWasTested() ? "+" : "-").append("</td>\n");
                 sb.append("<td>").append(report.isHasDocs() ? "+" : "-").append("</td>\n");
                 sb.append("<td>").append(report.getScore()).append("</td>\n");
-                if (totalScoreForStudent.containsKey(student)) {
+                if (!totalScoreForStudent.containsKey(student)) {
                     totalScoreForStudent.put(student, report.getScore());
                 } else {
                     int curScore = totalScoreForStudent.get(student);
@@ -67,15 +67,14 @@ public class HtmlProvider {
 
             sb.append("</tr>\n");
         }
-
         sb.append("</table>");
-
         sb.append("\n\n<table>");
         sb.append("<tr>");
-        sb.append("<th rowspan=\"2\">Student</th>\n");
-        sb.append("<th colspan=\"4\">Total</th>\n");
+        sb.append("<th>Student</th>\n");
+        sb.append("<th>Total</th>\n");
         for (String student : students) {
-            sb.append("<td>").append(student).append("</td>");
+            sb.append("<tr>\n");
+            sb.append("<td>").append(student).append("</td>\n");
             sb.append("<td>").append(totalScoreForStudent.get(student)).append("</td>\n");
         }
 
@@ -94,6 +93,5 @@ public class HtmlProvider {
         } catch (Exception e) {
             System.out.println("Problem with generating report.");
         }
-
     }
 }

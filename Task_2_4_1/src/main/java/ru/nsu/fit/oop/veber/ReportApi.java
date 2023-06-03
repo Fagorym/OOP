@@ -18,7 +18,11 @@ import java.util.Map;
 public class ReportApi implements Runnable {
 
     private final Group group;
+
+    private final List<Lesson> lessons;
     private final Map<String, Map<String, Report>> reports;
+
+    private final Map<String, DayReport> dayReportMap;
     private final List<Task> tasks;
     private final TaskBuilder taskBuilder;
     private final TaskDocsGenerator taskDocsGenerator;
@@ -33,6 +37,9 @@ public class ReportApi implements Runnable {
         log.info("Parsing tasks");
         this.tasks = new Task().parse(Task.getConfigPath());
         log.info("Tasks {} was parsed", tasks);
+        log.info("Parsing lessons");
+        this.lessons = new Lesson().parse(Lesson.getConfigPath());
+        log.info("Lessons {} was parsed", lessons);
         reports = new HashMap<>(group.getStudents().size());
         for (Task task : tasks) {
             Map<String, Report> studentReports = new HashMap<>();
@@ -41,6 +48,7 @@ public class ReportApi implements Runnable {
             }
             reports.put(task.getId(), studentReports);
         }
+        dayReportMap = new HashMap<>();
         taskBuilder = new TaskBuilder();
         taskTestChecker = new TaskTestChecker();
         taskDocsGenerator = new TaskDocsGenerator();
@@ -75,7 +83,11 @@ public class ReportApi implements Runnable {
 
     private void cloneRepositories() {
         log.info("Cloning group repositories");
-        this.projectList = RepositoryProvider.cloneRepository(group.getStudents());
+        this.projectList = RepositoryProvider.cloneRepository(
+                group.getStudents(),
+                lessons,
+                dayReportMap
+        );
         log.info("Repositories cloned successfully");
     }
 
