@@ -9,9 +9,7 @@ import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.provider.HtmlProvider;
 import ru.nsu.fit.oop.veber.provider.RepositoryProvider;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Command(name = "-make")
 @Slf4j
@@ -20,15 +18,12 @@ public class ReportApi implements Runnable {
     private final Group group;
 
     private final List<Lesson> lessons;
-    private final Map<String, Map<String, Report>> reports;
-
-    private final Map<String, DayReport> dayReportMap;
     private final List<Task> tasks;
     private final TaskBuilder taskBuilder;
     private final TaskDocsGenerator taskDocsGenerator;
     private final TaskTestChecker taskTestChecker;
     private final HtmlProvider htmlProvider;
-    private List<Project> projectList;
+    private List<StudentResults> results;
 
     public ReportApi() {
         log.info("Parsing group instance from config.");
@@ -40,42 +35,34 @@ public class ReportApi implements Runnable {
         log.info("Parsing lessons");
         this.lessons = new Lesson().parse(Lesson.getConfigPath());
         log.info("Lessons {} was parsed", lessons);
-        reports = new HashMap<>(group.getStudents().size());
-        for (Task task : tasks) {
-            Map<String, Report> studentReports = new HashMap<>();
-            for (Student student : group.getStudents()) {
-                studentReports.put(student.getNickname(), new Report());
-            }
-            reports.put(task.getId(), studentReports);
-        }
-        dayReportMap = new HashMap<>();
         taskBuilder = new TaskBuilder();
         taskTestChecker = new TaskTestChecker();
         taskDocsGenerator = new TaskDocsGenerator();
         htmlProvider = new HtmlProvider();
+        results = new ArrayList<>();
     }
 
     private void buildProjects(Task task) {
         log.info("Start task {} building process", task.getId());
-        taskBuilder.buildProject(projectList, task, reports);
+        taskBuilder.buildProject(results, task);
         log.info("Building process for task {} was success", task.getId());
     }
 
     private void checkTests(Task task) {
         log.info("Start task {} test checking process", task.getId());
-        taskTestChecker.checkTasks(projectList, task, reports);
+        taskTestChecker.checkTasks(results, task);
         log.info("Test task {} checking was success", task.getId());
     }
 
     private void generateDocs(Task task) {
         log.info("Start generating javadocs process for task {}", task.getId());
-        taskDocsGenerator.generateDocs(projectList, task, reports);
+        taskDocsGenerator.generateDocs(results, task);
         log.info("Generating javadocs was success for task {}", task.getId());
     }
 
     private void makeReport() {
         log.info("Start making report process");
-        htmlProvider.generateHtml(reports);
+        htmlProvider.generateHtml(results);
         log.info("Generating report was success");
 
     }
@@ -83,41 +70,92 @@ public class ReportApi implements Runnable {
 
     private void cloneRepositories() {
         log.info("Cloning group repositories");
-        this.projectList = RepositoryProvider.cloneRepository(
-                group.getStudents(),
-                lessons,
-                dayReportMap
-        );
+        this.results = RepositoryProvider.cloneRepository(group.getStudents());
         log.info("Repositories cloned successfully");
     }
 
     @Override
     public void run() {
         cloneRepositories();
-        for (Task task : tasks) {
-            if (task.isGiven()) {
-                buildProjects(task);
-                checkTests(task);
-                generateDocs(task);
-            } else {
-                reports.get(task.getId()).values().forEach(
-                        curTask -> {
-                            curTask.setWasTested(true);
-                            curTask.setWasBuilt(true);
-                            curTask.setHasDocs(true);
-                        }
-                );
+        initializeTasksReports();
+        initializeDayReports();
+        tasks.forEach(this::checkTask);
+        checkAttendance();
+        countTotal();
+        makeReport();
+    }
 
+    private void checkAttendance() {
+        for (StudentResults result : results) {
+            Map<String, Boolean> dayReports = result.getDayReports();
+            for (Lesson lesson : lessons) {
+                Boolean lessonResult = RepositoryProvider.checkDate(lesson, result.getStudentGit());
+                dayReports.put(
+                        lesson.getDate().toString(),
+                        lessonResult
+                );
             }
         }
-        reports.values().forEach(
-                reports -> reports.values().forEach(
-                        report -> report.setScore(
-                                (report.isHasDocs() ? 1 : 0) * (report.isWasTested() ? 1 : 0) *
-                                        (report.isWasBuilt() ? 1 : 0)
-                        )
-                )
+    }
+
+    private void countTotal() {
+        results.forEach(
+                result -> {
+                    Collection<Report> reports = result.getTaskReports().values();
+                    int total = 0;
+                    for (Report report : reports) {
+                        report.setScore(getScore(report));
+                        total += report.getScore();
+                    }
+                    result.setTotal(total);
+                }
         );
-        makeReport();
+    }
+
+    private int getScore(Report report) {
+        return (report.isHasDocs() ? 1 : 0) * (report.isWasTested() ? 1 : 0) *
+                (report.isWasBuilt() ? 1 : 0);
+    }
+
+    private void checkTask(Task task) {
+        if (task.isGiven()) {
+            buildProjects(task);
+            checkTests(task);
+            generateDocs(task);
+        } else {
+            results.forEach(
+                    result -> {
+                        Report currentReport = result.getTaskReports().get(task.getId());
+                        currentReport.setWasTested(true);
+                        currentReport.setHasDocs(true);
+                        currentReport.setWasBuilt(true);
+                    }
+            );
+        }
+    }
+
+    private void initializeDayReports() {
+        results.forEach(
+                result -> {
+                    Map<String, Boolean> dayReports = new HashMap<>();
+                    lessons.forEach(
+                            lesson -> dayReports.put(lesson.getDate().toString(), false)
+                    );
+                    result.setDayReports(dayReports);
+                }
+        );
+    }
+
+    private void initializeTasksReports() {
+        results.forEach(
+                result -> {
+                    Map<String, Report> reportMap = new HashMap<>();
+                    tasks.forEach(
+                            task -> reportMap.put(task.getId(), new Report())
+                    );
+                    result.setTaskReports(reportMap);
+                }
+        );
+
     }
 }

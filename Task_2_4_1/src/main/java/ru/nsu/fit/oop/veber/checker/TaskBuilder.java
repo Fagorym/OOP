@@ -1,22 +1,20 @@
 package ru.nsu.fit.oop.veber.checker;
 
-import ru.nsu.fit.oop.veber.model.Project;
 import ru.nsu.fit.oop.veber.model.Report;
+import ru.nsu.fit.oop.veber.model.StudentResults;
 import ru.nsu.fit.oop.veber.model.Task;
 
-import java.util.Collection;
-import java.util.Map;
+import java.util.List;
 
 public class TaskBuilder extends TaskExecutor {
 
     public void buildProject(
-            Collection<Project> projects,
-            Task task,
-            Map<String, Map<String, Report>> reports
+            List<StudentResults> results,
+            Task task
     ) {
-        projects.forEach(project -> {
-            Report report = reports.get(task.getId()).get(project.getStudent().getNickname());
-            report.setWasBuilt(makeTask(project, "build", task));
+        results.forEach(result -> {
+            Report report = result.getTaskReports().get(task.getId());
+            report.setWasBuilt(makeTask(result, "build", task));
             report.setTaskId(task.getId());
         });
     }

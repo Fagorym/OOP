@@ -2,7 +2,7 @@ package ru.nsu.fit.oop.veber.checker;
 
 import lombok.extern.slf4j.Slf4j;
 import org.gradle.tooling.*;
-import ru.nsu.fit.oop.veber.model.Project;
+import ru.nsu.fit.oop.veber.model.StudentResults;
 import ru.nsu.fit.oop.veber.model.Task;
 
 import java.io.File;
@@ -10,7 +10,7 @@ import java.io.File;
 @Slf4j
 public abstract class TaskExecutor {
 
-    protected boolean makeTask(Project project, String taskName, Task task) {
+    protected boolean makeTask(StudentResults project, String taskName, Task task) {
         if (project.getPath() == null) {
             log.error("Path to project was not specified. Check configuration file.");
             return false;

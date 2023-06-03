@@ -1,21 +1,19 @@
 package ru.nsu.fit.oop.veber.checker;
 
-import ru.nsu.fit.oop.veber.model.Project;
 import ru.nsu.fit.oop.veber.model.Report;
+import ru.nsu.fit.oop.veber.model.StudentResults;
 import ru.nsu.fit.oop.veber.model.Task;
 
-import java.util.Collection;
-import java.util.Map;
+import java.util.List;
 
 public class TaskDocsGenerator extends TaskExecutor {
     public void generateDocs(
-            Collection<Project> projects,
-            Task task,
-            Map<String, Map<String, Report>> reports
+            List<StudentResults> results,
+            Task task
     ) {
-        projects.forEach(project -> {
-            Report report = reports.get(task.getId()).get(project.getStudent().getNickname());
-            report.setHasDocs(makeTask(project, "javadoc", task));
+        results.forEach(result -> {
+            Report report = result.getTaskReports().get(task.getId());
+            report.setHasDocs(makeTask(result, "javadoc", task));
             report.setTaskId(task.getId());
         });
     }

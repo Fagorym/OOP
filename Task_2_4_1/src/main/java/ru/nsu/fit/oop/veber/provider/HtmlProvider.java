@@ -2,23 +2,16 @@ package ru.nsu.fit.oop.veber.provider;
 
 import lombok.Data;
 import ru.nsu.fit.oop.veber.model.Report;
+import ru.nsu.fit.oop.veber.model.StudentResults;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 @Data
 public class HtmlProvider {
-    public void generateHtml(Map<String, Map<String, Report>> reports) {
+    public void generateHtml(List<StudentResults> results) {
         StringBuilder sb = new StringBuilder();
-        Set<String> students = reports.values().stream()
-                .map(Map::keySet)
-                .findFirst()
-                .orElse(Collections.emptySet());
-        Map<String, Integer> totalScoreForStudent = new HashMap<>();
         sb.append("<html>");
         String styles = "<style>" +
                 "table {border-collapse: collapse; width: 100%;}" +
@@ -29,55 +22,9 @@ public class HtmlProvider {
         sb.append(styles);
         sb.append("<head>");
         sb.append("</head>");
-        sb.append("<table border=\"1\">\n");
-        sb.append("<tr>\n");
-        sb.append("<th rowspan=\"2\">Student</th>\n");
-
-        int numberOfTasks = reports.size();
-        for (var taskEntry : reports.entrySet()) {
-            sb.append("<th colspan=\"4\">").append(taskEntry.getKey()).append("</th>\n");
-        }
-        sb.append("</tr>\n");
-
-        sb.append("<tr>\n");
-        for (int i = 1; i <= numberOfTasks; i++) {
-            sb.append("<th>Build</th>\n");
-            sb.append("<th>Test</th>\n");
-            sb.append("<th>Javadoc</th>\n");
-            sb.append("<th>Score</th>\n");
-        }
-        sb.append("</tr>\n");
-        for (String student : students) {
-            sb.append("<tr>\n");
-            sb.append("<td>").append(student).append("</td>\n");
-
-            for (String taskName : reports.keySet()) {
-                Report report = reports.get(taskName).get(student);
-                sb.append("<td>").append(report.isWasBuilt() ? "+" : "-").append("</td>\n");
-                sb.append("<td>").append(report.isWasTested() ? "+" : "-").append("</td>\n");
-                sb.append("<td>").append(report.isHasDocs() ? "+" : "-").append("</td>\n");
-                sb.append("<td>").append(report.getScore()).append("</td>\n");
-                if (!totalScoreForStudent.containsKey(student)) {
-                    totalScoreForStudent.put(student, report.getScore());
-                } else {
-                    int curScore = totalScoreForStudent.get(student);
-                    totalScoreForStudent.put(student, curScore + report.getScore());
-                }
-            }
-
-            sb.append("</tr>\n");
-        }
-        sb.append("</table>");
-        sb.append("\n\n<table>");
-        sb.append("<tr>");
-        sb.append("<th>Student</th>\n");
-        sb.append("<th>Total</th>\n");
-        for (String student : students) {
-            sb.append("<tr>\n");
-            sb.append("<td>").append(student).append("</td>\n");
-            sb.append("<td>").append(totalScoreForStudent.get(student)).append("</td>\n");
-        }
-
+        generateTablePerTask(sb, results);
+        generateTotalScoreTable(sb, results);
+        generateAttendanceTable(sb, results);
         sb.append("</body>");
         sb.append("</html>");
         try {
@@ -93,5 +40,75 @@ public class HtmlProvider {
         } catch (Exception e) {
             System.out.println("Problem with generating report.");
         }
+    }
+
+    private void generateAttendanceTable(StringBuilder sb, List<StudentResults> results) {
+        sb.append("<table>");
+        sb.append("<tr>\n");
+        sb.append("<th>Student</th>");
+        for (var dayEntry : results.get(0).getDayReports().entrySet()) {
+            sb.append("<th>").append(dayEntry.getKey()).append("</th>\n");
+        }
+        for (StudentResults result : results) {
+            sb.append("<tr>\n");
+            sb.append("<td>").append(result.getStudent().getNickname()).append("</td>\n");
+
+            for (Boolean attendance : result.getDayReports().values()) {
+                sb.append("<td>").append(attendance ? "+" : "-").append("</td>\n");
+            }
+
+            sb.append("</tr>\n");
+        }
+        sb.append("</tr>\n");
+        sb.append("</table>");
+    }
+
+    private void generateTablePerTask(StringBuilder sb, List<StudentResults> results) {
+        sb.append("<table border=\"1\">\n");
+        sb.append("<tr>\n");
+        sb.append("<th rowspan=\"2\">Student</th>\n");
+
+        int numberOfTasks = results.get(0).getTaskReports().size();
+        for (var taskEntry : results.get(0).getTaskReports().entrySet()) {
+            sb.append("<th colspan=\"4\">").append(taskEntry.getKey()).append("</th>\n");
+        }
+        sb.append("</tr>\n");
+
+        sb.append("<tr>\n");
+        for (int i = 1; i <= numberOfTasks; i++) {
+            sb.append("<th>Build</th>\n");
+            sb.append("<th>Test</th>\n");
+            sb.append("<th>Javadoc</th>\n");
+            sb.append("<th>Score</th>\n");
+        }
+        sb.append("</tr>\n");
+        for (StudentResults result : results) {
+            sb.append("<tr>\n");
+            sb.append("<td>").append(result.getStudent().getNickname()).append("</td>\n");
+
+            for (Report report : result.getTaskReports().values()) {
+                sb.append("<td>").append(report.isWasBuilt() ? "+" : "-").append("</td>\n");
+                sb.append("<td>").append(report.isWasTested() ? "+" : "-").append("</td>\n");
+                sb.append("<td>").append(report.isHasDocs() ? "+" : "-").append("</td>\n");
+                sb.append("<td>").append(report.getScore()).append("</td>\n");
+            }
+
+            sb.append("</tr>\n");
+        }
+        sb.append("</table>");
+    }
+
+    private void generateTotalScoreTable(StringBuilder sb, List<StudentResults> results) {
+        sb.append("\n\n<table>");
+        sb.append("<tr>");
+        sb.append("<th>Student</th>\n");
+        sb.append("<th>Total</th>\n");
+        for (StudentResults result : results) {
+            sb.append("<tr>\n");
+            sb.append("<td>").append(result.getStudent().getNickname()).append("</td>\n");
+            sb.append("<td>").append(result.getTotal()).append("</td>\n");
+        }
+        sb.append("</table>");
+
     }
 }
