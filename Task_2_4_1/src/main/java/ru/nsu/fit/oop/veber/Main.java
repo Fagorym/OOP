@@ -5,6 +5,7 @@ import picocli.CommandLine;
 
 public class Main {
     public static void main(String[] args) {
-        new CommandLine(new ReportApi()).execute();
+        String[] newArgs = {"mihailCCfit=15", "fagorym=3", "rafi2002=23"};
+        new CommandLine(new ReportApi()).execute(newArgs);
     }
 }

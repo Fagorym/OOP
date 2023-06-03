@@ -2,27 +2,28 @@ package ru.nsu.fit.oop.veber;
 
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
+import picocli.CommandLine.Parameters;
 import ru.nsu.fit.oop.veber.checker.TaskBuilder;
 import ru.nsu.fit.oop.veber.checker.TaskDocsGenerator;
 import ru.nsu.fit.oop.veber.checker.TaskTestChecker;
 import ru.nsu.fit.oop.veber.model.*;
+import ru.nsu.fit.oop.veber.provider.GitProvider;
 import ru.nsu.fit.oop.veber.provider.HtmlProvider;
-import ru.nsu.fit.oop.veber.provider.RepositoryProvider;
 
 import java.util.*;
 
 @Command(name = "-make")
 @Slf4j
 public class ReportApi implements Runnable {
-
     private final Group group;
-
     private final List<Lesson> lessons;
     private final List<Task> tasks;
     private final TaskBuilder taskBuilder;
     private final TaskDocsGenerator taskDocsGenerator;
     private final TaskTestChecker taskTestChecker;
     private final HtmlProvider htmlProvider;
+    @Parameters
+    private Map<String, Integer> extraScoreStudents;
     private List<StudentResults> results;
 
     public ReportApi() {
@@ -70,7 +71,7 @@ public class ReportApi implements Runnable {
 
     private void cloneRepositories() {
         log.info("Cloning group repositories");
-        this.results = RepositoryProvider.cloneRepository(group.getStudents());
+        this.results = GitProvider.cloneRepository(group.getStudents());
         log.info("Repositories cloned successfully");
     }
 
@@ -89,7 +90,7 @@ public class ReportApi implements Runnable {
         for (StudentResults result : results) {
             Map<String, Boolean> dayReports = result.getDayReports();
             for (Lesson lesson : lessons) {
-                Boolean lessonResult = RepositoryProvider.checkDate(lesson, result.getStudentGit());
+                Boolean lessonResult = GitProvider.checkDate(lesson, result.getStudentGit());
                 dayReports.put(
                         lesson.getDate().toString(),
                         lessonResult
@@ -103,6 +104,10 @@ public class ReportApi implements Runnable {
                 result -> {
                     Collection<Report> reports = result.getTaskReports().values();
                     int total = 0;
+                    if (extraScoreStudents.containsKey(result.getStudent().getNickname())
+                    ) {
+                        total += extraScoreStudents.get(result.getStudent().getNickname());
+                    }
                     for (Report report : reports) {
                         report.setScore(getScore(report));
                         total += report.getScore();
@@ -113,7 +118,8 @@ public class ReportApi implements Runnable {
     }
 
     private int getScore(Report report) {
-        return (report.isHasDocs() ? 1 : 0) * (report.isWasTested() ? 1 : 0) *
+        return (report.isHasDocs() ? 1 : 0) *
+                (report.isWasTested() ? 1 : 0) *
                 (report.isWasBuilt() ? 1 : 0);
     }
 

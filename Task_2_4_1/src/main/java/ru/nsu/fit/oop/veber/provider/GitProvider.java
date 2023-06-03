@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
-public class RepositoryProvider {
+public class GitProvider {
     private final static String DEFAULT_REPOSITORY_PATH_PREFIX = "./Task_2_4_1/build/students/";
 
     public static boolean checkDate(Lesson lesson, Git git) {
@@ -73,7 +73,7 @@ public class RepositoryProvider {
     public static List<StudentResults> cloneRepository(Collection<Student> students) {
         return students
                 .stream()
-                .map(RepositoryProvider::cloneRepository)
+                .map(GitProvider::cloneRepository)
                 .toList();
     }
 
