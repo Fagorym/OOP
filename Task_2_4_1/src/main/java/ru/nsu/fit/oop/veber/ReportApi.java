@@ -8,12 +8,16 @@ import ru.nsu.fit.oop.veber.checker.TaskBuilder;
 import ru.nsu.fit.oop.veber.checker.TaskDocsGenerator;
 import ru.nsu.fit.oop.veber.checker.TaskTestChecker;
 import ru.nsu.fit.oop.veber.model.*;
+import ru.nsu.fit.oop.veber.parser.Parser;
 import ru.nsu.fit.oop.veber.provider.GitProvider;
 import ru.nsu.fit.oop.veber.provider.HtmlProvider;
 import ru.nsu.fit.oop.veber.provider.ReportProvider;
 import ru.nsu.fit.oop.veber.provider.VersionControlProvider;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Command(name = "-make")
 @Slf4j
@@ -30,16 +34,15 @@ public class ReportApi implements Runnable {
     private Map<String, Integer> extraScoreStudents;
     private List<StudentResults> results;
 
+    @SuppressWarnings("unchecked")
     public ReportApi() {
-        log.info("Parsing group instance from config.");
-        this.group = new Group().parse(Group.getConfigPath());
-        log.info("Group {} was parsed", group.getNumber());
+        Parser parser = new Parser();
+        log.info("Parsing group.");
+        this.group = (Group) parser.parse(Group.class);
         log.info("Parsing tasks");
-        this.tasks = new Task().parse(Task.getConfigPath());
-        log.info("Tasks {} was parsed", tasks);
+        this.tasks = (List<Task>) parser.parse(Task.class);
         log.info("Parsing lessons");
-        this.lessons = new Lesson().parse(Lesson.getConfigPath());
-        log.info("Lessons {} was parsed", lessons);
+        this.lessons = (List<Lesson>) parser.parse(Lesson.class);
         checkExecutors = List.of(
                 new TaskBuilder(),
                 new TaskTestChecker(),
@@ -47,7 +50,6 @@ public class ReportApi implements Runnable {
         );
         reportProvider = new HtmlProvider();
         versionControlProvider = new GitProvider();
-        results = new ArrayList<>();
     }
 
     private void makeReport() {
@@ -118,7 +120,14 @@ public class ReportApi implements Runnable {
     private void checkTask(Task task) {
         if (task.isGiven()) {
             checkExecutors.forEach(
-                    executor -> executor.execute(results, task)
+                    executor -> {
+                        log.info(
+                                "Executing {} for task {}",
+                                executor.getName(),
+                                task.getId()
+                        );
+                        executor.execute(results, task);
+                    }
             );
         } else {
             results.forEach(

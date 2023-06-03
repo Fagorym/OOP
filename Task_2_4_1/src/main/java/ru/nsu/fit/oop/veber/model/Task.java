@@ -14,7 +14,7 @@ public class Task extends Parcelable {
     private boolean isGiven;
     private boolean hasTests;
 
-    public static String getConfigPath() {
+    public String getConfigPath() {
         return CONFIG_PATH;
     }
 }

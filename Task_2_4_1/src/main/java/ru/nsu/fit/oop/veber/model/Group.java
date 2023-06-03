@@ -13,7 +13,7 @@ public class Group extends Parcelable {
     private List<Task> tasks;
     private Integer number;
 
-    public static String getConfigPath() {
+    public String getConfigPath() {
         return CONFIG_PATH;
     }
 }

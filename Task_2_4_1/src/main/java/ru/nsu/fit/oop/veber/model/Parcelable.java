@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.Collection;
 
 @Slf4j
-public abstract class Parcelable {
+public abstract class Parcelable implements IParcelable {
     @SuppressWarnings("unchecked")
     public <T> T parse(String path) {
         Binding binding = new Binding();

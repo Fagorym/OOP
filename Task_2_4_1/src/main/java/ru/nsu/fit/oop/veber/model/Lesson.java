@@ -12,7 +12,7 @@ public class Lesson extends Parcelable {
 
     private LocalDate date;
 
-    public static String getConfigPath() {
+    public String getConfigPath() {
         return CONFIG_PATH;
     }
 }
