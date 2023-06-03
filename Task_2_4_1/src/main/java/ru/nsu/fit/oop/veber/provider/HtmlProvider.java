@@ -9,8 +9,8 @@ import java.io.FileWriter;
 import java.util.List;
 
 @Data
-public class HtmlProvider {
-    public void generateHtml(List<StudentResults> results) {
+public class HtmlProvider implements ReportProvider {
+    public void generateReport(List<StudentResults> results) {
         StringBuilder sb = new StringBuilder();
         sb.append("<html>");
         String styles = "<style>" +

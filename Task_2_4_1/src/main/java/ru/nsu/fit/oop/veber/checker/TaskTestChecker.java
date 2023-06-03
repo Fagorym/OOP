@@ -7,7 +7,10 @@ import ru.nsu.fit.oop.veber.model.Task;
 import java.util.List;
 
 public class TaskTestChecker extends TaskExecutor {
-    public void checkTasks(
+
+    private final String name = "Test Checker";
+
+    public void execute(
             List<StudentResults> results,
             Task task) {
         results.forEach(result -> {
@@ -15,5 +18,10 @@ public class TaskTestChecker extends TaskExecutor {
             report.setWasTested(makeTask(result, "test", task));
             report.setTaskId(task.getId());
         });
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

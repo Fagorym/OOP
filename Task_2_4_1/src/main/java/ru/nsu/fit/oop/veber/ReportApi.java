@@ -3,12 +3,15 @@ package ru.nsu.fit.oop.veber;
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
+import ru.nsu.fit.oop.veber.checker.Executor;
 import ru.nsu.fit.oop.veber.checker.TaskBuilder;
 import ru.nsu.fit.oop.veber.checker.TaskDocsGenerator;
 import ru.nsu.fit.oop.veber.checker.TaskTestChecker;
 import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.provider.GitProvider;
 import ru.nsu.fit.oop.veber.provider.HtmlProvider;
+import ru.nsu.fit.oop.veber.provider.ReportProvider;
+import ru.nsu.fit.oop.veber.provider.VersionControlProvider;
 
 import java.util.*;
 
@@ -18,11 +21,12 @@ public class ReportApi implements Runnable {
     private final Group group;
     private final List<Lesson> lessons;
     private final List<Task> tasks;
-    private final TaskBuilder taskBuilder;
-    private final TaskDocsGenerator taskDocsGenerator;
-    private final TaskTestChecker taskTestChecker;
-    private final HtmlProvider htmlProvider;
+    private final ReportProvider reportProvider;
+    private final VersionControlProvider versionControlProvider;
+
+    private final List<Executor> checkExecutors;
     @Parameters
+    @SuppressWarnings({"unused"})
     private Map<String, Integer> extraScoreStudents;
     private List<StudentResults> results;
 
@@ -36,34 +40,19 @@ public class ReportApi implements Runnable {
         log.info("Parsing lessons");
         this.lessons = new Lesson().parse(Lesson.getConfigPath());
         log.info("Lessons {} was parsed", lessons);
-        taskBuilder = new TaskBuilder();
-        taskTestChecker = new TaskTestChecker();
-        taskDocsGenerator = new TaskDocsGenerator();
-        htmlProvider = new HtmlProvider();
+        checkExecutors = List.of(
+                new TaskBuilder(),
+                new TaskTestChecker(),
+                new TaskDocsGenerator()
+        );
+        reportProvider = new HtmlProvider();
+        versionControlProvider = new GitProvider();
         results = new ArrayList<>();
-    }
-
-    private void buildProjects(Task task) {
-        log.info("Start task {} building process", task.getId());
-        taskBuilder.buildProject(results, task);
-        log.info("Building process for task {} was success", task.getId());
-    }
-
-    private void checkTests(Task task) {
-        log.info("Start task {} test checking process", task.getId());
-        taskTestChecker.checkTasks(results, task);
-        log.info("Test task {} checking was success", task.getId());
-    }
-
-    private void generateDocs(Task task) {
-        log.info("Start generating javadocs process for task {}", task.getId());
-        taskDocsGenerator.generateDocs(results, task);
-        log.info("Generating javadocs was success for task {}", task.getId());
     }
 
     private void makeReport() {
         log.info("Start making report process");
-        htmlProvider.generateHtml(results);
+        reportProvider.generateReport(results);
         log.info("Generating report was success");
 
     }
@@ -71,7 +60,7 @@ public class ReportApi implements Runnable {
 
     private void cloneRepositories() {
         log.info("Cloning group repositories");
-        this.results = GitProvider.cloneRepository(group.getStudents());
+        this.results = versionControlProvider.cloneRepository(group.getStudents());
         log.info("Repositories cloned successfully");
     }
 
@@ -90,7 +79,10 @@ public class ReportApi implements Runnable {
         for (StudentResults result : results) {
             Map<String, Boolean> dayReports = result.getDayReports();
             for (Lesson lesson : lessons) {
-                Boolean lessonResult = GitProvider.checkDate(lesson, result.getStudentGit());
+                Boolean lessonResult = versionControlProvider.checkLessonAttendance(
+                        lesson,
+                        result.getStudentGit()
+                );
                 dayReports.put(
                         lesson.getDate().toString(),
                         lessonResult
@@ -125,9 +117,9 @@ public class ReportApi implements Runnable {
 
     private void checkTask(Task task) {
         if (task.isGiven()) {
-            buildProjects(task);
-            checkTests(task);
-            generateDocs(task);
+            checkExecutors.forEach(
+                    executor -> executor.execute(results, task)
+            );
         } else {
             results.forEach(
                     result -> {

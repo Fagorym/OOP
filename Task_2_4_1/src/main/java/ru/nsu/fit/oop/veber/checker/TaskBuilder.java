@@ -8,7 +8,9 @@ import java.util.List;
 
 public class TaskBuilder extends TaskExecutor {
 
-    public void buildProject(
+    private final String name = "Builder Executor";
+
+    public void execute(
             List<StudentResults> results,
             Task task
     ) {
@@ -17,5 +19,10 @@ public class TaskBuilder extends TaskExecutor {
             report.setWasBuilt(makeTask(result, "build", task));
             report.setTaskId(task.getId());
         });
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

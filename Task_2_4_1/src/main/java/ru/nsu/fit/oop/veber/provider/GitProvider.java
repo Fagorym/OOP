@@ -19,10 +19,10 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
-public class GitProvider {
+public class GitProvider implements VersionControlProvider {
     private final static String DEFAULT_REPOSITORY_PATH_PREFIX = "./Task_2_4_1/build/students/";
 
-    public static boolean checkDate(Lesson lesson, Git git) {
+    public boolean checkLessonAttendance(Lesson lesson, Git git) {
         try {
             Iterable<RevCommit> commits = git.log().call();
             for (RevCommit commit : commits) {
@@ -41,7 +41,7 @@ public class GitProvider {
         }
     }
 
-    public static StudentResults cloneRepository(Student student) {
+    public StudentResults cloneRepository(Student student) {
         String studentPath = DEFAULT_REPOSITORY_PATH_PREFIX + student.getNickname();
         try (
                 Git git = Git.cloneRepository()
@@ -70,10 +70,10 @@ public class GitProvider {
         }
     }
 
-    public static List<StudentResults> cloneRepository(Collection<Student> students) {
+    public List<StudentResults> cloneRepository(Collection<Student> students) {
         return students
                 .stream()
-                .map(GitProvider::cloneRepository)
+                .map(this::cloneRepository)
                 .toList();
     }
 

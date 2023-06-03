@@ -8,7 +8,7 @@ import ru.nsu.fit.oop.veber.model.Task;
 import java.io.File;
 
 @Slf4j
-public abstract class TaskExecutor {
+public abstract class TaskExecutor implements Executor {
 
     protected boolean makeTask(StudentResults project, String taskName, Task task) {
         if (project.getPath() == null) {

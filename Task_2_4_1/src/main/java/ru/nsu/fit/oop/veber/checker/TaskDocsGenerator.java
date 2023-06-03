@@ -7,7 +7,10 @@ import ru.nsu.fit.oop.veber.model.Task;
 import java.util.List;
 
 public class TaskDocsGenerator extends TaskExecutor {
-    public void generateDocs(
+
+    private final String name = "Javadoc Generator";
+
+    public void execute(
             List<StudentResults> results,
             Task task
     ) {
@@ -16,5 +19,10 @@ public class TaskDocsGenerator extends TaskExecutor {
             report.setHasDocs(makeTask(result, "javadoc", task));
             report.setTaskId(task.getId());
         });
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }
