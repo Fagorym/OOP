@@ -29,8 +29,11 @@ public class ReportApi implements Runnable {
     private final VersionControlProvider versionControlProvider;
 
     private final List<Executor> checkExecutors;
-    @Parameters
-    @SuppressWarnings({"unused"})
+    @Parameters(
+            description = "Extra student score in syntax: STUDENT_NAME=SCORE_VALUE",
+            defaultValue = ""
+    )
+    @SuppressWarnings({"all"})
     private Map<String, Integer> extraScoreStudents;
     private List<StudentResults> results;
 
@@ -97,10 +100,11 @@ public class ReportApi implements Runnable {
         results.forEach(
                 result -> {
                     Collection<Report> reports = result.getTaskReports().values();
+                    String studentName = result.getStudent().getNickname();
                     int total = 0;
-                    if (extraScoreStudents.containsKey(result.getStudent().getNickname())
+                    if (extraScoreStudents.containsKey(studentName)
                     ) {
-                        total += extraScoreStudents.get(result.getStudent().getNickname());
+                        total += extraScoreStudents.get(studentName);
                     }
                     for (Report report : reports) {
                         report.setScore(getScore(report));

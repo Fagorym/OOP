@@ -39,7 +39,7 @@ public abstract class TaskExecutor implements Executor {
             log.info("Executing task {} was success for {}", taskName, project.getStudent().getFullName());
             return true;
         } catch (BuildException e) {
-            log.warn("Build was failed for {}", project.getStudent());
+            log.warn("Build was failed for {}", project.getStudent().getNickname());
             return false;
         }
     }
