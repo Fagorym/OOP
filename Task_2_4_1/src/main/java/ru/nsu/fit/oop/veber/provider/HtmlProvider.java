@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.veber.provider;
 
+import j2html.TagCreator;
 import lombok.Data;
 import ru.nsu.fit.oop.veber.model.Report;
 import ru.nsu.fit.oop.veber.model.StudentResults;
@@ -8,6 +9,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
 import java.util.Set;
+
+import static j2html.TagCreator.*;
 
 @Data
 public class HtmlProvider implements ReportProvider {
@@ -65,31 +68,41 @@ public class HtmlProvider implements ReportProvider {
         }
         sb.append("</tr>\n");
         sb.append("</table>");
+
+
     }
 
     private void generateAttendanceTable(StringBuilder sb, List<StudentResults> results) {
-        sb.append("<table>");
-        sb.append("<tr>\n");
-        sb.append("<th>Student</th>");
-        for (var dayEntry : results.get(0).getDayReports().entrySet()) {
-            sb.append("<th>").append(dayEntry.getKey()).append("</th>\n");
-        }
+        String table = table(
+                tbody(
+                        tr(
+                                th("Student"),
+                                each(results.get(0).getDayReports().keySet(), TagCreator::th)),
+                        each(results, result -> tr(
+                                td(result.getStudent().getNickname()),
+                                each(result.getDayReports().values(), dayValue -> td(dayValue ? "+" : "-"))
+                        ))
+                )
+        ).renderFormatted();
 
-        for (StudentResults result : results) {
-            sb.append("<tr rowspan=\"4\">\n");
-            sb.append("<td>").append(result.getStudent().getNickname()).append("</td>\n");
-
-            for (Boolean attendance : result.getDayReports().values()) {
-                sb.append("<td>").append(attendance ? "+" : "-").append("</td>\n");
-            }
-
-            sb.append("</tr>\n");
-        }
-        sb.append("</tr>\n");
-        sb.append("</table>");
+        sb.append(table);
     }
 
     private void generateTablePerTask(StringBuilder sb, List<StudentResults> results) {
+
+        /*String table = table(
+                tr(
+                        th("Student").attr("colspan", 2),
+                        each(results.get(0).getTaskReports().keySet(), key -> th(key).attr("rowspan", 4))
+                ),
+                tr(
+                        each(results.get(0).getTaskReports().values(), value -> th("Build").with(th("Test")).with(th("Javadoc")).with(th("Score")))
+                )
+        ).renderFormatted();
+
+        sb.append(table);
+
+         */
         sb.append("<table border=\"1\">\n");
         sb.append("<tr>\n");
         sb.append("<th rowspan=\"2\">Student</th>\n");
@@ -122,19 +135,22 @@ public class HtmlProvider implements ReportProvider {
             sb.append("</tr>\n");
         }
         sb.append("</table>");
+
     }
 
     private void generateTotalScoreTable(StringBuilder sb, List<StudentResults> results) {
-        sb.append("\n\n<table>");
-        sb.append("<tr>");
-        sb.append("<th>Student</th>\n");
-        sb.append("<th>Total</th>\n");
-        for (StudentResults result : results) {
-            sb.append("<tr>\n");
-            sb.append("<td>").append(result.getStudent().getNickname()).append("</td>\n");
-            sb.append("<td>").append(result.getTotal()).append("</td>\n");
-        }
-        sb.append("</table>");
-
+        String table = table(
+                tbody(
+                        tr(
+                                th("Student"),
+                                th("Total")
+                        ),
+                        each(results, result -> tr(
+                                td(result.getStudent().getNickname()),
+                                td(String.valueOf(result.getTotal()))
+                        ))
+                )
+        ).renderFormatted();
+        sb.append(table);
     }
 }
