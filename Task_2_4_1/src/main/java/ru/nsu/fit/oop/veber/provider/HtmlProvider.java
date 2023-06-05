@@ -7,6 +7,7 @@ import ru.nsu.fit.oop.veber.model.StudentResults;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class HtmlProvider implements ReportProvider {
@@ -25,6 +26,7 @@ public class HtmlProvider implements ReportProvider {
         generateTablePerTask(sb, results);
         generateTotalScoreTable(sb, results);
         generateAttendanceTable(sb, results);
+        generateTestResultsTable(sb, results);
         sb.append("</body>");
         sb.append("</html>");
         try {
@@ -42,6 +44,29 @@ public class HtmlProvider implements ReportProvider {
         }
     }
 
+    private void generateTestResultsTable(StringBuilder sb, List<StudentResults> results) {
+        sb.append("<table>");
+        sb.append("<tr>\n");
+        Set<String> taskSet = results.get(0).getTaskReports().keySet();
+        for (String taskName : taskSet) {
+            sb.append("<th>Student</th>");
+            sb.append("<th>").append(taskName).append("</th>\n");
+            for (StudentResults result : results) {
+                if (result.getTestReports().containsKey(taskName)) {
+                    sb.append("<tr rowspan=\"").append(result.getTestReports().get(taskName).size()).append("\">\n");
+                    sb.append("<td>").append(result.getStudent().getNickname()).append("</td>\n");
+                    for (var entry : result.getTestReports().get(taskName).entrySet()) {
+                        sb.append("<td>").append(entry.getKey()).append("=").append(entry.getValue()).append("</td>");
+                    }
+
+                }
+                sb.append("</tr>\n");
+            }
+        }
+        sb.append("</tr>\n");
+        sb.append("</table>");
+    }
+
     private void generateAttendanceTable(StringBuilder sb, List<StudentResults> results) {
         sb.append("<table>");
         sb.append("<tr>\n");
@@ -49,8 +74,9 @@ public class HtmlProvider implements ReportProvider {
         for (var dayEntry : results.get(0).getDayReports().entrySet()) {
             sb.append("<th>").append(dayEntry.getKey()).append("</th>\n");
         }
+
         for (StudentResults result : results) {
-            sb.append("<tr>\n");
+            sb.append("<tr rowspan=\"4\">\n");
             sb.append("<td>").append(result.getStudent().getNickname()).append("</td>\n");
 
             for (Boolean attendance : result.getDayReports().values()) {

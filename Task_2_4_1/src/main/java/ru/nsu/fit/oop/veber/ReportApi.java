@@ -15,7 +15,6 @@ import ru.nsu.fit.oop.veber.provider.ReportProvider;
 import ru.nsu.fit.oop.veber.provider.VersionControlProvider;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -147,25 +146,17 @@ public class ReportApi implements Runnable {
 
     private void initializeDayReports() {
         results.forEach(
-                result -> {
-                    Map<String, Boolean> dayReports = new HashMap<>();
-                    lessons.forEach(
-                            lesson -> dayReports.put(lesson.getDate().toString(), false)
-                    );
-                    result.setDayReports(dayReports);
-                }
+                result -> lessons.forEach(
+                        lesson -> result.getDayReports().put(lesson.getDate().toString(), false)
+                )
         );
     }
 
     private void initializeTasksReports() {
         results.forEach(
-                result -> {
-                    Map<String, Report> reportMap = new HashMap<>();
-                    tasks.forEach(
-                            task -> reportMap.put(task.getId(), new Report())
-                    );
-                    result.setTaskReports(reportMap);
-                }
+                result -> tasks.forEach(
+                        task -> result.getTaskReports().put(task.getId(), new Report())
+                )
         );
 
     }
