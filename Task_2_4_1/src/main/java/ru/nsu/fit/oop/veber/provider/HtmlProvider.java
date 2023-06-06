@@ -17,10 +17,17 @@ import static j2html.TagCreator.*;
 public class HtmlProvider implements ReportProvider {
     public void generateReport(List<StudentResults> results) {
         ContainerTag html = html(
-                style("table {border-collapse: collapse; width: 100%;}" +
-                        "th, td {border: 1px solid #dddddd; text-align: center; padding: 8px;}" +
-                        "th {background-color: #f2f2f2;}" +
-                        "tr:nth-child(even) {background-color: #f2f2f2;}"
+                style("table {border-collapse: collapse; width: 100%; border-radius: 10px; overflow: hidden; margin: 20px auto; max-width: 1200px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);}" +
+                        "th, td {border: none; border-bottom: 1px solid #dddddd; text-align: center; padding: 8px; min-height: 40px;}" +
+                        "td:last-child, th:last-child {border-right: none;}" +
+                        "th {background-color: #3F94DB; color: #ffffff; font-weight: bold; font-size: 16px;}" +
+                        "tr:nth-child(even) {background-color: #f2f2f2;}" +
+                        "tr:nth-child(odd) {background-color: #ffffff;}" +
+                        "tr:not(:first-child):hover {background-color: #f5f5f5; cursor: pointer;}" +
+                        "tr {vertical-align: middle;} tr:last-child {border-bottom: none;}" +
+                        "td {color: #333333;}" +
+                        ".test-success {color: green;}" +
+                        ".test-failure {color: red;}"
                 ),
                 head(),
                 body(
@@ -58,23 +65,25 @@ public class HtmlProvider implements ReportProvider {
 
         return table(
                 tr(
-                        each(allTests, test -> {
-                            if (results.stream().anyMatch(
-                                    result -> result.getTestReports().containsKey(test)
-                            )) {
-                                return th("Student").with(th(test).with(each(results, result -> {
+                        each(allTests, test ->
+                                th("Student").with(th(test).with(each(results, result -> {
                                     if (result.getTestReports().containsKey(test)) {
                                         return tr(
                                                 td(result.getStudent().getNickname())
                                                         .with(each(result.getTestReports().get(test),
-                                                                task -> td(task.getKey() + "=" + task.getValue()))));
+                                                                task -> {
+                                                                    String cssClass =
+                                                                            task.getValue().equalsIgnoreCase("SUCCESS") ? "test-success" : "test-failure";
+                                                                    return td(task.getKey())
+                                                                            .withClass(cssClass);
+                                                                })
+                                                        ));
                                     } else {
-                                        return emptyTag("tag");
+                                        return tr(td(result.getStudent().getNickname()))
+                                                .with(td("NO TEST CASES").withClass("test-failure"));
                                     }
-                                })));
-                            }
-                            return th();
-                        })
+                                })))
+                        )
                 )
         );
     }
