@@ -31,10 +31,20 @@ public class GitProvider implements VersionControlProvider {
             for (Ref branch : branches) {
                 accumulator |= checkBranchForCommitDate(branch, git, lesson);
             }
+            checkoutToDefault(git);
             return accumulator;
         } catch (GitAPIException ex) {
             log.error("Cannot check student attendance");
+            checkoutToDefault(git);
             throw new RuntimeException(ex.getMessage());
+        }
+    }
+
+    private void checkoutToDefault(Git git) {
+        try {
+            git.checkout().setName("main").call();
+        } catch (GitAPIException e) {
+            throw new RuntimeException(e);
         }
     }
 

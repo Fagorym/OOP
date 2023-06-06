@@ -14,7 +14,7 @@ public class StudentResults {
     private Git studentGit;
     private Map<String, Report> taskReports = new HashMap<>();
     private Map<String, Boolean> dayReports = new HashMap<>();
-    private Map<String, Map<String, String>> testReports = new HashMap<>();
+    private Map<String, String> testCoverage = new HashMap<>();
     private Integer total;
 
     public StudentResults(String path, Student student, Git git) {

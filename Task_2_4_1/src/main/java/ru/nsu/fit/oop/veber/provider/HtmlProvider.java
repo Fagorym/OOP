@@ -7,7 +7,6 @@ import ru.nsu.fit.oop.veber.model.StudentResults;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +33,7 @@ public class HtmlProvider implements ReportProvider {
                         generateTablePerTask(results),
                         generateTotalScoreTable(results),
                         generateAttendanceTable(results),
-                        generateTestResultsTable(results)
+                        generateTestCoverageTable(results)
                 )
 
         );
@@ -55,38 +54,28 @@ public class HtmlProvider implements ReportProvider {
         }
     }
 
-    private ContainerTag generateTestResultsTable(List<StudentResults> results) {
-        Set<String> allTests = results.stream()
-                .map(entry -> entry.getTestReports().keySet())
-                .reduce(new HashSet<>(), (res, elem) -> {
-                    res.addAll(elem);
-                    return res;
-                });
+    private ContainerTag generateTestCoverageTable(List<StudentResults> results) {
+        Set<String> tasks = results.get(0).getTestCoverage().keySet();
 
-        return table(
-                tr(
-                        each(allTests, test ->
-                                th("Student").with(th(test).with(each(results, result -> {
-                                    if (result.getTestReports().containsKey(test)) {
-                                        return tr(
-                                                td(result.getStudent().getNickname())
-                                                        .with(each(result.getTestReports().get(test),
-                                                                task -> {
-                                                                    String cssClass =
-                                                                            task.getValue().equalsIgnoreCase("SUCCESS") ? "test-success" : "test-failure";
-                                                                    return td(task.getKey())
-                                                                            .withClass(cssClass);
-                                                                })
-                                                        ));
-                                    } else {
-                                        return tr(td(result.getStudent().getNickname()))
-                                                .with(td("NO TEST CASES").withClass("test-failure"));
-                                    }
-                                })))
-                        )
+        return html(
+                table(
+                        tbody(
+                                tr(
+                                        th("Student"),
+                                        each(tasks, TagCreator::th)
+                                ),
+                                each(results, result ->
+                                        tr(
+
+                                                td(result.getStudent().getNickname()),
+                                                each(tasks, task -> td(result.getTestCoverage().get(task)))
+
+                                        )
+                                ))
                 )
         );
     }
+
 
     private ContainerTag generateAttendanceTable(List<StudentResults> results) {
         return table(
