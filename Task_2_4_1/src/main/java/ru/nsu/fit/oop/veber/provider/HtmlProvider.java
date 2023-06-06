@@ -1,12 +1,13 @@
 package ru.nsu.fit.oop.veber.provider;
 
 import j2html.TagCreator;
+import j2html.tags.ContainerTag;
 import lombok.Data;
-import ru.nsu.fit.oop.veber.model.Report;
 import ru.nsu.fit.oop.veber.model.StudentResults;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,28 +16,28 @@ import static j2html.TagCreator.*;
 @Data
 public class HtmlProvider implements ReportProvider {
     public void generateReport(List<StudentResults> results) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<html>");
-        String styles = "<style>" +
-                "table {border-collapse: collapse; width: 100%;}" +
-                "th, td {border: 1px solid #dddddd; text-align: center; padding: 8px;}" +
-                "th {background-color: #f2f2f2;}" +
-                "tr:nth-child(even) {background-color: #f2f2f2;}" +
-                "</style>";
-        sb.append(styles);
-        sb.append("<head>");
-        sb.append("</head>");
-        generateTablePerTask(sb, results);
-        generateTotalScoreTable(sb, results);
-        generateAttendanceTable(sb, results);
-        generateTestResultsTable(sb, results);
-        sb.append("</body>");
-        sb.append("</html>");
+        ContainerTag html = html(
+                style("table {border-collapse: collapse; width: 100%;}" +
+                        "th, td {border: 1px solid #dddddd; text-align: center; padding: 8px;}" +
+                        "th {background-color: #f2f2f2;}" +
+                        "tr:nth-child(even) {background-color: #f2f2f2;}"
+                ),
+                head(),
+                body(
+                        generateTablePerTask(results),
+                        generateTotalScoreTable(results),
+                        generateAttendanceTable(results),
+                        generateTestResultsTable(results)
+                )
+
+        );
+
+
         try {
             File file = new File("./Task_2_4_1/build/students/report.html");
             if (file.createNewFile() || file.exists()) {
                 FileWriter fileWriter = new FileWriter(file.getPath());
-                fileWriter.write(sb.toString());
+                fileWriter.write(html.renderFormatted());
                 fileWriter.flush();
                 fileWriter.close();
             } else {
@@ -47,33 +48,39 @@ public class HtmlProvider implements ReportProvider {
         }
     }
 
-    private void generateTestResultsTable(StringBuilder sb, List<StudentResults> results) {
-        sb.append("<table>");
-        sb.append("<tr>\n");
-        Set<String> taskSet = results.get(0).getTaskReports().keySet();
-        for (String taskName : taskSet) {
-            sb.append("<th>Student</th>");
-            sb.append("<th>").append(taskName).append("</th>\n");
-            for (StudentResults result : results) {
-                if (result.getTestReports().containsKey(taskName)) {
-                    sb.append("<tr rowspan=\"").append(result.getTestReports().get(taskName).size()).append("\">\n");
-                    sb.append("<td>").append(result.getStudent().getNickname()).append("</td>\n");
-                    for (var entry : result.getTestReports().get(taskName).entrySet()) {
-                        sb.append("<td>").append(entry.getKey()).append("=").append(entry.getValue()).append("</td>");
-                    }
+    private ContainerTag generateTestResultsTable(List<StudentResults> results) {
+        Set<String> allTests = results.stream()
+                .map(entry -> entry.getTestReports().keySet())
+                .reduce(new HashSet<>(), (res, elem) -> {
+                    res.addAll(elem);
+                    return res;
+                });
 
-                }
-                sb.append("</tr>\n");
-            }
-        }
-        sb.append("</tr>\n");
-        sb.append("</table>");
-
-
+        return table(
+                tr(
+                        each(allTests, test -> {
+                            if (results.stream().anyMatch(
+                                    result -> result.getTestReports().containsKey(test)
+                            )) {
+                                return th("Student").with(th(test).with(each(results, result -> {
+                                    if (result.getTestReports().containsKey(test)) {
+                                        return tr(
+                                                td(result.getStudent().getNickname())
+                                                        .with(each(result.getTestReports().get(test),
+                                                                task -> td(task.getKey() + "=" + task.getValue()))));
+                                    } else {
+                                        return emptyTag("tag");
+                                    }
+                                })));
+                            }
+                            return th();
+                        })
+                )
+        );
     }
 
-    private void generateAttendanceTable(StringBuilder sb, List<StudentResults> results) {
-        String table = table(
+    private ContainerTag generateAttendanceTable(List<StudentResults> results) {
+        return table(
                 tbody(
                         tr(
                                 th("Student"),
@@ -83,49 +90,37 @@ public class HtmlProvider implements ReportProvider {
                                 each(result.getDayReports().values(), dayValue -> td(dayValue ? "+" : "-"))
                         ))
                 )
-        ).renderFormatted();
-
-        sb.append(table);
+        );
     }
 
-    private void generateTablePerTask(StringBuilder sb, List<StudentResults> results) {
-        sb.append("<table border=\"1\">\n");
-        sb.append("<tr>\n");
-        sb.append("<th rowspan=\"2\">Student</th>\n");
+    private ContainerTag generateTablePerTask(List<StudentResults> results) {
+        return table(
+                tr(
+                        th("Student").attr("rowspan", 2),
+                        each(results.get(0).getTaskReports().keySet(), task ->
+                                th(task).attr("colspan", 4)
+                        )
 
-        int numberOfTasks = results.get(0).getTaskReports().size();
-        for (var taskEntry : results.get(0).getTaskReports().entrySet()) {
-            sb.append("<th colspan=\"4\">").append(taskEntry.getKey()).append("</th>\n");
-        }
-        sb.append("</tr>\n");
-
-        sb.append("<tr>\n");
-        for (int i = 1; i <= numberOfTasks; i++) {
-            sb.append("<th>Build</th>\n");
-            sb.append("<th>Test</th>\n");
-            sb.append("<th>Javadoc</th>\n");
-            sb.append("<th>Score</th>\n");
-        }
-        sb.append("</tr>\n");
-        for (StudentResults result : results) {
-            sb.append("<tr>\n");
-            sb.append("<td>").append(result.getStudent().getNickname()).append("</td>\n");
-
-            for (Report report : result.getTaskReports().values()) {
-                sb.append("<td>").append(report.isWasBuilt() ? "+" : "-").append("</td>\n");
-                sb.append("<td>").append(report.isWasTested() ? "+" : "-").append("</td>\n");
-                sb.append("<td>").append(report.isHasDocs() ? "+" : "-").append("</td>\n");
-                sb.append("<td>").append(report.getScore()).append("</td>\n");
-            }
-
-            sb.append("</tr>\n");
-        }
-        sb.append("</table>");
-
+                ),
+                tr(
+                        each(results.get(0).getTaskReports().keySet(), task ->
+                                join(th("Build"), th("Test"), th("Javadoc"), th("Score")))
+                ),
+                each(results, result -> tr(td(result.getStudent().getNickname())).with(
+                        each(result.getTaskReports().values(), value ->
+                                join(
+                                        td(value.isWasBuilt() ? "+" : "-"),
+                                        td(value.isWasTested() ? "+" : "-"),
+                                        td(value.isHasDocs() ? "+" : "-"),
+                                        td(String.valueOf(value.getScore()))
+                                )
+                        )
+                ))
+        );
     }
 
-    private void generateTotalScoreTable(StringBuilder sb, List<StudentResults> results) {
-        String table = table(
+    private ContainerTag generateTotalScoreTable(List<StudentResults> results) {
+        return table(
                 tbody(
                         tr(
                                 th("Student"),
@@ -136,7 +131,6 @@ public class HtmlProvider implements ReportProvider {
                                 td(String.valueOf(result.getTotal()))
                         ))
                 )
-        ).renderFormatted();
-        sb.append(table);
+        );
     }
 }
