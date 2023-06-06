@@ -14,6 +14,7 @@ import ru.nsu.fit.oop.veber.provider.HtmlProvider;
 import ru.nsu.fit.oop.veber.provider.ReportProvider;
 import ru.nsu.fit.oop.veber.provider.VersionControlProvider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +23,8 @@ import java.util.Map;
 @Slf4j
 public class ReportApi implements Runnable {
     private final Group group;
-    private final List<Lesson> lessons;
     private final List<Task> tasks;
+    private final List<Lesson> lessons;
     private final ReportProvider reportProvider;
     private final VersionControlProvider versionControlProvider;
 
@@ -44,7 +45,11 @@ public class ReportApi implements Runnable {
         log.info("Parsing tasks");
         this.tasks = (List<Task>) parser.parse(Task.class);
         log.info("Parsing lessons");
-        this.lessons = (List<Lesson>) parser.parse(Lesson.class);
+        List<LessonDto> lessonDtoList = (List<LessonDto>) parser.parse(LessonDto.class);
+        lessons = new ArrayList<>();
+        for (LessonDto lessonDto : lessonDtoList) {
+            lessons.add(new Lesson(lessonDto.getDate()));
+        }
         checkExecutors = List.of(
                 new TaskBuilder(),
                 new TaskTestChecker(),

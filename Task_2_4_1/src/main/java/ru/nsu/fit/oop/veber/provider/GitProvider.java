@@ -2,9 +2,11 @@ package ru.nsu.fit.oop.veber.provider;
 
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.ListBranchCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.JGitInternalException;
 import org.eclipse.jgit.lib.PersonIdent;
+import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revwalk.RevCommit;
 import ru.nsu.fit.oop.veber.model.Lesson;
 import ru.nsu.fit.oop.veber.model.Student;
@@ -24,6 +26,21 @@ public class GitProvider implements VersionControlProvider {
 
     public boolean checkLessonAttendance(Lesson lesson, Git git) {
         try {
+            Collection<Ref> branches = git.branchList().setListMode(ListBranchCommand.ListMode.ALL).call();
+            boolean accumulator = false;
+            for (Ref branch : branches) {
+                accumulator |= checkBranchForCommitDate(branch, git, lesson);
+            }
+            return accumulator;
+        } catch (GitAPIException ex) {
+            log.error("Cannot check student attendance");
+            throw new RuntimeException(ex.getMessage());
+        }
+    }
+
+    private boolean checkBranchForCommitDate(Ref branch, Git git, Lesson lesson) {
+        try {
+            git.checkout().setName(branch.getName()).call();
             Iterable<RevCommit> commits = git.log().call();
             for (RevCommit commit : commits) {
                 PersonIdent authorIdent = commit.getAuthorIdent();
@@ -35,9 +52,8 @@ public class GitProvider implements VersionControlProvider {
 
             }
             return false;
-        } catch (GitAPIException ex) {
-            log.error("Cannot check student attendance");
-            throw new RuntimeException("Cannot check student attendance");
+        } catch (Exception e) {
+            return false;
         }
     }
 
@@ -45,6 +61,7 @@ public class GitProvider implements VersionControlProvider {
         String studentPath = DEFAULT_REPOSITORY_PATH_PREFIX + student.getNickname();
         try (
                 Git git = Git.cloneRepository()
+                        .setCloneAllBranches(true)
                         .setURI(student.getRepositoryUrl())
                         .setDirectory(new File(studentPath))
                         .call()
