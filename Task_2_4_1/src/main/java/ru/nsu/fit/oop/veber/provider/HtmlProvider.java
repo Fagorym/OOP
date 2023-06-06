@@ -89,20 +89,6 @@ public class HtmlProvider implements ReportProvider {
     }
 
     private void generateTablePerTask(StringBuilder sb, List<StudentResults> results) {
-
-        /*String table = table(
-                tr(
-                        th("Student").attr("colspan", 2),
-                        each(results.get(0).getTaskReports().keySet(), key -> th(key).attr("rowspan", 4))
-                ),
-                tr(
-                        each(results.get(0).getTaskReports().values(), value -> th("Build").with(th("Test")).with(th("Javadoc")).with(th("Score")))
-                )
-        ).renderFormatted();
-
-        sb.append(table);
-
-         */
         sb.append("<table border=\"1\">\n");
         sb.append("<tr>\n");
         sb.append("<th rowspan=\"2\">Student</th>\n");
