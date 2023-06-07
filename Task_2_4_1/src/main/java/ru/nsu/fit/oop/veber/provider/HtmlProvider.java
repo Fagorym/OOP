@@ -7,8 +7,7 @@ import ru.nsu.fit.oop.veber.model.StudentResults;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static j2html.TagCreator.*;
 
@@ -55,7 +54,13 @@ public class HtmlProvider implements ReportProvider {
     }
 
     private ContainerTag generateTestCoverageTable(List<StudentResults> results) {
-        Set<String> tasks = results.get(0).getTestCoverage().keySet();
+        Set<String> tasks = results.stream()
+                .map(StudentResults::getTestCoverage)
+                .map(Map::keySet)
+                .reduce(new HashSet<>(), (result, elem) -> {
+                    result.addAll(elem);
+                    return result;
+                });
 
         return html(
                 table(
@@ -68,11 +73,21 @@ public class HtmlProvider implements ReportProvider {
                                         tr(
 
                                                 td(result.getStudent().getNickname()),
-                                                each(tasks, task -> td(result.getTestCoverage().get(task)))
+                                                each(tasks, task -> {
+                                                    String coverage = result.getTestCoverage().get(task);
 
+                                                    if (Objects.isNull(coverage) || "null".equals(coverage)) {
+                                                        return td("Coverage not found").withClass("test-failure");
+                                                    } else {
+                                                        return td(result.getTestCoverage().get(task)).withClass("test-success");
+                                                    }
+                                                })
                                         )
-                                ))
+
+                                )
+                        )
                 )
+
         );
     }
 

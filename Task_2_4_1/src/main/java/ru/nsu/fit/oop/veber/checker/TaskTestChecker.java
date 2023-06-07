@@ -52,6 +52,7 @@ public class TaskTestChecker extends TaskExecutor {
                             for (int j = 0; j < map.getLength(); j++) {
                                 if ("class".equals(map.item(j).getNodeName()) && "ctr2".equals(map.item(j).getNodeValue())) {
                                     result.getTestCoverage().put(task.getId(), node.getTextContent());
+                                    return;
                                 }
                             }
                         }
