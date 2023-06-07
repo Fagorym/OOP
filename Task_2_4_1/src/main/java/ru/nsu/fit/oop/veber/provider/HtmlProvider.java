@@ -80,6 +80,7 @@ public class HtmlProvider implements ReportProvider {
                                                         return td("Coverage not found").withClass("test-failure");
                                                     } else {
                                                         return td(result.getTestCoverage().get(task)).withClass("test-success");
+
                                                     }
                                                 })
                                         )
