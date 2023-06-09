@@ -121,10 +121,10 @@ public class ReportApi implements Runnable {
     private double getScore(Report report) {
         double softScore = report.isWasSoftDeadline() ? 0.5 : 0;
         double hardScore = report.isWasSoftDeadline() ? 0.5 : 0;
-        int taskReady = (report.isHasDocs() ? 1 : 0) *
-                (report.isWasTested() ? 1 : 0) *
-                (report.isWasBuilt() ? 1 : 0);
-        return (softScore + hardScore) * taskReady;
+        double buildFine = report.isWasBuilt() ? 0.3 : 0;
+        double testFine = report.isWasTested() ? 0.1 : 0;
+        double docsFine = report.isHasDocs() ? 0.1 : 0;
+        return Math.max(softScore + hardScore - buildFine - testFine - docsFine, 0);
     }
 
     private void checkTask(Task task) {
