@@ -78,7 +78,7 @@ public class ReportApi implements Runnable {
         initializeTasksReports();
         initializeDayReports();
         tasks.forEach(this::checkTask);
-        //checkAttendance();
+        checkAttendance();
         countTotal();
         makeReport();
     }

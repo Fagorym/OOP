@@ -25,8 +25,8 @@ import ru.nsu.fit.oop.veber.model.Task
                 id: "Task_1_3_1",
                 name: "Tree task",
                 score: 1,
-                isGiven: false,
-                hasTests: false,
+                isGiven: true,
+                hasTests: true,
                 softDeadline: "2022-12-01",
                 hardDeadline: "2022-12-30"
         )

@@ -20,7 +20,6 @@ public class DeadlineChecker implements Executor {
                     task.getId().toLowerCase().replace("_", "-"),
                     result
             );
-            List<String> namesVariant = List.of(task.getId(), task.getId().toLowerCase(), task.getId().toLowerCase().replace("_", "-"));
             var report = result.getTaskReports().get(task.getId());
             report.setWasSoftDeadline(dates.get("first").isBefore(LocalDate.parse(task.getSoftDeadline())));
             report.setWasHardDeadline(dates.get("last").isBefore(LocalDate.parse(task.getHardDeadline())));
