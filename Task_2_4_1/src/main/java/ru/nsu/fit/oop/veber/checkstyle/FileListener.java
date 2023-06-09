@@ -14,7 +14,7 @@ public class FileListener implements AuditListener {
 
     public FileListener(String nickname, String taskName) {
         try {
-            File file = new File("result_" + nickname + "_" + taskName);
+            File file = new File("result_" + nickname + "_" + taskName + ".txt");
             if (!file.createNewFile()) {
                 file.delete();
                 file.createNewFile();
@@ -38,6 +38,11 @@ public class FileListener implements AuditListener {
 
     @Override
     public void fileStarted(AuditEvent auditEvent) {
+        try {
+            writer.write("File: " + auditEvent.getFileName() + '\n');
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         log.debug("File started: " + auditEvent.getFileName());
     }
 
@@ -48,7 +53,7 @@ public class FileListener implements AuditListener {
 
     @Override
     public void addError(AuditEvent auditEvent) {
-        log.warn("line " + auditEvent.getLine() + ": " + auditEvent.getMessage());
+        log.debug("line " + auditEvent.getLine() + ": " + auditEvent.getMessage());
         try {
             writer.write("line " + auditEvent.getLine() + ": " + auditEvent.getMessage() + '\n');
         } catch (IOException e) {
@@ -58,7 +63,7 @@ public class FileListener implements AuditListener {
 
     @Override
     public void addException(AuditEvent auditEvent, Throwable throwable) {
-        log.warn("Exception: " + throwable.getMessage());
+        log.debug("Exception: " + throwable.getMessage());
         try {
             writer.write("line " + auditEvent.getLine() + ": " + auditEvent.getMessage() + '\n');
         } catch (IOException e) {

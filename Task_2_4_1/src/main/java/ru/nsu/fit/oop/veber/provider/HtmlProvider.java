@@ -5,8 +5,7 @@ import j2html.tags.ContainerTag;
 import lombok.Data;
 import ru.nsu.fit.oop.veber.model.StudentResults;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.*;
 
 import static j2html.TagCreator.*;
@@ -29,6 +28,7 @@ public class HtmlProvider implements ReportProvider {
                 ),
                 head(),
                 body(
+                        generateCodeStyleTable(results),
                         generateTablePerTask(results),
                         generateTotalScoreTable(results),
                         generateAttendanceTable(results),
@@ -145,6 +145,57 @@ public class HtmlProvider implements ReportProvider {
                                 td(String.valueOf(result.getTotal()))
                         ))
                 )
+        );
+    }
+
+    private ContainerTag generateCodeStyleTable(List<StudentResults> results) {
+        Set<String> tasks = results.stream()
+                .map(StudentResults::getCheckStyleReport)
+                .map(Map::keySet)
+                .reduce(new HashSet<>(), (result, elem) -> {
+                    result.addAll(elem);
+                    return result;
+                });
+
+        return html(
+                table(
+                        tbody(
+                                tr(
+                                        th("Student"),
+                                        each(tasks, TagCreator::th)
+                                ),
+                                each(results, result ->
+                                        tr(
+
+                                                td(result.getStudent().getNickname()),
+                                                each(tasks, task -> {
+                                                    int warningCount = 0;
+                                                    String fileCheckStyleName = result.getCheckStyleReport().get(task);
+                                                    if (fileCheckStyleName == null) {
+                                                        return td("No information about checkstyle");
+                                                    }
+                                                    try {
+                                                        BufferedReader reader = new BufferedReader(
+                                                                new InputStreamReader(
+                                                                        new FileInputStream(fileCheckStyleName)
+                                                                )
+                                                        );
+                                                        while (reader.ready()) {
+                                                            warningCount++;
+                                                            reader.readLine();
+                                                        }
+                                                    } catch (IOException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                    return td(a(String.valueOf(warningCount)).withHref("../../../" + fileCheckStyleName));
+
+                                                })
+                                        )
+
+                                )
+                        )
+                )
+
         );
     }
 }

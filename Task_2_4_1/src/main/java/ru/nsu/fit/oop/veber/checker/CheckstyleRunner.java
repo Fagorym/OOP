@@ -30,7 +30,8 @@ public class CheckstyleRunner implements Executor {
 
                 checker.checkCodestyle(files);
                 result.getCheckStyleReport().put(
-                        task.getId(), "result_" + result.getStudent().getNickname() + "_" + task.getId()
+                        task.getId(),
+                        "result_" + result.getStudent().getNickname() + "_" + task.getId() + ".txt"
                 );
 
             } catch (Exception e) {

@@ -3,8 +3,7 @@ package ru.nsu.fit.oop.veber;
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
-import ru.nsu.fit.oop.veber.checker.CheckstyleRunner;
-import ru.nsu.fit.oop.veber.checker.Executor;
+import ru.nsu.fit.oop.veber.checker.*;
 import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.parser.Parser;
 import ru.nsu.fit.oop.veber.provider.GitProvider;
@@ -49,9 +48,9 @@ public class ReportApi implements Runnable {
             lessons.add(new Lesson(lessonDto.getDate()));
         }
         checkExecutors = List.of(
-                //new TaskBuilder(),
-                //new TaskTestChecker(),
-                //new TaskDocsGenerator(),
+                new TaskBuilder(),
+                new TaskTestChecker(),
+                new TaskDocsGenerator(),
                 new CheckstyleRunner()
         );
         reportProvider = new HtmlProvider();
@@ -78,9 +77,9 @@ public class ReportApi implements Runnable {
         initializeTasksReports();
         initializeDayReports();
         tasks.forEach(this::checkTask);
-        //checkAttendance();
-        //countTotal();
-        //makeReport();
+        checkAttendance();
+        countTotal();
+        makeReport();
     }
 
     private void checkAttendance() {
