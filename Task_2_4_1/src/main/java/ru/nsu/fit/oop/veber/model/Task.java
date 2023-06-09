@@ -14,6 +14,10 @@ public class Task extends Parcelable {
     private boolean isGiven;
     private boolean hasTests;
 
+    private String softDeadline;
+
+    private String hardDeadline;
+
     public String getConfigPath() {
         return CONFIG_PATH;
     }

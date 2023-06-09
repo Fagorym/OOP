@@ -112,13 +112,20 @@ public class HtmlProvider implements ReportProvider {
                 tr(
                         th("Student").attr("rowspan", 2),
                         each(results.get(0).getTaskReports().keySet(), task ->
-                                th(task).attr("colspan", 4)
+                                th(task).attr("colspan", 6)
                         )
 
                 ),
                 tr(
                         each(results.get(0).getTaskReports().keySet(), task ->
-                                join(th("Build"), th("Test"), th("Javadoc"), th("Score")))
+                                join(
+                                        th("Build"),
+                                        th("Test"),
+                                        th("Javadoc"),
+                                        th("Soft deadline"),
+                                        th("Hard deadline"),
+                                        th("Score")
+                                ))
                 ),
                 each(results, result -> tr(td(result.getStudent().getNickname())).with(
                         each(result.getTaskReports().values(), value ->
@@ -126,6 +133,8 @@ public class HtmlProvider implements ReportProvider {
                                         td(value.isWasBuilt() ? "+" : "-"),
                                         td(value.isWasTested() ? "+" : "-"),
                                         td(value.isHasDocs() ? "+" : "-"),
+                                        td(value.isWasSoftDeadline() ? "0.5" : "0"),
+                                        td(value.isWasHardDeadline() ? "0.5" : "0"),
                                         td(String.valueOf(value.getScore()))
                                 )
                         )

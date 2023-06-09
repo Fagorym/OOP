@@ -19,6 +19,8 @@ import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BiPredicate;
 
 @Slf4j
 public class GitProvider implements VersionControlProvider {
@@ -38,6 +40,50 @@ public class GitProvider implements VersionControlProvider {
             checkoutToDefault(git);
             throw new RuntimeException(ex.getMessage());
         }
+    }
+
+    @Override
+    public Map<String, LocalDate> getBorderCommitsDate(String branchName, StudentResults results) {
+        try {
+
+            Git git = results.getStudentGit();
+            Collection<Ref> branches = git.branchList().setListMode(ListBranchCommand.ListMode.ALL).call();
+            var checkoutBranch = branches.stream().filter(branch -> branch.getName().contains(branchName)).findFirst().orElseThrow(
+                    () -> new RuntimeException("Cannot find branch"));
+            git.checkout().setName(checkoutBranch.getName()).call();
+            RevCommit lastCommit = getByPredicate(git.log().call(), LocalDate::isAfter);
+            RevCommit firstCommit = getByPredicate(git.log().call(), LocalDate::isBefore);
+            checkoutToDefault(git);
+            log.info("Dates for student {}", results.getStudent().getNickname());
+            log.info(getCommitDate(firstCommit).toString());
+            log.info(getCommitDate(lastCommit).toString());
+            return Map.of("first", getCommitDate(firstCommit),
+                    "last", getCommitDate(lastCommit));
+
+        } catch (Exception e) {
+            log.warn("Exception while parsing branch");
+            log.warn(e.getMessage());
+            return Map.of("first", LocalDate.MAX,
+                    "last", LocalDate.MAX);
+        }
+    }
+
+    private RevCommit getByPredicate(Iterable<RevCommit> commits, BiPredicate<LocalDate, LocalDate> datePredicate) {
+        RevCommit lastCommit = commits.iterator().next();
+        for (RevCommit commit : commits) {
+            LocalDate lastCommitDate = getCommitDate(lastCommit);
+            LocalDate currentCommitDate = getCommitDate(commit);
+            if (datePredicate.test(lastCommitDate, currentCommitDate)) {
+                lastCommit = commit;
+            }
+        }
+        return lastCommit;
+    }
+
+    private LocalDate getCommitDate(RevCommit commit) {
+        PersonIdent authorIdent = commit.getAuthorIdent();
+        Date authorDate = authorIdent.getWhen();
+        return LocalDate.ofInstant(authorDate.toInstant(), ZoneId.systemDefault());
     }
 
     private void checkoutToDefault(Git git) {

@@ -47,14 +47,15 @@ public class ReportApi implements Runnable {
         for (LessonDto lessonDto : lessonDtoList) {
             lessons.add(new Lesson(lessonDto.getDate()));
         }
+        reportProvider = new HtmlProvider();
+        versionControlProvider = new GitProvider();
         checkExecutors = List.of(
                 new TaskBuilder(),
                 new TaskTestChecker(),
                 new TaskDocsGenerator(),
-                new CheckstyleRunner()
+                new CheckstyleRunner(),
+                new DeadlineChecker(versionControlProvider)
         );
-        reportProvider = new HtmlProvider();
-        versionControlProvider = new GitProvider();
     }
 
     private void makeReport() {
@@ -77,7 +78,7 @@ public class ReportApi implements Runnable {
         initializeTasksReports();
         initializeDayReports();
         tasks.forEach(this::checkTask);
-        checkAttendance();
+        //checkAttendance();
         countTotal();
         makeReport();
     }
@@ -117,10 +118,13 @@ public class ReportApi implements Runnable {
         );
     }
 
-    private int getScore(Report report) {
-        return (report.isHasDocs() ? 1 : 0) *
+    private double getScore(Report report) {
+        double softScore = report.isWasSoftDeadline() ? 0.5 : 0;
+        double hardScore = report.isWasSoftDeadline() ? 0.5 : 0;
+        int taskReady = (report.isHasDocs() ? 1 : 0) *
                 (report.isWasTested() ? 1 : 0) *
                 (report.isWasBuilt() ? 1 : 0);
+        return (softScore + hardScore) * taskReady;
     }
 
     private void checkTask(Task task) {
