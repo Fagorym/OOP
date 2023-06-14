@@ -48,11 +48,17 @@ public class GitProvider implements VersionControlProvider {
 
             Git git = results.getStudentGit();
             Collection<Ref> branches = git.branchList().setListMode(ListBranchCommand.ListMode.ALL).call();
-            var checkoutBranch = branches.stream().filter(branch -> branch.getName().contains(branchName)).findFirst().orElseThrow(
-                    () -> new RuntimeException("Cannot find branch"));
-            git.checkout().setName(checkoutBranch.getName()).call();
-            RevCommit lastCommit = getByPredicate(git.log().call(), LocalDate::isAfter);
-            RevCommit firstCommit = getByPredicate(git.log().call(), LocalDate::isBefore);
+            var checkoutBranch = branches.stream().filter(branch -> branch.getName().contains(branchName)).findFirst().orElse(null);
+            RevCommit firstCommit, lastCommit;
+            if (checkoutBranch == null) {
+                String directory = branchName.replace("t", "T").replace("-", "_");
+                lastCommit = getByPredicate(git.log().addPath(directory).call(), LocalDate::isAfter);
+                firstCommit = getByPredicate(git.log().addPath(directory).call(), LocalDate::isBefore);
+            } else {
+                git.checkout().setName(checkoutBranch.getName()).call();
+                lastCommit = getByPredicate(git.log().call(), LocalDate::isAfter);
+                firstCommit = getByPredicate(git.log().call(), LocalDate::isBefore);
+            }
             checkoutToDefault(git);
             log.info("Dates for student {}", results.getStudent().getNickname());
             log.info(getCommitDate(firstCommit).toString());
