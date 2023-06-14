@@ -11,19 +11,19 @@ import java.util.function.Function;
 public enum Direction {
     LEFT(
             (head, tail) -> tail.setX(head.getX() - 1),
-            (head) -> new SnakeBlock(head.getX() - 1, head.getY())
+            (head) -> new SnakeBlock(head.getX() - 1, head.getY(), head.getOwner())
     ),
     RIGHT(
             (head, tail) -> tail.setX(head.getX() + 1),
-            (head) -> new SnakeBlock(head.getX() + 1, head.getY())
+            (head) -> new SnakeBlock(head.getX() + 1, head.getY(), head.getOwner())
     ),
     DOWN(
             (head, tail) -> tail.setY(head.getY() + 1),
-            (head) -> new SnakeBlock(head.getX(), head.getY() - 1)
+            (head) -> new SnakeBlock(head.getX(), head.getY() - 1, head.getOwner())
     ),
     UP(
             (head, tail) -> tail.setY(head.getY() - 1),
-            (head) -> new SnakeBlock(head.getX(), head.getY() + 1)
+            (head) -> new SnakeBlock(head.getX(), head.getY() + 1, head.getOwner())
     );
 
     static {

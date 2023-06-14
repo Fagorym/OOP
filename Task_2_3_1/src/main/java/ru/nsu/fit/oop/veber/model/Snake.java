@@ -8,9 +8,9 @@ import java.util.Random;
 
 public class Snake {
 
+    protected Direction direction;
+    protected boolean isNotDead = true;
     Deque<SnakeBlock> body;
-    private Direction direction;
-
     private SnakeBlock headBlock;
 
     private SnakeBlock tailBlock;
@@ -18,8 +18,8 @@ public class Snake {
 
     public Snake(int x, int y) {
         this.body = new ArrayDeque<>();
-        this.headBlock = new SnakeBlock(x, y);
-        this.tailBlock = new SnakeBlock(x - 1, y);
+        this.headBlock = new SnakeBlock(x, y, this);
+        this.tailBlock = new SnakeBlock(x - 1, y, this);
         this.direction = Direction.RIGHT;
     }
 
@@ -67,5 +67,21 @@ public class Snake {
         body.addLast(tailBlock);
         this.tailBlock = newTail;
         return newTail;
+    }
+
+    protected void killBlocksAfter(SnakeBlock deadBlock) {
+        if (tailBlock == deadBlock) {
+            if (body.isEmpty()) {
+                isNotDead = false;
+                return;
+            }
+            tailBlock = body.removeLast();
+        } else {
+            Deque<SnakeBlock> newBody = new ArrayDeque<>();
+            while (!body.isEmpty() && body.peekFirst() != deadBlock) {
+                newBody.addLast(body.removeFirst());
+            }
+            body = newBody;
+        }
     }
 }

@@ -35,4 +35,8 @@ public class CollisionChecker {
     public void removeObject(BoxElement object) {
         objects[object.getX()][object.getY()] = new Nothing(object.getX(), object.getY());
     }
+
+    public BoxElement[][] getObjects() {
+        return objects;
+    }
 }

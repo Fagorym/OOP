@@ -9,6 +9,13 @@ import java.util.Random;
 public class Environment {
     private final Snake snake;
     private final List<Food> foodList;
+
+    private final List<ComputedSnake> snakes = List.of(
+            new ComputedSnake(2, 2),
+            new ComputedSnake(2, 40),
+            new ComputedSnake(40, 2),
+            new ComputedSnake(40, 40)
+    );
     private final Box box;
 
     private final CollisionChecker collisionChecker;
@@ -37,6 +44,7 @@ public class Environment {
         }
 
         collisionChecker.addObject(snake.getHeadBlock());
+        collisionChecker.addObjects(snakes.stream().map(ComputedSnake::getHeadBlock).toList());
         collisionChecker.addObjects(foodList);
         collisionChecker.addObjects(box.getWalls());
 
@@ -77,5 +85,9 @@ public class Environment {
 
     public CollisionChecker getCollisionChecker() {
         return collisionChecker;
+    }
+
+    public List<ComputedSnake> getComputedSnake() {
+        return snakes;
     }
 }
