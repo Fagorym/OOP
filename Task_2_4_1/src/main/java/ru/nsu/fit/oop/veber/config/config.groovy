@@ -25,6 +25,11 @@ group = new Group(
                         nickname: "rafi2002",
                         fullName: "Рафикул Ал Масуд",
                         repositoryUrl: "https://github.com/rafi2002/oop"
+                ),
+                new Student(
+                        nickname: "ttrubinov",
+                        fullName: "Трубинов Тимофей Андреевич",
+                        repositoryUrl: "https://github.com/ttrubinov/oop"
                 )
         ]
 )
