@@ -3,6 +3,8 @@ package ru.nsu.fit.oop.veber.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.time.LocalDate;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Task extends Parcelable {
@@ -13,10 +15,8 @@ public class Task extends Parcelable {
     private int score;
     private boolean isGiven;
     private boolean hasTests;
-
-    private String softDeadline;
-
-    private String hardDeadline;
+    private LocalDate softDeadline;
+    private LocalDate hardDeadline;
 
     public String getConfigPath() {
         return CONFIG_PATH;

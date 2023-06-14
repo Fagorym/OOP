@@ -11,6 +11,7 @@ import ru.nsu.fit.oop.veber.provider.HtmlProvider;
 import ru.nsu.fit.oop.veber.provider.ReportProvider;
 import ru.nsu.fit.oop.veber.provider.VersionControlProvider;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,13 +20,14 @@ import java.util.Map;
 @Command(name = "-make")
 @Slf4j
 public class ReportApi implements Runnable {
-    private final Group group;
-    private final List<Task> tasks;
-    private final List<Lesson> lessons;
     private final ReportProvider reportProvider;
     private final VersionControlProvider versionControlProvider;
-
     private final List<Executor> checkExecutors;
+    private List<Lesson> lessons;
+
+    private List<TaskDeadline> deadlines;
+    private Group group;
+    private List<Task> tasks;
     @Parameters(
             description = "Extra student score in syntax: STUDENT_NAME=SCORE_VALUE",
             defaultValue = ""
@@ -34,19 +36,10 @@ public class ReportApi implements Runnable {
     private Map<String, Integer> extraScoreStudents;
     private List<StudentResults> results;
 
-    @SuppressWarnings("unchecked")
+
     public ReportApi() {
-        Parser parser = new Parser();
-        log.info("Parsing group.");
-        this.group = (Group) parser.parse(Group.class);
-        log.info("Parsing tasks");
-        this.tasks = (List<Task>) parser.parse(Task.class);
-        log.info("Parsing lessons");
-        List<LessonDto> lessonDtoList = (List<LessonDto>) parser.parse(LessonDto.class);
         lessons = new ArrayList<>();
-        for (LessonDto lessonDto : lessonDtoList) {
-            lessons.add(new Lesson(lessonDto.getDate()));
-        }
+        parseConfigurationFiles();
         reportProvider = new HtmlProvider();
         versionControlProvider = new GitProvider();
         checkExecutors = List.of(
@@ -63,6 +56,31 @@ public class ReportApi implements Runnable {
         reportProvider.generateReport(results);
         log.info("Generating report was success");
 
+    }
+
+    @SuppressWarnings("unchecked")
+    private void parseConfigurationFiles() {
+        Parser parser = new Parser();
+        log.info("Parsing group.");
+        this.group = (Group) parser.parse(Group.class);
+        log.info("Parsing tasks");
+        this.tasks = (List<Task>) parser.parse(Task.class);
+        log.info("Parsing lessons");
+        lessons = ((List<LessonDto>) parser.parse(LessonDto.class))
+                .stream()
+                .map(dto -> new Lesson(dto.getDate()))
+                .toList();
+        log.info("Parsing deadlines");
+        deadlines = (List<TaskDeadline>) parser.parse(TaskDeadline.class);
+        tasks.forEach(
+                task -> deadlines.forEach(
+                        deadline -> {
+                            if (deadline.getTaskId().equals(task.getId())) {
+                                task.setSoftDeadline(LocalDate.parse(deadline.getSoftDeadline()));
+                                task.setHardDeadline(LocalDate.parse(deadline.getHardDeadline()));
+                            }
+                        })
+        );
     }
 
 

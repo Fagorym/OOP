@@ -21,8 +21,8 @@ public class DeadlineChecker implements Executor {
                     result
             );
             var report = result.getTaskReports().get(task.getId());
-            report.setWasSoftDeadline(dates.get("first").isBefore(LocalDate.parse(task.getSoftDeadline())));
-            report.setWasHardDeadline(dates.get("last").isBefore(LocalDate.parse(task.getHardDeadline())));
+            report.setWasSoftDeadline(dates.get("first").isBefore(task.getSoftDeadline()));
+            report.setWasHardDeadline(dates.get("last").isBefore(task.getHardDeadline()));
             result.getTaskReports().put(task.getId(), report);
         }
 
