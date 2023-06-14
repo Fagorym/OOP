@@ -12,6 +12,8 @@ public class StudentResults {
     private String path;
     private Student student;
     private Git studentGit;
+    private Map<String, String> taskToBranchName = new HashMap<>();
+    private Map<String, String> taskToDirectoryName = new HashMap<>();
     private Map<String, Report> taskReports = new HashMap<>();
     private Map<String, Boolean> dayReports = new HashMap<>();
     private Map<String, String> testCoverage = new HashMap<>();
