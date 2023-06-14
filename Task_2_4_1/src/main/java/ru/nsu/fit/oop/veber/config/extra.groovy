@@ -6,6 +6,6 @@ import ru.nsu.fit.oop.veber.model.ExtraScore
 [
         new ExtraScore(
                 extraScore: 99,
-                studentNickname: "MihailCCfit"
+                studentNickname: "mihailCCfit"
         )
 ]
