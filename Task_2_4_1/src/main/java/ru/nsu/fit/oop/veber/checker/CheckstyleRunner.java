@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.veber.checker;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.nsu.fit.oop.veber.checkstyle.CustomChecker;
+import ru.nsu.fit.oop.veber.model.CheckStyleReport;
 import ru.nsu.fit.oop.veber.model.StudentResults;
 import ru.nsu.fit.oop.veber.model.Task;
 
@@ -29,9 +30,12 @@ public class CheckstyleRunner implements Executor {
                         .toList();
 
                 checker.checkCodestyle(files);
+                String path = String.join("_", "result", result.getStudent().getNickname(), task.getId()) + ".txt";
+                CheckStyleReport checkStyleReport = new CheckStyleReport(path);
+
                 result.getCheckStyleReport().put(
                         task.getId(),
-                        "result_" + result.getStudent().getNickname() + "_" + task.getId() + ".txt"
+                        checkStyleReport
                 );
 
             } catch (Exception e) {

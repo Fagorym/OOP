@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Group extends Parcelable {
-    private final static String CONFIG_PATH = "Task_2_4_1/src/main/java/ru/nsu/fit/oop/veber/config/config.groovy";
+    private final static String CONFIG_PATH = "Task_2_4_1/src/main/java/ru/nsu/fit/oop/veber/config/students.groovy";
     private List<Student> students;
     private List<Task> tasks;
     private Integer number;

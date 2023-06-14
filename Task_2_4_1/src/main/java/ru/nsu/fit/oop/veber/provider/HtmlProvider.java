@@ -3,10 +3,12 @@ package ru.nsu.fit.oop.veber.provider;
 import j2html.TagCreator;
 import j2html.tags.ContainerTag;
 import lombok.Data;
+import ru.nsu.fit.oop.veber.model.CheckStyleReport;
 import ru.nsu.fit.oop.veber.model.Report;
 import ru.nsu.fit.oop.veber.model.StudentResults;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.List;
 import java.util.Objects;
 
@@ -109,25 +111,12 @@ public class HtmlProvider implements ReportProvider {
     }
 
     private ContainerTag getStyleResult(StudentResults result, Report report) {
-        int warningCount = 0;
-        String fileCheckStyleName = result.getCheckStyleReport().get(report.getTaskId());
-        if (fileCheckStyleName == null) {
+        CheckStyleReport checkStyleReport = result.getCheckStyleReport().get(report.getTaskId());
+        if (checkStyleReport.getWarningCount() == null) {
             return td("No information about checkstyle");
         }
-        try {
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(
-                            new FileInputStream(fileCheckStyleName)
-                    )
-            );
-            while (reader.ready()) {
-                warningCount++;
-                reader.readLine();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return td(a(String.valueOf(warningCount)).withHref("../../../" + fileCheckStyleName));
+        return td(a(String.valueOf(checkStyleReport.getWarningCount()))
+                .withHref("../../../" + checkStyleReport.getFilePath()));
     }
 
     private ContainerTag getTestCoverage(StudentResults result, Report report) {

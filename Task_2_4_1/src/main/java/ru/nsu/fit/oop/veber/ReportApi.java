@@ -2,7 +2,6 @@ package ru.nsu.fit.oop.veber;
 
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
-import picocli.CommandLine.Parameters;
 import ru.nsu.fit.oop.veber.checker.*;
 import ru.nsu.fit.oop.veber.model.*;
 import ru.nsu.fit.oop.veber.parser.Parser;
@@ -11,6 +10,10 @@ import ru.nsu.fit.oop.veber.provider.HtmlProvider;
 import ru.nsu.fit.oop.veber.provider.ReportProvider;
 import ru.nsu.fit.oop.veber.provider.VersionControlProvider;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,14 +29,10 @@ public class ReportApi implements Runnable {
     private List<Lesson> lessons;
 
     private List<TaskDeadline> deadlines;
+
+    private List<ExtraScore> extraScores;
     private Group group;
     private List<Task> tasks;
-    @Parameters(
-            description = "Extra student score in syntax: STUDENT_NAME=SCORE_VALUE",
-            defaultValue = ""
-    )
-    @SuppressWarnings({"all"})
-    private Map<String, Integer> extraScoreStudents;
     private List<StudentResults> results;
 
 
@@ -81,6 +80,8 @@ public class ReportApi implements Runnable {
                             }
                         })
         );
+        log.info("Parsing extra scores");
+        extraScores = (List<ExtraScore>) parser.parse(ExtraScore.class);
     }
 
 
@@ -122,13 +123,17 @@ public class ReportApi implements Runnable {
                 result -> {
                     Collection<Report> reports = result.getTaskReports().values();
                     String studentName = result.getStudent().getNickname();
-                    int total = 0;
-                    if (extraScoreStudents.containsKey(studentName)
-                    ) {
-                        total += extraScoreStudents.get(studentName);
+                    double total = 0;
+                    ExtraScore extra = extraScores
+                            .stream()
+                            .filter(score -> score.getStudentNickname().equals(studentName))
+                            .findFirst()
+                            .orElse(null);
+                    if (extra != null) {
+                        total += extra.getExtraScore();
                     }
                     for (Report report : reports) {
-                        report.setScore(getScore(report));
+                        report.setScore(getScore(report, result));
                         total += report.getScore();
                     }
                     result.setTotal(total);
@@ -136,13 +141,48 @@ public class ReportApi implements Runnable {
         );
     }
 
-    private double getScore(Report report) {
+    private double getScore(Report report, StudentResults result) {
         double softScore = report.isWasSoftDeadline() ? 0.5 : 0;
         double hardScore = report.isWasSoftDeadline() ? 0.5 : 0;
-        double buildFine = report.isWasBuilt() ? 0.3 : 0;
-        double testFine = report.isWasTested() ? 0.1 : 0;
-        double docsFine = report.isHasDocs() ? 0.1 : 0;
-        return Math.max(softScore + hardScore - buildFine - testFine - docsFine, 0);
+        double buildFine = report.isWasBuilt() ? 0 : 0.5;
+        double testFine = report.isWasTested() ? 0 : 0.3;
+        double docsFine = report.isHasDocs() ? 0 : 0.1;
+        CheckStyleReport checkStyle = result.getCheckStyleReport().get(report.getTaskId());
+        if (checkStyle == null) {
+            checkStyle = new CheckStyleReport(null);
+        }
+        countWarnings(checkStyle);
+        double styleFine =
+                (checkStyle.getWarningCount() == null || checkStyle.getWarningCount() > 150) ? 0.05 : 0;
+        result.getCheckStyleReport().put(report.getTaskId(), checkStyle);
+        String testCoverage = result.getTestCoverage().get(report.getTaskId());
+        double coverageFine =
+                (testCoverage == null || Integer.parseInt(testCoverage.substring(0, 2)) < 80) ? 0.05 : 0;
+
+        return Math.max(softScore + hardScore - buildFine - testFine - docsFine - styleFine - coverageFine, 0);
+    }
+
+    private void countWarnings(CheckStyleReport checkStyle) {
+        Integer warningCount = 0;
+        String fileCheckStyleName = checkStyle.getFilePath();
+        if (fileCheckStyleName == null) {
+            checkStyle.setWarningCount(null);
+            return;
+        }
+        try {
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(fileCheckStyleName)
+                    )
+            );
+            while (reader.ready()) {
+                warningCount++;
+                reader.readLine();
+            }
+            checkStyle.setWarningCount(warningCount);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void checkTask(Task task) {
