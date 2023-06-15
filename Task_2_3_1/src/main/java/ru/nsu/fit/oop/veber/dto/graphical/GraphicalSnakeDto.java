@@ -11,6 +11,7 @@ public class GraphicalSnakeDto extends GraphicalDto {
         type = ObjectType.SNAKE;
     }
 
+
     @Override
     public void render(GraphicsContext context) {
         super.render(context);

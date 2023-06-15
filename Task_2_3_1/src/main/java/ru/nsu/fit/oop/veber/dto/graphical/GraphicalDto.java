@@ -7,7 +7,7 @@ import ru.nsu.fit.oop.veber.model.ObjectType;
 
 public class GraphicalDto extends BaseDto {
     private final int blockSize = 10;
-    private final Color color;
+    private Color color;
 
     protected ObjectType type;
 
@@ -37,5 +37,9 @@ public class GraphicalDto extends BaseDto {
 
     public ObjectType getType() {
         return type;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

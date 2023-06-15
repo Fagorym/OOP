@@ -6,6 +6,8 @@ import ru.nsu.fit.oop.veber.dto.graphical.GraphicalFoodDto;
 import ru.nsu.fit.oop.veber.dto.graphical.GraphicalSnakeDto;
 import ru.nsu.fit.oop.veber.dto.graphical.GraphicalWallDto;
 import ru.nsu.fit.oop.veber.model.BoxElement;
+import ru.nsu.fit.oop.veber.model.KillerSnake;
+import ru.nsu.fit.oop.veber.model.SnakeBlock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,11 @@ public class GraphicalConverter implements Converter<GraphicalDto> {
         GraphicalDto cloneDto = (GraphicalDto) dto.clone();
         cloneDto.setX(element.getX());
         cloneDto.setY(element.getY());
+        if (element instanceof SnakeBlock snakeBlock) {
+            if (snakeBlock.getOwner() instanceof KillerSnake) {
+                cloneDto.setColor(Color.RED);
+            }
+        }
         return cloneDto;
     }
 }

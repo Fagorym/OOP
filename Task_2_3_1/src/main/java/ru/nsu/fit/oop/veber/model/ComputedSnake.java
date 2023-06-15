@@ -63,7 +63,7 @@ public class ComputedSnake extends Snake {
 
     protected int convertToWeight(BoxElement element) {
         return switch (element.getObjectType()) {
-            case FOOD -> 340;
+            case FOOD -> 330;
             case SNAKE -> {
                 SnakeBlock seenBlock = (SnakeBlock) element;
                 Snake snake = seenBlock.getOwner();
