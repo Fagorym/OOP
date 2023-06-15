@@ -15,10 +15,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Command(name = "-make")
 @Slf4j
@@ -34,6 +31,7 @@ public class ReportApi implements Runnable {
     private Group group;
     private List<Task> tasks;
     private List<StudentResults> results;
+    private List<DirectoryConfig> directoryConfigs;
 
 
     public ReportApi() {
@@ -82,6 +80,8 @@ public class ReportApi implements Runnable {
         );
         log.info("Parsing extra scores");
         extraScores = (List<ExtraScore>) parser.parse(ExtraScore.class);
+        log.info("Parsing directories");
+        directoryConfigs = (List<DirectoryConfig>) parser.parse(DirectoryConfig.class);
     }
 
 
@@ -96,10 +96,26 @@ public class ReportApi implements Runnable {
         cloneRepositories();
         initializeTasksReports();
         initializeDayReports();
-        //tasks.forEach(this::checkTask);
+        initializeDirectoryConfigs();
+        tasks.forEach(this::checkTask);
         checkAttendance();
         countTotal();
         makeReport();
+    }
+
+    private void initializeDirectoryConfigs() {
+        for (StudentResults result : results) {
+            Optional<DirectoryConfig> studentConfig = directoryConfigs
+                    .stream()
+                    .filter(config -> config.getStudentName().equals(result.getStudent().getNickname()))
+                    .findFirst();
+            if (studentConfig.isPresent()) {
+                for (DirectoryDto directoryDto : studentConfig.get().getDirectoryDto()) {
+                    result.getDirectoryNames().put(directoryDto.getTaskId(), directoryDto.getDirectoryName());
+                }
+            }
+
+        }
     }
 
     private void checkAttendance() {

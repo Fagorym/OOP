@@ -17,6 +17,7 @@ public class StudentResults {
     private Map<String, Report> taskReports = new HashMap<>();
     private Map<String, Boolean> dayReports = new HashMap<>();
     private Map<String, String> testCoverage = new HashMap<>();
+    private Map<String, String> directoryNames = new HashMap<>();
     private Map<String, CheckStyleReport> checkStyleReport = new HashMap<>();
     private Double total;
 

@@ -15,7 +15,9 @@ public abstract class TaskExecutor implements Executor {
             log.error("Path to project was not specified. Check configuration file.");
             return false;
         }
-        File file = new File(project.getPath() + "/" + task.getId());
+        String specifiedDirectoryName = project.getDirectoryNames().containsKey(task.getId())
+                ? project.getDirectoryNames().get(task.getId()) : task.getId();
+        File file = new File(project.getPath() + "/" + specifiedDirectoryName);
 
         if (!file.exists()) {
             log.warn(
