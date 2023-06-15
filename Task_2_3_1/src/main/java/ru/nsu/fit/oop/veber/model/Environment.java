@@ -13,8 +13,8 @@ public class Environment {
     private final List<ComputedSnake> snakes = List.of(
             new ComputedSnake(2, 2),
             new ComputedSnake(2, 40),
-            new ComputedSnake(40, 2),
-            new ComputedSnake(40, 40)
+            new ComputedSnake(60, 2),
+            new KillerSnake(60, 40)
     );
     private final Box box;
 

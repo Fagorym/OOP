@@ -69,19 +69,22 @@ public class Snake {
         return newTail;
     }
 
-    protected void killBlocksAfter(SnakeBlock deadBlock) {
+    protected int killBlocksAfter(SnakeBlock deadBlock) {
         if (tailBlock == deadBlock) {
             if (body.isEmpty()) {
                 isNotDead = false;
-                return;
+                return 2;
             }
             tailBlock = body.removeLast();
+            return body.size() + 2;
         } else {
             Deque<SnakeBlock> newBody = new ArrayDeque<>();
             while (!body.isEmpty() && body.peekFirst() != deadBlock) {
                 newBody.addLast(body.removeFirst());
             }
+            int killed = body.size() - newBody.size();
             body = newBody;
+            return killed;
         }
     }
 }

@@ -27,7 +27,7 @@ public class ComputedSnake extends Snake {
     }
 
     public void computeDirection(BoxElement[][] elements) {
-        recursion(getHeadBlock().getX(), getHeadBlock().getY(), elements, 5);
+        recursion(getHeadBlock().getX(), getHeadBlock().getY(), elements, 20);
         if (TempSnake.x == getHeadBlock().getX()) {
             if (TempSnake.y == getHeadBlock().getY() - 1) {
                 if (this.direction != Direction.DOWN) {
@@ -63,7 +63,7 @@ public class ComputedSnake extends Snake {
 
     protected int convertToWeight(BoxElement element) {
         return switch (element.getObjectType()) {
-            case FOOD -> 200;
+            case FOOD -> 340;
             case SNAKE -> {
                 SnakeBlock seenBlock = (SnakeBlock) element;
                 Snake snake = seenBlock.getOwner();
@@ -75,7 +75,7 @@ public class ComputedSnake extends Snake {
                     yield -500;
                 }
             }
-            case WALL -> -400;
+            case WALL -> -350;
             case NOTHING -> 0;
         };
 
@@ -88,14 +88,20 @@ public class ComputedSnake extends Snake {
         for (int j = -1; j <= 1; j += 2) {
             leftValue = rightValue = 0;
             for (int i = 1; i < maxStep; i++) {
-                leftValue += (convertToWeight(field[x + j * i][y]) + memory[x + j * i][y] * -4) * (maxStep - i) * (maxStep - i);
+                leftValue += (convertToWeight(field[x + j * i][y]) + memory[x + j * i][y] * -4) * Math.pow((maxStep - i), 2);
                 if (field[x + j * i][y].getObjectType() == ObjectType.WALL) {
+                    if (i == 1) {
+                        leftValue = Integer.MIN_VALUE;
+                    }
                     break;
                 }
             }
             for (int i = 1; i < maxStep; i++) {
-                rightValue += (convertToWeight(field[x][y + j * i]) + memory[x][y + j * i] * -4) * (maxStep - i) * (maxStep - i);
+                rightValue += (convertToWeight(field[x][y + j * i]) + memory[x][y + j * i] * -4) * Math.pow((maxStep - i), 2);
                 if (field[x][y + j * i].getObjectType() == ObjectType.WALL) {
+                    if (i == 1) {
+                        rightValue = Integer.MIN_VALUE;
+                    }
                     break;
                 }
             }
@@ -121,11 +127,17 @@ public class ComputedSnake extends Snake {
             case SNAKE -> {
                 SnakeBlock deadBlock = (SnakeBlock) collisionElement;
                 Snake snake = deadBlock.getOwner();
+                if (snake.equals(this)) {
+                    isNotDead = false;
+                }
                 if (snake.getHeadBlock().equals(deadBlock)) {
                     isNotDead = false;
                     snake.isNotDead = false;
                 }
-                snake.killBlocksAfter(deadBlock);
+                int killedCountBlocks = snake.killBlocksAfter(deadBlock);
+                for (int i = 0; i < killedCountBlocks; i++) {
+                    collisionChecker.addObject(generateNewSnakeBlock());
+                }
             }
             case WALL -> isNotDead = false;
             case FOOD -> {

@@ -8,10 +8,16 @@ public class KillerSnake extends ComputedSnake {
     @Override
     protected int convertToWeight(BoxElement element) {
         return switch (element.getObjectType()) {
-            case FOOD -> 0;
-            case SNAKE -> 100;
+            case FOOD, NOTHING -> 0;
+            case SNAKE -> {
+                SnakeBlock seenSnake = (SnakeBlock) element;
+                if (!seenSnake.getOwner().equals(this)) {
+                    yield 100;
+                } else {
+                    yield -100;
+                }
+            }
             case WALL -> -20;
-            case NOTHING -> 0;
         };
     }
 }
