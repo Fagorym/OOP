@@ -67,7 +67,7 @@ public class ReportApi implements Runnable {
         log.info("Parsing lessons");
         lessons = ((List<LessonDto>) parser.parse(LessonDto.class))
                 .stream()
-                .map(dto -> new Lesson(dto.getDate()))
+                .map(dto -> new Lesson(dto.getDate(), dto.getExcludedStudentsNicknames()))
                 .toList();
         log.info("Parsing deadlines");
         deadlines = (List<TaskDeadline>) parser.parse(TaskDeadline.class);
@@ -96,8 +96,8 @@ public class ReportApi implements Runnable {
         cloneRepositories();
         initializeTasksReports();
         initializeDayReports();
-        tasks.forEach(this::checkTask);
-        //checkAttendance();
+        //tasks.forEach(this::checkTask);
+        checkAttendance();
         countTotal();
         makeReport();
     }
@@ -106,14 +106,21 @@ public class ReportApi implements Runnable {
         for (StudentResults result : results) {
             Map<String, Boolean> dayReports = result.getDayReports();
             for (Lesson lesson : lessons) {
-                Boolean lessonResult = versionControlProvider.checkLessonAttendance(
-                        lesson,
-                        result.getStudentGit()
-                );
-                dayReports.put(
-                        lesson.getDate().toString(),
-                        lessonResult
-                );
+                if (lesson.getExcludedStudents().contains(result.getStudent().getNickname())) {
+                    dayReports.put(
+                            lesson.getDate().toString(),
+                            true
+                    );
+                } else {
+                    boolean lessonResult = versionControlProvider.checkLessonAttendance(
+                            lesson,
+                            result.getStudentGit()
+                    );
+                    dayReports.put(
+                            lesson.getDate().toString(),
+                            lessonResult
+                    );
+                }
             }
         }
     }

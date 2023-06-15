@@ -96,7 +96,7 @@ public class GitProvider implements VersionControlProvider {
         try {
             git.checkout().setName("main").call();
         } catch (GitAPIException e) {
-            throw new RuntimeException(e);
+            log.warn("Cannot checkout to main");
         }
     }
 
