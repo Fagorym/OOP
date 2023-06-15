@@ -70,13 +70,17 @@ public class Snake {
     }
 
     protected int killBlocksAfter(SnakeBlock deadBlock) {
+        if (headBlock == deadBlock) {
+            isNotDead = false;
+        }
         if (tailBlock == deadBlock) {
             if (body.isEmpty()) {
                 isNotDead = false;
                 return 2;
+            } else {
+                tailBlock = body.removeLast();
+                return body.size() + 2;
             }
-            tailBlock = body.removeLast();
-            return body.size() + 2;
         } else {
             Deque<SnakeBlock> newBody = new ArrayDeque<>();
             while (!body.isEmpty() && body.peekFirst() != deadBlock) {

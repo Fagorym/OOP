@@ -27,6 +27,9 @@ public class ComputedSnake extends Snake {
     }
 
     public void computeDirection(BoxElement[][] elements) {
+        if (elements[getHeadBlock().getX()][getHeadBlock().getY()].getObjectType() == ObjectType.WALL) {
+            return;
+        }
         recursion(getHeadBlock().getX(), getHeadBlock().getY(), elements, 20);
         if (TempSnake.x == getHeadBlock().getX()) {
             if (TempSnake.y == getHeadBlock().getY() - 1) {
@@ -82,6 +85,9 @@ public class ComputedSnake extends Snake {
     }
 
     private void recursion(int x, int y, BoxElement[][] field, int maxStep) {
+        if (x < 0 || y < 0) {
+            return;
+        }
         int maxValue = Integer.MIN_VALUE;
         int leftValue;
         int rightValue;
@@ -154,48 +160,8 @@ public class ComputedSnake extends Snake {
 
     }
 
-    /*
-    private int recursion(int x, int y, BoxElement[][] field, int startValue, int step, int maxStep) {
-        int memoryCef = memory[x][y] ? -3 : 3;
-        if (isVisited[x][y]) {
-            return startValue + convertToWeight(field[x][y]) + memoryCef;
-        }
-        isVisited[x][y] = true;
-        if (field[x][y].getObjectType() == ObjectType.WALL || step == maxStep) {
-            return startValue + convertToWeight(field[x][y]) + memoryCef;
-        } else {
-            int maxValue = Integer.MIN_VALUE;
-            for (int j = -1; j <= 1; j += 2) {
-                int leftValue = recursion(x, y + j, field, startValue + convertToWeight(field[x][y]), step + 1, maxStep);
-                int rightValue = recursion(x + j, y, field, startValue + convertToWeight(field[x][y]), step + 1, maxStep);
-                if (leftValue > maxValue) {
-                    maxValue = leftValue;
-                    if (step == 0) {
-                        TempSnake.y = y + j;
-                        TempSnake.x = x;
-                        TempSnake.value = leftValue;
-                    }
-
-                }
-                if (rightValue > maxValue) {
-                    maxValue = rightValue;
-                    if (step == 0) {
-                        TempSnake.y = y;
-                        TempSnake.x = x + j;
-                        TempSnake.value = rightValue;
-                    }
-                }
-            }
-            return maxValue;
-        }
-
-    }
-
-     */
-
     public static class TempSnake {
         static int x;
         static int y;
-        static int value;
     }
 }
